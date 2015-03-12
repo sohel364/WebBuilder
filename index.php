@@ -1,5 +1,16 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
+=======
+<?php
+	$dirs=scandir("./templates");
+	echo "Available Tempalates<br/>";
+
+	for($i=2;$i<sizeof($dirs);$i++)
+	{
+		echo '<a href="./manager/content_manager/content_manager.php?template='.$dirs[$i].'">'.$dirs[$i].'</a> <br/>';
+	}
+>>>>>>> 40189f779f9b4eb08ee0527a417b6e2f88590b4d
 
 <head>
 <link rel="stylesheet" type="text/css" href="css/style.css">
