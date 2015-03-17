@@ -16,8 +16,14 @@
 	}
 ?>
 
+<body>
+<form action="savePage.php" method="post" id="save">
+	<input type="hidden" id="html" name="html"/>
+	<input type="hidden" id="target" name="target" value="test"/>
+	<input type="submit" value="Save Page" />
+</form>
 
-<div id="frame">
+<div id="frame" style="border:  black 1px solid;">
 <?php include('../../templates/'.$_GET['template'].'/index.html'); ?>
 </div>
 
@@ -27,23 +33,30 @@
 <script type="text/javascript">
 $(function(){
 
+	$('#save').on('submit',function(e){
+//			e.preventDefault();
+			$('#html').val($('#frame').html());
+			
+			console.log( $('#html').val() );
+		});
+
 	$('.text').css('color','red');
-	
+	 
 	// $("#frame").load("<?php echo $turl ?>"); 
 	 
 
 
-	
-	tinymce.init({
-    selector: ".text",
-    inline: true,
-    toolbar: "undo redo",
-    menubar: false
-});
+//	
+//	tinymce.init({
+//    selector: ".text",
+//    inline: true,
+//    toolbar: "undo redo",
+//    menubar: false
+//});
 
 
 	tinymce.init({
-    selector: "h1",
+    selector: "#frame",
     inline: true,
       plugins: [
             "advlist autolink lists link image charmap print preview anchor",
@@ -62,13 +75,7 @@ $(function(){
 //            });
 //        },
 
-/*        plugins: [
-            "advlist autolink lists link image charmap print preview anchor",
-            "searchreplace visualblocks code fullscreen",
-            "insertdatetime media table contextmenu paste"
-        ],
-    });
-*/
+
 });
 
 
