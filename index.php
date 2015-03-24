@@ -44,7 +44,7 @@ session_start( );
 <div> 
 	 <div id="template_brief">
 			 	
-			<h2>Pic your template, Build your own site</h2>
+			<h2>Pick your template, Build your own site</h2>
 			<p>Web Based Template builder 
 			with Simple steps</p>
 			<p><ul>Steps</ul></p>
