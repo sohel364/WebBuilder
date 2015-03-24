@@ -11,6 +11,8 @@
 }
 #top_pl{
 	 border-bottom: 1px solid;
+	 border-bottom-color: #9acd32;
+	 
 }
 #left_pl{
     border-right: 1px solid;
@@ -28,6 +30,35 @@
 }
 
 #container{
-	   float: right;
+	 float: right;
     width: 89%;
+    
+}
+#template_brief{
+	 background: none repeat scroll 0 0 #dddddd;
+    border: 2px solid #9acd32;
+    border-radius: 25px;
+    font-size: 15px;
+    margin-top: 20px;
+    padding: 10px 40px;
+    width: 40%;
+    float: left;
+}
+#template_slide_item{
+    border: 1px solid #9acd32;
+    border-radius: 1px;
+    float: left;
+    height: 44%;
+    margin-left: 80px;
+    margin-top: 88px;
+    width: 40%;
+}
+
+#border-bottom-top-mid{
+	 border-bottom: 1px solid #9acd32;	
+}
+#templat_block{
+	float: right;
+    width: 89%;
+    margin-top: 15px;
 }

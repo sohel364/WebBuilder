@@ -11,7 +11,10 @@ session_start( );
 </head>
 <body>
 <div id="container">
+ 
  <div id="top_pl">
+
+ 	 <div>
 		<table style="margin-left: 64px; display: inline-table">
 			<tr>
 				<td><a href="#">Home</a></td>
@@ -36,29 +39,68 @@ session_start( );
 		?>
 		
 		</div>
- </div>
- <div>
- 	<div id="left_pl">
- 		 <a href="#">asdasdas</a>
- 		 <a href="#">asdasdas</a>
- 		 <a href="#">asdasdas</a> 	
- 	</div>	
-	<div id="right_pl">
-		<?php
-			$dirs=scandir("./templates");
-			//echo "Available Tempalates<br/>";
-			//print_r($dirs);
-			for($i=2;$i<sizeof($dirs);$i++)
-			{		
-		?>
-		<div id="tp_pv">
-		<?php
-			echo '<a href="./manager/content_manager/content_manager.php?template='.$dirs[$i].'">'.$dirs[$i].'</a> </div>';
-				
-			} 
-		?>
-		</div>		
 	</div>
+ </div>
+<div> 
+	 <div id="template_brief">
+			 	
+			<h2>Pic your template, Build your own site</h2>
+			<p>Web Based Template builder 
+			with Simple steps</p>
+			<p><ul>Steps</ul></p>
+			<ul>
+				<li>1. Register</li>
+				<li>2. Choose Categorized template</li>
+				<li>3. Build your home with us !</li>
+			</ul>
+	 </div>
+	  <div id="template_slide_item">
+	  	<p style=" font-size: 40px;
+    	text-align: center;">Template-1</p>
+      </div>
+      
+      <br/>
+      <br/>
+ </div>
 
-  </div>
+</div>
+<br/><br/>
+<div id="templat_block">
+	<p><ul>Uncategorized</ul></p>
+	
+	<?php
+		$dirs=scandir("./templates");
+		//echo "Available Tempalates<br/>";
+		//print_r($dirs);
+		for($i=2;$i<sizeof($dirs);$i++)
+		{		
+	?>
+	
+	<?php
+		echo '<div id="tp_pv"> <a href="./manager/content_manager/content_manager.php?template='.$dirs[$i].'">'.$dirs[$i].'</a> </div>';
+			
+		} 
+	?>
+		
+</div>
+
+<div id="templat_block">
+	<p><ul>Medicine</ul></p>
+	
+	<?php
+		$dirs=scandir("./templates");
+		//echo "Available Tempalates<br/>";
+		//print_r($dirs);
+		for($i=2;$i<sizeof($dirs);$i++)
+		{		
+	?>
+	
+	<?php
+		echo '<div id="tp_pv"> <a href="./manager/content_manager/content_manager.php?template='.$dirs[$i].'">'.$dirs[$i].'</a> </div>';
+			
+		} 
+	?>
+		
+</div>
+
 </body>
