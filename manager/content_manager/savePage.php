@@ -1,17 +1,28 @@
 <?php 
+session_start( );
 
-$doc = new DOMDocument('1.0');
-$doc->formatOutput = true;
+if(!isset($_SESSION['isLogged']))
+{
+	header('Location: ./../user_manager/login.php');
+				
+}
+else 
+{
+	if(isset($_POST['html']))
+	{
+		include '../user_Manager/HtmlHelper.php';
+		$id =  $_SESSION['id'];
+		$data= $_POST['html'];
+//		echo $data;
+		$helper=new HTMLHelper();
+		$helper->saveHtmlToDB($data,$id);
+	}
+	
+		
+}
 
 
-$data=$_POST['html'];
-echo $data; 
 
-$doc->loadHTML("<html>\n<body>\n$data\n</body>\n</html>");
-
-
-$fileName=$_POST['target'].".html";
-echo 'Wrote: ' . $doc->saveHTMLFile($fileName). ' bytes'; // Wrote: 129 bytes
 
 
 	

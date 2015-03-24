@@ -1,14 +1,18 @@
+<?php
+session_start( );
+?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<title>Web Builder</title>
 </head>
-
 <body>
 <div id="container">
  <div id="top_pl">
-		<table style="margin-left: 64px;">
+		<table style="margin-left: 64px; display: inline-table">
 			<tr>
 				<td><a href="#">Home</a></td>
 				<td><a href="#">Account</a></td>
@@ -17,6 +21,21 @@
 				<td><a href="#">Others</a></td>
 			</tr>
 		</table>
+		<div style="float: right;">
+		<?php 
+			//echo $_SESSION['name']."  ".$_SESSION['isLogged'];
+		
+			if(isset($_SESSION['isLogged']))
+			{
+				?>
+				<a href="./mypage.php" style="display: inline-block;">My Page</a>
+				<span ><?php echo $_SESSION['name'] ?></span> 
+		<?php 
+			}
+			else  echo '<a href="./manager/user_manager/login.php" >Login</a> ';
+		?>
+		
+		</div>
  </div>
  <div>
  	<div id="left_pl">

@@ -8,7 +8,7 @@ class databaseHelper
          public  $host = 'localhost';
          public  $user = 'root';
          public  $pass = '';
-         public  $db = 'justdial';
+         public  $db = 'webbuilder';
 
   
      
@@ -111,9 +111,11 @@ class databaseHelper
             {
                 
             } 
-                   
-            return $row= mysql_fetch_row($result);
+
             mysql_close($connection);
+            
+            return $row= mysql_fetch_row($result);
+            
         }
         
         
