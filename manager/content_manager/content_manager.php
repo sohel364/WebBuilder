@@ -9,6 +9,10 @@
 </head>
 
 <?php
+	if(!isset($_SESSION['isLogged']) || !$_SESSION['isLogged'] )
+	{
+		header('Location: ./../user_manager/login.php');
+	}
 	if(isset($_GET['template']))
 	{
 		$turl ='/WebBuilder/templates/'.$_GET['template'];

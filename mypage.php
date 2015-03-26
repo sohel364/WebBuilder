@@ -11,7 +11,7 @@
 <?php 
 session_start( );
 
-if(!isset($_SESSION['isLogged']))
+if(!isset($_SESSION['isLogged']) || !$_SESSION['isLogged'] )
 {
 	header('Location: ./../user_manager/login.php');				
 }
@@ -26,6 +26,22 @@ else
 }
 
 ?>
+
+<div style="border: 1px solid gray;">
+	<h2>My Tempaltes</h2>
+	<?php 
+		for($i=0;$i<sizeof($html);$i++)
+		{
+			?>
+			<iframe src="/WebBuilder/index.php">
+			</iframe>
+	<?php 
+		}
+	?>
+	
+	
+</div>
+
 
 
 </body>
