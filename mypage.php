@@ -21,20 +21,25 @@ else
 	
 	$helper=new HTMLHelper();
 	$html=$helper->readHtmlFromDB($_SESSION['id']);
-	echo $html;
-	print_r($html);
+	//echo sizeof($html);
+//	print_r($html);
 }
 
 ?>
 
 <div style="border: 1px solid gray;">
-	<h2>My Tempaltes</h2>
+	<h2 style="text-align: center;" >My Tempaltes</h2>
 	<?php 
 		for($i=0;$i<sizeof($html);$i++)
 		{
 			?>
-			<iframe src="/WebBuilder/index.php">
-			</iframe>
+			<a href="/WebBuilder/manager/content_manager/content_manager.php?"> 
+				
+			<iframe srcdoc="<?php echo $html[$i]; ?>" src=""></iframe>
+			EDIT
+			</a>
+			
+		
 	<?php 
 		}
 	?>

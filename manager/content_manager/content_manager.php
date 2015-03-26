@@ -53,28 +53,15 @@
 
 <script type="text/javascript">
 $(function(){
-
 	$('#save').on('submit',function(e){
 //			e.preventDefault();
 			$('#html').val($('#frame').html());
 			
 			console.log( $('#html').val() );
 		});
-
 	$('.text').css('color','red');
 	 
-	// $("#frame").load("<?php echo $turl ?>"); 
 	 
-
-
-//	
-//	tinymce.init({
-//    selector: ".text",
-//    inline: true,
-//    toolbar: "undo redo",
-//    menubar: false
-//});
-
 
 	tinymce.init({
     selector: "#frame",
@@ -85,21 +72,9 @@ $(function(){
             "insertdatetime media table contextmenu paste"
         ],
 });
-
 	
 
-//    tinymce.init({
- //       selector: "h1",
-//        setup: function(ed) {
-//            ed.on('init', function(e) {
-//                e.target.hide();
-//            });
-//        },
-
-
 });
-
-
 </script>
 
 </html>

@@ -8,7 +8,17 @@ class HTMLHelper
 		
 		$dbHelper=new databaseHelper();
 		$doc=htmlspecialchars($html);
-	
+		
+		echo $html;
+		
+		echo "<br/>";
+		echo "------------------------------------";
+		echo "<br/>";
+		echo $doc;
+		echo "<br/>";
+		echo "------------------------------------";
+		echo "<br/>";
+		
 		$htmlId=$dbHelper->ExecuteInsertReturnID("Insert into html (html) values ('$doc')");
 		$dbHelper->ExecuteNonQuery("Insert into user_html values ('$id','$htmlId')");
 		echo $htmlId;
@@ -26,12 +36,19 @@ class HTMLHelper
 		error_reporting(E_ERROR);
 		$dbHelper=new databaseHelper();
 		$sql="SELECT html_id From user_html where user_id='$id'";
-		echo $sql."<br/>";
-		$html=$dbHelper->ExecuteDataSet($sql);
-//		$html=htmlspecialchars_decode($html[0]);
-		echo sizeof($html)."<br/>";
-		print_r($html);
 		
+//		echo "stage 1";
+//		echo '<br/>';
+//		echo $sql."<br/>";
+
+		$html=$dbHelper->ExecuteDataSet($sql);
+		
+//		echo sizeof($html)."<br/>";
+		
+//		print_r($html);
+		
+//		echo '<br/>';
+
 		$sql="Select html from html where id in (";
 		if(sizeof($html)>1)
 		{
@@ -47,14 +64,18 @@ class HTMLHelper
 		
 		$sql=$sql.")";
 		
-		echo $sql;
+//		echo "stage 2";
+//		echo '<br/>';
+//		echo $sql;
+//		echo '<br/>';
 		 $html=$dbHelper->ExecuteDataSet($sql);
-		 
+		 $htmlFiltered= array();
 		 for($i=1;$i<sizeof($html);$i++)
 		 {
-		 	$html[$i][0]=htmlspecialchars_decode($html[$i][0]);
+//		 	$html[$i][0]=htmlspecialchars_decode($html[$i][0]);
+		 	$htmlFiltered[$i-1]=htmlspecialchars_decode($html[$i][0]);
 		 }
-		 return $html;
+		 return $htmlFiltered;
 	}
 }
 ?>
