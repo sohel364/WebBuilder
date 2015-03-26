@@ -1,3 +1,11 @@
+<?php
+	if(isset($_GET['template']))
+	{
+		$turl ='/WebBuilder/templates/'.$_GET['template'];
+		$css='../../templates/'.$_GET['template'].'/css/style.css';	
+	}
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -5,32 +13,41 @@
     <title>Edit Template</title>
     <script  src="/WebBuilder/js/tinymce/tinymce.min.js" ></script>
 	<script  src="/WebBuilder/js/jquery-2.1.1.min.js" ></script>
-	
+	<link rel="stylesheet" type="text/css" href="<?php echo  $css?>"/>
 </head>
 
-<?php
-	if(!isset($_SESSION['isLogged']) || !$_SESSION['isLogged'] )
-	{
-		header('Location: ./../user_manager/login.php');
-	}
-	if(isset($_GET['template']))
-	{
-		$turl ='/WebBuilder/templates/'.$_GET['template'];
-		
-	}
-?>
 
 <body>
-<form action="savePage.php" method="post" id="save">
-	<input type="hidden" id="html" name="html"/>
-	<input type="hidden" id="target" name="target" value="test"/>
-	<input type="submit" value="Save Page" />
-</form>
+<div style="border-bottom: 1px solid #e4e4e4; height:20px; width: 100%;">
+		<div style="float: right;">
+		<div style="float: left;">Item1</div>
+		<div style="float: left;">Item2</div>
+		<div style="float: left;">Item3</div>
+		</div>
+</div>
+</br>
 
-<div id="frame" style="border:  black 1px solid;">
-<?php include('../../templates/'.$_GET['template'].'/index.html'); ?>
+
+<div style="height: 25px;">
+		<form action="savePage.php" method="post" id="save">
+			<input type="hidden" id="html" name="html"/>
+			<input type="hidden" id="target" name="target" value="test"/>
+			<input style="float: right;" type="submit" value="Save Page" />
+		</form>
 </div>
 
+<div>
+	<div style="float: left;">
+		<p>Pages</p>
+		<p>Web Components</p>
+		<p>Navigator</p>
+		<p>Others</p>
+	</div>
+	<div style="border-right:1px solid;height: 100% "></div>
+	<div id="frame" style=" float:left; background-color: white;box-shadow: 10px 10px 5px #888888;height: 100%;width: 80%;margin-left: 20px;">
+	<?php include('../../templates/'.$_GET['template'].'/index.html'); ?>
+	</div>
+</div>
 
 </body>
 
