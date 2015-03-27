@@ -1,18 +1,15 @@
 body {
   margin: 0;
   padding: 0;
-  background: #ccc;
+  background: white;
 }
 
 .nav ul {
   list-style: none;
   background-color: #444;
   text-align: center;
-  
-  padding-left: 10px;
   text-align: justify;
-  
-  padding: 0;
+  padding: 1;
   margin: 0;
 }
 .nav li {
@@ -46,7 +43,7 @@ body {
     border-bottom: none;
     height: 50px;
     line-height: 50px;
-    font-size: 1.4em;
+    font-size: 15px;
   }
  
   /* Option 1 - Display Inline */
@@ -61,8 +58,8 @@ body {
 
 }
 #container_header{
-	border-bottom: 1px solid;
-	height: 40px;
+	border-bottom: 1px solid #9acd32;
+	height: 51px;
 	background-color: #fff;
 	width: 100%;
 }
@@ -90,7 +87,7 @@ section {
     padding:10px;	 	 
 }
 footer {
-    background-color:black;
+    background-color:#444;
     color:white;
     clear:both;
     text-align:center;

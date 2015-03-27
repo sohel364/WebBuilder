@@ -18,11 +18,11 @@
 
 
 <body>
-<div style="border-bottom: 1px solid #e4e4e4; height:20px; width: 100%;">
-		<div style="float: right;">
-		<div style="float: left;">Item1</div>
-		<div style="float: left;">Item2</div>
-		<div style="float: left;">Item3</div>
+<div style="border-bottom: 1px solid #9acd32; height:30px; width: 100%;">
+		<div style="margin-right:118px; float: right;">
+			<div style="float: left;"><a href="#">Account- </a></div>
+			<div style="float: left;"><a href="#">Home-</a></div>
+			<div style="float: left;"><a href="#">Site Map</a></div>
 		</div>
 </div>
 </br>
@@ -32,16 +32,16 @@
 		<form action="savePage.php" method="post" id="save">
 			<input type="hidden" id="html" name="html"/>
 			<input type="hidden" id="target" name="target" value="test"/>
-			<input style="float: right;" type="submit" value="Save Page" />
+			<input style="margin-right:118px;float: right;" type="submit" value="Save Page" />
 		</form>
 </div>
 
 <div>
-	<div style="float: left;">
-		<p>Pages</p>
-		<p>Web Components</p>
-		<p>Navigator</p>
-		<p>Others</p>
+	<div style="font-size:16px; float: left;margin-top: 81px;text-align: right;">
+		<p><a href="#">Pages</a></p>
+		<p><a href="#">Web Components</a></p>
+		<p><a href="#">Navigator</a></p>
+		<p><a href="#">Others</a></p>
 	</div>
 	<div style="border-right:1px solid;height: 100% "></div>
 	<div id="frame" style=" float:left; background-color: white;box-shadow: 10px 10px 5px #888888;height: 100%;width: 80%;margin-left: 20px;">
