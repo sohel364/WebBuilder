@@ -1,10 +1,8 @@
 <?php
 session_start( );
 ?>
-
 <!DOCTYPE html>
 <html>
-
 <head>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <title>Web Builder</title>
@@ -28,15 +26,11 @@ session_start( );
 		<?php 
 			//echo $_SESSION['name']."  ".$_SESSION['isLogged'];
 		
-			if(isset($_SESSION['isLogged']) && $_SESSION['isLogged'] )
+			if(isset($_SESSION['isLogged']))
 			{
 				?>
 				<a href="./mypage.php" style="display: inline-block;">My Page</a>
-				<span style="width: 100px; background-color: gray;" > 
-				<span style="border: 1px solid black; font-size: large;">  <?php echo $_SESSION['name'] ?> </span>
-				<span ><a href="/WebBuilder/manager/user_manager/logout.php">Logout </a> </span> 
-				</span> 
-				
+				<span ><?php echo $_SESSION['name'] ?></span> 
 		<?php 
 			}
 			else  echo '<a href="./manager/user_manager/login.php" >Login</a> ';

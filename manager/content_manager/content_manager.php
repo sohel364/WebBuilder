@@ -5,7 +5,6 @@
 		$css='../../templates/'.$_GET['template'].'/css/style.css';	
 	}
 ?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -53,15 +52,28 @@
 
 <script type="text/javascript">
 $(function(){
+
 	$('#save').on('submit',function(e){
 //			e.preventDefault();
 			$('#html').val($('#frame').html());
 			
 			console.log( $('#html').val() );
 		});
+
 	$('.text').css('color','red');
 	 
+	// $("#frame").load("<?php echo $turl ?>"); 
 	 
+
+
+//	
+//	tinymce.init({
+//    selector: ".text",
+//    inline: true,
+//    toolbar: "undo redo",
+//    menubar: false
+//});
+
 
 	tinymce.init({
     selector: "#frame",
@@ -72,9 +84,21 @@ $(function(){
             "insertdatetime media table contextmenu paste"
         ],
 });
+
 	
 
+//    tinymce.init({
+ //       selector: "h1",
+//        setup: function(ed) {
+//            ed.on('init', function(e) {
+//                e.target.hide();
+//            });
+//        },
+
+
 });
+
+
 </script>
 
 </html>
