@@ -33,11 +33,14 @@ else
 		for($i=0;$i<sizeof($html);$i++)
 		{
 			?>
-			<a href="/WebBuilder/manager/content_manager/content_manager.php?"> 
+			<form action="/WebBuilder/manager/content_manager/template_editor.php" method="post" 
+			id="f_<?php echo $i?>" onsubmit="return setHtml(this)">
+			
+			 <input type="hidden" name="template" id="val_<?php echo $i ?>" />
 				
-			<iframe srcdoc="<?php echo $html[$i]; ?>" src=""></iframe>
-			EDIT
-			</a>
+			<iframe id="frame_<?php echo $i ?>" srcdoc="<?php echo $html[$i]; ?>" src=""></iframe>
+			<button type="submit" >Edit</button>
+			</form>
 			
 		
 	<?php 
@@ -52,6 +55,18 @@ else
 </body>
 
 <script type="text/javascript">
+
+function setHtml(form)
+{	
+	var no= form.id.split("_")[1];
+	
+
+	$("#val_"+no).val($("#frame_"+no).html());
+//	alert(no);
+	return true;
+}
+
+
 $(function(){
 
 	$('#save').on('submit',function(e){
