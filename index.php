@@ -101,4 +101,26 @@ session_start( );
 		
 </div>
 
+
+
+
+<div id="templat_block">
+	<p><ul>Use Template Viewer</ul></p>
+	
+	<?php
+		$dirs=scandir("./templates");
+		//echo "Available Tempalates<br/>";
+		//print_r($dirs);
+		for($i=2;$i<sizeof($dirs);$i++)
+		{		
+	?>
+	
+	<?php
+		echo '<div id="tp_pv"> <a href="./manager/content_manager/tempateViewer.php?template='.$dirs[$i].'">'.$dirs[$i].'</a> </div>';
+			
+		} 
+	?>
+		
+</div>
+
 </body>

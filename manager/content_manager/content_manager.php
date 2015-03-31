@@ -50,6 +50,9 @@
 
 </body>
 
+
+
+
 <script type="text/javascript">
 $(function(){
 
@@ -62,38 +65,14 @@ $(function(){
 
 	$('.text').css('color','red');
 	 
-	// $("#frame").load("<?php echo $turl ?>"); 
 	 
 
 
-//	
-//	tinymce.init({
-//    selector: ".text",
-//    inline: true,
-//    toolbar: "undo redo",
-//    menubar: false
-//});
 
 
-	tinymce.init({
-    selector: "#frame",
-    inline: true,
-      plugins: [
-            "advlist autolink lists link image charmap print preview anchor",
-            "searchreplace visualblocks code fullscreen",
-            "insertdatetime media table contextmenu paste"
-        ],
-});
 
 	
 
-//    tinymce.init({
- //       selector: "h1",
-//        setup: function(ed) {
-//            ed.on('init', function(e) {
-//                e.target.hide();
-//            });
-//        },
 
 
 });
