@@ -1,7 +1,7 @@
 <?php
 	if(isset($_GET['template']))
 	{
-		$turl =$_SERVER['DOCUMENT_ROOT'].'WebBuilder/templates/'.$_GET['template'];
+		$turl =$_SERVER['DOCUMENT_ROOT'].'/WebBuilder/templates/'.$_GET['template'];
 		$css='/WebBuilder/templates/'.$_GET['template'].'/css/style.css';	
 //		echo $css;
 	}
@@ -59,7 +59,7 @@
 		<p><a href="#">Navigator</a></p>
 		<p><a href="#">Others</a></p>
 	</div>
-	<div style="border-right:1px solid;height: 100% "></div>
+	
 	
 	
 	<!-- Template Elements  Here -->
