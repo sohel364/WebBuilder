@@ -1,8 +1,10 @@
 <?php
 	if(isset($_GET['template']))
 	{
-		$turl =$_SERVER['DOCUMENT_ROOT'].'WebBuilder/templates/'.$_GET['template'];
+		//$turl =$_SERVER['DOCUMENT_ROOT'].'WebBuilder/templates/'.$_GET['template'];
+		$turl =$_SERVER['DOCUMENT_ROOT'].'/WebBuilder/templates/'.$_GET['template'];
 		$css='/WebBuilder/templates/'.$_GET['template'].'/css/style.css';	
+		
 //		echo $css;
 	}
 ?>

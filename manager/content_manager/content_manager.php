@@ -1,7 +1,8 @@
 <?php
 	if(isset($_GET['template']))
 	{
-		$turl ='/WebBuilder/templates/'.$_GET['template'];
+		//$turl ='/WebBuilder/templates/'.$_GET['template'];
+		$turl =$_SERVER['DOCUMENT_ROOT'].'/WebBuilder/templates/'.$_GET['template'];
 		$css='../../templates/'.$_GET['template'].'/css/style.css';	
 	}
 ?>
@@ -12,6 +13,27 @@
     <title>Edit Template</title>
     <script  src="/WebBuilder/js/tinymce/tinymce.min.js" ></script>
 	<script  src="/WebBuilder/js/jquery-2.1.1.min.js" ></script>
+	<script>
+	$(function(){
+
+	    // Enabling Popover Example 1 - HTML (content and title from html tags of element)
+	    $("[data-toggle=popover]").popover();
+
+	    // Enabling Popover Example 2 - JS (hidden content and title capturing)
+	    $("#popoverExampleTwo").popover({
+	        html : true, 
+	        content: function() {
+	          return $('#popoverExampleTwoHiddenContent').html();
+	        },
+	        title: function() {
+	          return $('#popoverExampleTwoHiddenTitle').html();
+	        }
+	    });
+
+	});
+	</script>
+	  <link href="../../css/bootstrap.min.css" rel="stylesheet">
+	   <script src="../../js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="<?php echo  $css?>"/>
 </head>
 
@@ -37,7 +59,13 @@
 
 <div>
 	<div style="font-size:16px; float: left;margin-top: 81px;text-align: right;">
-		<p><a href="#">Pages</a></p>
+		<p>
+		  <a href="#" 
+    data-toggle="popover" 
+    data-html="true" 
+    data-content="<div><b>Popover Example</b> 1 - Content</div>"
+    title="Popover Example <b>1</b> - Title">Pages</a>
+		</p>
 		<p><a href="#">Web Components</a></p>
 		<p><a href="#">Navigator</a></p>
 		<p><a href="#">Others</a></p>
