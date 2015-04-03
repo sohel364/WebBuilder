@@ -2,9 +2,9 @@
 error_reporting(E_ERROR);
 	if(isset($_POST['template']))
 	{
+		$turl =$_SERVER['DOCUMENT_ROOT'].'WebBuilder/templates/'.$_POST['template'];
+		$css='../../templates/'.$_POST['template'].'/css/style.css';	
 		
-		$turl ='/WebBuilder/templates/'.$_GET['template'];
-		$css='../../templates/'.$_GET['template'].'/css/style.css';	
 	}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -15,6 +15,22 @@ error_reporting(E_ERROR);
     <script  src="/WebBuilder/js/tinymce/tinymce.min.js" ></script>
 	<script  src="/WebBuilder/js/jquery-2.1.1.min.js" ></script>
 	<link rel="stylesheet" type="text/css" href="<?php echo  $css?>"/>
+	
+<style>
+
+#frame
+{
+	background:rgba(0,0,0,.1);
+	float:left; 
+	height: 100%;
+	width: 80%;
+	margin-left: 20px;
+	padding: 5px;
+}
+
+
+</style>
+
 </head>
 
 
@@ -44,13 +60,28 @@ error_reporting(E_ERROR);
 		<p><a href="#">Navigator</a></p>
 		<p><a href="#">Others</a></p>
 	</div>
-	<div style="border-right:1px solid;height: 100% "></div>
-	<div id="frame" style=" float:left; background-color: white;box-shadow: 10px 10px 5px #888888;height: 100%;width: 80%;margin-left: 20px;">
-	<?php 
-//	include('../../templates/'.$_GET['template'].'/index.html'); 
-	echo $_POST['template'];
-	?>
+
+	
+		<!-- Template Elements  Here -->
+	<div id="frame" >
+		<div style="background: gray; margin-bottom: 10px;text-align: center; " > <?php include ($turl.'/title.html');?>	</div>
+		<div style="background-color: white;box-shadow: 10px 10px 5px #888888;">
+			<ul id="menu">
+				<?php include ($turl.'/menu.html');?>
+			</ul>
+			<div id="content"><?php include ($turl.'/body.html');?></div>
+			<div id="footer">
+				<?php include ($turl.'/footer.html');?>
+			</div>
+		</div>
+		
+		
 	</div>
+
+
+
+
+
 </div>
 
 </body>
