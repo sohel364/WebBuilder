@@ -14,6 +14,22 @@
     <script  src="/WebBuilder/js/tinymce/tinymce.min.js" ></script>
 	<script  src="/WebBuilder/js/jquery-2.1.1.min.js" ></script>
 	<script>
+
+	$(function () {
+	    $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+	    $('.tree li.parent_li > span').on('click', function (e) {
+	        var children = $(this).parent('li.parent_li').find(' > ul > li');
+	        if (children.is(":visible")) {
+	            children.hide('fast');
+	            $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+	        } else {
+	            children.show('fast');
+	            $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+	        }
+	        e.stopPropagation();
+	    });
+	});
+	
 	$(function(){
 
 	    // Enabling Popover Example 1 - HTML (content and title from html tags of element)
@@ -57,23 +73,103 @@
 		</form>
 </div>
 
+<div style="border-right:1px solid;height: 100% "></div>
+
 <div>
-	<div style="font-size:16px; float: left;margin-top: 81px;text-align: right;">
-		<p>
-		  <a href="#" 
-    data-toggle="popover" 
-    data-html="true" 
-    data-content="<div><b>Popover Example</b> 1 - Content</div>"
-    title="Popover Example <b>1</b> - Title">Pages</a>
-		</p>
-		<p><a href="#">Web Components</a></p>
-		<p><a href="#">Navigator</a></p>
-		<p><a href="#">Others</a></p>
-	</div>
-	<div style="border-right:1px solid;height: 100% "></div>
-	<div id="frame" style=" float:left; background-color: white;box-shadow: 10px 10px 5px #888888;height: 100%;width: 80%;margin-left: 20px;">
+<div>
+   	<div style="float: left;" class="tree">
+    <ul>
+        <li>
+            <span><i class="icon-calendar"></i> Web Components</span>
+            <ul>
+                <li>
+                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Panel</span>
+                    <ul>
+                        <li>
+	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Panel-Control1</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Containers</span>
+                    <ul>
+                        <li>
+	                        <span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Panel-Control1</a>
+                        </li>
+                        <li>
+	                        <span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Panel-Control1</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                	<span class="badge badge-warning"><i class="icon-minus-sign"></i> Media Contents</span>
+                    <ul>
+                        <li>
+	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Image</a>
+                        </li>
+                        <li>
+	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Flash</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                	<span class="badge badge-important"><i class="icon-minus-sign"></i> Slider</span>
+                    <ul>
+                        <li>
+	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Style-1</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span><i class="icon-calendar"></i> Settings</span>
+            <ul>
+                <li>
+                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Site Content Status</span>
+                    <ul>
+                        <li>
+	                        <span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Menu Settings</a>
+                        </li>
+                        <li>
+	                        <span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Content Settings</a>
+                        </li>
+                        <li>
+                        	<span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Footer Settings</a>
+                        </li>
+                    </ul>
+                </li>
+		    </ul>
+        </li>
+        
+        <li>
+            <span><i class="icon-calendar"></i> Pages</span>
+            <ul>
+                <li>
+                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Already Added</span>
+                    <ul>
+                        <li>
+	                        <span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Menu Item-1</a>
+                        </li>
+                        <li>
+	                        <span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Menu Item-2</a>
+                        </li>
+                        <li>
+                        	<span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Menu Item-3</a>
+                        </li>
+                    </ul>
+                </li>
+		    </ul>
+        </li>
+        
+    </ul>
+</div>
+
+ <div style="float: left; width: 70%;">
+	<div id="frame" style=" float:left; background-color: white;box-shadow: 10px 10px 5px #888888;height: 100%;width: 100%;margin-left: 10px;">
 	<?php include('../../templates/'.$_GET['template'].'/index.html'); ?>
 	</div>
+ </div>
 </div>
 
 </body>
@@ -93,15 +189,6 @@ $(function(){
 
 	$('.text').css('color','red');
 	 
-	 
-
-
-
-
-
-	
-
-
 
 });
 
