@@ -8,8 +8,36 @@ if(!isset($_SESSION['isLogged']))
 }
 else 
 {
+	$title="";
+	$header="";
+	$menu="";
+	$body="";
+	$footer="";
+	
+	if(isset($_POST['title']))
+	{
+		$title=$_POST['title'];
+	}
+	if(isset($_POST['header']))
+	{
+		$header=$_POST['header'];
+	}
+	if(isset($_POST['menu']))
+	{
+		$menu=$_POST['menu'];
+	}
+	if(isset($_POST['body']))
+	{
+		$body=$_POST['body'];
+	}
+	if(isset($_POST['footer']))
+	{
+		$footer=$_POST['footer'];
+	}
+	
 	if(isset($_POST['html']))
 	{
+		
 		include '../user_Manager/HtmlHelper.php';
 		$id =  $_SESSION['id'];
 		$data= $_POST['html'];

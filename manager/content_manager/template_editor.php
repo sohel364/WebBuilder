@@ -47,8 +47,16 @@ error_reporting(E_ERROR);
 
 <div style="height: 25px;">
 		<form action="savePage.php" method="post" id="save">
-			<input type="hidden" id="html" name="html"/>
+		
+			<input type="hidden" id="f_title" name="title"/>
+			<input type="hidden" id="f_header" name="header"/>
+			<input type="hidden" id="f_menu" name="menu" />
+			
+			<input type="hidden" id="f_body" name="body"/>
+			<input type="hidden" id="f_footer" name="footer"/>
+			
 			<input type="hidden" id="target" name="target" value="test"/>
+			
 			<input style="margin-right:118px;float: right;" type="submit" value="Save Page" />
 		</form>
 </div>
@@ -69,7 +77,7 @@ error_reporting(E_ERROR);
 			<ul id="menu">
 				<?php include ($turl.'/menu.html');?>
 			</ul>
-			<div id="content"><?php include ($turl.'/body.html');?></div>
+			<div id="body"><?php include ($turl.'/body.html');?></div>
 			<div id="footer">
 				<?php include ($turl.'/footer.html');?>
 			</div>
@@ -91,7 +99,11 @@ $(function(){
 
 	$('#save').on('submit',function(e){
 //			e.preventDefault();
-			$('#html').val($('#frame').html());
+			$('#f_title').val($('#title').html());
+			$('#f_header').val($('#header').html());
+			$('#f_menu').val($('#menu').html());
+			$('#f_body').val($('#body').html());
+			$('#f_footer').val($('#footer').html());
 			
 			console.log( $('#html').val() );
 		});

@@ -28,6 +28,40 @@ class HTMLHelper
 	}
 	
 	
+	public function saveContentlToDB($id,$title,$header,$menu,$body,$fotter)
+	{	
+		include_once '../../dataAccess/databaseHelper.php';
+//		error_reporting(E_ERROR);
+		
+		$dbHelper=new databaseHelper();
+		
+		$title=htmlspecialchars($title);
+		$header=htmlspecialchars($header);
+		$menu=htmlspecialchars($menu);
+		$body=htmlspecialchars($body);
+		$fotter=htmlspecialchars($fotter);
+		
+		
+		$doc=htmlspecialchars($html);
+		
+		echo $html;
+		
+		echo "<br/>";
+		echo "------------------------------------";
+		echo "<br/>";
+		echo $doc;
+		echo "<br/>";
+		echo "------------------------------------";
+		echo "<br/>";
+		
+		$htmlId=$dbHelper->ExecuteInsertReturnID("Insert into html (html) values ('$doc')");
+		$dbHelper->ExecuteNonQuery("Insert into user_html values ('$id','$htmlId')");
+		echo $htmlId;
+//		$dbHelper->ExecuteNonQuery("UPDATE  user_html SET html='$doc' where user_id='$id'");
+		
+		
+	}
+	
 	
 	
 	public function readHtmlFromDB($id)
