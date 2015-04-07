@@ -94,95 +94,21 @@ error_reporting(E_ERROR);
 
 <div style="height: 25px;">
 		<form action="savePage.php" method="post" id="save">
-		
 			<input type="hidden" id="f_title" name="title"/>
 			<input type="hidden" id="f_header" name="header"/>
-			<input type="hidden" id="f_menu" name="menu" />
-			
+			<input type="hidden" id="f_menu" name="menu" />	
 			<input type="hidden" id="f_body" name="body"/>
 			<input type="hidden" id="f_footer" name="footer"/>
-			
-			<input type="hidden" id="target" name="target" value="test"/>
-			
+			<input type="hidden" id="target" name="target" value="test"/>		
 			<input style="margin-right:118px;float: right;" type="submit" value="Save Page" />
 		</form>
 </div>
 
 <div>
 
-
-
-
-
-
-
-
-
    	<div style="float: left;" class="tree">
     <ul>
-        <li>
-            <span><i class="icon-calendar"></i> Web Components</span>
-            <ul>
-                <li>
-                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Panel</span>
-                    <ul>
-                        <li>
-	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Panel-Control1</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Containers</span>
-                    <ul>
-                        <li>
-	                        <span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Panel-Control1</a>
-                        </li>
-                        <li>
-	                        <span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Panel-Control1</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                	<span class="badge badge-warning"><i class="icon-minus-sign"></i> Media Contents</span>
-                    <ul>
-                        <li>
-	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Image</a>
-                        </li>
-                        <li>
-	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Flash</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                	<span class="badge badge-important"><i class="icon-minus-sign"></i> Slider</span>
-                    <ul>
-                        <li>
-	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Style-1</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <span><i class="icon-calendar"></i> Settings</span>
-            <ul>
-                <li>
-                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Site Content Status</span>
-                    <ul>
-                        <li>
-	                        <span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Menu Settings</a>
-                        </li>
-                        <li>
-	                        <span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Content Settings</a>
-                        </li>
-                        <li>
-                        	<span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Footer Settings</a>
-                        </li>
-                    </ul>
-                </li>
-		    </ul>
-        </li>
-        
+    	        
         <li>
             <span><i class="icon-calendar"></i> Pages</span>
             <ul>
@@ -193,6 +119,78 @@ error_reporting(E_ERROR);
                     </ul>
                 </li>
 		    </ul>
+        </li>
+        
+        <li>
+            <span><i class="icon-calendar"></i>Design Components</span>
+            <ul>
+                <li>
+                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Background</span>
+                    <ul>
+                        <li>
+	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Set-1</a>                   
+                        </li>
+                        <li>
+	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Set-1</a>                   
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Color</span>
+                    <ul>
+                        <li>
+	                        <span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Red</a>
+                        </li>
+                        <li>
+	                        <span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Blue</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                	<span class="badge badge-warning"><i class="icon-minus-sign"></i> Font</span>
+                    <ul>
+                        <li>
+	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Arial</a>
+                        </li>
+                        <li>
+	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Tahoma</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span><i class="icon-calendar"></i> Add Tools</span>
+                    <ul>
+		                <li>
+		                	<span class="badge badge-important"><i class="icon-minus-sign"></i> Media</span>
+		                    <ul>
+		                        <li>
+			                        <a href=""><span><i class="icon-time"></i> [+]</span> Flash</a>
+		                        </li>
+		                        <li>
+			                        <a href=""><span><i class="icon-time"></i> [+]</span> MP3</a>
+		                        </li>
+		                        <li>
+			                        <a href=""><span><i class="icon-time"></i> [+]</span> Video</a>
+		                        </li>
+		                    </ul>
+		                </li>
+		                <li>
+		                	<span class="badge badge-important"><i class="icon-minus-sign"></i> Controls</span>
+		                    <ul>
+		                        <li>
+			                        <a href=""><span><i class="icon-time"></i> [+]</span> Text</a>
+		                        </li>
+		                        <li>
+			                        <a href=""><span><i class="icon-time"></i> [+]</span> Shapes</a>
+		                        </li>
+		                        <li>
+			                        <a href=""><span><i class="icon-time"></i> [+]</span> Buttons</a>
+		                        </li>
+		                    </ul>
+		                </li>
+		    	</ul>
         </li>
         
     </ul>

@@ -47,10 +47,53 @@
 	    });
 
 	});
+
+
+    $(document).ready(function() {
+        $(".clones").shapeshift({
+            dragClone: true,
+            enableCrossDrop: false
+        });
+        $(".droparea").shapeshift({
+          colWidth: 100
+        });
+      })
+	
 	</script>
 	  <link href="../../css/bootstrap.min.css" rel="stylesheet">
-	   <script src="../../js/bootstrap.min.js"></script>
+	  <script src="../../js/bootstrap.min.js"></script>
+	  
+	    <!-- jQuery / jQuery UI -->
+		  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		
+		  <!-- jQuery Touch Punch - Enable Touch Drag and Drop -->
+		  <script src="../../core/vendor/jquery.touch-punch.min.js"></script>
+		
+		  <!-- jQuery.Shapeshift -->
+		  <script src="../../core/jquery.shapeshift.js"></script>
+	  <!-- jQuery / jQuery UI -->
 	<link rel="stylesheet" type="text/css" href="<?php echo  $css?>"/>
+  
+  <style>
+    .container {
+      border: 1px dashed #CCC;
+      height: 200px;
+      position: relative;
+    }
+
+    .container > div {
+      background: #AAA;
+      position: absolute;
+      height: 100px;
+      width: 100px;
+    }
+
+    .container > .ss-placeholder-child {
+      background: transparent;
+      border: 1px dashed blue;
+    }
+  </style>
 </head>
 
 
