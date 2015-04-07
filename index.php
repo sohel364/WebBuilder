@@ -75,7 +75,7 @@ session_start( );
 	?>
 	
 	<?php
-		echo '<div id="tp_pv"> <a href="./manager/content_manager/content_manager.php?template='.$dirs[$i].'">'.$dirs[$i].'</a> </div>';
+		echo '<div class="tp_pv"> <a href="./manager/content_manager/template_editor.php?template='.$dirs[$i].'">'.$dirs[$i].'</a> </div>';
 			
 		} 
 	?>
@@ -94,7 +94,7 @@ session_start( );
 	?>
 	
 	<?php
-		echo '<div id="tp_pv"> <a href="./manager/content_manager/content_manager.php?template='.$dirs[$i].'">'.$dirs[$i].'</a> </div>';
+		echo '<div class="tp_pv"> <a href="./manager/content_manager/template_editor.php?template='.$dirs[$i].'">'.$dirs[$i].'</a> </div>';
 			
 		} 
 	?>
@@ -116,7 +116,7 @@ session_start( );
 	?>
 	
 	<?php
-		echo '<div id="tp_pv"> <a href="./manager/content_manager/tempateViewer.php?template='.$dirs[$i].'">'.$dirs[$i].'</a> </div>';
+		echo '<div class="tp_pv"> <a href="./manager/content_manager/template_editor.php?template='.$dirs[$i].'">'.$dirs[$i].'</a> </div>';
 			
 		} 
 	?>

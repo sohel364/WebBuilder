@@ -5,6 +5,11 @@ error_reporting(E_ERROR);
 		$turl =$_SERVER['DOCUMENT_ROOT'].'WebBuilder/templates/'.$_POST['template'];
 		$css='../../templates/'.$_POST['template'].'/css/style.css';	
 		
+	}else if(isset($_GET['template']))
+	{
+		$turl =$_SERVER['DOCUMENT_ROOT'].'/WebBuilder/templates/'.$_GET['template'];
+		$css='/WebBuilder/templates/'.$_GET['template'].'/css/style.css';	
+		
 	}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -14,6 +19,48 @@ error_reporting(E_ERROR);
     <title>Edit Template</title>
     <script  src="/WebBuilder/js/tinymce/tinymce.min.js" ></script>
 	<script  src="/WebBuilder/js/jquery-2.1.1.min.js" ></script>
+	
+	<script>
+
+	$(function () {
+	    $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+	    $('.tree li.parent_li > span').on('click', function (e) {
+	        var children = $(this).parent('li.parent_li').find(' > ul > li');
+	        if (children.is(":visible")) {
+	            children.hide('fast');
+	            $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+	        } else {
+	            children.show('fast');
+	            $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+	        }
+	        e.stopPropagation();
+	    });
+	});
+	
+	$(function(){
+
+	    // Enabling Popover Example 1 - HTML (content and title from html tags of element)
+	    $("[data-toggle=popover]").popover();
+
+	    // Enabling Popover Example 2 - JS (hidden content and title capturing)
+	    $("#popoverExampleTwo").popover({
+	        html : true, 
+	        content: function() {
+	          return $('#popoverExampleTwoHiddenContent').html();
+	        },
+	        title: function() {
+	          return $('#popoverExampleTwoHiddenTitle').html();
+	        }
+	    });
+
+	});
+	</script>
+  	<link href="../../css/bootstrap.min.css" rel="stylesheet">
+	<script src="../../js/bootstrap.min.js"></script>
+	
+	
+	
+	
 	<link rel="stylesheet" type="text/css" href="<?php echo  $css?>"/>
 	
 <style>
@@ -23,8 +70,8 @@ error_reporting(E_ERROR);
 	background:rgba(0,0,0,.1);
 	float:left; 
 	height: 100%;
-	width: 80%;
-	margin-left: 20px;
+	width: 72%;
+	margin-left: 5px;
 	padding: 5px;
 }
 
@@ -62,12 +109,104 @@ error_reporting(E_ERROR);
 </div>
 
 <div>
-	<div style="font-size:16px; float: left;margin-top: 81px;text-align: right;">
-		<p><a href="#">Pages</a></p>
-		<p><a href="#">Web Components</a></p>
-		<p><a href="#">Navigator</a></p>
-		<p><a href="#">Others</a></p>
-	</div>
+
+
+
+
+
+
+
+
+
+   	<div style="float: left;" class="tree">
+    <ul>
+        <li>
+            <span><i class="icon-calendar"></i> Web Components</span>
+            <ul>
+                <li>
+                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Panel</span>
+                    <ul>
+                        <li>
+	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Panel-Control1</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Containers</span>
+                    <ul>
+                        <li>
+	                        <span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Panel-Control1</a>
+                        </li>
+                        <li>
+	                        <span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Panel-Control1</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                	<span class="badge badge-warning"><i class="icon-minus-sign"></i> Media Contents</span>
+                    <ul>
+                        <li>
+	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Image</a>
+                        </li>
+                        <li>
+	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Flash</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                	<span class="badge badge-important"><i class="icon-minus-sign"></i> Slider</span>
+                    <ul>
+                        <li>
+	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Style-1</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span><i class="icon-calendar"></i> Settings</span>
+            <ul>
+                <li>
+                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Site Content Status</span>
+                    <ul>
+                        <li>
+	                        <span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Menu Settings</a>
+                        </li>
+                        <li>
+	                        <span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Content Settings</a>
+                        </li>
+                        <li>
+                        	<span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Footer Settings</a>
+                        </li>
+                    </ul>
+                </li>
+		    </ul>
+        </li>
+        
+        <li>
+            <span><i class="icon-calendar"></i> Pages</span>
+            <ul>
+                <li>
+                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Already Added</span>
+                    <ul id="ul_tree_menu_list">
+                       
+                    </ul>
+                </li>
+		    </ul>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
 
 	
 		<!-- Template Elements  Here -->
@@ -97,6 +236,43 @@ error_reporting(E_ERROR);
 <script type="text/javascript">
 $(function(){
 
+/**
+	 *
+	 *Load menu item in tree view. By saif , Date  08-04-2015
+ */
+	var treeMenu=$('#ul_tree_menu_list');
+
+	var tempLi;
+	$('#menu li').each(function(i, obj) {
+//		treeMenu.append(obj);
+//		console.log(obj);
+		tempLi=$('<li></li>');
+		tempLi.append('<span><i class="icon-time"></i> [+]</span>');
+		tempLi.append(' &ndash; ');
+		tempLi.append($(obj).html());
+		treeMenu.append(tempLi);
+		
+		console.log(tempLi);
+	});
+		
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+	
 	$('#save').on('submit',function(e){
 //			e.preventDefault();
 			$('#f_title').val($('#title').html());
@@ -123,15 +299,15 @@ $(function(){
 //});
 
 
-	tinymce.init({
-    selector: "#frame",
-    inline: true,
-      plugins: [
-            "advlist autolink lists link image charmap print preview anchor",
-            "searchreplace visualblocks code fullscreen",
-            "insertdatetime media table contextmenu paste"
-        ],
-});
+//	tinymce.init({
+//    selector: "#frame",
+//    inline: true,
+//      plugins: [
+//            "advlist autolink lists link image charmap print preview anchor",
+//            "searchreplace visualblocks code fullscreen",
+//            "insertdatetime media table contextmenu paste"
+//        ],
+//});
 
 	
 
