@@ -42,9 +42,9 @@ class HTMLHelper
 		$fotter=htmlspecialchars($fotter);
 		
 		
-		$doc=htmlspecialchars($html);
+		//$doc=htmlspecialchars($html);
 		
-		echo $html;
+//		echo $html;
 		
 		echo "<br/>";
 		echo "------------------------------------";
@@ -59,6 +59,10 @@ class HTMLHelper
 		echo $htmlId;
 //		$dbHelper->ExecuteNonQuery("UPDATE  user_html SET html='$doc' where user_id='$id'");
 		
+		
+	}
+	private function saveMenu()
+	{
 		
 	}
 	
