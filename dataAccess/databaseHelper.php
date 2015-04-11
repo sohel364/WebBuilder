@@ -3,13 +3,11 @@
 
 class databaseHelper
 {
-
-
          public  $host = 'localhost';
          public  $user = 'root';
          public  $pass = '';
          public  $db = 'webbuilder';
-
+		// Yest commit from mohasin
   
      
         public function ExecuteNonQuery($sql)
