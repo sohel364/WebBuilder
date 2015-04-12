@@ -1,6 +1,7 @@
 <?php 
 class Menu {
 	private $_menu_id;
+	private $_template_id;
 	private $_menu_title;
 	private $_has_submenue;
 	
@@ -9,6 +10,13 @@ class Menu {
 	}
 	public function getMenuID(){
 		return $this->_menu_id;
+	}
+	
+	public function setTemplateID($value) {
+		$this->_template_id=$value;
+	}
+	public function getTemplateID(){
+		return $this->getTemplateID();
 	}
 	
 	public function setMenuTitle($value){
