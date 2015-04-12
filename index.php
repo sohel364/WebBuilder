@@ -73,7 +73,7 @@ session_start( );
 	for($i=2;$i<sizeof($dirs);$i++)
 	{		
 ?>
-	<div id="templat_block">
+	<div class="templat_block">
 	<p><ul><?php echo $dirs[$i] ?></ul></p>
 	<?php 
 		$templates=scandir("./templates/$dirs[$i]");

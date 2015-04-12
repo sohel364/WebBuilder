@@ -2,12 +2,12 @@
 error_reporting(E_ERROR);
 	if(isset($_POST['template']) && isset($_POST['category']) )
 	{
-		$turl =$_SERVER['DOCUMENT_ROOT'].'WebBuilder/templates/'.$_POST['category'].'/'.$_POST['template'];
+		$turl ='../../templates/'.$_POST['category'].'/'.$_POST['template'];
 		$css='../../templates/'.$_POST['category'].'/'.$_POST['template'].'/css/style.css';	
 		
 	}else if(isset($_GET['template']) &&  isset($_GET['category']))
 	{
-		$turl =$_SERVER['DOCUMENT_ROOT'].'WebBuilder/templates/'.$_GET['category'].'/'.$_GET['template'];
+		$turl ='../../templates/'.$_GET['category'].'/'.$_GET['template'];
 		$css='../../templates/'.$_GET['category'].'/'.$_GET['template'].'/css/style.css';	
 		
 	}

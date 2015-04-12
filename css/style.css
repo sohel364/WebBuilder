@@ -1,4 +1,3 @@
-
 .tp_pv{
     background: none repeat scroll 0 0 #dddddd;
     border: 2px solid #a1a1a1;
@@ -58,7 +57,7 @@
 #border-bottom-top-mid{
 	 border-bottom: 1px solid #9acd32;	
 }
-#templat_block{
+.templat_block{
 	float: right;
     width: 89%;
     margin-top: 15px;
