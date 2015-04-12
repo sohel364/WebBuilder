@@ -1,16 +1,14 @@
-
+//test commit from tamal
 <?php
 
 class databaseHelper
 {
-
-
          public  $host = 'localhost';
          public  $user = 'root';
          public  $pass = '';
          public  $db = 'webbuilder';
-
-  
+		// Yest commit from mohasin
+		//Test commit from sohel
      
         public function ExecuteNonQuery($sql)
         {
