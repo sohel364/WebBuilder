@@ -63,64 +63,42 @@ session_start( );
 
 </div>
 <br/><br/>
-<div id="templat_block">
-	<p><ul>Uncategorized</ul></p>
+
 	
-	<?php
-		$dirs=scandir("./templates");
-		//echo "Available Tempalates<br/>";
-		//print_r($dirs);
-		for($i=2;$i<sizeof($dirs);$i++)
-		{		
+	
+<?php
+	$dirs=scandir("./templates");
+	//echo "Available Tempalates<br/>";
+	//print_r($dirs);
+	for($i=2;$i<sizeof($dirs);$i++)
+	{		
+?>
+	<div id="templat_block">
+	<p><ul><?php echo $dirs[$i] ?></ul></p>
+	<?php 
+		$templates=scandir("./templates/$dirs[$i]");
+		for($j=2; $j<sizeof($templates);$j++)
+		{
+		?>
+			<div class="tp_pv">
+			<a href="./manager/content_manager/template_editor.php?
+			category=<?php echo $dirs[$i] ?>&template=<?php echo $templates[$j] ?>" >
+				<?php echo $templates	[$j] ?>
+			</a> </div>
+		<?php 
+		}
 	?>
 	
-	<?php
-		echo '<div class="tp_pv"> <a href="./manager/content_manager/template_editor.php?template='.$dirs[$i].'">'.$dirs[$i].'</a> </div>';
-			
-		} 
-	?>
+	
+	
+	</div>
+<?php	
+	} 
+?>
 		
-</div>
-
-<div id="templat_block">
-	<p><ul>Medicine</ul></p>
-	
-	<?php
-		$dirs=scandir("./templates");
-		//echo "Available Tempalates<br/>";
-		//print_r($dirs);
-		for($i=2;$i<sizeof($dirs);$i++)
-		{		
-	?>
-	
-	<?php
-		echo '<div class="tp_pv"> <a href="./manager/content_manager/template_editor.php?template='.$dirs[$i].'">'.$dirs[$i].'</a> </div>';
-			
-		} 
-	?>
-		
-</div>
 
 
 
 
-<div id="templat_block">
-	<p><ul>Use Template Viewer</ul></p>
-	
-	<?php
-		$dirs=scandir("./templates");
-		//echo "Available Tempalates<br/>";
-		//print_r($dirs);
-		for($i=2;$i<sizeof($dirs);$i++)
-		{		
-	?>
-	
-	<?php
-		echo '<div class="tp_pv"> <a href="./manager/content_manager/template_editor.php?template='.$dirs[$i].'">'.$dirs[$i].'</a> </div>';
-			
-		} 
-	?>
-		
-</div>
 
 </body>
