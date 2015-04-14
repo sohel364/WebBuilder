@@ -63,12 +63,7 @@ error_reporting(E_ERROR);
 	</script>
   	<link href="../../css/bootstrap.min.css" rel="stylesheet">
 	<link href="../../css/bootstrap-dialog.css" rel="stylesheet"/>
-	
-	
-	
-	
-	
-	
+
 	<link rel="stylesheet" type="text/css" href="<?php echo  $css?>"/>
 	
 <style>
@@ -203,17 +198,6 @@ error_reporting(E_ERROR);
         
     </ul>
 </div>
-
-
-
-
-
-
-
-
-
-
-
 	
 		<!-- Template Elements  Here -->
 	<div id="frame" >
@@ -230,11 +214,6 @@ error_reporting(E_ERROR);
 		
 		
 	</div>
-
-
-
-
-
 </div>
 
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
@@ -268,26 +247,18 @@ $(function(){
 
 
 
-
-
 	$("div").on('click',function (e){
-		
-		 BootstrapDialog.alert("Clicked on "+e.target.id);
-		 console.log(e.target.id);
-		 console.log(e.target);
-		 e.stopPropagation();
+
+		 //alert(e.target.id);
+		if(e.target.id=="container_header")
+			 {
+				 BootstrapDialog.alert("Clicked on "+e.target.id);
+				 console.log(e.target.id);
+				 console.log(e.target);
+				 e.stopPropagation();
+		 	 }
 		});
-
-
-
-
 	
-
-
-
-
-
-
 
 
 	
