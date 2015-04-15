@@ -20,10 +20,10 @@ error_reporting(E_ERROR);
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Edit Template</title>
-    <script  src="/WebBuilder/js/tinymce/tinymce.min.js" ></script>
-	<script  src="/WebBuilder/js/jquery-2.1.1.min.js" ></script>
-	<script src="/WebBuilder/js/bootstrap.min.js"></script>
-	<script  src="/WebBuilder/js/bootstrap-dialog.js" ></script>
+    <script  src="../../js/tinymce/tinymce.min.js" ></script>
+	<script  src="../../js/jquery-2.1.1.min.js" ></script>
+	<script src="../../js/bootstrap.min.js"></script>
+	<script  src="../../js/bootstrap-dialog.js" ></script>
 	
 	
 	<script>
