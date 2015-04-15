@@ -205,6 +205,7 @@ error_reporting(E_ERROR);
 		<div style="background-color: white;box-shadow: 10px 10px 5px #888888;">
 			<ul id="menu">
 				<?php include ($turl.'/menu.html');?>
+				<li class="add-menu"><a >+</a></li>
 			</ul>
 			<div id="body"><?php include ($turl.'/body.html');?></div>
 			<div id="footer">
@@ -234,19 +235,44 @@ $(function(){
 	var tempLi;
 	$('#menu li').each(function(i, obj) {
 //		treeMenu.append(obj);
-//		console.log(obj);
+		console.log(this);
 		tempLi=$('<li></li>');
 		tempLi.append('<span><i class="icon-time"></i> [+]</span>');
 		tempLi.append(' &ndash; ');
 		tempLi.append($(obj).html());
 		treeMenu.append(tempLi);
 		
-		console.log(tempLi);
+//		console.log(tempLi);
 	});
 		
+	treeMenu.find('li').last().addClass('add-menu');
+		
+	$(".add-menu").on('click',function(){
+        BootstrapDialog.show({
+            message: 'Give Menu Name: <input type="text" class="form-control">',
+            buttons: [{
+                label: 'Ok',
+                cssClass: 'btn-success',
+                action: function(dialogRef) {
+		            	var newMenu = dialogRef.getModalBody().find('input').val();
+		            	addNewMenu(newMenu);
+		                dialogRef.close();
+	                }
+	            } ,
+	            {
+	                label: 'Cancel',
+	                action: function(dialogRef) {
+	                    dialogRef.close();
+		            }
+	            }
+            ]
+        });
+        
+	});
 
 
 
+	
 	$("div").on('click',function (e){
 
 		 //alert(e.target.id);
@@ -272,45 +298,30 @@ $(function(){
 			
 			console.log( $('#html').val() );
 		});
-
-	$('.text').css('color','red');
 	 
 	// $("#frame").load("<?php echo $turl ?>"); 
 	 
 
-
-//	
-//	tinymce.init({
-//    selector: ".text",
-//    inline: true,
-//    toolbar: "undo redo",
-//    menubar: false
-//});
-
-
-//	tinymce.init({
-//    selector: "#frame",
-//    inline: true,
-//      plugins: [
-//            "advlist autolink lists link image charmap print preview anchor",
-//            "searchreplace visualblocks code fullscreen",
-//            "insertdatetime media table contextmenu paste"
-//        ],
-//});
-
-	
-
-//    tinymce.init({
- //       selector: "h1",
-//        setup: function(ed) {
-//            ed.on('init', function(e) {
-//                e.target.hide();
-//            });
-//        },
-
-
 });
 
+
+
+function addNewMenu(menuName)
+{
+	tempLi=$('<li></li>');
+	tempLi.append('<span><i class="icon-time"></i> [+]</span>');
+	tempLi.append(' &ndash; ');
+	tempLi.append('<a>'+menuName+'</a>');
+	
+	$("#ul_tree_menu_list").find('li').last().before(tempLi);
+
+	tempLi=$('<li></li>');
+	tempLi.append('<a>'+menuName+'</a>');
+	
+	$("#menu").find('li').last().before(tempLi);
+	
+	   console.log(menuName);	
+}
 
 </script>
 
