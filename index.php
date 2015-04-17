@@ -9,9 +9,7 @@ session_start( );
 </head>
 <body>
 <div id="container">
- 
  <div id="top_pl">
-
  	 <div>
 		<table style="margin-left: 64px; display: inline-table">
 			<tr>

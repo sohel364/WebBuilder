@@ -131,10 +131,10 @@ error_reporting(E_ERROR);
                 	<span class="badge badge-success"><i class="icon-minus-sign"></i> Background</span>
                     <ul>
                         <li>
-	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Set-1</a>                   
+	                        <a id="bg_set" href=""><span><i class="icon-time"></i> [+]</span> &ndash; Set-1</a>                   
                         </li>
                         <li>
-	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Set-1</a>                   
+	                        <a id="bg_set" href=""><span><i class="icon-time"></i> [+]</span> &ndash; Set-1</a>                   
                         </li>
                     </ul>
                 </li>
@@ -142,10 +142,12 @@ error_reporting(E_ERROR);
                 	<span class="badge badge-success"><i class="icon-minus-sign"></i> Color</span>
                     <ul>
                         <li>
-	                        <span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Red</a>
+	                        <span><i class="icon-time"></i> [+]</span> &ndash; 
+	                        <a id="bg_color" href="">Red</a>
                         </li>
                         <li>
-	                        <span><i class="icon-time"></i> [+]</span> &ndash; <a href="">Blue</a>
+	                        <span><i class="icon-time"></i> [+]</span> &ndash; 
+	                        <a id="bg_color" href="">Blue</a>
                         </li>
                     </ul>
                 </li>
@@ -304,7 +306,10 @@ $(function(){
 
 });
 
-
+$('#bg_set').on('click',function(e){
+	alert("lets change the background");
+	
+});
 
 function addNewMenu(menuName)
 {
@@ -322,6 +327,8 @@ function addNewMenu(menuName)
 	
 	   console.log(menuName);	
 }
+
+
 
 </script>
 
