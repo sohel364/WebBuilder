@@ -13,8 +13,6 @@ error_reporting(E_ERROR);
 	}
 ?>
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -60,6 +58,106 @@ error_reporting(E_ERROR);
 	    });
 
 	});
+
+
+	$(function(){
+
+		/**
+		 *
+		 *Load menu item in tree view. By saif , Date  08-04-2015
+		 */
+			var treeMenu=$('#ul_tree_menu_list');
+
+			var tempLi;
+			$('#menu li').each(function(i, obj) {
+				console.log(this);
+				tempLi=$('<li></li>');
+				tempLi.append('<span><i class="icon-time"></i> [+]</span>');
+				tempLi.append(' &ndash; ');
+				tempLi.append($(obj).html());
+				treeMenu.append(tempLi);
+
+			});
+				
+			treeMenu.find('li').last().addClass('add-menu');
+				
+			$(".add-menu").on('click',function(){
+		        BootstrapDialog.show({
+		            message: 'Give Menu Name: <input type="text" class="form-control">',
+		            buttons: [{
+		                label: 'Ok',
+		                cssClass: 'btn-success',
+		                action: function(dialogRef) {
+				            	var newMenu = dialogRef.getModalBody().find('input').val();
+				            	addNewMenu(newMenu);
+				                dialogRef.close();
+			                }
+			            } ,
+			            {
+			                label: 'Cancel',
+			                action: function(dialogRef) {
+			                    dialogRef.close();
+				            }
+			            }
+		            ]
+		        });
+		        
+			});
+
+
+
+			
+			$("div").on('click',function (e){
+
+				 //alert(e.target.id);
+				if(e.target.id=="container_header")
+					 {
+						 BootstrapDialog.alert("Clicked on "+e.target.id);
+						 console.log(e.target.id);
+						 console.log(e.target);
+						 e.stopPropagation();
+				 	 }
+				});
+			
+			
+			$('#save').on('submit',function(e){
+					//e.preventDefault();
+					$('#f_title').val($('#title').html());
+					$('#f_header').val($('#header').html());
+					$('#f_menu').val($('#menu').html());
+					$('#f_body').val($('#body').html());
+					$('#f_footer').val($('#footer').html());
+					
+					console.log( $('#html').val() );
+				});
+			 
+				// $("#frame").load("<?php echo $turl ?>"); 
+			 
+
+		});
+
+
+
+		function addNewMenu(menuName)
+		{
+			tempLi=$('<li></li>');
+			tempLi.append('<span><i class="icon-time"></i> [+]</span>');
+			tempLi.append(' &ndash; ');
+			tempLi.append('<a>'+menuName+'</a>');
+			
+			$("#ul_tree_menu_list").find('li').last().before(tempLi);
+
+			tempLi=$('<li></li>');
+			tempLi.append('<a>'+menuName+'</a>');
+			
+			$("#menu").find('li').last().before(tempLi);
+			
+			   console.log(menuName);	
+		}
+
+			
+
+	
 	</script>
   	<link href="../../css/bootstrap.min.css" rel="stylesheet">
 	<link href="../../css/bootstrap-dialog.css" rel="stylesheet"/>
@@ -131,10 +229,10 @@ error_reporting(E_ERROR);
                 	<span class="badge badge-success"><i class="icon-minus-sign"></i> Background</span>
                     <ul>
                         <li>
-	                        <a id="bg_set" href=""><span><i class="icon-time"></i> [+]</span> &ndash; Set-1</a>                   
+	                        <a id="bg_set" href="#"><span><i class="icon-time"></i> [+]</span> &ndash; Set-1</a>                   
                         </li>
                         <li>
-	                        <a id="bg_set" href=""><span><i class="icon-time"></i> [+]</span> &ndash; Set-1</a>                   
+	                        <a id="bg_set" href="#"><span><i class="icon-time"></i> [+]</span> &ndash; Set-1</a>                   
                         </li>
                     </ul>
                 </li>
@@ -226,108 +324,6 @@ error_reporting(E_ERROR);
 </body>
 
 <script type="text/javascript">
-$(function(){
-
-/**
-	 *
-	 *Load menu item in tree view. By saif , Date  08-04-2015
- */
-	var treeMenu=$('#ul_tree_menu_list');
-
-	var tempLi;
-	$('#menu li').each(function(i, obj) {
-//		treeMenu.append(obj);
-		console.log(this);
-		tempLi=$('<li></li>');
-		tempLi.append('<span><i class="icon-time"></i> [+]</span>');
-		tempLi.append(' &ndash; ');
-		tempLi.append($(obj).html());
-		treeMenu.append(tempLi);
-		
-//		console.log(tempLi);
-	});
-		
-	treeMenu.find('li').last().addClass('add-menu');
-		
-	$(".add-menu").on('click',function(){
-        BootstrapDialog.show({
-            message: 'Give Menu Name: <input type="text" class="form-control">',
-            buttons: [{
-                label: 'Ok',
-                cssClass: 'btn-success',
-                action: function(dialogRef) {
-		            	var newMenu = dialogRef.getModalBody().find('input').val();
-		            	addNewMenu(newMenu);
-		                dialogRef.close();
-	                }
-	            } ,
-	            {
-	                label: 'Cancel',
-	                action: function(dialogRef) {
-	                    dialogRef.close();
-		            }
-	            }
-            ]
-        });
-        
-	});
-
-
-
-	
-	$("div").on('click',function (e){
-
-		 //alert(e.target.id);
-		if(e.target.id=="container_header")
-			 {
-				 BootstrapDialog.alert("Clicked on "+e.target.id);
-				 console.log(e.target.id);
-				 console.log(e.target);
-				 e.stopPropagation();
-		 	 }
-		});
-	
-
-
-	
-	$('#save').on('submit',function(e){
-//			e.preventDefault();
-			$('#f_title').val($('#title').html());
-			$('#f_header').val($('#header').html());
-			$('#f_menu').val($('#menu').html());
-			$('#f_body').val($('#body').html());
-			$('#f_footer').val($('#footer').html());
-			
-			console.log( $('#html').val() );
-		});
-	 
-	// $("#frame").load("<?php echo $turl ?>"); 
-	 
-
-});
-
-$('#bg_set').on('click',function(e){
-	alert("lets change the background");
-	
-});
-
-function addNewMenu(menuName)
-{
-	tempLi=$('<li></li>');
-	tempLi.append('<span><i class="icon-time"></i> [+]</span>');
-	tempLi.append(' &ndash; ');
-	tempLi.append('<a>'+menuName+'</a>');
-	
-	$("#ul_tree_menu_list").find('li').last().before(tempLi);
-
-	tempLi=$('<li></li>');
-	tempLi.append('<a>'+menuName+'</a>');
-	
-	$("#menu").find('li').last().before(tempLi);
-	
-	   console.log(menuName);	
-}
-
 
 
 </script>
