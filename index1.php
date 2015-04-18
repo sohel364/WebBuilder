@@ -61,9 +61,8 @@
       </div>
     </nav>
 			
-			<div class="row" style="padding-top:50px;">
-							<div class="col-sm-3">
-								<h4 class="well" style="padding:5px;">Chose your Category</h4>
+			<div class="row" style="padding-top:60px;">
+							<div class="col-sm-3" style="  padding-right: 0px;">
 								<div class="panel-group" style="padding-top:0px;" id="accordion">
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -113,12 +112,58 @@
 </div>
 
 							</div>
+				
+				<div class="col-sm-9">
+					<div id="carousel-Web-Builder" class="carousel slide" data-ride="carousel">
+  
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-Web-Builder" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-Web-Builder" data-slide-to="1"></li>
+    <li data-target="#carousel-Web-Builder" data-slide-to="2"></li>
+  </ol>
+ 
+  
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="images/sl1.jpg" alt="...">
+      <div class="carousel-caption">
+          <h3>Caption Text1</h3>
+      </div>
+    </div>
+    <div class="item">
+      <img src="images/sl2.jpg" alt="...">
+      <div class="carousel-caption">
+          <h3>Caption Text2</h3>
+      </div>
+    </div>
+    <div class="item">
+      <img src="images/sl3.jpg" alt="...">
+      <div class="carousel-caption">
+          <h3>Caption Text3</h3>
+      </div>
+    </div>
+  </div>
+ 
+  
+  <a class="left carousel-control" href="#carousel-Web-Builder" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-Web-Builder" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div> 
+				</div>
 							
 						</div>
 		
 		
 
     </div>
+		
+		
+    <nav class="navbar navbar-default navbar-bottom text-center"> <!--footer-->
+        <p class="text-muted credit" style="padding-top:10px">Basic footer</p>
+    </nav>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
