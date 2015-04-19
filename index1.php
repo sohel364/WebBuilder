@@ -61,56 +61,49 @@
       </div>
     </nav>
 			
-			<div class="row" style="padding-top:60px;">
-							<div class="col-sm-3" style="  padding-right: 0px;">
-								<div class="panel-group" style="padding-top:0px;" id="accordion">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="text-decoration: none;">
-          <span class="glyphicon glyphicon-minus"></span>
-          Collapsible Group Item #1
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="text-decoration: none;">
-          <span class="glyphicon glyphicon-plus"></span>
-          Collapsible Group Item #2
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" style="text-decoration: none;">
-          <span class="glyphicon glyphicon-plus"></span>
-          Collapsible Group Item #3
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-</div>
+<div class="row" style="padding-top:60px;">
+<div class="col-sm-3" style="  padding-right: 0px;">
+<?php
+		$dirs=scandir("./templates");
+		//echo "Available Tempalates<br/>";
+		//print_r($dirs);
+		for($i=2;$i<sizeof($dirs);$i++)
+		{		
+?>
+	<div class="panel-group" style="padding-top:0px;" id="accordion">
+	  <div class="panel panel-default">
+		<div class="panel-heading">
+		  <h4 class="panel-title">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="text-decoration: none;">
+			  <span class="glyphicon glyphicon-minus"></span>
+			  <?php echo $dirs[$i] ?>
+			</a>
+		  </h4>
+		</div>
+		<?php 
+		$templates=scandir("./templates/$dirs[$i]");
+		for($j=2; $j<sizeof($templates);$j++)
+		{
+		?>
+		
+		<div id="collapseOne" class="panel-collapse collapse in">
+		  <div class="panel-body">
+			       <a href="./manager/content_manager/template_editor.php?
+					category=<?php echo $dirs[$i] ?>&template=<?php echo $templates[$j] ?>" >
+						<?php echo $templates	[$j] ?>
+				   </a> 
+		  </div>
+		</div>
+		      		<?php 
+		}
+		?>
+	  </div>
 
+	</div>
+	
+		      		<?php 
+		}
+		?>
 							</div>
 				
 				<div class="col-sm-9">
