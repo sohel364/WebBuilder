@@ -10,7 +10,6 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 		<link href="css/bootstrap-combined.min.css" rel="stylesheet" />
 		<link href="css/main.cs" rel="stylesheet" />
-		
   </head>
   <body>
 		<div class="container">
@@ -63,6 +62,7 @@
 			
 <div class="row" style="padding-top:60px;">
 <div class="col-sm-3" style="  padding-right: 0px;">
+	<div class="panel-group" style="padding-top:0px;" id="accordion">
 <?php
 		$dirs=scandir("./templates");
 		//echo "Available Tempalates<br/>";
@@ -70,11 +70,11 @@
 		for($i=2;$i<sizeof($dirs);$i++)
 		{		
 ?>
-	<div class="panel-group" style="padding-top:0px;" id="accordion">
+
 	  <div class="panel panel-default">
 		<div class="panel-heading">
 		  <h4 class="panel-title">
-			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="text-decoration: none;">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php if($i==2){echo "One";} else {echo "Two";} ?>" style="text-decoration: none;">
 			  <span class="glyphicon glyphicon-minus"></span>
 			  <?php echo $dirs[$i] ?>
 			</a>
@@ -86,7 +86,7 @@
 		{
 		?>
 		
-		<div id="collapseOne" class="panel-collapse collapse in">
+		<div id="collapse_" class="panel-collapse collapse in">
 		  <div class="panel-body">
 			       <a href="./manager/content_manager/template_editor.php?
 					category=<?php echo $dirs[$i] ?>&template=<?php echo $templates[$j] ?>" >
@@ -94,17 +94,19 @@
 				   </a> 
 		  </div>
 		</div>
+		
 		      		<?php 
 		}
 		?>
-	  </div>
+</div>		
+		<?php 
+		}
+		?>
+
 
 	</div>
-	
-		      		<?php 
-		}
-		?>
-							</div>
+
+	</div>
 				
 				<div class="col-sm-9">
 					<div id="carousel-Web-Builder" class="carousel slide" data-ride="carousel">
