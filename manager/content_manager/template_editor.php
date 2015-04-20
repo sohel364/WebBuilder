@@ -26,137 +26,6 @@ error_reporting(E_ERROR);
 	
 	<script>
 
-	$(function () {
-	    $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
-	    $('.tree li.parent_li > span').on('click', function (e) {
-	        var children = $(this).parent('li.parent_li').find(' > ul > li');
-	        if (children.is(":visible")) {
-	            children.hide('fast');
-	            $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
-	        } else {
-	            children.show('fast');
-	            $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
-	        }
-	        e.stopPropagation();
-	    });
-	});
-	
-	$(function(){
-
-	    // Enabling Popover Example 1 - HTML (content and title from html tags of element)
-	    $("[data-toggle=popover]").popover();
-
-	    // Enabling Popover Example 2 - JS (hidden content and title capturing)
-	    $("#popoverExampleTwo").popover({
-	        html : true, 
-	        content: function() {
-	          return $('#popoverExampleTwoHiddenContent').html();
-	        },
-	        title: function() {
-	          return $('#popoverExampleTwoHiddenTitle').html();
-	        }
-	    });
-
-	});
-
-
-	$(function(){
-
-		/**
-		 *
-		 *Load menu item in tree view. By saif , Date  08-04-2015
-		 */
-			var treeMenu=$('#ul_tree_menu_list');
-
-			var tempLi;
-			$('#menu li').each(function(i, obj) {
-				console.log(this);
-				tempLi=$('<li></li>');
-				tempLi.append('<span><i class="icon-time"></i> [+]</span>');
-				tempLi.append(' &ndash; ');
-				tempLi.append($(obj).html());
-				treeMenu.append(tempLi);
-
-			});
-				
-			treeMenu.find('li').last().addClass('add-menu');
-				
-			$(".add-menu").on('click',function(){
-		        BootstrapDialog.show({
-		            message: 'Give Menu Name: <input type="text" class="form-control">',
-		            buttons: [{
-		                label: 'Ok',
-		                cssClass: 'btn-success',
-		                action: function(dialogRef) {
-				            	var newMenu = dialogRef.getModalBody().find('input').val();
-				            	addNewMenu(newMenu);
-				                dialogRef.close();
-			                }
-			            } ,
-			            {
-			                label: 'Cancel',
-			                action: function(dialogRef) {
-			                    dialogRef.close();
-				            }
-			            }
-		            ]
-		        });
-		        
-			});
-
-
-
-			
-			$("div").on('click',function (e){
-
-				 //alert(e.target.id);
-				if(e.target.id=="container_header")
-					 {
-						 BootstrapDialog.alert("Clicked on "+e.target.id);
-						 console.log(e.target.id);
-						 console.log(e.target);
-						 e.stopPropagation();
-				 	 }
-				});
-			
-			
-			$('#save').on('submit',function(e){
-					//e.preventDefault();
-					$('#f_title').val($('#title').html());
-					$('#f_header').val($('#header').html());
-					$('#f_menu').val($('#menu').html());
-					$('#f_body').val($('#body').html());
-					$('#f_footer').val($('#footer').html());
-					
-					console.log( $('#html').val() );
-				});
-			 
-				// $("#frame").load("<?php echo $turl ?>"); 
-			 
-
-		});
-
-
-
-		function addNewMenu(menuName)
-		{
-			tempLi=$('<li></li>');
-			tempLi.append('<span><i class="icon-time"></i> [+]</span>');
-			tempLi.append(' &ndash; ');
-			tempLi.append('<a>'+menuName+'</a>');
-			
-			$("#ul_tree_menu_list").find('li').last().before(tempLi);
-
-			tempLi=$('<li></li>');
-			tempLi.append('<a>'+menuName+'</a>');
-			
-			$("#menu").find('li').last().before(tempLi);
-			
-			   console.log(menuName);	
-		}
-
-			
-
 	
 	</script>
   	<link href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -177,6 +46,19 @@ error_reporting(E_ERROR);
 }
 
 
+#page_option
+{
+	position: absolute;
+	top: 10px;
+	left:10px;
+	background: rgba(150,150,150,.5);
+	
+	border: 1px solid gray;
+}
+#page_option table tr,th,td
+{
+	padding: 1px;
+}
 </style>
 
 </head>
@@ -321,10 +203,173 @@ error_reporting(E_ERROR);
   Launch demo modal
 </button>
 
+
+
+
+
+<div id="page_option" style="display: none">
+<table>
+<tr>
+	<td><button class="btn btn-xs btn-danger"  id="delete_page" > Delete </button></td>
+</tr>
+
+<tr>
+	<td><button class="btn btn-xs btn-warning" >Close</button></td>
+</tr>
+
+</table>
+</div>
+
 </body>
 
 <script type="text/javascript">
 
+$(function () {
+    $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+    $('.tree li.parent_li > span').on('click', function (e) {
+        var children = $(this).parent('li.parent_li').find(' > ul > li');
+        if (children.is(":visible")) {
+            children.hide('fast');
+            $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+        } else {
+            children.show('fast');
+            $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+        }
+        e.stopPropagation();
+    });
+});
+
+$(function(){
+
+    // Enabling Popover Example 1 - HTML (content and title from html tags of element)
+    $("[data-toggle=popover]").popover();
+
+    // Enabling Popover Example 2 - JS (hidden content and title capturing)
+    $("#popoverExampleTwo").popover({
+        html : true, 
+        content: function() {
+          return $('#popoverExampleTwoHiddenContent').html();
+        },
+        title: function() {
+          return $('#popoverExampleTwoHiddenTitle').html();
+        }
+    });
+
+});
+
+
+$(function(){
+
+	/**
+	 *
+	 *Load menu item in tree view. By saif , Date  08-04-2015
+	 */
+		var treeMenu=$('#ul_tree_menu_list');
+
+		var tempLi;
+		$('#menu li').each(function(i, obj) {
+			console.log(this);
+			tempLi=$('<li></li>');
+			tempLi.append('<span><i class="icon-time"></i> [+]</span>');
+			tempLi.append(' &ndash; ');
+			tempLi.append($(obj).html());
+			treeMenu.append(tempLi);
+
+		});
+			
+		treeMenu.find('li').last().addClass('add-menu');
+			
+		$(".add-menu").on('click',function(){
+	        BootstrapDialog.show({
+	            message: 'Give Menu Name: <input type="text" class="form-control">',
+	            buttons: [{
+	                label: 'Ok',
+	                cssClass: 'btn-success',
+	                action: function(dialogRef) {
+			            	var newMenu = dialogRef.getModalBody().find('input').val();
+			            	addNewMenu(newMenu);
+			                dialogRef.close();
+		                }
+		            } ,
+		            {
+		                label: 'Cancel',
+		                action: function(dialogRef) {
+		                    dialogRef.close();
+			            }
+		            }
+	            ]
+	        });
+	        
+		});
+
+
+
+		
+		$("div").on('click',function (e){
+
+			 //alert(e.target.id);
+			if(e.target.id=="container_header")
+				 {
+					 BootstrapDialog.alert("Clicked on "+e.target.id);
+					 console.log(e.target.id);
+					 console.log(e.target);
+					 e.stopPropagation();
+			 	 }
+			});
+		
+
+		var selectedPageIndex;
+		$("#ul_tree_menu_list li").on('click',function(){
+				$("#page_option").toggle();
+				selectedPageIndex=$(this).index();
+		});
+
+		$("#delete_page").on('click',function(){
+				$("#ul_tree_menu_list li:eq("+selectedPageIndex+")").remove();
+				$("#menu li:eq("+selectedPageIndex+")").remove();
+				$("#page_option").hide();
+				
+			});
+
+
+		
+		
+		$('#save').on('submit',function(e){
+				//e.preventDefault();
+				$('#f_title').val($('#title').html());
+				$('#f_header').val($('#header').html());
+				$('#f_menu').val($('#menu').html());
+				$('#f_body').val($('#body').html());
+				$('#f_footer').val($('#footer').html());
+				
+				console.log( $('#html').val() );
+			});
+		 
+			// $("#frame").load("<?php echo $turl ?>"); 
+		 
+
+	});
+
+
+
+	function addNewMenu(menuName)
+	{
+		tempLi=$('<li></li>');
+		tempLi.append('<span><i class="icon-time"></i> [+]</span>');
+		tempLi.append(' &ndash; ');
+		tempLi.append('<a>'+menuName+'</a>');
+		
+		$("#ul_tree_menu_list").find('li').last().before(tempLi);
+
+		tempLi=$('<li></li>');
+		tempLi.append('<a>'+menuName+'</a>');
+		
+		$("#menu").find('li').last().before(tempLi);
+		
+		   console.log(menuName);	
+	}
+
+		
 
 </script>
 
