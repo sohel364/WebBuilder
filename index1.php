@@ -9,7 +9,6 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 		<link href="css/bootstrap-combined.min.css" rel="stylesheet" />
-		<link href="css/main.cs" rel="stylesheet" />
   </head>
   <body>
 		<div class="container">
@@ -75,30 +74,37 @@
 		<div class="panel-heading">
 		  <h4 class="panel-title">
 			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php if($i==2){echo "One";} else {echo "Two";} ?>" style="text-decoration: none;">
+			  <?php if($i==2){?>
 			  <span class="glyphicon glyphicon-minus"></span>
-			  <?php echo $dirs[$i] ?>
+			  <?php } else {?>
+			  <span class="glyphicon glyphicon-plus"></span>
+			  <?php }echo $dirs[$i] ?>
 			</a>
 		  </h4>
 		</div>
+			
+		<div id="collapse<?php if($i==2){ echo "One";} else { echo "Two";}?>" class="panel-collapse <?php if($i==2) echo "collapse in";else echo "collapse"?>" >
 		<?php 
-		$templates=scandir("./templates/$dirs[$i]");
+		$templates=scandir("./templates/$dirs[$i]");	
 		for($j=2; $j<sizeof($templates);$j++)
 		{
 		?>
 		
-		<div id="collapse_" class="panel-collapse collapse in">
+		
 		  <div class="panel-body">
+			       <span>
 			       <a href="./manager/content_manager/template_editor.php?
 					category=<?php echo $dirs[$i] ?>&template=<?php echo $templates[$j] ?>" >
 						<?php echo $templates	[$j] ?>
-				   </a> 
+				   </a>
+				   </span> 
 		  </div>
-		</div>
 		
 		      		<?php 
 		}
 		?>
-</div>		
+		</div>
+	</div>		
 		<?php 
 		}
 		?>
@@ -108,63 +114,59 @@
 
 	</div>
 				
-				<div class="col-sm-9">
-					<div id="carousel-Web-Builder" class="carousel slide" data-ride="carousel">
+<div class="col-sm-9">
+	<div id="carousel-Web-Builder" class="carousel slide" data-ride="carousel">
   
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-Web-Builder" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-Web-Builder" data-slide-to="1"></li>
-    <li data-target="#carousel-Web-Builder" data-slide-to="2"></li>
-  </ol>
- 
-  
-  <div class="carousel-inner">
-    <div class="item active">
-      <img src="images/sl1.jpg" alt="...">
-      <div class="carousel-caption">
-          <h3>Caption Text1</h3>
-      </div>
-    </div>
-    <div class="item">
-      <img src="images/sl2.jpg" alt="...">
-      <div class="carousel-caption">
-          <h3>Caption Text2</h3>
-      </div>
-    </div>
-    <div class="item">
-      <img src="images/sl3.jpg" alt="...">
-      <div class="carousel-caption">
-          <h3>Caption Text3</h3>
-      </div>
-    </div>
-  </div>
- 
-  
-  <a class="left carousel-control" href="#carousel-Web-Builder" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#carousel-Web-Builder" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
-</div> 
-				</div>
-							
-						</div>
+	  <ol class="carousel-indicators">
+	    <li data-target="#carousel-Web-Builder" data-slide-to="0" class="active"></li>
+	    <li data-target="#carousel-Web-Builder" data-slide-to="1"></li>
+	    <li data-target="#carousel-Web-Builder" data-slide-to="2"></li>
+	  </ol>
+	 
+	  
+	  <div class="carousel-inner">
+	    <div class="item active">
+	      <img src="images/sl1.jpg" alt="...">
+	      <div class="carousel-caption">
+	          <h3>Caption Text1</h3>
+	      </div>
+	    </div>
+	    <div class="item">
+	      <img src="images/sl2.jpg" alt="...">
+	      <div class="carousel-caption">
+	          <h3>Caption Text2</h3>
+	      </div>
+	    </div>
+	    <div class="item">
+	      <img src="images/sl3.jpg" alt="...">
+	      <div class="carousel-caption">
+	          <h3>Caption Text3</h3>
+	      </div>
+	    </div>
+	  </div>
+	 
+	  
+	  <a class="left carousel-control" href="#carousel-Web-Builder" role="button" data-slide="prev">
+	    <span class="glyphicon glyphicon-chevron-left"></span>
+	  </a>
+	  <a class="right carousel-control" href="#carousel-Web-Builder" role="button" data-slide="next">
+	    <span class="glyphicon glyphicon-chevron-right"></span>
+	  </a>
+	</div> 
+</div>			
+</div>		
+</div>
 		
 		
-
-    </div>
-		
-		
-    <nav class="navbar navbar-default navbar-bottom text-center"> <!--footer-->
-        <p class="text-muted credit" style="padding-top:10px">Basic footer</p>
-    </nav>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-		<script src="js/MenuDropDown.js"></script>
-		<script src="js/CatPanel.js"></script>
-  </body>
+	 <nav class="navbar navbar-default navbar-bottom text-center"> <!--footer-->
+	     <p class="text-muted credit" style="padding-top:10px">CopyRight@SSS.ORG</p>
+	 </nav>
+	
+	 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	 <!-- Include all compiled plugins (below), or include individual files as needed -->
+	   <script src="js/bootstrap.min.js"></script>
+	<script src="js/MenuDropDown.js"></script>
+	<script src="js/CatPanel.js"></script>
+</body>
 </html>

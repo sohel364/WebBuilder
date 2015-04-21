@@ -21,7 +21,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Web Builder</a>
+          <a class="navbar-brand" href="#" style="color: ORANGE;weight:bold;font-size:36px">Web Builder</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -32,19 +32,9 @@
 						<li><a href="#">Others</a></li>
           </ul>
           <ul class="nav navbar-nav pull-right">
-					<li class="dropdown">
-						<a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
-						<div class="dropdown-menu" style="padding: 15px; padding-bottom: 5pxpx;">
-							<form method="post" action="login" accept-charset="UTF-8">
-								<input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="username">
-								<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password">
-								<input style="float: left; margin-right: 10px;" type="checkbox" name="remember-me" id="remember-me" value="1">
-								<label class="string optional" for="user_remember_me"> Remember me</label>
-								<input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In">
-							
-							</form>
-						</div>
-					</li>
+          				<li>
+							<a class="dropdown-toggle btn" href="#signup" data-toggle="modal" data-target=".bs-modal-sm" style="border-right: 1px solid rgba(186, 220, 255, 0.83);">Sign In/Registration</a>
+						</li>
 						<li>
 							<form class="navbar-form navbar-left" role="search">
 								<div class="input-group">
@@ -58,6 +48,120 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+
+
+<!--sign up/registration code start-->
+				<div class="modal fade bs-modal-sm" style="padding-top: 150px;" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+					
+				<div class="modal-dialog modal-sm">
+						<div class="modal-content">
+								<br>
+								<div class="bs-example bs-example-tabs">
+										<ul id="myTab" class="nav nav-tabs">
+											<li class="active"><a href="#signin" data-toggle="tab">Sign In</a></li>
+											<li class=""><a href="#signup" data-toggle="tab">Register</a></li>
+										</ul>
+								</div>
+							<div class="modal-body">
+								<div id="myTabContent" class="tab-content">
+
+								<div class="tab-pane fade active in" id="signin">
+										<form class="form-horizontal">
+										<fieldset>
+										<!-- Sign In Form -->
+										<!-- Text input-->
+										<div class="control-group">
+
+											<div class="controls control-label">
+												<input required="" id="userid" name="userid" type="text" class="form-control" placeholder="User Name Or Email" class="input-medium" required="">
+											</div>
+										</div>
+
+										<!-- Password input-->
+										<div class="control-group">
+
+											<div class="controls control-label">
+												<input required="" id="passwordinput" name="passwordinput" class="form-control" type="password" placeholder="*********************" class="input-medium">
+											</div>
+										</div>
+
+										<!-- Multiple Checkboxes (inline) -->
+										<div class="control-group">
+											<div class="controls">
+												<label class="checkbox inline" style="padding-left:20px;" for="rememberme-0">
+													<input type="checkbox" name="rememberme" id="rememberme-0" value="Remember me">
+													Remember me
+												</label>
+											</div>
+										</div>
+
+										<!-- Button -->
+										<div class="control-group">
+											<label class="control-label" for="confirmsignup"></label>
+											<div class="controls">
+												<button id="signin" name="signin" class="btn btn-success" >Sign In</button>
+											</div>
+										</div>
+										</fieldset>
+										</form>
+								</div>
+
+								<div class="tab-pane fade" id="signup">
+										<form class="form-horizontal">
+										<fieldset>
+										<!-- Sign Up Form -->
+										<!-- Text input-->
+										<div class="control-group">
+											<div class="controls control-label">
+												<input id="Email" name="Email" class="form-control" type="text" placeholder="Name@domain.com" class="input-large" required="">
+											</div>
+										</div>
+
+										<!-- Text input-->
+										<div class="control-group">
+											<div class="controls control-label">
+												<input id="userid" name="userid" class="form-control" type="text" placeholder="User Name" class="input-large" required="">
+											</div>
+										</div>
+
+										<!-- Password input-->
+										<div class="control-group">
+											<div class="controls control-label">
+												<input id="password" name="password" class="form-control" type="password" placeholder="Enter Password" class="input-large" required="">
+											</div>
+										</div>
+
+										<!-- Text input-->
+										<div class="control-group">
+											<div class="controls control-label">
+												<input id="reenterpassword" class="form-control" name="reenterpassword" type="password" placeholder="Re-enter Password" class="input-large" required="">
+											</div>
+										</div>
+
+
+										<!-- Button -->
+										<div class="control-group">
+											<label class="control-label" for="confirmsignup"></label>
+											<div class="controls">
+												<button id="confirmsignup" name="confirmsignup" class="btn btn-success">Sign Up</button>
+											</div>
+										</div>
+										</fieldset>
+										</form>
+							</div>
+						</div>
+							</div>
+							<div class="modal-footer">
+							<center>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</center>
+							</div>
+						</div>
+  </div>
+</div> <!--modal-->
+			<!--sign up/registration code end-->
+
+
 			
 <div class="row" style="padding-top:60px;">
 <div class="col-sm-3" style="  padding-right: 0px;">
