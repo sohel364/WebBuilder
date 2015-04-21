@@ -22,7 +22,7 @@ error_reporting(E_ERROR);
 	<script  src="../../js/jquery-2.1.1.min.js" ></script>
 	<script src="../../js/bootstrap.min.js"></script>
 	<script  src="../../js/bootstrap-dialog.js" ></script>
-	
+	<script  src="../../js/jquery-ui.min.js" ></script>
 	
 	<script>
 
@@ -30,6 +30,7 @@ error_reporting(E_ERROR);
 	</script>
   	<link href="../../css/bootstrap.min.css" rel="stylesheet">
 	<link href="../../css/bootstrap-dialog.css" rel="stylesheet"/>
+	<link href="../../css/jquery-ui.min.css" rel="stylesheet"/>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo  $css?>"/>
 	
@@ -49,16 +50,24 @@ error_reporting(E_ERROR);
 #page_option
 {
 	position: absolute;
-	top: 10px;
-	left:10px;
-	background: rgba(150,150,150,.5);
-	
-	border: 1px solid gray;
+	top: 65px;
+	left:243px;
+	background: url("../../images/img-noise-361x370.png");
+	border-radius: 7px;
+	border: 1px solid silver;
+	padding: 5px;
 }
-#page_option table tr,th,td
+#page_option  table  tr,th,td
 {
-	padding: 1px;
+	padding: 2px;
+	border: 1px solid white;
 }
+#page_option td:nth-child(even)
+{
+	float:right;
+	text-align: right;
+}
+
 </style>
 
 </head>
@@ -205,20 +214,39 @@ error_reporting(E_ERROR);
 
 
 
+<!-- The option Menu -->
 
-
-<div id="page_option" style="display: none">
-<table>
+<div id="page_option" style="display: none;">
+<table style="">
+<caption style="font-weight: bold; text-align: center;">Page Controll Options</caption>
 <tr>
-	<td><button class="btn btn-xs btn-danger"  id="delete_page" > Delete </button></td>
+	<td style=""></td><td><button class="btn btn-xs btn-danger"  id="page_delete_btn" >
+	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete </button></td>
 </tr>
 
 <tr>
-	<td><button class="btn btn-xs btn-warning" >Close</button></td>
+	<td>Page Name</td><td><input type="text"></td>
+</tr>
+
+
+<tr>
+	<td>other Options</td><td>.........</td>
+</tr>
+<tr>
+	<td>other Options</td><td>.........</td>
+</tr>
+
+<tr>
+	<td><button class="btn btn-sm btn-success" id="page_save_btn">
+	<span class="glyphicon glyphicon-saved" aria-hidden="true"></span>Save</button>
+	</td><td><button class="btn btn-xs btn-warning" id="page_close_btn">Close</button></td>
 </tr>
 
 </table>
 </div>
+
+
+<!-- Option Menu End -->
 
 </body>
 
@@ -260,6 +288,7 @@ $(function(){
 
 $(function(){
 
+	
 	/**
 	 *
 	 *Load menu item in tree view. By saif , Date  08-04-2015
@@ -278,6 +307,8 @@ $(function(){
 		});
 			
 		treeMenu.find('li').last().addClass('add-menu');
+		/**Making it Sortable using jquery UI*/
+	 	$( "#ul_tree_menu_list" ).sortable();
 			
 		$(".add-menu").on('click',function(){
 	        BootstrapDialog.show({
@@ -319,18 +350,28 @@ $(function(){
 		
 
 		var selectedPageIndex;
-		$("#ul_tree_menu_list li").on('click',function(){
-				$("#page_option").toggle();
+		$("#ul_tree_menu_list").on('click','li',function(e){
+	
+				console.log($("#ul_tree_menu_list li:last-child"));
 				selectedPageIndex=$(this).index();
+				
+				if(selectedPageIndex == $("#ul_tree_menu_list li").size()-1)
+				{
+					return;
+				}
+				$("#page_option").toggle();
+				
 		});
 
-		$("#delete_page").on('click',function(){
+		$("#page_delete_btn").on('click',function(){
 				$("#ul_tree_menu_list li:eq("+selectedPageIndex+")").remove();
 				$("#menu li:eq("+selectedPageIndex+")").remove();
 				$("#page_option").hide();
 				
 			});
-
+		$("#page_close_btn").on('click',function(){
+			$("#page_option").hide();
+			});
 
 		
 		
