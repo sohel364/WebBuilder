@@ -265,42 +265,60 @@
 	</div> 
 </div>			
 </div>
+<?php
+	for($i=0;$i<3;$i++){ 
+?>
 <div class="row" style="padding-top:60px;">
-<div class="col-sm-3" style="float:right">
-  Sample Module Comming Up
-  </br>
-  Sample Module Comming Up
-  </br>
-  Sample Module Comming Up
-  </br>
-  Sample Module Comming Up
-  </br>
-</div>
-
-<div class="col-sm-3" style="float:right">
-  Sample Module Comming Up
-  </br>
-  Sample Module Comming Up
-  </br>
-  Sample Module Comming Up
-  </br>
-  Sample Module Comming Up
-  </br>
-</div>
-
-<div class="col-sm-3" style="float:right">
-  Sample Module Comming Up
-  </br>
-  Sample Module Comming Up
-  </br>
-  Sample Module Comming Up
-  </br>
-  Sample Module Comming Up
-  </br>
-</div>
+	<div class="col-sm-2" style="float:right;background-color:#384047;border-radius: 5px;border-radius: 5px;margin-right:13px; color:#5fcf80">
+	  Sample Module Comming Up
+	  </br>
+	  Sample Module Comming Up
+	  </br>
+	  Sample Module Comming Up
+	  </br>
+	  Sample Module Comming Up
+	  </br>
+	</div>
+	
+		<div class="col-sm-2" style="float:right;background-color:#384047;border-radius: 5px;border-radius: 5px;margin-right:13px; color:#5fcf80">
+	  Sample Module Comming Up
+	  </br>
+	  Sample Module Comming Up
+	  </br>
+	  Sample Module Comming Up
+	  </br>
+	  Sample Module Comming Up
+	  </br>
+	</div>
+	
+	<div class="col-sm-2" style="float:right;background-color:#384047;border-radius: 5px;border-radius: 5px;margin-right:13px; color:#5fcf80">
+	  Sample Module Comming Up
+	  </br>
+	  Sample Module Comming Up
+	  </br>
+	  Sample Module Comming Up
+	  </br>
+	  Sample Module Comming Up
+	  </br>
+	</div>
+	
+	<div class="col-sm-2" style="float:right;background-color:#384047;border-radius: 5px;border-radius: 5px;margin-right:13px; color:#5fcf80">
+	  Sample Module Comming Up
+	  </br>
+	  Sample Module Comming Up
+	  </br>
+	  Sample Module Comming Up
+	  </br>
+	  Sample Module Comming Up
+	  </br>
+	</div>
 		
 </div>
-		
+<?php
+	} 
+?>
+
+<br/>		
 		
 	 <nav class="navbar navbar-default navbar-bottom text-center"> <!--footer-->
 	     <p class="text-muted credit" style="padding-top:10px">CopyRight@SSS.ORG</p>
