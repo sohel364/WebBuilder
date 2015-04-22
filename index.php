@@ -230,7 +230,7 @@
 	  
 	  <div class="carousel-inner">
 	    <div class="item active">
-	      <img src="images/sl1.jpg" alt="...">
+	      <img src="images/sl1.png" alt="...">
 	      <div class="carousel-caption">
 	          <h3>Caption Text1</h3>
 	      </div>
