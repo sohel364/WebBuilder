@@ -106,7 +106,7 @@ error_reporting(E_ERROR);
             <ul>
                 <li>
                 	<span class="badge badge-success"><i class="icon-minus-sign"></i> Already Added</span>
-                    <ul id="ul_tree_menu_list">
+                    <ul id="ul_tree_menu_list" class="pages">
                        
                     </ul>
                 </li>
@@ -194,7 +194,7 @@ error_reporting(E_ERROR);
 	<div id="frame" >
 		<div style="background: gray; margin-bottom: 10px;text-align: center; " > <?php include ($turl.'/title.html');?>	</div>
 		<div style="background-color: white;box-shadow: 10px 10px 5px #888888;">
-			<ul id="menu">
+			<ul id="menu" class="pages">
 				<?php include ($turl.'/menu.html');?>
 				<li class="add-menu"><a >+</a></li>
 			</ul>
@@ -287,8 +287,6 @@ $(function(){
 
 
 $(function(){
-
-	
 	/**
 	 *
 	 *Load menu item in tree view. By saif , Date  08-04-2015
@@ -307,8 +305,27 @@ $(function(){
 		});
 			
 		treeMenu.find('li').last().addClass('add-menu');
+		
 		/**Making it Sortable using jquery UI*/
-	 	$( "#ul_tree_menu_list" ).sortable();
+		 
+	 	$( "#ul_tree_menu_list" ).sortable({
+		/*
+	 		start: function(event, ui){
+            iBefore = ui.item.index();
+		    },
+		    update: function(event, ui) {
+		            iAfter = ui.item.index();
+		            evictee = $('menu li:eq('+iAfter+')');
+		            evictor = $('menu li:eq('+iBefore+')');
+		
+		            evictee.replaceWith(evictor);
+		            if(iBefore > iAfter)
+		                evictor.after(evictee);
+		            else
+		                evictor.before(evictee);
+		    }
+			*/
+		 });
 			
 		$(".add-menu").on('click',function(){
 	        BootstrapDialog.show({
@@ -359,7 +376,7 @@ $(function(){
 				{
 					return;
 				}
-				$("#page_option").toggle();
+				//$("#page_option").toggle();
 				
 		});
 
