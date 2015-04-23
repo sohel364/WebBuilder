@@ -197,7 +197,7 @@
 		
 		  <div class="panel-body">
 			       <span>
-			       <a href="./manager/content_manager/template_editor.php?
+			       <a href="./views/content_views/template_editor.php?
 					category=<?php echo $dirs[$i] ?>&template=<?php echo $templates[$j] ?>" >
 						<?php echo $templates	[$j] ?>
 				   </a>
