@@ -309,14 +309,14 @@ $(function(){
 		/**Making it Sortable using jquery UI*/
 		 
 	 	$( "#ul_tree_menu_list" ).sortable({
-		/*
+		
 	 		start: function(event, ui){
             iBefore = ui.item.index();
 		    },
 		    update: function(event, ui) {
 		            iAfter = ui.item.index();
-		            evictee = $('menu li:eq('+iAfter+')');
-		            evictor = $('menu li:eq('+iBefore+')');
+		            evictee = $('#menu li:eq('+iAfter+')');
+		            evictor = $('#menu li:eq('+iBefore+')');
 		
 		            evictee.replaceWith(evictor);
 		            if(iBefore > iAfter)
@@ -324,7 +324,7 @@ $(function(){
 		            else
 		                evictor.before(evictee);
 		    }
-			*/
+			
 		 });
 			
 		$(".add-menu").on('click',function(){
@@ -367,7 +367,7 @@ $(function(){
 		
 
 		var selectedPageIndex;
-		$("#ul_tree_menu_list").on('click','li',function(e){
+		$("#ul_tree_menu_list").on('dblclick','li',function(e){
 	
 				console.log($("#ul_tree_menu_list li:last-child"));
 				selectedPageIndex=$(this).index();
@@ -376,7 +376,7 @@ $(function(){
 				{
 					return;
 				}
-				//$("#page_option").toggle();
+				$("#page_option").toggle();
 				
 		});
 
