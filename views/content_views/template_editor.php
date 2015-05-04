@@ -47,7 +47,7 @@ error_reporting(E_ERROR);
 }
 
 
-#page_option
+.edit_option
 {
 	position: absolute;
 	top: 65px;
@@ -56,16 +56,22 @@ error_reporting(E_ERROR);
 	border-radius: 7px;
 	border: 1px solid silver;
 	padding: 5px;
+    display: none;
 }
-#page_option  table  tr,th,td
+.edit_option  table  tr,th,td
 {
 	padding: 2px;
 	border: 1px solid white;
 }
-#page_option td:nth-child(even)
+.edit_option td:nth-child(even)
 {
 	float:right;
 	text-align: right;
+}
+.color
+{
+    height: 30px;
+    width: 30px;
 }
 
 </style>
@@ -118,12 +124,12 @@ error_reporting(E_ERROR);
             <ul>
                 <li>
                 	<span class="badge badge-success"><i class="icon-minus-sign"></i> Background</span>
-                    <ul>
+                    <ul id="ul_background_menu">
                         <li>
-	                        <a id="bg_set" href="#"><span><i class="icon-time"></i> [+]</span> &ndash; Set-1</a>                   
+	                        <span><i class="icon-time"></i> [+]</span> <a id="bg_set" href="#"> &ndash; Images</a>
                         </li>
                         <li>
-	                        <a id="bg_set" href="#"><span><i class="icon-time"></i> [+]</span> &ndash; Set-1</a>                   
+	                       <span><i class="icon-time"></i> [+]</span>  <a id="bg_set" href="#"> &ndash; Color</a>
                         </li>
                     </ul>
                 </li>
@@ -234,11 +240,13 @@ error_reporting(E_ERROR);
 
 
 
+<!--    Form Here We All HTML component is are related to Template Edit options -->
+
 <!-- The option Menu -->
 
-<div id="page_option" style="display: none;">
+<div id="page_option" style="display: none;" class="edit_option">
 <table style="">
-<caption style="font-weight: bold; text-align: center;">Page Controll Options</caption>
+<caption style="font-weight: bold; text-align: center;">Page Control Options</caption>
 <tr>
 	<td style=""></td><td><button class="btn btn-xs btn-danger"  id="page_delete_btn" >
 	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete </button></td>
@@ -259,16 +267,46 @@ error_reporting(E_ERROR);
 <tr>
 	<td><button class="btn btn-sm btn-success" id="page_save_btn">
 	<span class="glyphicon glyphicon-saved" aria-hidden="true"></span>Save</button>
-	</td><td><button class="btn btn-xs btn-warning" id="page_close_btn">Close</button></td>
+	</td><td><button class="btn btn-xs btn-warning page_close_btn">Close</button></td>
 </tr>
 
 </table>
+</div>
+
+<div id="background_option" class="edit_option" style="top: 325px;">
+    <table style="">
+        <caption style="font-weight: bold; text-align: center;">Chose Background</caption>
+
+    <?php
+        for($i=0;$i<4;$i++)
+        {
+    ?>
+            <tr>
+            <td class="color"></td><td class="color"></td><td class="color"></td>
+            </tr>
+    <?php
+        }
+    ?>
+
+
+
+
+        </tr>
+
+    </table>
+
+    <button class="btn btn-xs btn-warning page_close_btn">Close</button>
 </div>
 
 
 <!-- Option Menu End -->
 
 </body>
+
+
+
+
+
 
 <script type="text/javascript">
 
@@ -346,7 +384,10 @@ $(function(){
 		    }
 			
 		 });
-			
+
+    /*
+    *Add New Menu
+    * */
 		$(".add-menu").on('click',function(){
 	        BootstrapDialog.show({
 	            message: 'Give Menu Name: <input type="text" class="form-control">',
@@ -384,14 +425,21 @@ $(function(){
 					 e.stopPropagation();
 			 	 }
 			});
-		
 
+
+
+    /*
+    For All close Button
+     */
+    $(".page_close_btn").on('click',function(){
+        $(this).closest('.edit_option').hide();
+    });
+/*
+        Page Options
+ */
 		var selectedPageIndex;
 		$("#ul_tree_menu_list").on('dblclick','li',function(e){
-	
-				console.log($("#ul_tree_menu_list li:last-child"));
 				selectedPageIndex=$(this).index();
-				
 				if(selectedPageIndex == $("#ul_tree_menu_list li").size()-1)
 				{
 					return;
@@ -406,11 +454,25 @@ $(function(){
 				$("#page_option").hide();
 				
 			});
-		$("#page_close_btn").on('click',function(){
-			$("#page_option").hide();
-			});
 
-		
+
+/*
+    Background Options
+ */
+
+
+    $(".color").each(function(i,obj){
+        $(obj).css('background',getColor());
+    });
+    $("#ul_background_menu").on('dblclick','li',function(e){
+        $("#background_option").toggle();
+
+    });
+
+
+
+
+
 		
 		$('#save').on('submit',function(e){
 				//e.preventDefault();
@@ -428,6 +490,10 @@ $(function(){
 
 	});
 
+    function getColor()
+    {
+       return '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+    }
 
 
 	function addNewMenu(menuName)
