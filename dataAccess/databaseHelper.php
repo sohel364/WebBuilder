@@ -1,4 +1,3 @@
-//test commit from tamal
 <?php
 
 class databaseHelper
@@ -82,7 +81,7 @@ class databaseHelper
             
             catch (Exception $e)
             {
-                
+                $InsertID = $e;
             }
                     
             return $InsertID;

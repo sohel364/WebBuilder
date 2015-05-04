@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2015 at 09:39 AM
+-- Generation Time: May 04, 2015 at 06:55 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -27,11 +27,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `content` (
-  `content_id` varchar(255) NOT NULL,
-  `content_html` blob,
+`content_id` int(11) NOT NULL,
+  `content_html` longtext,
   `isMenu` varchar(1) NOT NULL,
-  `content_menu_id` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `content_menu_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -55,10 +55,12 @@ CREATE TABLE IF NOT EXISTS `html` (
 --
 
 CREATE TABLE IF NOT EXISTS `menu` (
-  `menu_id` varchar(255) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `hassubmenu` tinyint(1) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+`menu_id` int(11) NOT NULL,
+  `template_id` varchar(255) NOT NULL,
+  `menu_title` varchar(255) NOT NULL,
+  `hassubmenu` tinyint(1) DEFAULT '1',
+  `a_href` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -79,10 +81,12 @@ CREATE TABLE IF NOT EXISTS `submenu` (
 --
 
 CREATE TABLE IF NOT EXISTS `template` (
+`id` int(11) NOT NULL,
   `template_id` varchar(255) NOT NULL,
   `user_id` varchar(255) NOT NULL,
-  `menu_id` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `template_url` varchar(255) DEFAULT NULL,
+  `template_res_url` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -102,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `password`, `email`) VALUES
-('1', 'a', 'a', 'a');
+('', 'a', 'a', 'a');
 
 -- --------------------------------------------------------
 
@@ -147,7 +151,7 @@ ALTER TABLE `submenu`
 -- Indexes for table `template`
 --
 ALTER TABLE `template`
- ADD PRIMARY KEY (`template_id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
@@ -166,10 +170,25 @@ ALTER TABLE `user_html`
 --
 
 --
+-- AUTO_INCREMENT for table `content`
+--
+ALTER TABLE `content`
+MODIFY `content_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+--
 -- AUTO_INCREMENT for table `html`
 --
 ALTER TABLE `html`
 MODIFY `id` int(255) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `menu`
+--
+ALTER TABLE `menu`
+MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=70;
+--
+-- AUTO_INCREMENT for table `template`
+--
+ALTER TABLE `template`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
