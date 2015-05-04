@@ -1,14 +1,19 @@
 <?php
 error_reporting(E_ERROR);
+        $category;
+        $template;
 	if(isset($_POST['template']) && isset($_POST['category']) )
 	{
 		$turl ='../../templates/'.$_POST['category'].'/'.$_POST['template'];
-		$css='../../templates/'.$_POST['category'].'/'.$_POST['template'].'/css/style.css';		
-		
+		$css='../../templates/'.$_POST['category'].'/'.$_POST['template'].'/css/style.css';	
+		$category = $_POST['category'];
+                $template = $_POST['template'];
 	}else if(isset($_GET['template']) &&  isset($_GET['category']))
 	{
 		$turl ='../../templates/'.$_GET['category'].'/'.$_GET['template'];
 		$css='../../templates/'.$_GET['category'].'/'.$_GET['template'].'/css/style.css';	
+                $category = $_GET['category'];
+                $template = $_GET['template'];
 		
 	}
 ?>
@@ -23,12 +28,13 @@ error_reporting(E_ERROR);
 	<script src="../../js/bootstrap.min.js"></script>
 	<script  src="../../js/bootstrap-dialog.js" ></script>
 	<script  src="../../js/jquery-ui.min.js" ></script>
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-	<script>
-
-	
+        
+	<script type="text/javascript">
+            var template_id = '<?php echo $category.'_'.$template;?>';
 	</script>
-  	<link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <script  src="../../js/savePage.js" ></script>
+        
+  	<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="../../css/bootstrap-dialog.css" rel="stylesheet"/>
 	<link href="../../css/jquery-ui.min.css" rel="stylesheet"/>
 
@@ -91,15 +97,16 @@ error_reporting(E_ERROR);
 
 
 <div style="height: 25px;">
-		<form action="savePage.php" method="post" id="save">
+    <input style="margin-right:118px;float: right;" type="submit" value="Save Page" onclick="savePage();"/>
+		<!--<form action="savePage.php" method="post" id="save">
 			<input type="hidden" id="f_title" name="title"/>
 			<input type="hidden" id="f_header" name="header"/>
 			<input type="hidden" id="f_menu" name="menu" />	
 			<input type="hidden" id="f_body" name="body"/>
 			<input type="hidden" id="f_footer" name="footer"/>
 			<input type="hidden" id="target" name="target" value="test"/>		
-			<input style="margin-right:118px;float: right;" type="submit" value="Save Page" />
-		</form>
+			
+		</form> -->
 </div>
 
 <div>
@@ -200,43 +207,23 @@ error_reporting(E_ERROR);
 	<div id="frame" >
 		<div style="background: gray; margin-bottom: 10px;text-align: center; " > <?php include ($turl.'/title.html');?>	</div>
 		<div style="background-color: white;box-shadow: 10px 10px 5px #888888;">
-			<!-- <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top"> -->
-			<div class="container">
-					<div class="navbar-header">
-		                <button data-target="#mainNav" data-toggle="collapse" class="navbar-toggle" type="button">
-		                    <span class="sr-only">Toggle navigation</span>
-		                    <span class="icon-bar"></span>
-		                    <span class="icon-bar"></span>
-		                    <span class="icon-bar"></span>
-		                </button>
-		                <a href="#" class="navbar-brand">
-		                    <?php echo $_GET['template']; ?>
-		                </a>
-		            </div>
-	            
-	            <!--</nav>-->
-				<div id="mainNav" class="collapse navbar-collapse">
-					<ul id="menu" class="nav navbar-nav navbar">
-						<?php include ($turl.'/menu.html');?>
-						<li class="add-menu"><a >+</a></li>
-					</ul>
-				</div>
-			</div>
+			<ul id="menu" class="pages">
+				<?php include ($turl.'/menu.html');?>
+				<li class="add-menu"><a >+</a></li>
+			</ul>
 			<div id="body"><?php include ($turl.'/body.html');?></div>
 			<div id="footer">
 				<?php include ($turl.'/footer.html');?>
 			</div>
-			
 		</div>
 		
 		
 	</div>
+</div>
 
-
-<!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
   Launch demo modal
 </button>
--->
 
 
 
