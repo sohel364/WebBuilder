@@ -44,7 +44,7 @@ function savePage() {
     if (menuList.length !== 'undefined' && menuList.length > 1) {
         $.ajax({
             type: "POST",
-            url: 'http://localhost/PhpProject2/views/content_views/pageSaver.php',
+            url: 'http://localhost/WebBuilder/views/content_views/pageSaver.php',
             dataType: 'json',
             data: {menulists: menuList, bodyhtml: bodyHtmlString, templateid: template_id},
             success: function (obj, textstatus) {
