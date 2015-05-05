@@ -98,7 +98,9 @@ error_reporting(E_ERROR);
 
 
 <div style="height: 25px;">
-    <input style="margin-right:118px;float: right;" type="submit" value="Save Page" onclick="savePage();"/>
+
+   
+    <a style="margin-right:118px;float: right;" class="btn btn-inverse" onclick="savePage();"><i class="icon-star"></i> Save</a>
 		<!--<form action="savePage.php" method="post" id="save">
 			<input type="hidden" id="f_title" name="title"/>
 			<input type="hidden" id="f_header" name="header"/>
