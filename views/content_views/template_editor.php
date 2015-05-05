@@ -39,6 +39,7 @@ error_reporting(E_ERROR);
 	<link href="../../css/jquery-ui.min.css" rel="stylesheet"/>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo  $css?>"/>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
 	
 <style>
 
@@ -208,10 +209,31 @@ error_reporting(E_ERROR);
 	<div id="frame" >
 		<div style="background: gray; margin-bottom: 10px;text-align: center; " > <?php include ($turl.'/title.html');?>	</div>
 		<div style="background-color: white;box-shadow: 10px 10px 5px #888888;">
-			<ul id="menu" class="pages">
-				<?php include ($turl.'/menu.html');?>
-				<li class="add-menu"><a >+</a></li>
-			</ul>
+
+			
+			<!-- <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top"> -->
+			<div class="container">
+					<div class="navbar-header">
+		                <button data-target="#mainNav" data-toggle="collapse" class="navbar-toggle" type="button">
+		                    <span class="sr-only">Toggle navigation</span>
+		                    <span class="icon-bar"></span>
+		                    <span class="icon-bar"></span>
+		                    <span class="icon-bar"></span>
+		                </button>
+		                <a href="#" class="navbar-brand">
+		                    <?php echo $_GET['template']; ?>
+		                </a>
+		            </div>
+	            
+	            <!--</nav>-->
+				<div id="mainNav" class="collapse navbar-collapse">
+					<ul id="menu" class="nav navbar-nav navbar">
+						<?php include ($turl.'/menu.html');?>
+						<li class="add-menu"><a >+</a></li>
+					</ul>
+				</div>
+			</div>
+			
 			<div id="body"><?php include ($turl.'/body.html');?></div>
 			<div id="footer">
 				<?php include ($turl.'/footer.html');?>
