@@ -135,10 +135,11 @@ error_reporting(E_ERROR);
                 <li>
                 	<span class="badge badge-success"><i class="icon-minus-sign"></i> Background</span>
                     <ul id="ul_background_menu">
-                        <li>
+
+                        <li id="li_background_image">
 	                        <span><i class="icon-time"></i> [+]</span> <a id="bg_set" href="#"> &ndash; Images</a>
                         </li>
-                        <li>
+                        <li id="li_background_color">
 	                       <span><i class="icon-time"></i> [+]</span>  <a id="bg_set" href="#"> &ndash; Color</a>
                         </li>
                     </ul>
@@ -284,20 +285,60 @@ error_reporting(E_ERROR);
 </table>
 </div>
 
-<div id="background_option" class="edit_option" style="top: 325px;">
+<style>
+
+    #background_option_color tr:hover, td:hover
+{
+    border: 3px solid #ffffff;
+    font-weight: bold;
+}
+.color_set_color > span
+{
+    display: inline-block;
+    height: 30px;
+    width: 20px;
+}
+
+</style>
+<!-- Color Option-->
+<div id="background_option_color" class="edit_option" style="top: 325px;">
+    <table style="">
+        <caption style="font-weight: bold; text-align: center;">Chose Color Set</caption>
+
+            <tr class="color_set">
+            <td  >cset1</td><td class="color_set_color">
+                    <span  style="background: red;"></span> <span style="background: green" ></span> <span style="background: gray" ></span>
+                 </td>
+            </tr>
+
+            <tr class="color_set">
+            <td  >cset2</td><td class="color_set_color">
+                    <span  style="background: yellow;"></span> <span style="background: blue" ></span> <span style="background: silver" ></span>
+                 </td>
+            </tr>
+
+
+    </table>
+
+    <button class="btn btn-xs btn-warning page_close_btn">Close</button>
+</div>
+
+
+<!-- Image Option-->
+<div id="background_option_image" class="edit_option" style="top: 325px;">
     <table style="">
         <caption style="font-weight: bold; text-align: center;">Chose Background</caption>
 
-    <?php
+        <?php
         for($i=0;$i<4;$i++)
         {
-    ?>
+            ?>
             <tr>
-            <td class="color"></td><td class="color"></td><td class="color"></td>
+                <td class="color"></td><td class="color"></td><td class="color"></td>
             </tr>
-    <?php
+        <?php
         }
-    ?>
+        ?>
 
 
 
@@ -308,7 +349,6 @@ error_reporting(E_ERROR);
 
     <button class="btn btn-xs btn-warning page_close_btn">Close</button>
 </div>
-
 
 <!-- Option Menu End -->
 
@@ -475,11 +515,15 @@ $(function(){
     $(".color").each(function(i,obj){
         $(obj).css('background',getColor());
     });
-    $("#ul_background_menu").on('dblclick','li',function(e){
-        $("#background_option").toggle();
+    $("#li_background_color").on('dblclick',function(e){
+        $("#background_option_color").toggle();
 
     });
 
+    $("#li_background_image").on('dblclick',function(e){
+        $("#background_option_image").toggle();
+
+    });
 
 
 
