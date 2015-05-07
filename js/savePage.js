@@ -4,7 +4,28 @@
  * and open the template in the editor.
  */
 
+/*
+ * Finds the base url of the current page
+ * @returns {String}
+ */
+function getBaseUrl() {
+    var getUrl = window.location;
+    var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+    return baseUrl;
+}
 
+/*
+ * Generates the page saver url with concatenating the base url
+ * @returns {String}
+ */
+function getPageSaverUrl() {
+    return getBaseUrl()+'/views/content_views/pageSaver.php';
+}
+
+/*
+ * Find all the menus created by user
+ * @returns {Array|getMenuList.menuList}
+ */
 function getMenuList() {
     $ul = $('#menu');
     $lis = $ul.find('li'); /* Finds all sub li under menu ul(find all menus) */
@@ -32,19 +53,28 @@ function getMenuList() {
     return menuList;
 }
 
-
+/*
+ * Get the body html string
+ * @returns {String}
+ */
 function getBodyHtmlString() {
     var bodyHtml = $('#body').html();
     return bodyHtml;
 }
 
+
+/*
+ * Calls ajax to save the page contents(menu, submenu, contents etc)
+ * @returns {undefined}
+ */
 function savePage() {
     var menuList = getMenuList();
     var bodyHtmlString = getBodyHtmlString();
+    var url = getPageSaverUrl();
     if (menuList.length !== 'undefined' && menuList.length > 1) {
         $.ajax({
             type: "POST",
-            url: 'http://localhost/WebBuilder/views/content_views/pageSaver.php',
+            url: url,
             dataType: 'json',
             data: {menulists: menuList, bodyhtml: bodyHtmlString, templateid: template_id},
             success: function (obj, textstatus) {
