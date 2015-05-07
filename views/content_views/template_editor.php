@@ -5,16 +5,16 @@ error_reporting(E_ERROR);
 	if(isset($_POST['template']) && isset($_POST['category']) )
 	{
 		$turl ='../../templates/'.$_POST['category'].'/'.$_POST['template'];
-		$css='../../templates/'.$_POST['category'].'/'.$_POST['template'].'/css/style.css';	
+		$css='../../templates/'.$_POST['category'].'/'.$_POST['template'].'/css/style.css';
 		$category = $_POST['category'];
                 $template = $_POST['template'];
 	}else if(isset($_GET['template']) &&  isset($_GET['category']))
 	{
 		$turl ='../../templates/'.$_GET['category'].'/'.$_GET['template'];
-		$css='../../templates/'.$_GET['category'].'/'.$_GET['template'].'/css/style.css';	
+		$css='../../templates/'.$_GET['category'].'/'.$_GET['template'].'/css/style.css';
                 $category = $_GET['category'];
                 $template = $_GET['template'];
-		
+
 	}
 ?>
 
@@ -28,25 +28,25 @@ error_reporting(E_ERROR);
 	<script src="../../js/bootstrap.min.js"></script>
 	<script  src="../../js/bootstrap-dialog.js" ></script>
 	<script  src="../../js/jquery-ui.min.js" ></script>
-        
+
 	<script type="text/javascript">
             var template_id = '<?php echo $category.'_'.$template;?>';
 	</script>
         <script  src="../../js/savePage.js" ></script>
-        
+
   	<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="../../css/bootstrap-dialog.css" rel="stylesheet"/>
 	<link href="../../css/jquery-ui.min.css" rel="stylesheet"/>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo  $css?>"/>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
-	
+
 <style>
 
 #frame
 {
 	background:rgba(0,0,0,.1);
-	float:left; 
+	float:left;
 	height: 100%;
 	width: 72%;
 	margin-left: 5px;
@@ -99,16 +99,16 @@ error_reporting(E_ERROR);
 
 <div style="height: 25px;">
 
-   
+
     <a style="margin-right:118px;float: right;" class="btn btn-inverse" onclick="savePage();"><i class="icon-star"></i> Save</a>
 		<!--<form action="savePage.php" method="post" id="save">
 			<input type="hidden" id="f_title" name="title"/>
 			<input type="hidden" id="f_header" name="header"/>
-			<input type="hidden" id="f_menu" name="menu" />	
+			<input type="hidden" id="f_menu" name="menu" />
 			<input type="hidden" id="f_body" name="body"/>
 			<input type="hidden" id="f_footer" name="footer"/>
-			<input type="hidden" id="target" name="target" value="test"/>		
-			
+			<input type="hidden" id="target" name="target" value="test"/>
+
 		</form> -->
 </div>
 
@@ -116,19 +116,19 @@ error_reporting(E_ERROR);
 
    	<div style="float: left;" class="tree">
     <ul>
-    	        
+
         <li>
             <span><i class="icon-calendar"></i> Pages</span>
             <ul>
                 <li>
                 	<span class="badge badge-success"><i class="icon-minus-sign"></i> Already Added</span>
                     <ul id="ul_tree_menu_list" class="pages">
-                       
+
                     </ul>
                 </li>
 		    </ul>
         </li>
-        
+
         <li>
             <span><i class="icon-calendar"></i>Design Components</span>
             <ul>
@@ -147,11 +147,11 @@ error_reporting(E_ERROR);
                 	<span class="badge badge-success"><i class="icon-minus-sign"></i> Color</span>
                     <ul>
                         <li>
-	                        <span><i class="icon-time"></i> [+]</span> &ndash; 
+	                        <span><i class="icon-time"></i> [+]</span> &ndash;
 	                        <a id="bg_color" href="">Red</a>
                         </li>
                         <li>
-	                        <span><i class="icon-time"></i> [+]</span> &ndash; 
+	                        <span><i class="icon-time"></i> [+]</span> &ndash;
 	                        <a id="bg_color" href="">Blue</a>
                         </li>
                     </ul>
@@ -202,17 +202,17 @@ error_reporting(E_ERROR);
 		                </li>
 		    	</ul>
         </li>
-        
+
     </ul>
 </div>
-	
+
 		<!-- Template Elements  Here -->
 	<div id="frame" >
 		<div style="background: gray; margin-bottom: 10px;text-align: center; " > <?php include ($turl.'/title.html');?>	</div>
 		<div style="background-color: white;box-shadow: 10px 10px 5px #888888;">
- 
+
 			    <div class="container">
-						 
+
 							<div class="navbar-header">
 				                <button data-target="#mainNav" data-toggle="collapse" class="navbar-toggle" type="button">
 				                    <span class="sr-only">Toggle navigation</span>
@@ -224,7 +224,7 @@ error_reporting(E_ERROR);
 				                    <?php echo $_GET['template']; ?>
 				                </a>
 				            </div>
-			            
+
 				            <!--</nav>-->
 							<div id="mainNav" class="collapse navbar-collapse">
 								<ul id="menu" class="nav navbar-nav navbar">
@@ -232,20 +232,20 @@ error_reporting(E_ERROR);
 									<li class="add-menu"><a >+</a></li>
 								</ul>
 							</div>
-						
+
 				</div>
 			</div>
-			
+
 			<div id="body"><?php include ($turl.'/body.html');?></div>
 			<div id="footer">
 				<?php include ($turl.'/footer.html');?>
 			</div>
 		</div>
-		
-		
+
+
 	</div>
 </div>
-<!-- 
+<!--
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
   Launch demo modal
 </button>
@@ -349,6 +349,17 @@ error_reporting(E_ERROR);
     <button class="btn btn-xs btn-warning page_close_btn">Close</button>
 </div>
 
+<style>
+    #showsaveicon{
+        width:100%;
+        height:100%;
+        position:fixed;
+        z-index:9999;
+        background:url("http://localhost/WebBuilder/images/loading.gif") no-repeat center center rgba(0,0,0,0.25)
+    }
+</style>
+
+<div id="showsaveicon"> </div>
 <!-- Option Menu End -->
 
 </body>
@@ -382,7 +393,7 @@ $(function(){
 
     // Enabling Popover Example 2 - JS (hidden content and title capturing)
     $("#popoverExampleTwo").popover({
-        html : true, 
+        html : true,
         content: function() {
           return $('#popoverExampleTwoHiddenContent').html();
         },
@@ -411,13 +422,13 @@ $(function(){
 			treeMenu.append(tempLi);
 
 		});
-			
+
 		treeMenu.find('li').last().addClass('add-menu');
-		
+
 		/**Making it Sortable using jquery UI*/
-		 
+
 	 	$( "#ul_tree_menu_list" ).sortable({
-		
+
 	 		start: function(event, ui){
             iBefore = ui.item.index();
 		    },
@@ -425,14 +436,14 @@ $(function(){
 		            iAfter = ui.item.index();
 		            evictee = $('#menu li:eq('+iAfter+')');
 		            evictor = $('#menu li:eq('+iBefore+')');
-		
+
 		            evictee.replaceWith(evictor);
 		            if(iBefore > iAfter)
 		                evictor.after(evictee);
 		            else
 		                evictor.before(evictee);
 		    }
-			
+
 		 });
 
     /*
@@ -458,12 +469,12 @@ $(function(){
 		            }
 	            ]
 	        });
-	        
+
 		});
 
 
 
-		
+
 		$("div").on('click',function (e){
 
 			 //alert(e.target.id);
@@ -495,14 +506,14 @@ $(function(){
 					return;
 				}
 				$("#page_option").toggle();
-				
+
 		});
 
 		$("#page_delete_btn").on('click',function(){
 				$("#ul_tree_menu_list li:eq("+selectedPageIndex+")").remove();
 				$("#menu li:eq("+selectedPageIndex+")").remove();
 				$("#page_option").hide();
-				
+
 			});
 
 
@@ -522,7 +533,7 @@ $(function(){
 
 
 
-		
+
 		$('#save').on('submit',function(e){
 				//e.preventDefault();
 				$('#f_title').val($('#title').html());
@@ -530,12 +541,12 @@ $(function(){
 				$('#f_menu').val($('#menu').html());
 				$('#f_body').val($('#body').html());
 				$('#f_footer').val($('#footer').html());
-				
+
 				console.log( $('#html').val() );
 			});
-		 
-			// $("#frame").load("<?php echo $turl ?>"); 
-		 
+
+			// $("#frame").load("<?php echo $turl ?>");
+
 
 	});
 
@@ -551,18 +562,18 @@ $(function(){
 		tempLi.append('<span><i class="icon-time"></i> [+]</span>');
 		tempLi.append(' &ndash; ');
 		tempLi.append('<a>'+menuName+'</a>');
-		
+
 		$("#ul_tree_menu_list").find('li').last().before(tempLi);
 
 		tempLi=$('<li></li>');
 		tempLi.append('<a>'+menuName+'</a>');
-		
+
 		$("#menu").find('li').last().before(tempLi);
-		
-		   console.log(menuName);	
+
+		   console.log(menuName);
 	}
 
-		
+
 
 </script>
 

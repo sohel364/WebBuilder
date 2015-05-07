@@ -4,6 +4,11 @@
  * and open the template in the editor.
  */
 
+// onload functionalities
+$(document).ready(function() {
+    hideSavingIcon();
+});
+
 /*
  * Finds the base url of the current page
  * @returns {String}
@@ -72,12 +77,14 @@ function savePage() {
     var bodyHtmlString = getBodyHtmlString();
     var url = getPageSaverUrl();
     if (menuList.length !== 'undefined' && menuList.length > 1) {
+        showSavingIcon();
         $.ajax({
             type: "POST",
             url: url,
             dataType: 'json',
             data: {menulists: menuList, bodyhtml: bodyHtmlString, templateid: template_id},
             success: function (obj, textstatus) {
+                hideSavingIcon();
                 if (!('error' in obj)) {
                     //yourVariable = obj.result;
                     if(obj.saveUserTemplate === '1') {
@@ -96,4 +103,17 @@ function savePage() {
     }
     var x = 0;
     x++;
+}
+
+/*
+ * Shows loading icons while saving operation is ongoing
+ */
+function showSavingIcon() {
+    $('#showsaveicon').show();
+}
+/*
+ * Hides loading icon after finishing saving operation
+ */
+function hideSavingIcon() {
+    $('#showsaveicon').hide();
 }
