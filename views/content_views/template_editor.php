@@ -287,12 +287,12 @@ error_reporting(E_ERROR);
 </div>
 
 <style>
-    #background_option_color tr:hover, td:hover
+    #table_color_set tr:hover, td:hover
     {
         border: 3px solid #ffffff;
         font-weight: bold;
     }
-    .color_set_color > span
+    .color-set-color > span
     {
         display: inline-block;
         height: 30px;
@@ -328,20 +328,20 @@ error_reporting(E_ERROR);
 
 <!-- Image Option-->
 <div id="background_option_color" class="edit_option" style="top: 325px;">
-    <table style="">
+    <table style="" id="table_color_set">
         <caption style="font-weight: bold; text-align: center;">Chose Color Set</caption>
 
-        <tr class="color_set">
-            <td  >cset1</td><td class="color_set_color">
-                <span  style="background: red;"></span> <span style="background: green" ></span> <span style="background: gray" ></span>
-            </td>
-        </tr>
-
-        <tr class="color_set">
-            <td  >cset2</td><td class="color_set_color">
-                <span  style="background: yellow;"></span> <span style="background: blue" ></span> <span style="background: silver" ></span>
-            </td>
-        </tr>
+<!--        <tr class="color-set">-->
+<!--            <td  >cset1</td><td class="color-set-color">-->
+<!--                <span  style="background: red;"></span><span style="background: green" ></span> <span style="background: gray" ></span>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!---->
+<!--        <tr class="color-set">-->
+<!--            <td  >cset2</td><td class="color-set-color">-->
+<!--                <span  style="background: yellow;"></span> <span style="background: blue" ></span> <span style="background: silver" ></span>-->
+<!--            </td>-->
+<!--        </tr>-->
 
 
     </table>
@@ -530,9 +530,37 @@ $(function(){
         $("#background_option_image").toggle();
     });
 
+    var colorSet=[ ["Set - 1 ","FF0000","E80C7A","FF530D"],["Set - 2","2421FF","9715FF","158DFF"] ];
+    for(i=0; i< colorSet.length; i++) {
+        var colorTd = $('<td class="color-set-color"> </td>');
+//        var colorTd = $('<tr class="color-set"> <td  >' + colorSet[i][0] + '</td> </tr>');
+//        $(colorTd).append($('<td>ddsfd</td>'));
+        console.log(colorTd);
+        var cSpan = $('<span></span>');
+        cSpan.css('background', '#' + colorSet[i][1]);
+        $(colorTd).append(cSpan);
 
+        cSpan = $('<span></span>');
+        cSpan.css('background', '#' + colorSet[i][2]);
+        $(colorTd).append(cSpan);
 
-
+        cSpan = $('<span></span>');
+        cSpan.css('background', '#' + colorSet[i][3]);
+        $(colorTd).append(cSpan);
+        colorTr=$('<tr>');
+        colorTr.addClass('color-set');
+        colorTr.append($('<td>' + colorSet[i][0] + '</td>'));
+        colorTr.append(colorTd);
+        $("#table_color_set").append(colorTr);
+//        $("#table_color_set").append($('<tr class="color-set"> <td  >' + colorSet[i][0] + '</td>'+colorTd.html()+' </tr>'));
+    }
+    $(".color-set").on('click',function(){
+            selected =$(this).index();
+        $('#menu').css('background','#'+colorSet[selected][1]);
+        $('#body').css('background','#'+colorSet[selected][2]);
+        $('#footer').css('background','#'+colorSet[selected][3]);
+            console.log(colorSet[selected]);
+    });
 
 		$('#save').on('submit',function(e){
 				//e.preventDefault();
