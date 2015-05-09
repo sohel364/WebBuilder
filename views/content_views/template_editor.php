@@ -87,124 +87,107 @@ error_reporting(E_ERROR);
 
 
 <body>
-<div style="border-bottom: 1px solid #9acd32; height:30px; width: 100%;">
-		<div style="margin-right:118px; float: right;">
-			<div style="float: left;"><a href="#">Account- </a></div>
-			<div style="float: left;"><a href="#">Home-</a></div>
-			<div style="float: left;"><a href="#">Site Map</a></div>
-		</div>
+<div>
+	
+	<?php if($template=="Medical Practioner"){ include_once '../master_views/topper_view.php'; }?>
 </div>
-</br>
-
 
 <div style="height: 25px;">
-
-
     <a style="margin-right:118px;float: right;" class="btn btn-inverse" onclick="savePage();"><i class="icon-star"></i> Save</a>
-		<!--<form action="savePage.php" method="post" id="save">
-			<input type="hidden" id="f_title" name="title"/>
-			<input type="hidden" id="f_header" name="header"/>
-			<input type="hidden" id="f_menu" name="menu" />
-			<input type="hidden" id="f_body" name="body"/>
-			<input type="hidden" id="f_footer" name="footer"/>
-			<input type="hidden" id="target" name="target" value="test"/>
-
-		</form> -->
 </div>
 
-<div>
-
-   	<div style="float: left;" class="tree">
-    <ul>
-
-        <li>
-            <span><i class="icon-calendar"></i> Pages</span>
-            <ul>
-                <li>
-                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Already Added</span>
-                    <ul id="ul_tree_menu_list" class="pages">
-
-                    </ul>
-                </li>
-		    </ul>
-        </li>
-
-        <li>
-            <span><i class="icon-calendar"></i>Design Components</span>
-            <ul>
-                <li>
-                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Background</span>
-                    <ul id="ul_background_menu">
-                        <li id="li_background_image">
-	                        <span><i class="icon-time"></i> [+]</span> <a id="bg_set" href="#"> &ndash; Images</a>
-                        </li>
-                        <li id="li_background_color">
-	                       <span><i class="icon-time"></i> [+]</span>  <a id="bg_set" href="#"> &ndash; Color</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                	<span class="badge badge-success"><i class="icon-minus-sign"></i>Text Color</span>
-                    <ul id="ul_text_color">
-<!--                        <li>-->
-<!--	                        <span><i class="icon-time"></i> [+]</span> &ndash;-->
-<!--	                        <a id="bg_color" href="">Red</a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--	                        <span><i class="icon-time"></i> [+]</span> &ndash;-->
-<!--	                        <a id="bg_color" href="">Blue</a>-->
-<!--                        </li>-->
-                    </ul>
-                </li>
-                <li>
-                	<span class="badge badge-warning"><i class="icon-minus-sign"></i> Font</span>
-                    <ul id="ul_text_font">
-                        <li>
-	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Arial</a>
-                        </li>
-                        <li>
-	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Tahoma</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <span><i class="icon-calendar"></i> Add Tools</span>
-                    <ul>
-		                <li>
-		                	<span class="badge badge-important"><i class="icon-minus-sign"></i> Media</span>
-		                    <ul>
-		                        <li>
-			                        <a href=""><span><i class="icon-time"></i> [+]</span> Flash</a>
-		                        </li>
-		                        <li>
-			                        <a href=""><span><i class="icon-time"></i> [+]</span> MP3</a>
-		                        </li>
-		                        <li>
-			                        <a href=""><span><i class="icon-time"></i> [+]</span> Video</a>
-		                        </li>
-		                    </ul>
-		                </li>
-		                <li>
-		                	<span class="badge badge-important"><i class="icon-minus-sign"></i> Controls</span>
-		                    <ul>
-		                        <li>
-			                        <a href=""><span><i class="icon-time"></i> [+]</span> Text</a>
-		                        </li>
-		                        <li>
-			                        <a href=""><span><i class="icon-time"></i> [+]</span> Shapes</a>
-		                        </li>
-		                        <li>
-			                        <a href=""><span><i class="icon-time"></i> [+]</span> Buttons</a>
-		                        </li>
-		                    </ul>
-		                </li>
-		    	</ul>
-        </li>
-
-    </ul>
-</div>
+	<div>
+	   	<div style="float: left;" class="tree">
+	    <ul>
+	
+	        <li>
+	            <span><i class="icon-calendar"></i> Pages</span>
+	            <ul>
+	                <li>
+	                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Already Added</span>
+	                    <ul id="ul_tree_menu_list" class="pages">
+	
+	                    </ul>
+	                </li>
+			    </ul>
+	        </li>
+	
+	        <li>
+	            <span><i class="icon-calendar"></i>Design Components</span>
+	            <ul>
+	                <li>
+	                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Background</span>
+	                    <ul id="ul_background_menu">
+	                        <li id="li_background_image">
+		                        <span><i class="icon-time"></i> [+]</span> <a id="bg_set" href="#"> &ndash; Images</a>
+	                        </li>
+	                        <li id="li_background_color">
+		                       <span><i class="icon-time"></i> [+]</span>  <a id="bg_set" href="#"> &ndash; Color</a>
+	                        </li>
+	                    </ul>
+	                </li>
+	                <li>
+	                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Color</span>
+	                    <ul>
+	                        <li>
+		                        <span><i class="icon-time"></i> [+]</span> &ndash;
+		                        <a id="bg_color" href="">Red</a>
+	                        </li>
+	                        <li>
+		                        <span><i class="icon-time"></i> [+]</span> &ndash;
+		                        <a id="bg_color" href="">Blue</a>
+	                        </li>
+	                    </ul>
+	                </li>
+	                <li>
+	                	<span class="badge badge-warning"><i class="icon-minus-sign"></i> Font</span>
+	                    <ul>
+	                        <li>
+		                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Arial</a>
+	                        </li>
+	                        <li>
+		                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Tahoma</a>
+	                        </li>
+	                    </ul>
+	                </li>
+	            </ul>
+	        </li>
+	        <li>
+	            <span><i class="icon-calendar"></i> Add Tools</span>
+	                    <ul>
+			                <li>
+			                	<span class="badge badge-important"><i class="icon-minus-sign"></i> Media</span>
+			                    <ul>
+			                        <li>
+				                        <a href=""><span><i class="icon-time"></i> [+]</span> Flash</a>
+			                        </li>
+			                        <li>
+				                        <a href=""><span><i class="icon-time"></i> [+]</span> MP3</a>
+			                        </li>
+			                        <li>
+				                        <a href=""><span><i class="icon-time"></i> [+]</span> Video</a>
+			                        </li>
+			                    </ul>
+			                </li>
+			                <li>
+			                	<span class="badge badge-important"><i class="icon-minus-sign"></i> Controls</span>
+			                    <ul>
+			                        <li>
+				                        <a href=""><span><i class="icon-time"></i> [+]</span> Text</a>
+			                        </li>
+			                        <li>
+				                        <a href=""><span><i class="icon-time"></i> [+]</span> Shapes</a>
+			                        </li>
+			                        <li>
+				                        <a href=""><span><i class="icon-time"></i> [+]</span> Buttons</a>
+			                        </li>
+			                    </ul>
+			                </li>
+			    	</ul>
+	        </li>
+	
+	    </ul>
+	</div>
 
 		<!-- Template Elements  Here -->
 	<div id="frame" >
@@ -244,16 +227,7 @@ error_reporting(E_ERROR);
 
 
 	</div>
-</div>
-<!--
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
- -->
 
-
-
-<!--    Form Here We All HTML component is are related to Template Edit options -->
 
 <!-- The option Menu -->
 
@@ -287,11 +261,10 @@ error_reporting(E_ERROR);
 </div>
 
 <style>
-    #table_color_set tr:hover
+    #table_color_set tr:hover, td:hover
     {
-        border: 3px solid gray;
+        border: 3px solid #ffffff;
         font-weight: bold;
-
     }
     .color-set-color > span
     {
@@ -363,10 +336,6 @@ error_reporting(E_ERROR);
 <div id="showsaveicon"> </div>
 <!-- Option Menu End -->
 
-
-<input type="text" id="test_t"/>
-<input type="button" id="test_b" value="DFsaf"/>
-<p id="test_p">Ok,  &ndash;</p>
 </body>
 
 
@@ -411,17 +380,6 @@ $(function(){
 
 
 $(function(){
-/*
-Test Area
-*/
-        $('#test_b').click(function(){
-            var contens=$("#test_t").val();
-            $('#test_p').text(contens);
-        });
-     /*
-     * Test Area END
-     */
-
 	/**
 	 *
 	 *Load menu item in tree view. By saif , Date  08-04-2015
@@ -546,19 +504,12 @@ Test Area
         $("#background_option_image").toggle();
     });
 
-    var colorSet=[
-        ["Red Red ","FF0000","E80C7A","FF530D"],
-        ["Blue as Sky","2421FF","9715FF","158DFF"],
-        ["Set - 3","99FF5A","FFFC67","BFE852"],
-    ];
-    var textColor=[
-        ["Red","FF0E08"],
-        ["Blue","1310FF"],
-        ["White","FFFFFF"],
-        ["Black","000000"]
-    ]
+    var colorSet=[ ["Set - 1 ","FF0000","E80C7A","FF530D"],["Set - 2","2421FF","9715FF","158DFF"] ];
     for(i=0; i< colorSet.length; i++) {
         var colorTd = $('<td class="color-set-color"> </td>');
+//        var colorTd = $('<tr class="color-set"> <td  >' + colorSet[i][0] + '</td> </tr>');
+//        $(colorTd).append($('<td>ddsfd</td>'));
+        console.log(colorTd);
         var cSpan = $('<span></span>');
         cSpan.css('background', '#' + colorSet[i][1]);
         $(colorTd).append(cSpan);
@@ -575,36 +526,14 @@ Test Area
         colorTr.append($('<td>' + colorSet[i][0] + '</td>'));
         colorTr.append(colorTd);
         $("#table_color_set").append(colorTr);
+//        $("#table_color_set").append($('<tr class="color-set"> <td  >' + colorSet[i][0] + '</td>'+colorTd.html()+' </tr>'));
     }
     $(".color-set").on('click',function(){
             selected =$(this).index();
         $('#menu').css('background','#'+colorSet[selected][1]);
         $('#body').css('background','#'+colorSet[selected][2]);
         $('#footer').css('background','#'+colorSet[selected][3]);
-    });
-
-
-/*
-Listenint To every Click and Setting the targetElement
- */
-    var fontNColorTarget;
-    $("#frame").on('click',function(e){
-        console.log(e.target);
-        fontNColorTarget= e.target;
-    });
-
-    for(i=0;i<textColor.length;i++)
-    {
-        tColor=$('<li> <span><i class="icon-time"></i> [+]</span> &ndash; </li> ');
-        tColor.append($('<a id="bg_color" href="">'+textColor[i][0]+'</a>'));
-
-        $("#ul_text_color").append(tColor);
-    }
-    $('#ul_text_color').on('click','li',function(e){
-        e.preventDefault();
-        console.log($(this).index());
-        e.stopPropagation();
-        $(fontNColorTarget).css('color','#'+textColor[$(this).index()][1]);
+            console.log(colorSet[selected]);
     });
 
 		$('#save').on('submit',function(e){
