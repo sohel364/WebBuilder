@@ -144,21 +144,21 @@ error_reporting(E_ERROR);
                     </ul>
                 </li>
                 <li>
-                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Color</span>
-                    <ul>
-                        <li>
-	                        <span><i class="icon-time"></i> [+]</span> &ndash;
-	                        <a id="bg_color" href="">Red</a>
-                        </li>
-                        <li>
-	                        <span><i class="icon-time"></i> [+]</span> &ndash;
-	                        <a id="bg_color" href="">Blue</a>
-                        </li>
+                	<span class="badge badge-success"><i class="icon-minus-sign"></i>Text Color</span>
+                    <ul id="ul_text_color">
+<!--                        <li>-->
+<!--	                        <span><i class="icon-time"></i> [+]</span> &ndash;-->
+<!--	                        <a id="bg_color" href="">Red</a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--	                        <span><i class="icon-time"></i> [+]</span> &ndash;-->
+<!--	                        <a id="bg_color" href="">Blue</a>-->
+<!--                        </li>-->
                     </ul>
                 </li>
                 <li>
                 	<span class="badge badge-warning"><i class="icon-minus-sign"></i> Font</span>
-                    <ul>
+                    <ul id="ul_text_font">
                         <li>
 	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Arial</a>
                         </li>
@@ -287,10 +287,11 @@ error_reporting(E_ERROR);
 </div>
 
 <style>
-    #table_color_set tr:hover, td:hover
+    #table_color_set tr:hover
     {
-        border: 3px solid #ffffff;
+        border: 3px solid gray;
         font-weight: bold;
+
     }
     .color-set-color > span
     {
@@ -362,6 +363,10 @@ error_reporting(E_ERROR);
 <div id="showsaveicon"> </div>
 <!-- Option Menu End -->
 
+
+<input type="text" id="test_t"/>
+<input type="button" id="test_b" value="DFsaf"/>
+<p id="test_p">Ok,  &ndash;</p>
 </body>
 
 
@@ -406,6 +411,17 @@ $(function(){
 
 
 $(function(){
+/*
+Test Area
+*/
+        $('#test_b').click(function(){
+            var contens=$("#test_t").val();
+            $('#test_p').text(contens);
+        });
+     /*
+     * Test Area END
+     */
+
 	/**
 	 *
 	 *Load menu item in tree view. By saif , Date  08-04-2015
@@ -530,12 +546,19 @@ $(function(){
         $("#background_option_image").toggle();
     });
 
-    var colorSet=[ ["Set - 1 ","FF0000","E80C7A","FF530D"],["Set - 2","2421FF","9715FF","158DFF"] ];
+    var colorSet=[
+        ["Red Red ","FF0000","E80C7A","FF530D"],
+        ["Blue as Sky","2421FF","9715FF","158DFF"],
+        ["Set - 3","99FF5A","FFFC67","BFE852"],
+    ];
+    var textColor=[
+        ["Red","FF0E08"],
+        ["Blue","1310FF"],
+        ["White","FFFFFF"],
+        ["Black","000000"]
+    ]
     for(i=0; i< colorSet.length; i++) {
         var colorTd = $('<td class="color-set-color"> </td>');
-//        var colorTd = $('<tr class="color-set"> <td  >' + colorSet[i][0] + '</td> </tr>');
-//        $(colorTd).append($('<td>ddsfd</td>'));
-        console.log(colorTd);
         var cSpan = $('<span></span>');
         cSpan.css('background', '#' + colorSet[i][1]);
         $(colorTd).append(cSpan);
@@ -552,14 +575,36 @@ $(function(){
         colorTr.append($('<td>' + colorSet[i][0] + '</td>'));
         colorTr.append(colorTd);
         $("#table_color_set").append(colorTr);
-//        $("#table_color_set").append($('<tr class="color-set"> <td  >' + colorSet[i][0] + '</td>'+colorTd.html()+' </tr>'));
     }
     $(".color-set").on('click',function(){
             selected =$(this).index();
         $('#menu').css('background','#'+colorSet[selected][1]);
         $('#body').css('background','#'+colorSet[selected][2]);
         $('#footer').css('background','#'+colorSet[selected][3]);
-            console.log(colorSet[selected]);
+    });
+
+
+/*
+Listenint To every Click and Setting the targetElement
+ */
+    var fontNColorTarget;
+    $("#frame").on('click',function(e){
+        console.log(e.target);
+        fontNColorTarget= e.target;
+    });
+
+    for(i=0;i<textColor.length;i++)
+    {
+        tColor=$('<li> <span><i class="icon-time"></i> [+]</span> &ndash; </li> ');
+        tColor.append($('<a id="bg_color" href="">'+textColor[i][0]+'</a>'));
+
+        $("#ul_text_color").append(tColor);
+    }
+    $('#ul_text_color').on('click','li',function(e){
+        e.preventDefault();
+        console.log($(this).index());
+        e.stopPropagation();
+        $(fontNColorTarget).css('color','#'+textColor[$(this).index()][1]);
     });
 
 		$('#save').on('submit',function(e){
