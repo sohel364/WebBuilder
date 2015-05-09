@@ -127,21 +127,21 @@ error_reporting(E_ERROR);
 	                    </ul>
 	                </li>
 	                <li>
-	                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Color</span>
-	                    <ul>
-	                        <li>
-		                        <span><i class="icon-time"></i> [+]</span> &ndash;
-		                        <a id="bg_color" href="">Red</a>
-	                        </li>
-	                        <li>
-		                        <span><i class="icon-time"></i> [+]</span> &ndash;
-		                        <a id="bg_color" href="">Blue</a>
-	                        </li>
+	                	<span class="badge badge-success"><i class="icon-minus-sign"></i>Text Color</span>
+	                    <ul id="ul_text_color">
+<!--	                        <li>-->
+<!--		                        <span><i class="icon-time"></i> [+]</span> &ndash;-->
+<!--		                        <a id="bg_color" href="">Red</a>-->
+<!--	                        </li>-->
+<!--	                        <li>-->
+<!--		                        <span><i class="icon-time"></i> [+]</span> &ndash;-->
+<!--		                        <a id="bg_color" href="">Blue</a>-->
+<!--	                        </li>-->
 	                    </ul>
 	                </li>
 	                <li>
 	                	<span class="badge badge-warning"><i class="icon-minus-sign"></i> Font</span>
-	                    <ul>
+	                    <ul id="ul_text_font">
 	                        <li>
 		                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Arial</a>
 	                        </li>
@@ -504,12 +504,19 @@ $(function(){
         $("#background_option_image").toggle();
     });
 
-    var colorSet=[ ["Set - 1 ","FF0000","E80C7A","FF530D"],["Set - 2","2421FF","9715FF","158DFF"] ];
+    var colorSet=[
+        ["Red Red ","FF0000","E80C7A","FF530D"],
+        ["Blue as Sky","2421FF","9715FF","158DFF"],
+        ["Set - 3","99FF5A","FFFC67","BFE852"],
+    ];
+    var textColor=[
+        ["Red","FF0E08"],
+        ["Blue","1310FF"],
+        ["White","FFFFFF"],
+        ["Black","000000"]
+    ]
     for(i=0; i< colorSet.length; i++) {
         var colorTd = $('<td class="color-set-color"> </td>');
-//        var colorTd = $('<tr class="color-set"> <td  >' + colorSet[i][0] + '</td> </tr>');
-//        $(colorTd).append($('<td>ddsfd</td>'));
-        console.log(colorTd);
         var cSpan = $('<span></span>');
         cSpan.css('background', '#' + colorSet[i][1]);
         $(colorTd).append(cSpan);
@@ -526,54 +533,76 @@ $(function(){
         colorTr.append($('<td>' + colorSet[i][0] + '</td>'));
         colorTr.append(colorTd);
         $("#table_color_set").append(colorTr);
-//        $("#table_color_set").append($('<tr class="color-set"> <td  >' + colorSet[i][0] + '</td>'+colorTd.html()+' </tr>'));
     }
     $(".color-set").on('click',function(){
-            selected =$(this).index();
+        selected =$(this).index();
         $('#menu').css('background','#'+colorSet[selected][1]);
         $('#body').css('background','#'+colorSet[selected][2]);
         $('#footer').css('background','#'+colorSet[selected][3]);
-            console.log(colorSet[selected]);
     });
 
-		$('#save').on('submit',function(e){
-				//e.preventDefault();
-				$('#f_title').val($('#title').html());
-				$('#f_header').val($('#header').html());
-				$('#f_menu').val($('#menu').html());
-				$('#f_body').val($('#body').html());
-				$('#f_footer').val($('#footer').html());
 
-				console.log( $('#html').val() );
-			});
+    /*
+     Listenint To every Click and Setting the targetElement
+     */
+    var fontNColorTarget;
+    $("#frame").on('click',function(e){
+        console.log(e.target);
+        fontNColorTarget= e.target;
+    });
 
-			// $("#frame").load("<?php echo $turl ?>");
-
-
-	});
-
-    function getColor()
+    for(i=0;i<textColor.length;i++)
     {
-       return '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+        tColor=$('<li> <span><i class="icon-time"></i> [+]</span> &ndash; </li> ');
+        tColor.append($('<a id="bg_color" href="">'+textColor[i][0]+'</a>'));
+
+        $("#ul_text_color").append(tColor);
     }
+    $('#ul_text_color').on('click','li',function(e){
+        e.preventDefault();
+        console.log($(this).index());
+        e.stopPropagation();
+        $(fontNColorTarget).css('color','#'+textColor[$(this).index()][1]);
+    });
+
+    $('#save').on('submit',function(e){
+        //e.preventDefault();
+        $('#f_title').val($('#title').html());
+        $('#f_header').val($('#header').html());
+        $('#f_menu').val($('#menu').html());
+        $('#f_body').val($('#body').html());
+        $('#f_footer').val($('#footer').html());
+
+        console.log( $('#html').val() );
+    });
+
+    // $("#frame").load("<?php echo $turl ?>");
 
 
-	function addNewMenu(menuName)
-	{
-		tempLi=$('<li></li>');
-		tempLi.append('<span><i class="icon-time"></i> [+]</span>');
-		tempLi.append(' &ndash; ');
-		tempLi.append('<a>'+menuName+'</a>');
+});
 
-		$("#ul_tree_menu_list").find('li').last().before(tempLi);
+function getColor()
+{
+    return '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+}
 
-		tempLi=$('<li></li>');
-		tempLi.append('<a>'+menuName+'</a>');
 
-		$("#menu").find('li').last().before(tempLi);
+function addNewMenu(menuName)
+{
+    tempLi=$('<li></li>');
+    tempLi.append('<span><i class="icon-time"></i> [+]</span>');
+    tempLi.append(' &ndash; ');
+    tempLi.append('<a>'+menuName+'</a>');
 
-		   console.log(menuName);
-	}
+    $("#ul_tree_menu_list").find('li').last().before(tempLi);
+
+    tempLi=$('<li></li>');
+    tempLi.append('<a>'+menuName+'</a>');
+
+    $("#menu").find('li').last().before(tempLi);
+
+    console.log(menuName);
+}
 
 
 
