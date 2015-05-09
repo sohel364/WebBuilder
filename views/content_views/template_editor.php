@@ -87,124 +87,107 @@ error_reporting(E_ERROR);
 
 
 <body>
-<div style="border-bottom: 1px solid #9acd32; height:30px; width: 100%;">
-		<div style="margin-right:118px; float: right;">
-			<div style="float: left;"><a href="#">Account- </a></div>
-			<div style="float: left;"><a href="#">Home-</a></div>
-			<div style="float: left;"><a href="#">Site Map</a></div>
-		</div>
+<div>
+	
+	<?php if($template=="Medical Practioner"){ include_once '../master_views/topper_view.php'; }?>
 </div>
-</br>
-
 
 <div style="height: 25px;">
-
-
     <a style="margin-right:118px;float: right;" class="btn btn-inverse" onclick="savePage();"><i class="icon-star"></i> Save</a>
-		<!--<form action="savePage.php" method="post" id="save">
-			<input type="hidden" id="f_title" name="title"/>
-			<input type="hidden" id="f_header" name="header"/>
-			<input type="hidden" id="f_menu" name="menu" />
-			<input type="hidden" id="f_body" name="body"/>
-			<input type="hidden" id="f_footer" name="footer"/>
-			<input type="hidden" id="target" name="target" value="test"/>
-
-		</form> -->
 </div>
 
-<div>
-
-   	<div style="float: left;" class="tree">
-    <ul>
-
-        <li>
-            <span><i class="icon-calendar"></i> Pages</span>
-            <ul>
-                <li>
-                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Already Added</span>
-                    <ul id="ul_tree_menu_list" class="pages">
-
-                    </ul>
-                </li>
-		    </ul>
-        </li>
-
-        <li>
-            <span><i class="icon-calendar"></i>Design Components</span>
-            <ul>
-                <li>
-                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Background</span>
-                    <ul id="ul_background_menu">
-                        <li id="li_background_image">
-	                        <span><i class="icon-time"></i> [+]</span> <a id="bg_set" href="#"> &ndash; Images</a>
-                        </li>
-                        <li id="li_background_color">
-	                       <span><i class="icon-time"></i> [+]</span>  <a id="bg_set" href="#"> &ndash; Color</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Color</span>
-                    <ul>
-                        <li>
-	                        <span><i class="icon-time"></i> [+]</span> &ndash;
-	                        <a id="bg_color" href="">Red</a>
-                        </li>
-                        <li>
-	                        <span><i class="icon-time"></i> [+]</span> &ndash;
-	                        <a id="bg_color" href="">Blue</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                	<span class="badge badge-warning"><i class="icon-minus-sign"></i> Font</span>
-                    <ul>
-                        <li>
-	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Arial</a>
-                        </li>
-                        <li>
-	                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Tahoma</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <span><i class="icon-calendar"></i> Add Tools</span>
-                    <ul>
-		                <li>
-		                	<span class="badge badge-important"><i class="icon-minus-sign"></i> Media</span>
-		                    <ul>
-		                        <li>
-			                        <a href=""><span><i class="icon-time"></i> [+]</span> Flash</a>
-		                        </li>
-		                        <li>
-			                        <a href=""><span><i class="icon-time"></i> [+]</span> MP3</a>
-		                        </li>
-		                        <li>
-			                        <a href=""><span><i class="icon-time"></i> [+]</span> Video</a>
-		                        </li>
-		                    </ul>
-		                </li>
-		                <li>
-		                	<span class="badge badge-important"><i class="icon-minus-sign"></i> Controls</span>
-		                    <ul>
-		                        <li>
-			                        <a href=""><span><i class="icon-time"></i> [+]</span> Text</a>
-		                        </li>
-		                        <li>
-			                        <a href=""><span><i class="icon-time"></i> [+]</span> Shapes</a>
-		                        </li>
-		                        <li>
-			                        <a href=""><span><i class="icon-time"></i> [+]</span> Buttons</a>
-		                        </li>
-		                    </ul>
-		                </li>
-		    	</ul>
-        </li>
-
-    </ul>
-</div>
+	<div>
+	   	<div style="float: left;" class="tree">
+	    <ul>
+	
+	        <li>
+	            <span><i class="icon-calendar"></i> Pages</span>
+	            <ul>
+	                <li>
+	                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Already Added</span>
+	                    <ul id="ul_tree_menu_list" class="pages">
+	
+	                    </ul>
+	                </li>
+			    </ul>
+	        </li>
+	
+	        <li>
+	            <span><i class="icon-calendar"></i>Design Components</span>
+	            <ul>
+	                <li>
+	                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Background</span>
+	                    <ul id="ul_background_menu">
+	                        <li id="li_background_image">
+		                        <span><i class="icon-time"></i> [+]</span> <a id="bg_set" href="#"> &ndash; Images</a>
+	                        </li>
+	                        <li id="li_background_color">
+		                       <span><i class="icon-time"></i> [+]</span>  <a id="bg_set" href="#"> &ndash; Color</a>
+	                        </li>
+	                    </ul>
+	                </li>
+	                <li>
+	                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Color</span>
+	                    <ul>
+	                        <li>
+		                        <span><i class="icon-time"></i> [+]</span> &ndash;
+		                        <a id="bg_color" href="">Red</a>
+	                        </li>
+	                        <li>
+		                        <span><i class="icon-time"></i> [+]</span> &ndash;
+		                        <a id="bg_color" href="">Blue</a>
+	                        </li>
+	                    </ul>
+	                </li>
+	                <li>
+	                	<span class="badge badge-warning"><i class="icon-minus-sign"></i> Font</span>
+	                    <ul>
+	                        <li>
+		                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Arial</a>
+	                        </li>
+	                        <li>
+		                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Tahoma</a>
+	                        </li>
+	                    </ul>
+	                </li>
+	            </ul>
+	        </li>
+	        <li>
+	            <span><i class="icon-calendar"></i> Add Tools</span>
+	                    <ul>
+			                <li>
+			                	<span class="badge badge-important"><i class="icon-minus-sign"></i> Media</span>
+			                    <ul>
+			                        <li>
+				                        <a href=""><span><i class="icon-time"></i> [+]</span> Flash</a>
+			                        </li>
+			                        <li>
+				                        <a href=""><span><i class="icon-time"></i> [+]</span> MP3</a>
+			                        </li>
+			                        <li>
+				                        <a href=""><span><i class="icon-time"></i> [+]</span> Video</a>
+			                        </li>
+			                    </ul>
+			                </li>
+			                <li>
+			                	<span class="badge badge-important"><i class="icon-minus-sign"></i> Controls</span>
+			                    <ul>
+			                        <li>
+				                        <a href=""><span><i class="icon-time"></i> [+]</span> Text</a>
+			                        </li>
+			                        <li>
+				                        <a href=""><span><i class="icon-time"></i> [+]</span> Shapes</a>
+			                        </li>
+			                        <li>
+				                        <a href=""><span><i class="icon-time"></i> [+]</span> Buttons</a>
+			                        </li>
+			                    </ul>
+			                </li>
+			    	</ul>
+	        </li>
+	
+	    </ul>
+	</div>
 
 		<!-- Template Elements  Here -->
 	<div id="frame" >
@@ -244,16 +227,7 @@ error_reporting(E_ERROR);
 
 
 	</div>
-</div>
-<!--
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
- -->
 
-
-
-<!--    Form Here We All HTML component is are related to Template Edit options -->
 
 <!-- The option Menu -->
 

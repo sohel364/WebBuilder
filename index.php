@@ -5,52 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Web Builder</title>
+	
+	<script type="text/javascript" src="js/main.js"></script>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
-		<link href="css/bootstrap-combined.min.css" rel="stylesheet" />
+	<link href="css/bootstrap-combined.min.css" rel="stylesheet" />
   </head>
   <body>
-		<div class="container">
-		    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#" style="color: ORANGE;weight:bold;font-size:36px">Web Builder</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Account</a></li>
-            <li><a href="#">Billing</a></li>
-						<li><a href="#">Notes</a></li>
-						<li><a href="#">Others</a></li>
-          </ul>
-          <ul class="nav navbar-nav pull-right">
-          				<li>
-							<a class="dropdown-toggle btn" href="#signup" data-toggle="modal" data-target=".bs-modal-sm" style="border: 1px solid rgba(186, 220, 255, 0.83);">Sign In/Registration</a>
-						</li>
-						<li>
-							<form class="navbar-form navbar-left" role="search">
-								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Search for...">
-      						<span class="input-group-btn">
-        					<button class="btn btn-default" type="button">Go!</button>
-      						</span>
-								</div>
-      </form></li>
-				</ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+	<div class="container">
+    	<?php include_once './views/master_views/topper_view.php'; ?>
 
-
-<!--sign up/registration code start-->
+				<!--sign up/registration code start-->
 				<div class="modal fade bs-modal-sm" style="padding-top: 150px;" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 					
 				<div class="modal-dialog modal-sm">
@@ -66,48 +32,48 @@
 								<div id="myTabContent" class="tab-content">
 
 								<div class="tab-pane fade active in" id="signin">
-										<form class="form-horizontal">
-										<fieldset>
-										<!-- Sign In Form -->
-										<!-- Text input-->
-										<div class="control-group">
-
-											<div class="controls control-label">
-												<input required="" id="userid" name="userid" type="text" class="form-control" placeholder="User Name Or Email" class="input-medium" required="">
+										<form class="form-horizontal" action="" onsubmit="#">
+											<fieldset>
+											<!-- Sign In Form -->
+											<!-- Text input-->
+											<div class="control-group">
+	
+												<div class="controls control-label">
+													<input required="" id="userid" name="userid" type="text" class="form-control" placeholder="User Name Or Email" class="input-medium" required="">
+												</div>
 											</div>
-										</div>
-
-										<!-- Password input-->
-										<div class="control-group">
-
-											<div class="controls control-label">
-												<input required="" id="passwordinput" name="passwordinput" class="form-control" type="password" placeholder="*********************" class="input-medium">
+	
+											<!-- Password input-->
+											<div class="control-group">
+	
+												<div class="controls control-label">
+													<input required="" id="passwordinput" name="passwordinput" class="form-control" type="password" placeholder="*********************" class="input-medium">
+												</div>
 											</div>
-										</div>
-
-										<!-- Multiple Checkboxes (inline) -->
-										<div class="control-group">
-											<div class="controls">
-												<label class="checkbox inline" style="padding-left:20px;" for="rememberme-0">
-													<input type="checkbox" name="rememberme" id="rememberme-0" value="Remember me">
-													Remember me
-												</label>
+	
+											<!-- Multiple Checkboxes (inline) -->
+											<div class="control-group">
+												<div class="controls">
+													<label class="checkbox inline" style="padding-left:20px;" for="rememberme-0">
+														<input type="checkbox" name="rememberme" id="rememberme-0" value="Remember me">
+														Remember me
+													</label>
+												</div>
 											</div>
-										</div>
-
-										<!-- Button -->
-										<div class="control-group">
-											<label class="control-label" for="confirmsignup"></label>
-											<div class="controls">
-												<button id="signin" name="signin" class="btn btn-success" >Sign In</button>
+	
+											<!-- Button -->
+											<div class="control-group">
+												<label class="control-label" for="confirmsignup"></label>
+												<div class="controls">
+													<button id="signin" name="signin" class="btn btn-success" >Sign In</button>
+												</div>
 											</div>
-										</div>
-										</fieldset>
+											</fieldset>
 										</form>
 								</div>
 
 								<div class="tab-pane fade" id="signup">
-										<form class="form-horizontal">
+										<form class="form-horizontal" action="" onsubmit="SignUp()">
 										<fieldset>
 										<!-- Sign Up Form -->
 										<!-- Text input-->
@@ -331,5 +297,5 @@
 	   <script src="js/bootstrap.min.js"></script>
 	<script src="js/MenuDropDown.js"></script>
 	<script src="js/CatPanel.js"></script>
-</body>
+	</body>
 </html>
