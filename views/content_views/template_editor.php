@@ -153,12 +153,12 @@ error_reporting(E_ERROR);
 	                <li>
 	                	<span class="badge badge-warning"><i class="icon-minus-sign"></i> Font</span>
 	                    <ul id="ul_text_font">
-	                        <li>
-		                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Arial</a>
-	                        </li>
-	                        <li>
-		                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Tahoma</a>
-	                        </li>
+<!--	                        <li>-->
+<!--		                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Arial</a>-->
+<!--	                        </li>-->
+<!--	                        <li>-->
+<!--		                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Tahoma</a>-->
+<!--	                        </li>-->
 	                    </ul>
 	                </li>
 	            </ul>
@@ -251,7 +251,7 @@ error_reporting(E_ERROR);
         </tr>
 
         <tr>
-            <td>Page Name</td><td><input type="text"></td>
+            <td>Page Name</td><td><input id="input_page_name" type="text"></td>
         </tr>
 
 
@@ -468,27 +468,34 @@ $(function(){
     $(".page_close_btn").on('click',function(){
         $(this).closest('.edit_option').hide();
     });
-/*
-        Page Options
- */
-		var selectedPageIndex;
-		$("#ul_tree_menu_list").on('dblclick','li',function(e){
-				selectedPageIndex=$(this).index();
-				if(selectedPageIndex == $("#ul_tree_menu_list li").size()-1)
-				{
-					return;
-				}
-				$("#page_option").toggle();
+    /*
+     Page Options
+     */
+    var selectedPageIndex;
+    $("#ul_tree_menu_list").on('dblclick','li',function(e){
+        selectedPageIndex=$(this).index();
+        if(selectedPageIndex == $("#ul_tree_menu_list li").size()-1)
+        {
+            return;
+        }
+//            console.log($(this).find("a").html());
+        $("#input_page_name").val($(this).find("a").html());
+        $("#page_option").toggle();
 
-		});
+    });
 
-		$("#page_delete_btn").on('click',function(){
-				$("#ul_tree_menu_list li:eq("+selectedPageIndex+")").remove();
-				$("#menu li:eq("+selectedPageIndex+")").remove();
-				$("#page_option").hide();
+    $("#page_delete_btn").on('click',function(){
+        $("#ul_tree_menu_list li:eq("+selectedPageIndex+")").remove();
+        $("#menu li:eq("+selectedPageIndex+")").remove();
+        $("#page_option").hide();
 
-			});
-
+    });
+    $("#page_save_btn").on('click',function(){
+        var pageName=$("#input_page_name").val();
+        $("#ul_tree_menu_list li:eq("+selectedPageIndex+") a").html(pageName);
+        $("#menu li:eq("+selectedPageIndex+") a").html(pageName);
+        $("#page_option").hide();
+    });
 
     /*
      Background Options
@@ -513,7 +520,15 @@ $(function(){
         ["Blue","1310FF"],
         ["White","FFFFFF"],
         ["Black","000000"]
-    ]
+    ];
+    var textfont=[
+        "arial",
+        "tahoma",
+        "times new roman",
+        "monospace",
+        "Verdana"
+    ];
+
     for(i=0; i< colorSet.length; i++) {
         var colorTd = $('<td class="color-set-color"> </td>');
         var cSpan = $('<span></span>');
@@ -553,15 +568,30 @@ $(function(){
     for(i=0;i<textColor.length;i++)
     {
         tColor=$('<li> <span><i class="icon-time"></i> [+]</span> &ndash; </li> ');
-        tColor.append($('<a id="bg_color" href="">'+textColor[i][0]+'</a>'));
+        tColor.append($('<a  href="">'+textColor[i][0]+'</a>'));
 
         $("#ul_text_color").append(tColor);
     }
     $('#ul_text_color').on('click','li',function(e){
         e.preventDefault();
-        console.log($(this).index());
+//        console.log($(this).index());
         e.stopPropagation();
         $(fontNColorTarget).css('color','#'+textColor[$(this).index()][1]);
+    });
+
+    for(i=0;i<textfont.length;i++)
+    {
+        tFont=$('<li> <span><i class="icon-time"></i> [+]</span> &ndash; </li> ');
+        tFont.append($('<a  href="">'+textfont[i]+'</a>'));
+
+        $("#ul_text_font").append(tFont);
+    }
+
+    $('#ul_text_font').on('click','li',function(e){
+        e.preventDefault();
+//        console.log($(this).index());
+        e.stopPropagation();
+        $(fontNColorTarget).css('font-family',textfont[$(this).index()]);
     });
 
     $('#save').on('submit',function(e){
