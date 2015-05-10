@@ -87,6 +87,17 @@ error_reporting(E_ERROR);
 
 
 <body>
+    <style>
+        #showsaveicon{
+            width:100%;
+            height:100%;
+            position:fixed;
+            z-index:9999;
+            background:url("http://localhost/WebBuilder/images/loading.gif") no-repeat center center rgba(0,0,0,0.25)
+        }
+    </style>
+    <div id="showsaveicon"> </div>
+    
 <div>
 	
 	<?php if($template=="Medical Practioner"){ include_once '../master_views/topper_view.php'; }?>
@@ -322,18 +333,6 @@ error_reporting(E_ERROR);
 
     <button class="btn btn-xs btn-warning page_close_btn">Close</button>
 </div>
-
-<style>
-    #showsaveicon{
-        width:100%;
-        height:100%;
-        position:fixed;
-        z-index:9999;
-        background:url("http://localhost/WebBuilder/images/loading.gif") no-repeat center center rgba(0,0,0,0.25)
-    }
-</style>
-
-<div id="showsaveicon"> </div>
 <!-- Option Menu End -->
 
 </body>
