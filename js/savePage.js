@@ -98,6 +98,11 @@ function savePage() {
                     //console.log(obj.error);
                     alert('Error: ' + obj.error);
                 }
+            },
+            error: function(xhr, status, error) {
+                hideSavingIcon();
+                var err = eval("(" + xhr.responseText + ")");
+                alert(err.Message);
             }
         });
     }
