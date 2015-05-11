@@ -16,3 +16,4 @@ function SignUp() {
 		alert(email+name+pass+reenterpassword);
 	}
 }
+
