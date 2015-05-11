@@ -14,8 +14,19 @@
  * 
  *  
  */ 
+include_once '../../objects/ObjUser.php';
+include_once '../../dataAccess/databaseHelper.php';
 
 class UserManager{
+	public $User=NULL;
+	public $DataBaseHelper=NULL;
+	
+	public static function InsertUser($user) {
+		$this->User=new User($user);
+		$this->DataBaseHelper=new databaseHelper();
+		$sql="INSERT INTO `user` (`id`, `name`, `password`, `email`) VALUES (NULL, '".$this->User->getUserName()."', '$this->User->getPassWord()', '".$this->User->getEmailAddress()."')";
+		return $this->DataBaseHelper->ExecuteInsertReturnID($sql);
+	}
 	
 }
 

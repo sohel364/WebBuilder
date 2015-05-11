@@ -32,6 +32,13 @@ class User{
 		$this->setPassWord(NULL);
 	}
 	
+	function User($this){
+		$this->setUserName($this->getUserName());
+		$this->setEmailAddress($this->getEmailAddress());
+		$this->setPassWord($this->getPassWord());
+		
+		return $this;
+	}
 }
  
 ?>
