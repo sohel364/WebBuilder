@@ -8,9 +8,12 @@
 	
 	<script type="text/javascript" src="js/main.js"></script>
 
+	
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 	<link href="css/bootstrap-combined.min.css" rel="stylesheet" />
+	<link href="css/overlay-bootstrap.css" rel="stylesheet" />
+	<link href="css/overlay-bootstrap.min.css" rel="stylesheet" />
   </head>
   <body>
 	<div class="container">
@@ -236,48 +239,59 @@
 	for($i=0;$i<3;$i++){ 
 ?>
 <div class="row" style="padding-top:60px;">
-	<div class="col-sm-2" style="float:right;background-color:#384047;border-radius: 5px;border-radius: 5px;margin-right:13px; color:#5fcf80">
-	  Sample Module Comming Up
-	  </br>
-	  Sample Module Comming Up
-	  </br>
-	  Sample Module Comming Up
-	  </br>
-	  Sample Module Comming Up
-	  </br>
+	<div class="col-sm-2" style="float:right;background-color:#f5f5f5;border-radius: 5px;border-radius: 5px;margin-right:13px; color:#5fcf80">
+		
+		<div class="thumbnail">
+			<img src="images/test.png" />
+			<div class="caption" id="caption-half-down">
+				Name of the template				
+			</div>
+			<div class="caption" id="caption-half-up">
+				 <button type="submit" class="btn btn-primary">Edit</button>
+				 <button type="submit" class="btn btn-primary">View</button>
+			</div>
+		</div>  
+	
 	</div>
 	
-		<div class="col-sm-2" style="float:right;background-color:#384047;border-radius: 5px;border-radius: 5px;margin-right:13px; color:#5fcf80">
-	  Sample Module Comming Up
-	  </br>
-	  Sample Module Comming Up
-	  </br>
-	  Sample Module Comming Up
-	  </br>
-	  Sample Module Comming Up
-	  </br>
+	<div class="col-sm-2" style="float:right;background-color:#f5f5f5;border-radius: 5px;border-radius: 5px;margin-right:13px; color:#5fcf80">
+		  
+		  <div class="thumbnail">
+			<img src="images/test.png" />
+			<div class="caption" id="caption-half-down">
+				Name of the template				
+			</div>
+			<div class="caption" id="caption-half-up">
+				<button type="submit" class="btn btn-primary">Edit</button>
+				 <button type="submit" class="btn btn-primary">View</button>
+			</div>
+		  </div>  
 	</div>
 	
-	<div class="col-sm-2" style="float:right;background-color:#384047;border-radius: 5px;border-radius: 5px;margin-right:13px; color:#5fcf80">
-	  Sample Module Comming Up
-	  </br>
-	  Sample Module Comming Up
-	  </br>
-	  Sample Module Comming Up
-	  </br>
-	  Sample Module Comming Up
-	  </br>
+	<div class="col-sm-2" style="float:right;background-color:#f5f5f5;border-radius: 5px;border-radius: 5px;margin-right:13px; color:#5fcf80">
+		  <div class="thumbnail">
+			<img src="images/test.png" />
+			<div class="caption" id="caption-half-down">
+				Name of the template				
+			</div>
+			<div class="caption" id="caption-half-up">
+				<button type="submit" class="btn btn-primary">Edit</button>
+				 <button type="submit" class="btn btn-primary">View</button>
+			</div>
+		</div>  
 	</div>
 	
-	<div class="col-sm-2" style="float:right;background-color:#384047;border-radius: 5px;border-radius: 5px;margin-right:13px; color:#5fcf80">
-	  Sample Module Comming Up
-	  </br>
-	  Sample Module Comming Up
-	  </br>
-	  Sample Module Comming Up
-	  </br>
-	  Sample Module Comming Up
-	  </br>
+	<div class="col-sm-2" style="float:right;background-color:#f5f5f5;border-radius: 5px;border-radius: 5px;margin-right:13px; color:#5fcf80">
+	  <div class="thumbnail">
+			<img src="images/test.png" />
+			<div class="caption" id="caption-half-down">
+				Name of the template				
+			</div>
+			<div class="caption" id="caption-half-up">
+				<button type="submit" class="btn btn-primary">Edit</button>
+				 <button type="submit" class="btn btn-primary">View</button>
+			</div>
+	 </div>  
 	</div>
 		
 </div>
