@@ -2,18 +2,22 @@
  * User Registraiton JS Secton
  */
 function SignUp() {
-	var email=$('Email');
-	var name=$('userid');
-	var pass=$('password');
-	var retypepass=$('reenterpassword');
+	var email=$('#Email').val();
+	var name=$('#userid_reg').val();
+	var pass=$('#password_reg').val();
+	var retypepass=$('#reenterpassword').val();
 	
 	if(pass!=retypepass){
 		alert("Pass doesn't match");
-		return
+		return;
 	}
 	
 	else {
-		alert(email+name+pass+reenterpassword);
+            CallAjax();
 	}
 }
 
+
+function CallAjax(){
+    alert("Registration Complete");
+}

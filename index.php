@@ -89,14 +89,14 @@
 										<!-- Text input-->
 										<div class="control-group">
 											<div class="controls control-label">
-												<input id="userid" name="userid" class="form-control" type="text" placeholder="User Name" class="input-large" required="">
+												<input id="userid_reg" name="userid_reg" class="form-control" type="text" placeholder="User Name" class="input-large" required="">
 											</div>
 										</div>
 
 										<!-- Password input-->
 										<div class="control-group">
 											<div class="controls control-label">
-												<input id="password" name="password" class="form-control" type="password" placeholder="Enter Password" class="input-large" required="">
+												<input id="password_reg" name="password_reg" class="form-control" type="password" placeholder="Enter Password" class="input-large" required="">
 											</div>
 										</div>
 
