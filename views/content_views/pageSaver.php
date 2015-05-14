@@ -21,16 +21,17 @@ try {
 
 
 
-    if (!isset($_POST['menulists']) || !isset($_POST['bodyhtml'])) {
-        $aResult['error'] = 'There is no menulist to save';
+    if (!isset($_POST['menulists']) || !isset($_POST['menucontentlist'])) {
+        if(!isset($_POST['menulists']))
+            $aResult['error'] = 'There is no menulist to save';
+        else 
+            $aResult['error'] = 'Content List Error';
     } else {
         $menuList = $_POST['menulists'];
         $aResult['menuCount'] = count($menuList);
         $aResult['string'] = '';
-        $aResult['bodyHtml'] = $_POST['bodyhtml'];
-
-
-        $htmlContent = $_POST['bodyhtml'];
+        
+        $menuContentList = $_POST['menucontentlist'];
         $user_template_id = $_POST['templateid'];
         $user_id;
         if (isset($_SESSION['username'])) {
@@ -88,8 +89,8 @@ try {
                     $menuObjectList[] = $menuObject;
 
                     $contentObject = new Content();
-                    $contentObject->setContentHtml($htmlContent);
-                    $contentObject->setIsMenu(0);
+                    $contentObject->setContentHtml($menuContentList[$menu['menuTitle']]);
+                    $contentObject->setIsMenu(1);
                     $contentObjectList[] = $contentObject;
                 }
                 $aResult['saveUserTemplate'] = $contentManager->saveMenuSubmenuContent($menuObjectList, NULL, $contentObjectList);

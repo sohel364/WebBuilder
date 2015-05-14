@@ -39,7 +39,7 @@ class Content {
     }
 
     public function getContentMenuID() {
-        $this->_conten_menuID;
+        return $this->_conten_menuID;
     }
 
     public function MakeContent($content_html, $contentMenuID, $isMenu) {

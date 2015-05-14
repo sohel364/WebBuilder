@@ -33,6 +33,7 @@ error_reporting(E_ERROR);
             var template_id = '<?php echo $category.'_'.$template;?>';
 	</script>
         <script  src="../../js/savePage.js" ></script>
+        <script  src="../../js/menu.js" ></script>
 
   	<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="../../css/bootstrap-dialog.css" rel="stylesheet"/>

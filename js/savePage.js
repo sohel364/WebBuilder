@@ -58,23 +58,14 @@ function getMenuList() {
     return menuList;
 }
 
-/*
- * Get the body html string
- * @returns {String}
- */
-function getBodyHtmlString() {
-    var bodyHtml = $('#body').html();
-    return bodyHtml;
-}
-
 
 /*
  * Calls ajax to save the page contents(menu, submenu, contents etc)
  * @returns {undefined}
  */
 function savePage() {
+    saveCurrentMenuText();
     var menuList = getMenuList();
-    var bodyHtmlString = getBodyHtmlString();
     var url = getPageSaverUrl();
     if (menuList.length !== 'undefined' && menuList.length > 1) {
         showSavingIcon();
@@ -82,7 +73,7 @@ function savePage() {
             type: "POST",
             url: url,
             dataType: 'json',
-            data: {menulists: menuList, bodyhtml: bodyHtmlString, templateid: template_id},
+            data: {menulists: menuList, menucontentlist: menuContens, templateid: template_id},
             success: function (obj, textstatus) {
                 hideSavingIcon();
                 if (!('error' in obj)) {
