@@ -17,15 +17,39 @@
 include_once '../../objects/ObjUser.php';
 include_once '../../dataAccess/databaseHelper.php';
 
+//TestInsert();
+
+
+/*Block for Unit Test*/
+
+/*
+    function TestInsert(){
+        $User=new User("Sohel", "sohel.official@gmail.com","password");
+        //$User->setUserName("Sohel");
+        //$User->setPassWord("Pass");
+        //$User->setEmailAddress("sohel.official@gmail.com");
+       // $User->User("Sohel", "sohel.official@gmail.com","password");
+        echo "<pre>";
+            print_r($User);
+        echo "</pre>";
+
+       if(UserManager::InsertUser($User)){
+           echo 'Succeeded !';
+       }
+
+       else{
+           echo 'Failed!';
+       }
+    }
+*/  
 class UserManager{
 	public $User=NULL;
 	public $DataBaseHelper=NULL;
-	
-	public static function InsertUser($user) {
-		$this->User=new User($user);
-		$this->DataBaseHelper=new databaseHelper();
-		$sql="INSERT INTO `user` (`id`, `name`, `password`, `email`) VALUES (NULL, '".$this->User->getUserName()."', '$this->User->getPassWord()', '".$this->User->getEmailAddress()."')";
-		return $this->DataBaseHelper->ExecuteInsertReturnID($sql);
+	        
+	public static function InsertUser($User) {
+		$DataBaseHelper=new databaseHelper();
+		$sql="INSERT INTO `user` (`id`, `name`, `password`, `email`) VALUES (NULL, '".$User->getUserName()."','".$User->getPassWord()."', '".$User->getEmailAddress()."')";
+		return $DataBaseHelper->ExecuteInsertReturnID($sql);
 	}
 	
 }

@@ -20,6 +20,7 @@
 				          <ul class="nav navbar-nav pull-right" style="font-family: arial,cursive;font-size: 14px">
 				          				<li>
 											<a class="dropdown-toggle btn" href="#signup" data-toggle="modal" data-target=".bs-modal-sm" style="border: 1px solid rgba(186, 220, 255, 0.83);">Sign In/Registration</a>
+                                                                                        <div id="regformstatus"></div>
 										</li>
 										<li>
 											<form class="navbar-form navbar-left" role="search">
