@@ -622,7 +622,7 @@ function addNewMenu(menuName)
     tempLi=$('<li></li>');
     tempLi.append('<span><i class="icon-time"></i> [+]</span>');
     tempLi.append(' &ndash; ');
-    tempLi.append('<a>'+menuName+'</a>');
+    tempLi.append('<a onclick=\"onMenuClick(this);\">'+menuName+'</a>');
 
     $("#ul_tree_menu_list").find('li').last().before(tempLi);
 
