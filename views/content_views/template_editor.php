@@ -627,7 +627,7 @@ function addNewMenu(menuName)
     $("#ul_tree_menu_list").find('li').last().before(tempLi);
 
     tempLi=$('<li></li>');
-    tempLi.append('<a>'+menuName+'</a>');
+    tempLi.append('<a onclick=\"onMenuClick(this);\">'+menuName+'</a>');
 
     $("#menu").find('li').last().before(tempLi);
 
