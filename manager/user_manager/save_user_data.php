@@ -6,14 +6,15 @@ include_once '../../objects/ObjUser.php';
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-$user_name=$_POST["email"];
-$user_email=$_POST["name"];
-$user_pass=$_POST["password"];
+$user_email=$_REQUEST ['email'];
+$user_name=$_REQUEST ['name'];
+$user_pass=$_REQUEST ['password'];
 
 $User = new User($user_name, $user_email, $user_pass);
-if(UserManager::InsertUser($User)>=1){
-    echo '1';
-}
-else{
-    echo '0';
-}
+echo UserManager::InsertUser($User);
+//if(UserManager::InsertUser($User)>0){
+//    echo '1';
+//}
+//else{
+//    echo '0';
+//}

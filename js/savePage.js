@@ -101,6 +101,7 @@ function savePage() {
     x++;
 }
 
+
 /*
  * Shows loading icons while saving operation is ongoing
  */

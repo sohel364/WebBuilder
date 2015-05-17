@@ -13,16 +13,11 @@ function SignUp() {
 	}
 	
 	else {
-           if(PostData(User)=="1"){
-               alert("Succeeded");
-               
-           }
-           else {
-               alert("Failed");
-           }
-           //sleep();
+           PostData(User);          
 	}
 }
+
+
 
 function  PostData(arguments){
                     var http = new XMLHttpRequest();
@@ -30,7 +25,7 @@ function  PostData(arguments){
                     var params = "email="+arguments[0]+"&name="+arguments[1]+"&password="+arguments[2];
                     http.open("POST", url, true);
                     
-                    var ret=0;
+                    
                     //Send the proper header information along with the request
                     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     http.setRequestHeader("Content-length", params.length);
@@ -38,13 +33,16 @@ function  PostData(arguments){
 
                     http.onreadystatechange = function() {//Call a function when the state changes.
                         if(http.readyState == 4 && http.status == 200) {
-                            if(http.responseText=='1'){
-                                ret=http.responseText;
-                                   document.getElementById("regformstatus").innerHTML="Please Activate your account from your email";
+                                   
+                                   
+                                   alert("Registration Complete. Check email to activate !");
+                                  // ShowStatus("Registration Complete. Check email to activate !");
+                                   
+//                               /    document.getElementById("regformstatus").innerHTML=http.responseText;
+                                   
+                                   
                             }
                         }
-                    }
-                    http.send(params);
-                    
-                 
-            }
+                        
+                       http.send(params);
+                    }               
