@@ -35,7 +35,7 @@
 								<div id="myTabContent" class="tab-content">
                                                                 
 								<div class="tab-pane fade active in" id="signin">
-										<form class="form-horizontal" action="" onsubmit="#">
+                                                                    <form class="form-horizontal" action=""> <!--onsubmit="#"-->
 											<fieldset>
 											<!-- Sign In Form -->
 											<!-- Text input-->
@@ -68,7 +68,7 @@
 											<div class="control-group">
 												<label class="control-label" for="confirmsignup"></label>
 												<div class="controls">
-													<button id="signin" name="signin" class="btn btn-success" >Sign In</button>
+                                                                                                    <button id="signin" name="signin" class="btn btn-success" onclick="SignIn()" >Sign In</button>
 												</div>
 											</div>
 											</fieldset>

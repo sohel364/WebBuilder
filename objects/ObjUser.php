@@ -25,10 +25,20 @@ class User{
 		return $this->_passWord;
 	}
 	
-        public function User($name,$email,$pass){
+        function __construct() {
+            ;
+        }
+
+        public function _User($name,$email,$pass){
             $this->setUserName($name);
             $this->setEmailAddress($email);
             $this->setPassWord($pass);
+            return $this;
+        }
+        
+        public function MakeCustomUser($name,$email){
+            $this->setUserName($name);
+            $this->setEmailAddress($email);
             return $this;
         }
 

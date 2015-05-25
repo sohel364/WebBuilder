@@ -51,6 +51,12 @@ class UserManager{
 		$sql="INSERT INTO `user` (`id`, `name`, `password`, `email`) VALUES (NULL, '".$User->getUserName()."','".$User->getPassWord()."', '".$User->getEmailAddress()."')";
 		return $DataBaseHelper->ExecuteInsertReturnID($sql);
 	}
+        
+        public static function getUser($User){
+            $DataBaseHelper=new databaseHelper();
+            $sql="SELECT `id`,`name`,`password` FROM `user` WHERE `email`='".$User->getEmailAddress()."'";
+            return $DataBaseHelper->ExecuteDataSet($sql);
+        }
 	
 }
 

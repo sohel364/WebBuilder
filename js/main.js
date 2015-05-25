@@ -1,13 +1,24 @@
+function SignIn(){
+    var UserName = $('#userid').val();
+    var PassWord=$('#passwordinput').val();
+    
+    alert("Trying to Login with User : "+UserName+"Password :"+PassWord);
+}
+
 /*
  * User Registraiton JS Secton
  */
+
+
 function SignUp() {
 	var email=$('#Email').val();
 	var name=$('#userid_reg').val();
 	var pass=$('#password_reg').val();
 	var retypepass=$('#reenterpassword').val();
 	var User = [email,name,pass];
-	if(pass!=retypepass){
+            
+           // if(email.contains())
+        if(pass!=retypepass){
 		alert("Pass doesn't match");
 		return;
 	}

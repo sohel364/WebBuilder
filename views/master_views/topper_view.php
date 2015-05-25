@@ -30,7 +30,7 @@
 							        						<button class="btn btn-default" type="button">Go!</button>
 							      						</span>
 												</div>
-				      						</form>
+                                                                                        </form>
 				      					</li>
 							</ul>
 			        </div><!--/.nav-collapse -->
