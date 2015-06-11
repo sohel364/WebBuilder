@@ -16,6 +16,7 @@
 				            <li><a href="#">Billing</a></li>
 										<li><a href="#">Notes</a></li>
 										<li><a href="#">Others</a></li>
+                                                                                <li><a href="./views/content_views/saved_pages.php">Saved Pages</a></li>
 				          </ul>
 				          <ul class="nav navbar-nav pull-right" style="font-family: arial,cursive;font-size: 14px">
 				          				<li>

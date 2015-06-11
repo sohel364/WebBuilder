@@ -137,7 +137,7 @@ class databaseHelper
             {
                 
             } 
-         $DataSet  = array(null);
+         $DataSet  = array();
          
 
 //            $i=0;

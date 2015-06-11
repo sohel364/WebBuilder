@@ -74,6 +74,39 @@ class ContentPageManager {
         $insertID = $dbHelper->ExecuteInsertReturnID($sqlContent);
         return $insertID;
     }
+    
+    public function loadUserTemplateListByUserId($objTemplate) {
+        $sqlContent = 'SELECT * FROM TEMPLATE WHERE user_id = \''.$objTemplate->getUserID().'\'';
+
+        //'INSERT INTO `webbuilder`.`template` (`template_id`, `user_id`, `template_url`, `template_res_url`) VALUES (\'' . $objTemplate->getTemplateID() . '\',\'' . $objTemplate->getUserID() . '\',\'' . $objTemplate->getTemplateUrl() . '\',\'' . $objTemplate->getTemplateResUrl() . '\')';
+        //return $sqlContent;
+
+        $dbHelper = new databaseHelper();
+        $retDataSet = $dbHelper->ExecuteDataSet($sqlContent);
+        return $retDataSet;
+    }
+    
+    public function loadUserMenuByTemplateID($templateID) {
+        $sqlContent = 'SELECT * FROM MENU WHERE template_id = \''.$templateID.'\'';
+
+        //'INSERT INTO `webbuilder`.`template` (`template_id`, `user_id`, `template_url`, `template_res_url`) VALUES (\'' . $objTemplate->getTemplateID() . '\',\'' . $objTemplate->getUserID() . '\',\'' . $objTemplate->getTemplateUrl() . '\',\'' . $objTemplate->getTemplateResUrl() . '\')';
+        //return $sqlContent;
+
+        $dbHelper = new databaseHelper();
+        $retDataSet = $dbHelper->ExecuteDataSet($sqlContent);
+        return $retDataSet;
+    }
+    
+    public function loadUserMenuContentByMenuID($menu_id) {
+        $sqlContent = 'SELECT * FROM CONTENT WHERE content_menu_id = \''.$menu_id.'\'';
+
+        //'INSERT INTO `webbuilder`.`template` (`template_id`, `user_id`, `template_url`, `template_res_url`) VALUES (\'' . $objTemplate->getTemplateID() . '\',\'' . $objTemplate->getUserID() . '\',\'' . $objTemplate->getTemplateUrl() . '\',\'' . $objTemplate->getTemplateResUrl() . '\')';
+        //return $sqlContent;
+
+        $dbHelper = new databaseHelper();
+        $retDataSet = $dbHelper->ExecuteDataSet($sqlContent);
+        return $retDataSet;
+    }
 
 }
 

@@ -19,13 +19,18 @@ $(document).ready(function() {
  * Sets the initial menu contents to menu array and initialize the global variables
  */
 function onLoadMenus() {
+    //alert(user_menu_content_array);
     $ul = $('#menu');
     $lis = $ul.find('li'); /* Finds all sub li under menu ul(find all menus) */
     var curLi = $lis[0];
     $ahref = $(curLi).find('a');
     curMenu = $ahref.text();
+    if (typeof isView !== 'undefined' && isView) {
+        getSavedMenuContents();
+    } else {
+        menuContens[curMenu] = getBodyHtmlString();
+    }
     defaultMenuHtml = getBodyHtmlString();
-    menuContens[curMenu] = getBodyHtmlString();
 }
 
 /*
@@ -72,4 +77,10 @@ function onMenuClick(menu) {
     } else {
         setBodyHtmlString(menuContens[menuText]);
     }
+}
+
+
+function getSavedMenuContents() {
+    menuContens = user_menu_content_array;
+    setBodyHtmlString(menuContens[curMenu]);
 }
