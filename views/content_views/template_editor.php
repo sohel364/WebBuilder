@@ -115,7 +115,7 @@ error_reporting(E_ERROR);
 	
 	        <li>
 	            <span><i class="icon-calendar"></i> Pages</span>
-	            <ul style="display: none;">
+	            <ul >
 	                <li>
 	                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Already Added</span>
 	                    <ul id="ul_tree_menu_list" class="pages">
@@ -127,7 +127,7 @@ error_reporting(E_ERROR);
 	
 	        <li>
 	            <span><i class="icon-calendar"></i>Design Components</span>
-	            <ul style="display: none;">
+	            <ul>
 	                <li>
 	                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Background</span>
 	                    <ul id="ul_background_menu">
@@ -186,11 +186,13 @@ error_reporting(E_ERROR);
 			                	<span class="badge badge-important"><i class="icon-minus-sign"></i> Controls</span>
 			                    <ul>
 			                        <li>
-				                        <a href=""><span><i class="icon-time"></i> [+]</span> Text</a>
+				                        <a href=""><span><i class="icon-time"></i>
+                                                <label class="control-component">Label</label>
+                                        </a>
 			                        </li>
 			                        <li>
 				                        <a><span><i class="icon-time"></i>
-
+                                                <input class="control-component" type="button" value="Add Button"/>
                                         </span> </a>
 			                        </li>
 			                        <li>
