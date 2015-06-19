@@ -185,6 +185,8 @@ error_reporting(E_ERROR);
 			                <li>
 			                	<span class="badge badge-important"><i class="icon-minus-sign"></i> Controls</span>
 			                    <ul>
+                                                <?php include_once '../json_views/json_controls.php'; ?>
+                                                <!--
 			                        <li>
 				                        <a href=""><span><i class="icon-time"></i>
                                                 <label class="control-component">Label</label>
@@ -200,7 +202,7 @@ error_reporting(E_ERROR);
                                             <img class="control-component" src="../../images/loading.gif" width="100" height="100"   />
                                         </span>
                                         </a>
-			                        </li>
+			                        </li> -->
 			                    </ul>
 			                </li>
 			    	</ul>
