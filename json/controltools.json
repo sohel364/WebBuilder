@@ -1,9 +1,9 @@
 {
     "controls": [
         {"label1":{"name": "Label1", "html":"<h1>Label1</h1>"}},
-        {"label2":{"name": "Label2", "html":"<h2>Label1</h2>"}},
-        {"label3":{"name": "Label3", "html":"<h3>Label1</h3>"}},
-        {"label4":{"name": "Label4", "html":"<h4>Label1</h4>"}},
+        {"label2":{"name": "Label2", "html":"<h2>Label2</h2>"}},
+        {"label3":{"name": "Label3", "html":"<h3>Label3</h3>"}},
+        {"label4":{"name": "Label4", "html":"<h4>Label4</h4>"}},
         {"button":{"name": "Button", "html":"<input class=\"control-component ui-draggable ui-draggable-handle\" type=\"button\" value=\"Add Button\"></input>"}}
     ]
 }
