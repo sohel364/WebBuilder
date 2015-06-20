@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>jQuery UI Draggable - Default functionality</title>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="css/drag_drop_style.css">
+
+<script>
+	$(function() {
+
+		counter = 0;
+		var pos;
+		function makeDraggable() {
+			$(".selectorField").draggable({
+				cancel : null,
+				helper : "clone",
+				cursor : "move",
+				stack : "div",
+				stop : function(event, ui) {
+					pos = $(ui.helper).offset();
+
+				}
+			});
+		}
+
+		makeDraggable();
+
+		$("#btn").click(function() {
+			alert("Edit Button");
+		});
+
+		$("#h1").click(function() {
+			alert("Edit H1");
+		});
+
+		$(".droppedItems").draggable();
+		$(".editable").text("Updated");
+
+		var _ctrl_index = 1001;
+
+		$(".droppedFields").droppable({
+			activeClass : "activeDroppable",
+			hoverClass : "hoverDroppable",
+			accept : ":not(.ui-sortable-helper)",
+			drop : function(event, ui) {
+				/* if (ui.helper.attr('id').search(/dropped_[0-9]/) != -1) { */
+				counter++;
+				var draggable = ui.helper;
+				draggable = draggable.clone();
+				draggable.removeClass("selectorField");
+				draggable.addClass("droppedFields");
+				draggable.addClass("editable");
+
+				draggable[0].id = "dropped_" + (_ctrl_index++);
+				draggable.appendTo(this);
+
+				draggable.draggable({
+					containment : "parent",
+					cancel : null
+				});
+
+				makeDraggable();
+				/* } */
+
+			}
+		});
+
+	});
+</script>
+</head>
+<body>
+	<div id="div_header">
+		<h1 style="text-align: center">Drag
+			Drop Prototype</h1>
+	</div>
+	<div class="droppedFields" id="div_droppable">
+		<p style="text-align: center; line-height: 500px">Drop Here</p>
+	</div>
+
+	<div id="div_control_palette">
+		<div class='selectorField draggableField'>
+			<button id="btn">Click Me</button>
+		</div>
+		<div class='selectorField draggableField'>
+			<h1 id="h1">H1, Edit Me</h1>
+		</div>
+		<div class='selectorField draggableField'>
+			<input type="text" placeholder="Text here..."></input>
+		</div>
+	</div>
+
+
+
+
+</body>
+</html>
