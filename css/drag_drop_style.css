@@ -28,6 +28,80 @@
 	margin: 20px
 }
 
+#tabbed_box{
+	margin: 0px auto 0px auto;
+}
+
+.tabbed_box h3 {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 23px;
+	color: #000;
+	letter-spacing: -1px;
+	margin-bottom:10px;
+}
+
+.tabbed_area {
+    border:1px solid #494e52;
+    background-color:#636d76;
+    padding:8px;
+    border-radius: 20px;
+    width: 245px;
+}
+
+ul.tabs {
+	margin:0px; padding:0px;
+	border-radius: 20px;
+}
+
+ul.tabs li {
+    list-style:none;
+    display:inline;
+}
+
+ul.tabs li a {
+    background-color:#464c54;
+    color:#ffebb5;
+    padding:8px 14px 8px 14px;
+    text-decoration:none;
+    font-size:9px;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    text-transform:uppercase;
+    border-radius: 15px 15px 0 0;
+    border:1px solid #464c54; 
+}
+ul.tabs li a:hover {
+    background-color:#2f343a;
+    border-color:#2f343a;
+}
+ul.tabs li a.active {
+    background-color:#ffffff;
+    color:#282e32;
+    border:1px solid #464c54; 
+    border-bottom: 1px solid #ffffff;
+    
+}
+
+.content {
+    background-color:#ffffff;
+    padding:10px;
+    border-radius: 0 0 15px 15px;
+    border:1px solid #464c54;  
+}
+#content_2, #content_3 { display:none; }
+
+ul.tabs {
+    margin:0px; padding:0px;
+    margin-top:5px;
+    margin-bottom:6px;
+    
+}
+
+
+
+
+
+
 .activeDroppable {
 	background-color: #eeffee;
 }

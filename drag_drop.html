@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>jQuery UI Draggable - Default functionality</title>
+<title>Drag Drop Prototype</title>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
@@ -42,56 +42,118 @@
 
 		var _ctrl_index = 1001;
 
-		$(".droppedFields").droppable({
-			activeClass : "activeDroppable",
-			hoverClass : "hoverDroppable",
-			accept : ":not(.ui-sortable-helper)",
-			drop : function(event, ui) {
-				/* if (ui.helper.attr('id').search(/dropped_[0-9]/) != -1) { */
-				counter++;
-				var draggable = ui.helper;
-				draggable = draggable.clone();
-				draggable.removeClass("selectorField");
-				draggable.addClass("droppedFields");
-				draggable.addClass("editable");
+		$(".droppedFields").droppable(
+				{
+					activeClass : "activeDroppable",
+					hoverClass : "hoverDroppable",
+					accept : ":not(.ui-sortable-helper)",
+					drop : function(event, ui) {
+						var droppable_id = ui.helper.attr('id');
+						if (droppable_id == null
+								|| droppable_id.search('dropped_') < 0) {
+							counter++;
+							var draggable = ui.helper;
+							draggable = draggable.clone().show(500);
+							draggable.removeClass("selectorField");
+							draggable.addClass("droppedFields");
+							draggable.addClass("editable");
 
-				draggable[0].id = "dropped_" + (_ctrl_index++);
-				draggable.appendTo(this);
+							draggable[0].id = "dropped_" + (_ctrl_index++);
+							draggable.appendTo(this);
 
-				draggable.draggable({
-					containment : "parent",
-					cancel : null
+							draggable.draggable({
+								containment : "parent",
+								cancel : null
+							});
+
+							makeDraggable();
+						}
+
+					}
 				});
 
-				makeDraggable();
-				/* } */
-
-			}
-		});
-
 	});
+	
+	$(document).ready(function(){
+        
+	       // When a link is clicked
+	       $("a.tab").click(function () {
+	            
+	           // switch all tabs off
+	           $(".active").removeClass("active");
+	            
+	           // switch this tab on
+	           $(this).addClass("active");
+	            
+	           // slide all elements with the class 'content' up
+	           $(".content").slideUp();
+	            
+	           // Now figure out what the 'title' attribute value is and find the element with that id.  Then slide that down.
+	           var content_show = $(this).attr("title");
+	           $("#"+content_show).slideDown();
+	          
+	       });
+	    
+	     });
 </script>
 </head>
 <body>
 	<div id="div_header">
-		<h1 style="text-align: center">Drag
-			Drop Prototype</h1>
-	</div>
-	<div class="droppedFields" id="div_droppable">
-		<p style="text-align: center; line-height: 500px">Drop Here</p>
+		<h1 style="text-align: center">Drag Drop Prototype</h1>
 	</div>
 
-	<div id="div_control_palette">
-		<div class='selectorField draggableField'>
-			<button id="btn">Click Me</button>
-		</div>
-		<div class='selectorField draggableField'>
-			<h1 id="h1">H1, Edit Me</h1>
-		</div>
-		<div class='selectorField draggableField'>
-			<input type="text" placeholder="Text here..."></input>
+	<div class="droppedFields" id="div_droppable">
+		<h2 style="text-align: center; line-height: 450px; color: #dddddd">Drop
+			Here</h2>
+	</div>
+
+	<div id="tabbed_box_1" class="div_control_palette_container tabbed_box">
+		<h3 style="text-align: center">Control Palette</h3>
+		<div class="tabbed_area">
+			<ul class="tabs">
+				<li><a href="#" id="tab_1" class="tab active" title="content_1">Buttons</a></li>
+				<li><a href="#" id="tab_2" class="tab" title="content_2">Text Boxes</a></li>
+				<li><a href="#" id="tab_3" class="tab" title="content_3">Inputs</a></li>
+			</ul>
+			<div id="content_1" class="content">
+				<div class='selectorField draggableField' style="display: inline;">
+					<button id="btn_1" style="border-radius: 5px; color: white; background: red">Click Me</button>
+				</div>
+				<div class='selectorField draggableField'  style="display: inline;">
+					<button id="btn_2" style="border-radius: 30px; color: white; background: red">Click Me</button>
+				</div>
+				<div class='selectorField draggableField'>
+					<button id="btn_3" style="border-radius: 5px; color: white; background: lightgreen">Click Me</button>
+				</div>
+				<div class='selectorField draggableField' style="display: inline;">
+					<button id="btn_4" style="border-radius: 30px; color: white; background: lightgreen">Click Me</button>
+				</div>
+			</div>
+			<div id="content_2" class="content">
+				<div class='selectorField draggableField'>
+					<h1 id="h1">Edit Me</h1>
+				</div>
+				<div class='selectorField draggableField'>
+					<h2 id="h2">Edit Me</h2>
+				</div>
+				<div class='selectorField draggableField'>
+					<h3 id="h3">Edit Me</h3>
+				</div>
+				<div class='selectorField draggableField'>
+					<h4 id="h4">Edit Me</h4>
+				</div>
+			</div>
+			<div id="content_3" class="content">
+				<div class='selectorField draggableField'>
+					<input id="id_input_1" type="text" placeholder="Text here..."></input>
+				</div>
+				<div class='selectorField draggableField'>
+					<input id="id_input_2" type="password" placeholder="password..."></input>
+				</div>
+			</div>
 		</div>
 	</div>
+
 
 
 
