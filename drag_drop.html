@@ -8,6 +8,8 @@
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="css/drag_drop_style.css">
+<link rel="stylesheet" type="text/css"
+	href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
 
 <script>
 	$(function() {
@@ -66,37 +68,97 @@
 								cancel : null
 							});
 
+							/* draggable.resizable(); */
 							makeDraggable();
+							draggable.click(droppedItemClickAction);
 						}
 
 					}
 				});
 
+		var clicked_item = null;
+		var child_item = null;
+
+		$("#dialog_btn_delete").click(function() {
+			$("#control_edit_dialog").dialog("close");
+			$("#" + clicked_item).remove();
+
+		});
+
+		$("#dialog_btn_edit").click(function() {
+			var text = $("#dialog_input").val();
+			child_item.html(text);
+			$("#control_edit_dialog").dialog("close");
+
+		});
+
+		function droppedItemClickAction() {
+			clicked_item = $(this).attr("id");
+			child_item = $("#" + clicked_item + " :first");
+			child_item.resizable({
+				ghost : false,
+				animate : false,
+				autoHide : true,
+				distance : 0,
+				handles : "n, e, s, w, ne, se, sw, nw",
+				/* resize: function(){
+		            $("#" + clicked_item).css("height",child_item.height+"px");
+		            $("#" + clicked_item).css("width",child_item.width+"px");
+		        } */
+			});
+
+			$("#control_edit_dialog").dialog({
+				dialogClass : "ui-dialog-titlebar-close",
+				resizable : false,
+				closeOnEscape : true,
+				title : "Edit Component",
+				show : {
+					effect : "slide",
+					duration : 200,
+					direction : "up"
+				},
+				hide : {
+					effect : "explode",
+					duration : 200
+				},
+				position : {
+					my : "left top",
+					at : "right bottom",
+					of : child_item
+				},
+
+			});
+
+			if ($(this).is("BUTTON")) {
+
+			} else if ($(this).is("input")) {
+
+			} else {
+			}
+		}
+
+		$("a.tab").click(function() {
+
+			// switch all tabs off
+			$(".active").removeClass("active");
+
+			// switch this tab on
+			$(this).addClass("active");
+
+			// slide all elements with the class 'content' up
+			$(".content").slideUp();
+
+			// Now figure out what the 'title' attribute value is and find the element with that id.  Then slide that down.
+			var content_show = $(this).attr("title");
+			$("#" + content_show).slideDown();
+
+		});
+
 	});
-	
-	$(document).ready(function(){
-        
-	       // When a link is clicked
-	       $("a.tab").click(function () {
-	            
-	           // switch all tabs off
-	           $(".active").removeClass("active");
-	            
-	           // switch this tab on
-	           $(this).addClass("active");
-	            
-	           // slide all elements with the class 'content' up
-	           $(".content").slideUp();
-	            
-	           // Now figure out what the 'title' attribute value is and find the element with that id.  Then slide that down.
-	           var content_show = $(this).attr("title");
-	           $("#"+content_show).slideDown();
-	          
-	       });
-	    
-	     });
 </script>
 </head>
+
+
 <body>
 	<div id="div_header">
 		<h1 style="text-align: center">Drag Drop Prototype</h1>
@@ -107,26 +169,35 @@
 			Here</h2>
 	</div>
 
-	<div id="tabbed_box_1" class="div_control_palette_container tabbed_box">
+	<div id="tabbed_box_1" class="tabbed_box">
 		<h3 style="text-align: center; color: #464c54">Control Palette</h3>
 		<div class="tabbed_area">
 			<ul class="tabs">
 				<li><a href="#" id="tab_1" class="tab active" title="content_1">Buttons</a></li>
-				<li><a href="#" id="tab_2" class="tab" title="content_2">Text Boxes</a></li>
+				<li><a href="#" id="tab_2" class="tab" title="content_2">Text
+						Boxes</a></li>
 				<li><a href="#" id="tab_3" class="tab" title="content_3">Inputs</a></li>
 			</ul>
 			<div id="content_1" class="content">
 				<div class='selectorField draggableField'>
-					<button id="btn_1" style="width: 100px; height: 30px; border-radius: 0px; color: white; background: #00BFFF">Click Me</button>
+					<button id="btn_1"
+						style="width: 150px; height: 50px; border-radius: 0px; color: white; background: #00BFFF">Click
+						Me</button>
 				</div>
 				<div class='selectorField draggableField'>
-					<button id="btn_2" style="width: 100px; height: 30px; border-radius: 5px; color: white; background: #00BFFF">Click Me</button>
+					<button id="btn_2"
+						style="width: 150px; height: 50px; border-radius: 5px; color: white; background: #00BFFF">Click
+						Me</button>
 				</div>
 				<div class='selectorField draggableField'>
-					<button id="btn_3" style="width: 100px; height: 30px; border-radius: 10px; color: white; background: #00BFFF">Click Me</button>
+					<button id="btn_3"
+						style="width: 150px; height: 50px; border-radius: 10px; color: white; background: #00BFFF">Click
+						Me</button>
 				</div>
 				<div class='selectorField draggableField'>
-					<button id="btn_4" style="width: 100px; height: 30px; border-radius: 15px; color: white; background: #00BFFF">Click Me</button>
+					<button id="btn_4"
+						style="width: 150px; height: 50px; border-radius: 15px; color: white; background: #00BFFF">Click
+						Me</button>
 				</div>
 			</div>
 			<div id="content_2" class="content">
@@ -145,13 +216,29 @@
 			</div>
 			<div id="content_3" class="content">
 				<div class='selectorField draggableField'>
-					<input id="id_input_1" type="text" placeholder="Text here..."></input>
+					<input id="id_input_1" type="text" placeholder="Text here..."
+						style="margin: 10px"></input>
 				</div>
 				<div class='selectorField draggableField'>
-					<input id="id_input_2" type="password" placeholder="password..."></input>
+					<input id="id_input_2" type="password" placeholder="password..."
+						style="margin: 10px"></input>
 				</div>
 			</div>
 		</div>
+	</div>
+
+	<div id="control_edit_dialog" class="dialog">
+		<input id="dialog_input" type="text" placeholder="Edit here..."
+			style="width: 100%"></input>
+		<button id="dialog_btn_edit" style="width: 100%">Edit</button>
+		<button id="dialog_btn_delete" style="width: 100%">Delete</button>
+		<ol id="selectable">
+			<li class="ui-widget-content">Item 1</li>
+			<li class="ui-widget-content">Item 2</li>
+			<li class="ui-widget-content">Item 3</li>
+			<li class="ui-widget-content">Item 4</li>
+		</ol>
+
 	</div>
 
 

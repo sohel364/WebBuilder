@@ -11,10 +11,9 @@
 	height: 500px;
 	border: 1px solid #000;
 	border-radius: 25px;
-	wrap: true;
 	float: right;
 	text-align: center;
-	margin: 20px
+	/* margin: 20px */
 	
 }
 
@@ -27,6 +26,100 @@
 	float: left;
 	margin: 20px
 }
+
+.activeDroppable {
+	background-color: #eeffee;
+}
+
+.hoverDroppable {
+	border-radius: 25px;
+	background-color: lightgreen;
+}
+
+.draggableField {
+	/* float: left; */
+	/* padding-left: 5px; */
+}
+
+.draggableField>input, select, button, h1 {
+	/* margin-top: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px; */
+}
+
+.draggableField:hover {
+	cursor: move;
+	border-radius: 25px;
+	background-color: #ccffcc;
+}
+
+.dialog{
+	display: none;
+	background-color: white;
+	z-index: 1000000 !important ;
+}
+
+
+
+/*-------------------------------------------------Resize Border--------------------------------------------  */
+
+.ui-resizable-disabled .ui-resizable-handle,
+.ui-resizable-autohide .ui-resizable-handle {
+	display: none;
+}
+
+
+.ui-resizable-handle {
+	position: absolute;
+	font-size: 0.1px;
+	display: block;
+}
+
+.ui-resizable-n {
+	cursor: n-resize;
+	width: 100%;
+	border: 1px solid #00ff00;
+}
+.ui-resizable-s {
+	cursor: s-resize;
+	width: 100%;
+	border: 1px solid #00ff00;
+}
+.ui-resizable-e {
+	cursor: e-resize;
+	width: 100%;
+	border: 1px solid #00ff00;
+}
+.ui-resizable-w {
+	cursor: w-resize;
+	width: 100%;
+	border: 1px solid #00ff00;
+}
+.ui-resizable-se {
+	cursor: se-resize;
+	width: 100%;
+	border: 1px solid #00ff00;
+}
+.ui-resizable-sw {
+	cursor: sw-resize;
+	width: 100%;
+	border: 1px solid #00ff00;
+}
+.ui-resizable-nw {
+	cursor: nw-resize;
+	width: 100%;
+	border: 1px solid #00ff00;
+}
+.ui-resizable-ne {
+	cursor: ne-resize;
+	width: 100%;
+	border: 1px solid #00ff00;
+}
+
+/*------------------------------------------Resize Border End------------------------------------  */
+
+
+/* ---------------------------------------- For Tab View ---------------------------------------- */
 
 #tabbed_box{
 	margin: 0px auto 0px auto;
@@ -97,33 +190,4 @@ ul.tabs {
     
 }
 
-
-
-
-
-
-.activeDroppable {
-	background-color: #eeffee;
-}
-
-.hoverDroppable {
-	border-radius: 25px;
-	background-color: lightgreen;
-}
-
-.draggableField {
-	/* float: left; */
-	padding-left: 5px;
-}
-
-.draggableField>input, select, button, h1 {
-	margin-top: 10px;
-	margin-right: 10px;
-	margin-bottom: 10px;
-}
-
-.draggableField:hover {
-	border-radius: 25px;
-	background-color: #ccffcc;
-}
-
+/* ---------------------------------------- End Tab View ---------------------------------------- */
