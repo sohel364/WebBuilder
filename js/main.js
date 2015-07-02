@@ -2,7 +2,12 @@ function SignIn(){
     var UserName = $('#userid').val();
     var PassWord=$('#passwordinput').val();
     
-    alert("Trying to Login with User : "+UserName+"Password :"+PassWord);
+    if(UserName!=NULL && PassWord!=NUL){
+        alert("Trying to Login with User : "+UserName+"Password :"+PassWord);
+    }
+    else {
+            var statusLable = document.querySelector(#lbl_status);
+       }
 }
 
 /*
