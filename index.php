@@ -1,14 +1,20 @@
+<?php
+    echo "Let's make some script";
+    echo $_GET['username'];
+    echo $_GET['password'];
+    echo '<br/>';
+    echo '<br/>';
+    echo '<br/>';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Web Builder</title>
-	
+    <title>Web Builder</title>	
 	<script type="text/javascript" src="js/main.js"></script>
-
-	
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 	<link href="css/bootstrap-combined.min.css" rel="stylesheet" />

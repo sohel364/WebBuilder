@@ -1,13 +1,18 @@
 function SignIn(){
     var UserName = $('#userid').val();
     var PassWord=$('#passwordinput').val();
+    var isSucceeded = true;
     
-    if(UserName!=NULL && PassWord!=NUL){
-        alert("Trying to Login with User : "+UserName+"Password :"+PassWord);
+    if(isSucceeded){
+        $("#regformstatus").html('Successfully Logged In');
+        $('#myModal').modal('hide')
+        var redirectURL ="http://localhost/WebBuilder/index.php?username="+UserName+"&password="+PassWord+"&isSuccess="+isSucceeded;
+        window.location.href=redirectURL;
     }
-    else {
-            var statusLable = document.querySelector(#lbl_status);
-       }
+    else{
+        $("#regformstatus").html('Error!Please try again');
+        $('#myModal').modal('hide')
+    }
 }
 
 /*

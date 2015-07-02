@@ -88,8 +88,8 @@
 											<!-- Button -->
 											<div class="control-group">
 												<label class="control-label" for="confirmsignup"></label>
-												<div class="controls">
-                                                                                                    <button id="signin" name="signin" class="btn btn-success" onclick="SignIn()" >Sign In</button>
+												<div class="controls">                                                                                                    
+                                                                                                    <input type="button" id="signin" class="btn btn-success" onclick="SignIn()" value="Sign in"/>
 												</div>
 											</div>
 											</fieldset>
