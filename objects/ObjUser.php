@@ -36,6 +36,11 @@ class User{
             return $this;
         }
         
+        public function _MakeTempUserData($name,$pass){
+            $this->setUserName($name);
+            $this->setPassWord($pass);
+            return $this;
+        }
         public function MakeCustomUser($name,$email){
             $this->setUserName($name);
             $this->setEmailAddress($email);

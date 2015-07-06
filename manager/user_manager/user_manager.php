@@ -14,8 +14,8 @@
  * 
  *  
  */ 
-include_once '../../objects/ObjUser.php';
-include_once '../../dataAccess/databaseHelper.php';
+include_once '../objects/ObjUser.php';
+include_once '../dataAccess/databaseHelper.php';
 
 //TestInsert();
 
@@ -52,9 +52,36 @@ class UserManager{
 		return $DataBaseHelper->ExecuteInsertReturnID($sql);
 	}
         
+        /*
+         * Compare User's Password input with Database Password
+         * 
+         */
+        public static  function isUser($User){
+                $UserData = UserManager::getUserbyUserName($User);
+//                echo "<pre>";
+//                print_r($UserData);
+//                echo "<pre>";
+                if($UserData[0]['password']==$User->getPassWord()){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+        }
+
+        /*
+         * Gets User Data from User Table by Email Address
+         * 
+         */
         public static function getUser($User){
             $DataBaseHelper=new databaseHelper();
             $sql="SELECT `id`,`name`,`password` FROM `user` WHERE `email`='".$User->getEmailAddress()."'";
+            return $DataBaseHelper->ExecuteDataSet($sql);
+        }
+        
+        public static function getUserbyUserName($User){
+            $DataBaseHelper=new databaseHelper();
+            $sql="SELECT `id`,`name`,`password` FROM `user` WHERE `name`='".$User->getUserName()."'";
             return $DataBaseHelper->ExecuteDataSet($sql);
         }
 	

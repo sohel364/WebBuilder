@@ -1,11 +1,22 @@
-<?php
-    echo "Let's make some script";
-    echo $_GET['username'];
-    echo $_GET['password'];
+
+ <?php
+   echo "Let's make some script";
+    
+    if(empty($_REQUEST['username']) || empty($_REQUEST['password'])){
+        echo "Not set";
+    }
+    else{
+        echo $_REQUEST['username'];
+        echo $_REQUEST['password'];
+        
+    }
+   
     echo '<br/>';
     echo '<br/>';
     echo '<br/>';
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
