@@ -6,7 +6,8 @@ function SignIn(){
     
     if(UserName!="" && PassWord!=""){
         var responseText=PostDataSignIn(User);
-        if(responseText=="1"){
+        console.log(responseText.charAt(0));
+        if(responseText=="\r\n\r\n            \r\n     \r\n1"){
             isSucceeded = true;
         }
         else {
@@ -27,12 +28,12 @@ function SignIn(){
 }
 
 
-function PostDataSignIn(args){
+function PostDataSignIn(args,callback){
                     var http = new XMLHttpRequest();
                     var url = "webbuilderservices/UserService.php";
                     var params ="username="+args[0]+"&password="+args[1];
                     http.open("POST", url, true);
-                    var res = "0";
+                    var res = null;
                     //Send the proper header information along with the request
                     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     http.setRequestHeader("Content-length", params.length);
@@ -40,12 +41,16 @@ function PostDataSignIn(args){
 
                     http.onreadystatechange = function() {//Call a function when the state changes.
                         if(http.readyState == 4 && http.status == 200) {
-                                    var returned_string = vhr.responseText;
-                                    //console.log(returned_string.charAt(0));
-                                    return returned_string.charAt(0);
+                                    
+                                    
+                                    return http.responseText;
+                                    
+                                    
                             }
                         }                        
                        http.send(params);
+                        res = http.onreadystatechange();
+                        return res;
 }
 /*
  * User Registraiton JS Secton
