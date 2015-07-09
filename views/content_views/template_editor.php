@@ -39,9 +39,15 @@ error_reporting(E_ERROR);
   	<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="../../css/bootstrap-dialog.css" rel="stylesheet"/>
 	<link href="../../css/jquery-ui.min.css" rel="stylesheet"/>
+	<link href="../../css/drag_drop_style.css" rel="stylesheet"/>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo  $css?>"/>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+
+	<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"> -->
 
 <style>
 
@@ -53,6 +59,7 @@ error_reporting(E_ERROR);
 	width: 72%;
 	margin-left: 5px;
 	padding: 5px;
+	z-index: 1000000 !important;
 }
 
 
@@ -84,6 +91,144 @@ error_reporting(E_ERROR);
 }
 
 </style>
+
+
+<script>
+	$(function() {
+
+		counter = 0;
+		var pos;
+		function makeDraggable() {
+			$(".selectorField").draggable({
+				cancel : null,
+				helper : "clone",
+				cursor : "move",
+				stack : "div",
+				stop : function(event, ui) {
+					pos = $(ui.helper).offset();
+
+				}
+			});
+		}
+
+		makeDraggable();
+
+		var _ctrl_index = 1001;
+
+		$(".droppedFields").droppable(
+				{
+					activeClass : "activeDroppable",
+					hoverClass : "hoverDroppable",
+					accept : ":not(.ui-sortable-helper)",
+					drop : function(event, ui) {
+						var droppable_id = ui.helper.attr('id');
+						if (droppable_id == null
+								|| droppable_id.search('dropped_') < 0) {
+							counter++;
+							var draggable = ui.helper;
+							draggable = draggable.clone().show(500);
+							draggable.removeClass("selectorField");
+							draggable.addClass("droppedFields");
+							draggable.addClass("editable");
+
+							draggable[0].id = "dropped_" + (_ctrl_index++);
+							draggable.appendTo(this);
+
+							draggable.draggable({
+								containment : "parent",
+								cancel : null
+							});
+
+							/* draggable.resizable(); */
+							makeDraggable();
+							draggable.click(droppedItemClickAction);
+						}
+
+					}
+				});
+
+		var clicked_item = null;
+		var child_item = null;
+
+		$("#dialog_btn_delete").click(function() {
+			$("#control_edit_dialog").dialog("close");
+			$("#" + clicked_item).remove();
+
+		});
+
+		$("#dialog_btn_edit").click(function() {
+			var text = $("#dialog_input").val();
+			child_item.html(text);
+			$("#control_edit_dialog").dialog("close");
+
+		});
+
+		function droppedItemClickAction() {
+			clicked_item = $(this).attr("id");
+			child_item = $("#" + clicked_item + " :first");
+			child_item.resizable({
+				ghost : false,
+				animate : false,
+				autoHide : true,
+				distance : 0,
+				handles : "n, e, s, w, ne, se, sw, nw",
+				/* resize: function(){
+		            $("#" + clicked_item).css("height",child_item.height+"px");
+		            $("#" + clicked_item).css("width",child_item.width+"px");
+		        } */
+			});
+
+			$("#control_edit_dialog").dialog({
+				dialogClass : "ui-dialog-titlebar-close",
+				resizable : false,
+				closeOnEscape : true,
+				title : "Edit Component",
+				show : {
+					effect : "slide",
+					duration : 200,
+					direction : "up"
+				},
+				hide : {
+					effect : "explode",
+					duration : 200
+				},
+				position : {
+					my : "left top",
+					at : "right bottom",
+					of : child_item
+				},
+
+			});
+
+			if ($(this).is("BUTTON")) {
+
+			} else if ($(this).is("input")) {
+
+			} else {
+			}
+		}
+
+		/* $("a.tab").click(function() {
+
+			// switch all tabs off
+			$(".active").removeClass("active");
+
+			// switch this tab on
+			$(this).addClass("active");
+
+			// slide all elements with the class 'content' up
+			$(".content").slideUp();
+
+			// Now figure out what the 'title' attribute value is and find the element with that id.  Then slide that down.
+			var content_show = $(this).attr("title");
+			$("#" + content_show).slideDown();
+
+		}); */
+
+	});
+</script>
+
+
 
 </head>
 
@@ -212,7 +357,7 @@ error_reporting(E_ERROR);
 	</div>
 
 		<!-- Template Elements  Here -->
-	<div id="frame" >
+	<div id="frame"  class="droppedFields" >
 		<div style="background: gray; margin-bottom: 10px;text-align: center; " > <?php include ($turl.'/title.html');?>	</div>
 		<div style="background-color: white;box-shadow: 10px 10px 5px #888888;">
 
@@ -242,7 +387,16 @@ error_reporting(E_ERROR);
 			</div>
 
 			<div id="body" contentEditable="true"><?php include ($turl.'/body.html');?></div>
-			<div id="footer">
+			
+
+		<!-- 
+			<div class="droppedFields" id="div_droppable">
+				<h2 style="text-align: center; line-height: 450px; color: #dddddd">Drop
+					Here</h2>
+			</div>
+			 -->
+
+	<div id="footer">
 				<?php include ($turl.'/footer.html');?>
 			</div>
 		</div>
@@ -345,6 +499,22 @@ error_reporting(E_ERROR);
     <button class="btn btn-xs btn-warning page_close_btn">Close</button>
 </div>
 <!-- Option Menu End -->
+
+
+<div id="control_edit_dialog" class="dialog">
+		<input id="dialog_input" type="text" placeholder="Edit here..."
+			style="width: 100%"></input>
+		<button id="dialog_btn_edit" style="width: 100%">Edit</button>
+		<button id="dialog_btn_delete" style="width: 100%">Delete</button>
+		<ol id="selectable">
+			<li class="ui-widget-content">Item 1</li>
+			<li class="ui-widget-content">Item 2</li>
+			<li class="ui-widget-content">Item 3</li>
+			<li class="ui-widget-content">Item 4</li>
+		</ol>
+
+	</div>
+
 
 </body>
 
