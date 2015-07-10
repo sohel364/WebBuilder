@@ -1,0 +1,116 @@
+@media only screen and (min-width: 960px) and (max-width: 1200px){
+  .carousel-caption{
+	top: 5% !important;
+	bottom:10px !important;
+}
+.carousel-caption h1{
+    padding:6px 0;
+	font-size:30px !important;
+	line-height:36px !important;
+	margin-bottom:10px !important;
+}
+.secondary-button-white {
+  font-size: 16px;
+  padding: 10px 18px;
+  margin: 8px 6px;
+}
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+.navbar-right {
+   float:none !important;
+}
+.carousel-caption{
+	top:5% !important;
+	bottom:10px !important;
+}
+/* .carousel-caption img{
+  display:none;
+} */
+.carousel-caption h1{
+    padding:2px 0;
+	font-size:36px !important;
+	line-height:44px !important;
+	margin-bottom:8px !important;
+}
+.secondary-button-white {
+  font-size: 14px;
+  padding: 8px 14px;
+  margin: 8px 6px;
+}
+.service-section { margin-top:40px;}
+.section-title p {padding: 0 20px;}
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px){ 
+.navbar-right {
+   float:none !important;
+}
+.navbar > .container .navbar-brand {
+  margin-left: 10px !important;
+}
+.carousel-caption{
+	top: 10% !important;
+	bottom:10px !important;
+}
+.carousel-caption img{
+  display:none;
+}
+.carousel-caption h1{
+    padding:0;
+	font-size:24px !important;
+	line-height: 28px !important;
+	margin-bottom: 6px !important;
+}
+.secondary-button-white {
+  font-size: 12px;
+  padding: 5px 10px;
+  margin: 8px 6px;
+}
+.service-section { margin-top:40px;}
+.section-title p {padding: 0 20px;}
+ 
+}
+@media only screen and (min-width: 200px) and (max-width: 480px) { 
+.carousel-caption{
+	top:-6% !important;
+	bottom:10px !important;
+}
+.navbar > .container .navbar-brand {
+  margin-left: 10px !important;
+}
+.carousel-caption img{
+  display:none;
+}
+.carou-direction-nav a {
+  width: 22px;
+  height: 40px;
+  margin: -14px 0 0;
+}
+.carou-direction-nav a:before {
+  font-size: 20px;
+  line-height: 40px;
+}
+.carousel-caption h1{
+	padding:0;
+	font-size: 18px !important;
+	line-height: 24px !important;
+	margin-bottom: 6px !important;
+}
+.secondary-button-white {
+  font-size: 10px;
+  padding: 5px 10px;
+  margin: 5px 6px;
+}
+.service-section { margin-top:40px;}
+.section-title p {padding: 0 20px;}
+.callout_btn-white{
+ float:left;
+ margin: 30px 0px 0px 86px;
+}
+.nav-pills > li {
+    float:none;
+}
+
+}

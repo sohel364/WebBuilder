@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Spice form</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes"name="viewport">
+	<!-----Css------------------------------->
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="css/media-responsive.css" rel="stylesheet" type="text/css">
+	<link href="css/animate.min.css" rel="stylesheet" type="text/css">
+    <link href="css/theme-menu.css" rel="stylesheet" type="text/css">
+	<link href="css/fonts/fonts.css" rel="stylesheet" type="text/css">
+     <!-- Css Font Awesome------>
+     <link href="css/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet">		
+	<!------Js------------------------------->
+     <script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+     <script type="text/javascript" src="js/bootstrap.js"></script>
+	 <script type="text/javascript" src="js/accordion-tab.js"></script>
+     
+	 <!-- Switcher Js -->	
+	<script type="text/javascript" src="js/switcher/spectrum.js"></script>
+    <script type="text/javascript" src="js/switcher/switcher.js"></script>
+    
+    <link href="css/drag_drop_style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+	
+	<script>
+	$(function() {
+
+		counter = 0;
+		var pos;
+		function makeDraggable() {
+			$(".selectorField").draggable({
+				cancel : null,
+				helper : "clone",
+				cursor : "move",
+				stack : "div",
+				stop : function(event, ui) {
+					pos = $(ui.helper).offset();
+
+				}
+			});
+		}
+
+		makeDraggable();
+
+		var _ctrl_index = 1001;
+
+		/* $(".droppedFields").mousemove(function( event ) {
+			  var msg = "Handler for .mousemove() called at ";
+			  msg += event.pageX + ", " + event.pageY;
+			  $( "#log" ).html(msg);
+			}); */
+
+		/* var currentMousePos = { x: -1, y: -1 };
+		$(".droppedFields").mousemove(function(event) {
+	        currentMousePos.x = event.pageX;
+	        currentMousePos.y = event.pageY;
+	    }); */
+
+		$(".droppedFields").droppable(
+				{
+					activeClass : "activeDroppable",
+					hoverClass : "hoverDroppable",
+					accept : ":not(.ui-sortable-helper)",
+					drop : function(event, ui) {
+						var droppable_id = ui.helper.attr('id');
+						if (droppable_id == null
+								|| droppable_id.search('dropped_') < 0) {
+							counter++;
+							var draggable = ui.helper;
+							draggable = draggable.clone();
+
+							
+							
+							/* draggable.css('left',currentMousePos.x + 'px' );
+							draggable.css('top',currentMousePos.y + 'px' ); */
+
+							draggable.show(500);
+
+
+							
+							draggable.removeClass("selectorField");
+							draggable.addClass("droppedFields");
+							draggable.addClass("editable");
+
+							draggable[0].id = "dropped_" + (_ctrl_index++);
+							draggable.appendTo(this);
+
+							draggable.draggable({
+								containment : "parent",
+								cancel : null
+							});
+
+							/* draggable.resizable(); */
+							makeDraggable();
+							draggable.click(droppedItemClickAction);
+							
+							/* var pos = draggable.position();
+							alert("position : " + pos.left + " : " + pos.top);
+							draggable.click(function(){
+								var pos = draggable.position();
+								alert("position : " + pos.left + " : " + pos.top);
+								
+								}); */
+						}
+
+					}
+				});
+
+		var clicked_item = null;
+		var child_item = null;
+
+		$("#dialog_btn_delete").click(function() {
+			$("#control_edit_dialog").dialog("close");
+			$("#" + clicked_item).remove();
+
+		});
+
+		$("#dialog_btn_edit").click(function() {
+			var text = $("#dialog_input").val();
+			child_item.html(text);
+			$("#control_edit_dialog").dialog("close");
+
+		});
+
+		function droppedItemClickAction() {
+			clicked_item = $(this).attr("id");
+			child_item = $("#" + clicked_item + " :first");
+			child_item.resizable({
+				ghost : false,
+				animate : false,
+				autoHide : true,
+				distance : 0,
+				handles : "n, e, s, w, ne, se, sw, nw",
+				/* alsoResize : "#" + clicked_item */
+				/* resize: function(){
+		            $("#" + clicked_item).css("height",child_item.height+"px");
+		            $("#" + clicked_item).css("width",child_item.width+"px");
+		        } */
+			});
+
+			$("#control_edit_dialog").dialog({
+				dialogClass : "ui-dialog-titlebar-close",
+				resizable : false,
+				closeOnEscape : true,
+				title : "Edit Component",
+				show : {
+					effect : "slide",
+					duration : 200,
+					direction : "up"
+				},
+				hide : {
+					effect : "explode",
+					duration : 200
+				},
+				position : {
+					my : "left top",
+					at : "right bottom",
+					of : child_item
+				},
+
+			});
+
+			if ($(this).is("BUTTON")) {
+
+			} else if ($(this).is("input")) {
+
+			} else {
+			}
+		}
+
+		/* $("#frame").find("*").draggable({
+			containment : "#frame",
+// 			cancel : null
+		}); */
+
+		/* $("a.tab").click(function() {
+
+			// switch all tabs off
+			$(".active").removeClass("active");
+
+			// switch this tab on
+			$(this).addClass("active");
+
+			// slide all elements with the class 'content' up
+			$(".content").slideUp();
+
+			// Now figure out what the 'title' attribute value is and find the element with that id.  Then slide that down.
+			var content_show = $(this).attr("title");
+			$("#" + content_show).slideDown();
+
+		}); */
+
+	});
+</script>
+    
+    
+    
+    
+   </head>
+<body>
+ <div class="warpper">
+ <section id="top">
+		<div class="container">
+		<div class="row">
+		  <div class="col-md-6">
+		       <div class="col-sm-5">
+				<select id="example-select" name="example-select" class="form-control top-option" size="1">
+					<option value="0">Home</option>
+					<option value="1">About Us</option>
+					<option value="2">Service</option>
+					<option value="3">Contact us</option>
+				</select>
+			   </div>
+			</div>
+		   <div class="col-md-6">					
+			<ul class="nav nav-pills nav-top navbar-right">
+				<li><a href="#"><i class="fa fa-desktop"></i>Preview</a></li>
+				<li><a href="#"><i class="fa fa-save"></i>Save</a></li>
+				<li><a href="#"><i class="fa fa-globe"></i>Publish</a></li>
+				<li class="dropdown langs">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>Hi, info123@gmail.com<span class="caret"></span></a>
+				    <ul role="menu" class="dropdown-menu">
+						<li><a href="#"><i class="fa fa-user"></i>Profile</a></li>
+						<li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
+						 <li><a href="#"><i class="fa fa-headphones"></i>Support</a></li>
+						<li><a href="#"><i class="fa fa-user"></i>Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+		  </div>
+		 </div>
+		</div>
+</section>
+
+<div class="clearfix"></div>
+<!-------Main Content---------------------->  
+  <div class="row tempalte-content droppedFields  ">	  
+  <!-----Sidebar-------------------------------------------------->
+    <div class="col-md-3">
+     <div class="sidebar">
+		<div class="col-sm-3 side_tabs">
+		  <ul class="list-group" id="myTab">
+		  <li class="active">
+			<a href="#tab1" data-toggle="tab" class="text-center">
+			 <i class="fa fa-file-text"></i><br>Pages
+			</a>
+		   </li>	
+		   <li> 
+			 <a href="#tab2" data-toggle="tab" class="text-center">
+			  <i class="fa fa-paint-brush"></i><br>Design
+			 </a>
+		   </li>
+		   <li> 
+			 <a href="#tab3" data-toggle="tab" class="text-center">
+			   <i class="fa fa-plus"></i><br>Add Tools
+			 </a>
+			</li> 
+			 <li> 
+			  <a href="#tab4" data-toggle="tab" class="text-center">
+			   <i class="fa fa-cog"></i><br>Setting
+			  </a>
+			</li> 
+		  </ul>
+		</div>
+			
+		<!----------- Tab content ------------>	
+          <div class="tab-content col-sm-9" id="myTabContent">
+		  <!-- Add page-->
+           <div id="tab1" class="tab-pane fade active in">
+               <div class="panel panel-default">
+				  <div class="panel-heading">
+					<h4 class="panel-title">
+					  <a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion" href="#collapseOne1"><span class="fa fa-chevron-left"></span>
+						Pages 
+					  </a>
+					</h4>
+				  </div>
+				  <div id="collapseOne1" class="panel-collapse collapse in">
+					<div class="panel-body">
+						  <div class="list-group">
+							<a href="#" class="list-group-item"><i class="fa fa-bars"></i> Home</a>
+							<a href="#" class="list-group-item"><i class="fa fa-bars"></i> About</a>
+							<a href="#" class="list-group-item"> <i class="fa fa-bars"></i>Contact us</a>
+						  </div>
+                         <a href="#" class="sidebar-btn"> <i class="fa fa-plus"></i>Add Page</a>						  
+					 </div>
+				  </div>
+				</div>
+            </div>
+         <!-- Design Setting -->
+           <div id="tab2" class="tab-pane fade">
+			    <div class="panel panel-default">
+				  <div class="panel-heading">
+					<h4 class="panel-title">
+					  <a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion" href="#collapseFive">  <span class="fa fa-chevron-left"></span>
+						  Background
+					  </a>
+					</h4>
+				  </div>
+				  <div id="collapseFive" class="panel-collapse collapse in">
+					<div class="panel-body">
+					  <div class="palette-colors"><div class="palette-color inline-block" style="background:rgb(196,77,88)"></div><div class="palette-color inline-block" style="background:rgb(85,98,112)"></div><div class="palette-color inline-block" style="background:rgb(255,107,107)"></div><div class="palette-color inline-block" style="background:rgb(38,43,39)"></div><div class="palette-color inline-block" style="background:rgb(199,244,100)"></div></div>
+					
+						<div class="form-group">
+							<label class="control-label" for="example-colorpicker2">Background Color</label>
+								<div class="input-group input-colorpicker">
+									<input type="text" id="example-colorpicker2" name="example-colorpicker2" class="form-control">
+									<span class="input-group-addon"><i></i></span>
+								</div>
+							</div>
+							<div class="form-group">
+							<label class="control-label" for="example-colorpicker2">Background Image</label>
+								<div class="input-group input-colorpicker-rgba">
+									<input type="text" id="example-colorpicker4" name="example-colorpicker4" class="form-control">
+									<span class="input-group-addon"><i></i></span>
+								</div>
+							</div>         
+					 </div>
+				  </div>
+				</div>
+		    <!-- Font and Color Setting -->
+			   <div class="panel panel-default">
+				  <div class="panel-heading">
+					<h4 class="panel-title">
+					  <a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion" href="#collapseThree"><span class="fa fa-chevron-left"></span>
+						Font and Color 
+					  </a>
+					</h4>
+				  </div>
+				  <div id="collapseThree" class="panel-collapse collapse">
+					<div class="panel-body">
+						<div class="form-group">
+						   <label for="validate-text">Font</label>
+							<select id="example-select" name="example-select" class="form-control" size="1">
+								<option value="0">Arial</option>
+								<option value="1">Georgia</option>
+								<option value="2">Verdana</option>
+								<option value="3">Times New Roman</option>
+								<option value="0">Lucida Console</option>
+								<option value="1">Courier New</option>
+								<option value="2">Verdana</option>
+								<option value="3">Times New Roman</option>
+							</select>
+						 </div>
+                        <div class="form-group">
+						   <label for="validate-text">Font Size</label>
+							<select id="example-select" name="example-select" class="form-control" size="1">
+								<option value="0">0px</option>
+								<option value="1">1px</option>
+								<option value="2">2px</option>
+								<option value="3">4px</option>
+								<option value="0">6px</option>
+								<option value="1">8px</option>
+								<option value="2">10px</option>
+								<option value="3">12px</option>
+								<option value="0">14px</option>
+								<option value="1">16px</option>
+								<option value="2">22px</option>
+								<option value="3">30px</option>
+							</select>
+						 </div>     						 
+					 </div>
+				  </div>
+				</div>
+                   
+              </div>
+    
+             <!-------Add Tools------ -->
+                <div id="tab3" class="tab-pane fade">
+				
+                 <div class="panel panel-default">
+				  <div class="panel-heading">
+					<h4 class="panel-title">
+					  <a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion" href="#collapseThree2"><span class="fa fa-chevron-left"></span>
+						Media 
+					  </a>
+					</h4>
+				  </div>
+				  <div id="collapseThree2" class="panel-collapse collapse in">
+					<div class="panel-body">
+						  <div class="list-group">
+							<a href="#" class="list-group-item">Flash</a>
+							<a href="#" class="list-group-item">Mp3</a>
+							<a href="#" class="list-group-item">Video</a>
+						  </div>													
+					 </div>
+				  </div>
+				</div>
+				
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+					<h4 class="panel-title">
+					  <a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion" href="#collapseThree3"><span class="fa fa-chevron-left"></span>
+						Controls 
+					  </a>
+					</h4>
+				  </div>
+				  <div id="collapseThree3" class="panel-collapse collapse">
+					<div class="panel-body">
+						<div class='selectorField draggableField'><h1><span class="label label-default">Default</span></h1></div>
+						<div class='selectorField draggableField'><h2><span class="label label-primary">Primary</span></h2></div>
+						<div class='selectorField draggableField'><h3><span class="label label-success">Success</span></h3></div>
+						<div class='selectorField draggableField'><h4><span class="label label-info">Info</span></h4></div>
+						<div class='selectorField draggableField'><h5><span class="label label-warning">Warning</span></h5></div>
+						<div class='selectorField draggableField'><h6><span class="label label-danger">Danger</span></h6></div>    						 
+					 </div>
+				  </div>
+				</div>
+                </div>
+			  <!-------Setting------ -->	
+			   <div id="tab4" class="tab-pane fade">
+                 <div class="panel panel-default">
+				  <div class="panel-heading">
+					<h4 class="panel-title">
+					  <a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion" href="#collapseThree4"><span class="fa fa-chevron-left"></span>
+						Setting
+					  </a>
+					</h4>
+				  </div>
+				  <div id="collapseThree4" class="panel-collapse collapse in">
+					<div class="panel-body">
+						  Comming soon.....											
+					 </div>
+				  </div>
+				</div>
+               </div>
+        
+            </div>
+	
+	   </div>
+	  </div>
+    <!--------All Template------------------->			
+   <div class="col-md-9">
+         
+ 
+   </div>
+</div>		  
+
+<!-------Footer-------------------------------->
+<footer class="footer" id="footer-1">
+<div class="links-social">
+<div class="container-class container">
+<div class="links-social-inner">
+<div class="row">						
+	<div class="link-groups">
+		<div class="col-sm-3">
+			<div class="links">
+				<h3 class="title">ABOUT US</h3>
+				<p>We at Inzaana believe that we have this insatiable urge and capacity to 
+				  challenge the conventional, because unless we do so, we will cease to progress. We believe that whatever is "out there" can be and should be made better.</p>
+			</div>
+		</div><!-- /.col -->
+
+		<div class="col-sm-3">
+			<div class="links">
+				<h3 class="title">INFORMATION</h3>
+				<ul>
+					<li><a href="#"><i class="fa fa-angle-right"></i>About us</a></li>
+					<li><a href="#"><i class="fa fa-angle-right"></i>Template</a></li>
+					<li><a href="#"><i class="fa fa-angle-right"></i>Service</a></li>
+					<li><a href="#"><i class="fa fa-angle-right"></i>Template</a></li>
+					<li><a href="#"><i class="fa fa-angle-right"></i>Contact</a></li>
+				</ul>
+			</div>
+		</div><!-- /.col -->
+
+		<div class="col-sm-3">
+			<div class="links">
+				<h3 class="title">USEFUL LINKS</h3>
+                     <ul class="tags-cloud clearfix">
+							<li><a href="#">Website</a></li>
+							<li><a href="#">Template</a></li>
+							<li><a href="#">Html</a></li>
+							<li><a href="#">Bootstrap</a></li>
+							<li><a href="#">Css</a></li>
+						</ul>
+			</div>
+		</div><!-- /.col -->
+		
+		<div class="col-md-3">
+		<div class="social-newsletter">
+			<div class="social-links">
+				<h3 class="title">CONNECT WITH US</h3>
+				 <ul class="social list-unstyled bordered big">
+					<li><a href="#." class="facebook animations-on bounceIn" data-delay="100"><i class="fa fa-facebook"></i></a></li>
+					<li><a href="#." class="twitter animations-on bounceIn" data-delay="300"><i class="fa fa-twitter"></i></a></li>
+					<li><a href="#." class="googleplus animations-on bounceIn" data-delay="500"><i class="fa fa-google-plus"></i></a></li>
+					<li><a href="#." class="linkedin animations-on bounceIn" data-delay="700"><i class="fa fa-linkedin"></i></a></li>
+				</ul>
+			</div><!-- /.social-links -->
+
+			<div class="newsletter">
+				<h3 class="title">GET NEWSLETTER</h3>
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Email Address">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">Subscribe</button>
+					</span>
+				</div>
+			   </div>
+			  </div>
+			 </div>
+			 
+	   </div><!-- /.row -->
+   </div>
+  </div><!-- /.container -->
+</div>
+<div class="copyright"> <a href="#">Copyright 2015 Inzaana. All rights reserved.</div>
+</footer>	
+
+</div>
+<!--Scroll To Top--> 
+    <a href="#" class="hc_scrollup"><i class="fa fa-chevron-up"></i></a>
+<!--/Scroll To Top--> 
+
+<div id="control_edit_dialog" class="dialog">
+		<input id="dialog_input" type="text" placeholder="Edit here..."
+			style="width: 100%"></input>
+		<button id="dialog_btn_edit" style="width: 100%">Edit</button>
+		<button id="dialog_btn_delete" style="width: 100%">Delete</button>
+		<ol id="selectable">
+			<li class="ui-widget-content">Item 1</li>
+			<li class="ui-widget-content">Item 2</li>
+			<li class="ui-widget-content">Item 3</li>
+			<li class="ui-widget-content">Item 4</li>
+		</ol>
+
+	</div>
+
+</body>
+</html>
