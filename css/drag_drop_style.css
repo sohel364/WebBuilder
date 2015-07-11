@@ -78,42 +78,42 @@
 .ui-resizable-n {
 	cursor: n-resize;
 	width: 100%;
-	border: 1px solid #00ff00;
+	/* border: 0.1px solid #00ff00; */
 }
 .ui-resizable-s {
 	cursor: s-resize;
 	width: 100%;
-	border: 1px solid #00ff00;
+	/* border: 0.1px solid #00ff00; */
 }
 .ui-resizable-e {
 	cursor: e-resize;
 	width: 100%;
-	border: 1px solid #00ff00;
+	/* border: 0.1px solid #00ff00; */
 }
 .ui-resizable-w {
 	cursor: w-resize;
 	width: 100%;
-	border: 1px solid #00ff00;
+	border: 1.5px solid #00ff00;
 }
 .ui-resizable-se {
 	cursor: se-resize;
 	width: 100%;
-	border: 1px solid #00ff00;
+	/* border: 1px solid #00ff00; */
 }
 .ui-resizable-sw {
 	cursor: sw-resize;
 	width: 100%;
-	border: 1px solid #00ff00;
+	/* border: 1px solid #00ff00; */
 }
 .ui-resizable-nw {
 	cursor: nw-resize;
 	width: 100%;
-	border: 1px solid #00ff00;
+	/* border: 1px solid #00ff00; */
 }
 .ui-resizable-ne {
 	cursor: ne-resize;
 	width: 100%;
-	border: 1px solid #00ff00;
+	/* border: 1px solid #00ff00; */
 }
 
 /*------------------------------------------Resize Border End------------------------------------  */
