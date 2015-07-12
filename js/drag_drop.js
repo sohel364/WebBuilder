@@ -7,7 +7,7 @@
  */
 
 var _ctrl_index = 1001;
-var clicked_item = null;
+var clicked_dropped_item_id = null;
 var child_item = null;
 counter = 0;
 var pos;
@@ -88,33 +88,54 @@ $(function() {
 
 	$("#dialog_btn_delete").click(function() {
 		$("#control_edit_dialog").dialog("close");
-		$("#" + clicked_item).remove();
+		$("#" + clicked_dropped_item_id).remove();
 
 	});
 
 	$("#dialog_btn_edit").click(function() {
 		var text = $("#dialog_input").val();
-		child_item.html(text);
+
+		if (child_item.is("BUTTON")) {
+
+		} else if (child_item.is("textarea")) {
+			makeTextAreaEditable();
+		} else {
+		}
+
+		
+		
 		$("#control_edit_dialog").dialog("close");
 
 	});
+	
+	function makeTextAreaEditable(){
+		child_item.addClass("jqte-test");
+		child_item.jqte({"status" : true});
+	};
 
 	function droppedItemClickAction() {
-		clicked_item = $(this).attr("id");
-		child_item = $("#" + clicked_item + " :first");
-		child_item.resizable({
-			ghost : false,
-			animate : false,
-			autoHide : true,
-			distance : 0,
-			/* handles : "n, e, s, w, ne, se, sw, nw", */
-			alsoResize : "#" + clicked_item
-		/*
-		 * resize: function(){ $("#" +
-		 * clicked_item).css("height",child_item.height+"px"); $("#" +
-		 * clicked_item).css("width",child_item.width+"px"); }
-		 */
-		});
+		clicked_dropped_item_id = $(this).attr("id");
+		child_item = $("#" + clicked_dropped_item_id + " :first");
+		
+		if (child_item.is("BUTTON")) {
+
+		} else if (child_item.is("textarea")) {
+		} else {
+		}
+		
+//		child_item.resizable({
+//			ghost : false,
+//			animate : false,
+//			autoHide : true,
+//			distance : 0,
+//			/* handles : "n, e, s, w, ne, se, sw, nw", */
+//			alsoResize : "#" + clicked_dropped_item_id
+//		/*
+//		 * resize: function(){ $("#" +
+//		 * clicked_dropped_item_id).css("height",child_item.height+"px"); $("#" +
+//		 * clicked_dropped_item_id).css("width",child_item.width+"px"); }
+//		 */
+//		});
 
 		$("#control_edit_dialog").dialog({
 			dialogClass : "ui-dialog-titlebar-close",
@@ -137,13 +158,6 @@ $(function() {
 			},
 
 		});
-
-		if ($(this).is("BUTTON")) {
-
-		} else if ($(this).is("input")) {
-
-		} else {
-		}
 	}
 
 	/*

@@ -1,9 +1,9 @@
 {
     "controls": [
-        {"label1":{"name": "Label1", "html":"<div class='selectorField draggableField'><h1>Label1</h1></div>"}},
-        {"label2":{"name": "Label2", "html":"<div class='selectorField draggableField'><h2>Label2</h2></div>"}},
-        {"label3":{"name": "Label3", "html":"<div class='selectorField draggableField'><h3>Label3</h3></div>"}},
-        {"label4":{"name": "Label4", "html":"<div class='selectorField draggableField'><h4>Label4</h4></div>"}},
-        {"button":{"name": "Button", "html":"<div class='selectorField draggableField'><input class=\"control-component ui-draggable ui-draggable-handle\" type=\"button\" value=\"Add Button\"></input></div>"}}
+        {"button1":{"name": "Button1", "html":"<div class='selectorField draggableField'><button>Click Me</button></div>"}},
+        {"TextArea":{"name": "TextArea", "html":"<div class='selectorField draggableField'><textarea>Text Area</textarea></div>"}},
+        {"DropDown":{"name": "DropDown", "html":"<div class='selectorField draggableField'><select><option>Drop Down</option></select></div>"}},
+        {"DropDown":{"name": "DropDown", "html":"<div class='selectorField draggableField'><input type=\"radio\">Radio Button</input></div>"}},
+        {"label1":{"name": "Label1", "html":"<div class='selectorField draggableField'><h1>Title</h1></div>"}}
     ]
 }

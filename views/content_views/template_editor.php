@@ -42,15 +42,20 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 <link rel="stylesheet" type="text/css" href="<?php echo  $css?>" />
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+<link type="text/css" rel="stylesheet"
+	href="../../css/jquery-te-1.4.0.css">
+	<script type="text/javascript" src="../../js/jquery-te-1.4.0.min.js" charset="utf-8"></script>
+	
 
-<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"> -->
 
-<script src="../../js/drag_drop.js"></script>	
-	
-	
+
+<script src="../../js/drag_drop.js"></script>
+
+
 <style>
 #frame {
 	background: rgba(0, 0, 0, .1);
@@ -123,6 +128,30 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 		<div style="float: left;" class="tree">
 			<ul>
 
+			<li><span class="badge badge-important"><i class="icon-minus-sign"></i>
+								Controls</span>
+							<ul>
+                                                <?php include_once '../json_views/json_controls.php'; ?>
+                                                <!--
+			                        <li>
+				                        <a href=""><span><i class="icon-time"></i>
+                                                <label class="control-component">Label</label>
+                                        </a>
+			                        </li>
+			                        <li>
+				                        <a><span><i class="icon-time"></i>
+                                                <input class="control-component" type="button" value="Add Button"/>
+                                        </span> </a>
+			                        </li>
+			                        <li>
+				                        <a><span><i class="icon-time"></i>
+                                            <img class="control-component" src="../../images/loading.gif" width="100" height="100"   />
+                                        </span>
+                                        </a>
+			                        </li> -->
+							</ul></li>
+			
+			
 				<li><span><i class="icon-calendar"></i> Pages</span>
 					<ul>
 						<li><span class="badge badge-success"><i class="icon-minus-sign"></i>
@@ -177,28 +206,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 								<li><a href=""><span><i class="icon-time"></i> [+]</span> Video</a>
 								</li>
 							</ul></li>
-						<li><span class="badge badge-important"><i class="icon-minus-sign"></i>
-								Controls</span>
-							<ul>
-                                                <?php include_once '../json_views/json_controls.php'; ?>
-                                                <!--
-			                        <li>
-				                        <a href=""><span><i class="icon-time"></i>
-                                                <label class="control-component">Label</label>
-                                        </a>
-			                        </li>
-			                        <li>
-				                        <a><span><i class="icon-time"></i>
-                                                <input class="control-component" type="button" value="Add Button"/>
-                                        </span> </a>
-			                        </li>
-			                        <li>
-				                        <a><span><i class="icon-time"></i>
-                                            <img class="control-component" src="../../images/loading.gif" width="100" height="100"   />
-                                        </span>
-                                        </a>
-			                        </li> -->
-							</ul></li>
+						
 					</ul></li>
 
 			</ul>
