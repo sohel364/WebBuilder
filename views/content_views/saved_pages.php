@@ -94,6 +94,7 @@
                                                 <button type="submit" class="btn btn-primary">Edit</button>
                                                  <button type="submit" class="btn btn-primary">View</button>
                                         </div>
+                                       
                             </div>  
                         </div>        
                 </div>
