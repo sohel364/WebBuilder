@@ -384,6 +384,38 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 		</ol>
 
 	</div>
+	
+	<div id="editable_text"></div>
+	
+	
+	<!-- -------------------------------------- Control Templates ----------------------------------------------- -->
+	
+	<div id="text_box_template" class="text_template_non_editable" style="display: none">
+		<h1>Title. Edit me<br/></h1>
+		<p>I am a paragraph. Edit me. I am a paragraph. Edit me. I am a paragraph. Edit me.
+		 I am a paragraph. Edit me. I am a paragraph. Edit me. I am a paragraph. Edit me.
+		 I am a paragraph. Edit me. I am a paragraph. Edit me. I am a paragraph. Edit me. 
+		 I am a paragraph. Edit me. I am a paragraph. Edit me. I am a paragraph. Edit me.</p>
+		
+	</div>
+	
+	<div id="button_template" class="button_template_non_editable" style="display: none">
+		<button class="button_template_non_editable">Click Me</button>
+	</div>
+	
+	<div id="dropdown_template" class="drop_down_template_non_editable" style="display: none">
+		<select class="drop_down_template_non_editable">
+			<option value="Option1">Option 1</option>
+			<option value="Option2">Option 2</option>
+			<option value="Option3">Option 3</option>
+		</select>
+	</div>
+	
+	<div id="radiobutton_template" style="display: none; position: absolute; width: 200px">
+		<br>
+		<input class="radio_button_template_non_editable" type="radio" name="test">Radio Button 1<br/>
+		<input class="radio_button_template_non_editable" type="radio" name="test">Radio Button 2
+	</div>
 
 
 

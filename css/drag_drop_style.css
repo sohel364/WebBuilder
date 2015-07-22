@@ -32,7 +32,7 @@
 }
 
 .hoverDroppable {
-	border-radius: 25px;
+	border-radius: 5px;
 	background-color: lightgreen;
 }
 
@@ -49,7 +49,7 @@
 
 .draggableField:hover {
 	cursor: move;
-	border-radius: 25px;
+	border-radius: 5px;
 	background-color: #ccffcc;
 }
 
@@ -191,3 +191,54 @@ ul.tabs {
 }
 
 /* ---------------------------------------- End Tab View ---------------------------------------- */
+
+
+.editable_mode{
+	
+}
+
+.non_editable_mode {
+	
+}
+
+.text_template_non_editable {
+	height: 200px;
+	width: 400px;
+	position: absolute;
+}
+
+.text_template_editable {
+	border: 1px dotted #464c54;
+	position: absolute;
+}
+
+.button_template_non_editable {
+	height: 50px;
+	width: 200px;
+	position: absolute;
+	font-size: 20px;
+}
+
+.button_template_editable {
+	position: absolute;
+}
+
+.drop_down_template_non_editable {
+	height: 40px;
+	width: 200px;
+	position: absolute;
+}
+
+.drop_down_template_editable {
+	position: absolute;
+}
+
+.radio_button_template_non_editable {
+	height: 40px;
+	width: 200px;
+	position: absolute;
+}
+
+.radio_button_template_editable {
+	position: absolute;
+}

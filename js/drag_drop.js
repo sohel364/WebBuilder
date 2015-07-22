@@ -6,10 +6,9 @@
  * Global Variables
  */
 
-var _ctrl_index = 1001;
+var counter = 1001;
 var clicked_dropped_item_id = null;
 var child_item = null;
-counter = 0;
 var pos;
 
 var currentMousePos = {
@@ -20,8 +19,7 @@ var currentMousePos = {
 $(function() {
 
 	makeDraggable();
-	
-	
+
 	function makeDraggable() {
 		$(".selectorField").draggable({
 			cancel : null,
@@ -35,7 +33,6 @@ $(function() {
 		});
 	}
 
-
 	$(".droppedFields").mousemove(function(event) {
 		currentMousePos.x = event.pageX;
 		currentMousePos.y = event.pageY;
@@ -47,22 +44,36 @@ $(function() {
 		accept : ":not(.ui-sortable-helper)",
 		drop : function(event, ui) {
 			var droppable_id = ui.helper.attr('id');
-			if (droppable_id == null || droppable_id.search('dropped_') < 0) {
-				counter++;
-				var draggable = ui.helper;
-				draggable = draggable.clone();
+			var droppable_name = ui.helper.attr("name");
+			var draggable = null;
 
+			if (droppable_name == "button") {
+				draggable = $("#button_template");
+
+			} else if (droppable_name == "textarea") {
+				draggable = $("#text_box_template");
+
+			} else if (droppable_name == "dropdown") {
+				draggable = $("#dropdown_template");
+
+			} else if (droppable_name == "radiobutton") {
+				draggable = $("#radiobutton_template");
+
+			} else if (droppable_name == "header") {
+
+			}
+
+			if (droppable_id == null || droppable_id.search('dropped_') < 0) {
+
+				draggable = draggable.clone();
 				draggable.css('left', currentMousePos.x + 'px');
 				draggable.css('top', currentMousePos.y + 'px');
 
-				draggable.show(500);
-
 				draggable.removeClass("selectorField");
 				draggable.addClass("droppedFields");
-				draggable.addClass("editable");
 
-				draggable[0].id = "dropped_" + (_ctrl_index++);
-				draggable.appendTo(this);
+				draggable[0].id = droppable_name + "_dropped_" + (counter++);
+				draggable[0].name = droppable_name;
 
 				draggable.draggable({
 					containment : "parent",
@@ -73,11 +84,14 @@ $(function() {
 				makeDraggable();
 				draggable.click(droppedItemClickAction);
 
+				draggable.show(500);
+				draggable.appendTo(this);
+
+				var pos = draggable.position();
+				/* alert("position : " + pos.left + " : " + pos.top); */
 				/*
-				 * var pos = draggable.position(); alert("position : " +
-				 * pos.left + " : " + pos.top); draggable.click(function(){ var
-				 * pos = draggable.position(); alert("position : " + pos.left + " : " +
-				 * pos.top);
+				 * draggable.click(function() { var pos = draggable.position();
+				 * alert("position : " + pos.left + " : " + pos.top);
 				 * 
 				 * });
 				 */
@@ -85,6 +99,20 @@ $(function() {
 
 		}
 	});
+
+	function makeControlEditble() {
+		editable_control = $("#" + clicked_dropped_item_id);
+		editable_control.removeClass("text_template_non_editable");
+		editable_control.addClass("text_template_editable");
+		editable_control.draggable("disable");
+		editable_control.off("click");
+		editable_control.attr("contentEditable", true);
+
+	}
+
+	function makeControlNonEditable(control) {
+
+	}
 
 	$("#dialog_btn_delete").click(function() {
 		$("#control_edit_dialog").dialog("close");
@@ -95,6 +123,8 @@ $(function() {
 	$("#dialog_btn_edit").click(function() {
 		var text = $("#dialog_input").val();
 
+		makeControlEditble();
+
 		if (child_item.is("BUTTON")) {
 
 		} else if (child_item.is("textarea")) {
@@ -102,40 +132,41 @@ $(function() {
 		} else {
 		}
 
-		
-		
 		$("#control_edit_dialog").dialog("close");
 
 	});
-	
-	function makeTextAreaEditable(){
+
+	function makeTextAreaEditable() {
 		child_item.addClass("jqte-test");
-		child_item.jqte({"status" : true});
-	};
+		child_item.jqte({
+			"status" : true
+		});
+	}
 
 	function droppedItemClickAction() {
 		clicked_dropped_item_id = $(this).attr("id");
 		child_item = $("#" + clicked_dropped_item_id + " :first");
-		
+
 		if (child_item.is("BUTTON")) {
 
 		} else if (child_item.is("textarea")) {
 		} else {
 		}
-		
-//		child_item.resizable({
-//			ghost : false,
-//			animate : false,
-//			autoHide : true,
-//			distance : 0,
-//			/* handles : "n, e, s, w, ne, se, sw, nw", */
-//			alsoResize : "#" + clicked_dropped_item_id
-//		/*
-//		 * resize: function(){ $("#" +
-//		 * clicked_dropped_item_id).css("height",child_item.height+"px"); $("#" +
-//		 * clicked_dropped_item_id).css("width",child_item.width+"px"); }
-//		 */
-//		});
+
+		// child_item.resizable({
+		// ghost : false,
+		// animate : false,
+		// autoHide : true,
+		// distance : 0,
+		// /* handles : "n, e, s, w, ne, se, sw, nw", */
+		// alsoResize : "#" + clicked_dropped_item_id
+		// /*
+		// * resize: function(){ $("#" +
+		// * clicked_dropped_item_id).css("height",child_item.height+"px");
+		// $("#" +
+		// * clicked_dropped_item_id).css("width",child_item.width+"px"); }
+		// */
+		// });
 
 		$("#control_edit_dialog").dialog({
 			dialogClass : "ui-dialog-titlebar-close",
@@ -154,7 +185,7 @@ $(function() {
 			position : {
 				my : "left top",
 				at : "right bottom",
-				of : child_item
+				of : $(this)
 			},
 
 		});
