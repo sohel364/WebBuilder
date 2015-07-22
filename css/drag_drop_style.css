@@ -10,7 +10,7 @@
 	width: 1000px;
 	height: 500px;
 	border: 1px solid #000;
-	border-radius: 25px;
+	/* border-radius: 25px; */
 	float: right;
 	text-align: center;
 	/* margin: 20px */
@@ -27,13 +27,14 @@
 	margin: 20px
 }
 
-.activeDroppable {
+.activeDroppable { 
+	/* this class is for Droppable Area  */
 	background-color: #eeffee;
 }
 
 .hoverDroppable {
-	border-radius: 5px;
-	background-color: lightgreen;
+	/* border-radius: 5px; */
+	/* background-color: lightgreen; */
 }
 
 .draggableField {
@@ -49,7 +50,7 @@
 
 .draggableField:hover {
 	cursor: move;
-	border-radius: 5px;
+	/* border-radius: 5px; */
 	background-color: #ccffcc;
 }
 
@@ -211,6 +212,18 @@ ul.tabs {
 	border: 1px dotted #464c54;
 	position: absolute;
 }
+
+.title_template_non_editable {
+	height: 70px;
+	width: 250px;
+	position: absolute;
+}
+
+.title_template_editable {
+	border: 1px dotted #464c54;
+	position: absolute;
+}
+
 
 .button_template_non_editable {
 	height: 50px;

@@ -399,6 +399,10 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 		
 	</div>
 	
+	<div id="title_template" class="title_template_non_editable" style="display: none">
+		<h1>Title. Edit me<br/></h1>
+	</div>
+	
 	<div id="button_template" class="button_template_non_editable" style="display: none">
 		<button class="button_template_non_editable">Click Me</button>
 	</div>
