@@ -60,7 +60,7 @@ $(function() {
 				draggable = $("#radiobutton_template");
 
 			} else if (droppable_name == "header") {
-
+				draggable = $("#title_template");
 			}
 
 			if (droppable_id == null || droppable_id.search('dropped_') < 0) {
