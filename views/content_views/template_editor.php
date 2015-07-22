@@ -44,8 +44,9 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
 <link type="text/css" rel="stylesheet"
 	href="../../css/jquery-te-1.4.0.css">
-	<script type="text/javascript" src="../../js/jquery-te-1.4.0.min.js" charset="utf-8"></script>
-	
+	<script type="text/javascript" src="../../js/jquery-te-1.4.0.min.js"
+		charset="utf-8"></script>
+
 
 	<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
@@ -53,10 +54,10 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"> -->
 
 
-<script src="../../js/drag_drop.js"></script>
+	<script src="../../js/drag_drop.js"></script>
 
 
-<style>
+	<style>
 #frame {
 	background: rgba(0, 0, 0, .1);
 	float: left;
@@ -94,8 +95,6 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 }
 </style>
 
-
-
 </head>
 
 
@@ -128,9 +127,9 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 		<div style="float: left;" class="tree">
 			<ul>
 
-			<li><span class="badge badge-important"><i class="icon-minus-sign"></i>
-								Controls</span>
-							<ul>
+				<li><span class="badge badge-important"><i class="icon-minus-sign"></i>
+						Controls</span>
+					<ul>
                                                 <?php include_once '../json_views/json_controls.php'; ?>
                                                 <!--
 			                        <li>
@@ -149,9 +148,9 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
                                         </span>
                                         </a>
 			                        </li> -->
-							</ul></li>
-			
-			
+					</ul></li>
+
+
 				<li><span><i class="icon-calendar"></i> Pages</span>
 					<ul>
 						<li><span class="badge badge-success"><i class="icon-minus-sign"></i>
@@ -206,7 +205,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 								<li><a href=""><span><i class="icon-time"></i> [+]</span> Video</a>
 								</li>
 							</ul></li>
-						
+
 					</ul></li>
 
 			</ul>
@@ -384,41 +383,68 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 		</ol>
 
 	</div>
-	
+
 	<div id="editable_text"></div>
-	
-	
+
+
 	<!-- -------------------------------------- Control Templates ----------------------------------------------- -->
-	
-	<div id="text_box_template" class="text_template_non_editable" style="display: none">
-		<h1>Title. Edit me<br/></h1>
-		<p>I am a paragraph. Edit me. I am a paragraph. Edit me. I am a paragraph. Edit me.
-		 I am a paragraph. Edit me. I am a paragraph. Edit me. I am a paragraph. Edit me.
-		 I am a paragraph. Edit me. I am a paragraph. Edit me. I am a paragraph. Edit me. 
-		 I am a paragraph. Edit me. I am a paragraph. Edit me. I am a paragraph. Edit me.</p>
-		
+
+	<div id="text_box_template" class="text_template_non_editable"
+		style="display: none">
+		<h1>
+			Title. Edit me<br />
+		</h1>
+		<p>I am a paragraph. Edit me. I am a paragraph. Edit me. I am a
+			paragraph. Edit me. I am a paragraph. Edit me. I am a paragraph. Edit
+			me. I am a paragraph. Edit me. I am a paragraph. Edit me. I am a
+			paragraph. Edit me. I am a paragraph. Edit me. I am a paragraph. Edit
+			me. I am a paragraph. Edit me. I am a paragraph. Edit me.</p>
+
 	</div>
-	
-	<div id="title_template" class="title_template_non_editable" style="display: none">
-		<h1>Title. Edit me<br/></h1>
+
+	<div id="title_template" class="title_template_non_editable"
+		style="display: none">
+		<h1>
+			Title. Edit me<br />
+		</h1>
 	</div>
-	
-	<div id="button_template" class="button_template_non_editable" style="display: none">
+
+	<div id="button_template" class="button_template_non_editable"
+		style="display: none">
 		<button class="button_template_non_editable">Click Me</button>
 	</div>
-	
-	<div id="dropdown_template" class="drop_down_template_non_editable" style="display: none">
+
+	<div id="dropdown_template" class="drop_down_template_non_editable"
+		style="display: none">
 		<select class="drop_down_template_non_editable">
 			<option value="Option1">Option 1</option>
 			<option value="Option2">Option 2</option>
 			<option value="Option3">Option 3</option>
 		</select>
 	</div>
-	
-	<div id="radiobutton_template" style="display: none; position: absolute; width: 200px">
-		<br>
-		<input class="radio_button_template_non_editable" type="radio" name="test">Radio Button 1<br/>
-		<input class="radio_button_template_non_editable" type="radio" name="test">Radio Button 2
+
+	<div id="radiobutton_template"
+		style="display: none; position: absolute; width: 200px">
+
+		<input id="option1" type="radio" name="opt"> </input>
+		<label for="option1">Option 1</label>
+		
+		<br/>
+		
+		<input id="option2" type="radio" name="opt"> </input>
+		<label for="option2">Option 2</label>
+
+		<!-- <table>
+			<tr>
+				<td><input type="radio" name="opt"></td>
+				<td>Option 1</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="opt"></td>
+				<td>Option 2</td>
+			</tr>
+		</table> -->
+
 	</div>
 
 
