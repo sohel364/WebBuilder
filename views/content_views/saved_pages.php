@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Web Builder</title>
 
-        <script type="text/javascript" src="./js/main.js"></script>
+        <script type="text/javascript" src="../../js/main.js"></script>
 
 
         <!-- Bootstrap -->
@@ -18,120 +18,7 @@
     <body>
         <div class="container">
             <?php include_once '../master_views/topper_view.php'; ?>
-
-            <!--sign up/registration code start-->
-            <div class="modal fade bs-modal-sm" style="padding-top: 150px;" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <br>
-                        <div class="bs-example bs-example-tabs">
-                            <ul id="myTab" class="nav nav-tabs">
-                                <li class="active"><a href="#signin" data-toggle="tab">Sign In</a></li>
-                                <li class=""><a href="#signup" data-toggle="tab">Register</a></li>
-                            </ul>
-                        </div>
-                        <div class="modal-body">
-                            <div id="myTabContent" class="tab-content">
-
-                                <div class="tab-pane fade active in" id="signin">
-                                    <form class="form-horizontal" action=""> <!--onsubmit="#"-->
-                                        <fieldset>
-                                            <!-- Sign In Form -->
-                                            <!-- Text input-->
-                                            <div class="control-group">
-
-                                                <div class="controls control-label">
-                                                    <input required="" id="userid" name="userid" type="text" class="form-control" placeholder="User Name Or Email" class="input-medium" required="">
-                                                </div>
-                                            </div>
-
-                                            <!-- Password input-->
-                                            <div class="control-group">
-
-                                                <div class="controls control-label">
-                                                    <input required="" id="passwordinput" name="passwordinput" class="form-control" type="password" placeholder="*********************" class="input-medium">
-                                                </div>
-                                            </div>
-
-                                            <!-- Multiple Checkboxes (inline) -->
-                                            <div class="control-group">
-                                                <div class="controls">
-                                                    <label class="checkbox inline" style="padding-left:20px;" for="rememberme-0">
-                                                        <input type="checkbox" name="rememberme" id="rememberme-0" value="Remember me">
-                                                        Remember me
-                                                    </label>
-                                                </div>
-                                            </div>
-
-                                            <!-- Button -->
-                                            <div class="control-group">
-                                                <label class="control-label" for="confirmsignup"></label>
-                                                <div class="controls">
-                                                    <button id="signin" name="signin" class="btn btn-success" onclick="SignIn()" >Sign In</button>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </form>
-                                </div>
-
-                                <div class="tab-pane fade" id="signup">
-                                    <form class="form-horizontal" action="" onsubmit="SignUp()">
-                                        <fieldset>
-                                            <!-- Sign Up Form -->
-                                            <!-- Text input-->
-                                            <div class="control-group">
-                                                <div class="controls control-label">
-                                                    <input id="Email" name="Email" class="form-control" type="text" placeholder="Name@domain.com" class="input-large" required="">
-                                                </div>
-                                            </div>
-
-                                            <!-- Text input-->
-                                            <div class="control-group">
-                                                <div class="controls control-label">
-                                                    <input id="userid_reg" name="userid_reg" class="form-control" type="text" placeholder="User Name" class="input-large" required="">
-                                                </div>
-                                            </div>
-
-                                            <!-- Password input-->
-                                            <div class="control-group">
-                                                <div class="controls control-label">
-                                                    <input id="password_reg" name="password_reg" class="form-control" type="password" placeholder="Enter Password" class="input-large" required="">
-                                                </div>
-                                            </div>
-
-                                            <!-- Text input-->
-                                            <div class="control-group">
-                                                <div class="controls control-label">
-                                                    <input id="reenterpassword" class="form-control" name="reenterpassword" type="password" placeholder="Re-enter Password" class="input-large" required="">
-                                                </div>
-                                            </div>
-
-
-                                            <!-- Button -->
-                                            <div class="control-group">
-                                                <label class="control-label" for="confirmsignup"></label>
-                                                <div class="controls">
-                                                    <button id="confirmsignup" name="confirmsignup" class="btn btn-success">Sign Up</button>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <center>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </center>
-                        </div>
-                    </div>
-                </div>
-            </div> <!--modal-->
-            <!--sign up/registration code end-->
-
-
-
+            
             <div class="row" style="padding-top:60px;">
                 <div class="col-sm-3" style="  padding-right: 0px;">
                     <div class="panel-group" style="padding-top:0px;" id="accordion">
@@ -196,8 +83,23 @@
 
                 <div id="user_template_list" style="padding-left: 350px;padding-top: 20px">
                     <h3>Saved Templates</h3>
-                    <?php include_once '../../manager/content_manager/user_template_list.php'; ?>
+                    
+                        <div style="float:left;background-color:#f5f5f5;border-radius: 5px;border-radius: 5px;margin-right:13px; color:#5fcf80" class="col-sm-2">
+                            <div class="thumbnail">
+                                        <img src="../../images/test.png">
+                                        <div class="caption" id="caption-half-down">
+                                                Name of the template				
+                                        </div>
+                                        <div class="caption" id="caption-half-up">
+                                                <button type="submit" class="btn btn-primary">Edit</button>
+                                                 <button type="submit" class="btn btn-primary">View</button>
+                                        </div>
+                            </div>  
+                        </div>        
                 </div>
+                
+                <?php// include_once '../../manager/content_manager/user_template_list.php'; ?>
+                
             </div>
 
             <br/>		
