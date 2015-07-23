@@ -73,7 +73,6 @@ $(function() {
 				draggable.addClass("droppedFields");
 
 				draggable[0].id = droppable_name + "_dropped_" + (counter++);
-				draggable[0].name = droppable_name;
 
 				draggable.draggable({
 					containment : "parent",
@@ -100,13 +99,27 @@ $(function() {
 		}
 	});
 
-	function makeControlEditble() {
+	function showEditPanel() {
 		editable_control = $("#" + clicked_dropped_item_id);
-		editable_control.removeClass("text_template_non_editable");
-		editable_control.addClass("text_template_editable");
-		editable_control.draggable("disable");
-		editable_control.off("click");
-		editable_control.attr("contentEditable", true);
+
+		if (clicked_dropped_item_id.search('button') == 0) {
+			alert("button : " + clicked_dropped_item_id);
+		} else if (clicked_dropped_item_id.search('textarea') == 0) {
+			alert("textarea : " + clicked_dropped_item_id);
+		} else if (clicked_dropped_item_id.search('dropdown') == 0) {
+			alert("dropdown : " + clicked_dropped_item_id);
+		} else if (clicked_dropped_item_id.search('radiobutton') == 0) {
+			alert("radiobutton : " + clicked_dropped_item_id);
+		} else if (clicked_dropped_item_id.search('header') == 0) {
+			alert("header : " + clicked_dropped_item_id);
+		}
+
+		/*
+		 * editable_control.removeClass("text_template_non_editable");
+		 * editable_control.addClass("text_template_editable");
+		 * editable_control.draggable("disable"); editable_control.off("click");
+		 * editable_control.attr("contentEditable", true);
+		 */
 
 	}
 
@@ -117,23 +130,20 @@ $(function() {
 	$("#dialog_btn_delete").click(function() {
 		$("#control_edit_dialog").dialog("close");
 		$("#" + clicked_dropped_item_id).remove();
-
 	});
 
 	$("#dialog_btn_edit").click(function() {
-		var text = $("#dialog_input").val();
-
-		makeControlEditble();
-
-		if (child_item.is("BUTTON")) {
-
-		} else if (child_item.is("textarea")) {
-			makeTextAreaEditable();
-		} else {
-		}
-
+		showEditPanel();
 		$("#control_edit_dialog").dialog("close");
+	});
 
+	$("#dialog_btn_resize").click(function() {
+		alert("Resize Under Implementation");
+		$("#control_edit_dialog").dialog("close");
+	});
+
+	$("#dialog_btn_cancel").click(function() {
+		$("#control_edit_dialog").dialog("close");
 	});
 
 	function makeTextAreaEditable() {
@@ -146,11 +156,18 @@ $(function() {
 	function droppedItemClickAction() {
 		clicked_dropped_item_id = $(this).attr("id");
 		child_item = $("#" + clicked_dropped_item_id + " :first");
+		var title = "";
 
-		if (child_item.is("BUTTON")) {
-
-		} else if (child_item.is("textarea")) {
-		} else {
+		if (clicked_dropped_item_id.search('button') == 0) {
+			title = "BUTTON ...";
+		} else if (clicked_dropped_item_id.search('textarea') == 0) {
+			title = "TEXT ...";
+		} else if (clicked_dropped_item_id.search('dropdown') == 0) {
+			title = "DROP DOWN ...";
+		} else if (clicked_dropped_item_id.search('radiobutton') == 0) {
+			title = "RADIO BUTTON ...";
+		} else if (clicked_dropped_item_id.search('header') == 0) {
+			title = "HEADER ...";
 		}
 
 		// child_item.resizable({
@@ -169,10 +186,11 @@ $(function() {
 		// });
 
 		$("#control_edit_dialog").dialog({
-			dialogClass : "ui-dialog-titlebar-close",
+			dialogClass : "no-close",
 			resizable : false,
 			closeOnEscape : true,
-			title : "Edit Component",
+			title : title,
+			width : 200,
 			show : {
 				effect : "slide",
 				duration : 200,
@@ -189,6 +207,16 @@ $(function() {
 			},
 
 		});
+
+		/*var mouse_click = 0;
+		$("#control_edit_dialog").bind("clickoutside", function(event) {
+			if (mouse_click > 0) {
+				$("#control_edit_dialog").dialog("close");
+				mouse_click = 0;
+			} else {
+				mouse_click = 1;
+			}
+		});*/
 	}
 
 	/*
