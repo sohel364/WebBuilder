@@ -8,8 +8,10 @@ class Template {
     private $_user_id;
     private $_template_url; 
     private $_template_res_url;
+    private $_template_name;
 
-    
+
+
     public function setID($value) {
         $this->_id = $value;
     }
@@ -47,7 +49,15 @@ class Template {
     }
 
     public function getTemplateResUrl() {
-        $this->_template_res_url;
+        return $this->_template_res_url;
+    }
+    
+    public function setTemplateName($value) {
+        $this->_template_name = $value;
+    }
+
+    public function getTemplateName() {
+        return $this->_template_name;
     }
 
     public function __construct() {

@@ -85,7 +85,8 @@ CREATE TABLE IF NOT EXISTS `template` (
   `template_id` varchar(255) NOT NULL,
   `user_id` varchar(255) NOT NULL,
   `template_url` varchar(255) DEFAULT NULL,
-  `template_res_url` varchar(255) DEFAULT NULL
+  `template_res_url` varchar(255) DEFAULT NULL,
+  `saved_name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

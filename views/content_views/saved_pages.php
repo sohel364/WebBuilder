@@ -83,20 +83,54 @@
 
                 <div id="user_template_list" style="padding-left: 350px;padding-top: 20px">
                     <h3>Saved Templates</h3>
-                    
-                        <div style="float:left;background-color:#f5f5f5;border-radius: 5px;border-radius: 5px;margin-right:13px; color:#5fcf80" class="col-sm-2">
-                            <div class="thumbnail">
-                                        <img src="../../images/test.png">
-                                        <div class="caption" id="caption-half-down">
-                                                Name of the template				
-                                        </div>
-                                        <div class="caption" id="caption-half-up">
-                                                <button type="submit" class="btn btn-primary">Edit</button>
-                                                 <button type="submit" class="btn btn-primary">View</button>
-                                        </div>
-                                       
-                            </div>  
-                        </div>        
+                    <?php 
+                    require_once '../../manager/content_manager/template_manager.php';
+                    require_once '../../objects/ObjTemplate.php';
+                        $user_id = NULL;
+                        if (isset($_SESSION['username'])) {
+                            $user_id = $_SESSION['username'];
+                        }
+                        if ($user_id == NULL || count($user_id) <= 0) {
+                            $user_id = 'userId';
+                        }
+                        $templateManager = new TemplateManager();
+                        $templateList = $templateManager->loadUserTemplates($user_id);
+                        if($templateList == NULL || count($templateList) <= 0) {
+                            echo 'There is no tamplates found';
+                        } else {
+                            //echo count($templateList);
+                            foreach ($templateList as $template) {
+                                if($template != null) {
+                    ?>
+                                    <div style="float:left;background-color:#f5f5f5;border-radius: 5px;border-radius: 5px;margin-right:10px; color:#5fcf80; width: 23%; margin-top: 10px" class="col-sm-2">
+                                            <div class="thumbnail">
+                                                        <img src="../../images/screen_shot_template_black.png">
+                                                        <div class="caption" id="caption-half-down">
+                                                            <?php
+                                                                $name = $template->getTemplateName();
+                                                                if($name == NULL) {
+                                                                    $name = 'Name NULL';
+                                                                }
+                                                                if($name == NULL || count($name) <= 0) {
+                                                                    $name = $template->getTemplateID();
+                                                                } 
+                                                                echo $name;
+                                                            ?>
+                                                                <!--Name of the template-->				
+                                                        </div>
+                                                        <div class="caption" id="caption-half-up">
+                                                                <button type="submit" class="btn btn-primary">Edit</button>
+                                                                 <button type="submit" class="btn btn-primary">View</button>
+                                                        </div>
+
+                                            </div>  
+                                        </div>     
+                    <?php
+                                }
+                            }
+                        }
+                    ?>
+                           
                 </div>
                 
                 <?php// include_once '../../manager/content_manager/user_template_list.php'; ?>

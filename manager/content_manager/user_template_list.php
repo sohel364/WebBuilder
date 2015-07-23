@@ -27,9 +27,19 @@ try {
     
     //echo json_encode($retArray);
     $index = 1;
+    
+    $objTemplateArray = array();
     foreach ($retArray as $row) {
         if($row != null) {
-            echo '<a href="http://localhost/WebBuilder/views/user_views/user_template_viewer.php?category=uncategorized&template=Black&templateid='.$row['template_id'].'">'.$index.'.&nbsp;&nbsp;'.$row['template_id'].'</a><br/>';
+            //echo '<a href="http://localhost/WebBuilder/views/user_views/user_template_viewer.php?category=uncategorized&template=Black&templateid='.$row['template_id'].'">'.$index.'.&nbsp;&nbsp;'.$row['template_id'].'</a><br/>';
+            $templateObject = new Template();
+            $templateObject->setID($row['id']);
+            $templateObject->setTemplateID($row['template_id']);
+            $templateObject->setUserID($row['user_id']);
+            $templateObject->setTemplateUrl($row['template_url']);
+            $templateObject->setTemplateResUrl($row['template_res_url']);
+            $templateObject->setTemplateName($row['saved_name']);
+            $objTemplateArray[] = $templateObject;
         }
         $index++;
     }
