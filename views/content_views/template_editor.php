@@ -55,6 +55,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 
 
 	<script src="../../js/drag_drop.js"></script>
+	<script src="../../js/outside-click.js"></script>
 
 
 	<style>
@@ -82,6 +83,13 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 .edit_option  table  tr, th, td {
 	padding: 2px;
 	border: 1px solid white;
+}
+
+.control_dialog {
+	position: absolute;
+	background: url("../../images/img-noise-361x370.png");
+	border-radius: 7px;
+	border: 1px solid silver;
 }
 
 .edit_option td:nth-child(even) {
@@ -371,20 +379,18 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 
 
 	<div id="control_edit_dialog" class="dialog">
-		<input id="dialog_input" type="text" placeholder="Edit here..."
-			style="width: 100%"></input>
-		<button id="dialog_btn_edit" style="width: 100%">Edit</button>
-		<button id="dialog_btn_delete" style="width: 100%">Delete</button>
-		<ol id="selectable">
+		<button id="dialog_btn_edit" class="btn dialog_btn " style="width: 100%"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>		
+		<button id="dialog_btn_resize" class="btn dialog_btn" style="width: 100%"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span> Resize</button>
+		<button id="dialog_btn_delete" class="btn dialog_btn" style="width: 100%"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+		<button id="dialog_btn_cancel" class="btn dialog_btn" style="width: 100%"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel</button>
+		<!-- <ol id="selectable">
 			<li class="ui-widget-content">Item 1</li>
 			<li class="ui-widget-content">Item 2</li>
 			<li class="ui-widget-content">Item 3</li>
 			<li class="ui-widget-content">Item 4</li>
-		</ol>
+		</ol> -->
 
 	</div>
-
-	<div id="editable_text"></div>
 
 
 	<!-- -------------------------------------- Control Templates ----------------------------------------------- -->

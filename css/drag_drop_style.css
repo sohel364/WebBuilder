@@ -60,7 +60,25 @@
 	z-index: 1000000 !important ;
 }
 
+.ui-dialog, .ui-dialog-content{
+    border-radius: 5px;
+    background: white;
+}
 
+.ui-dialog-titlebar {
+	background: #10a5f5;
+	height: 35px;
+}
+
+.ui-dialog-titlebar-close {
+	display: none;
+}
+
+.dialog_btn {
+	background: white;
+	border-bottom: 1px solid #c0c0c0;
+	height: 30px;
+}
 
 /*-------------------------------------------------Resize Border--------------------------------------------  */
 
