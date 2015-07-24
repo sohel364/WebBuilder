@@ -25,6 +25,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/bootstrap-dialog.js"></script>
 <script src="../../js/jquery-ui.min.js"></script>
+<script src="../../js/spectrum.js"></script>
 
 
 <script type="text/javascript">
@@ -38,6 +39,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 <link href="../../css/bootstrap-dialog.css" rel="stylesheet" />
 <link href="../../css/jquery-ui.min.css" rel="stylesheet" />
 <link href="../../css/drag_drop_style.css" rel="stylesheet" />
+<link href="../../css/spectrum.css" rel="stylesheet" />
 
 <link rel="stylesheet" type="text/css" href="<?php echo  $css?>" />
 <link rel="stylesheet"
@@ -100,6 +102,19 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 .color {
 	height: 30px;
 	width: 30px;
+}
+
+.color_picker_container {
+	background: white;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px #888888;
+}
+
+.color_picker_icon {
+	background: white;
+	border: .5px solid lightgrey;
+	border-radius: 7px;
+	width: 100%;
 }
 </style>
 
@@ -378,11 +393,27 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 	<!-- Option Menu End -->
 
 
-	<div id="control_edit_dialog" class="dialog">
-		<button id="dialog_btn_edit" class="btn dialog_btn " style="width: 100%"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>		
-		<button id="dialog_btn_resize" class="btn dialog_btn" style="width: 100%"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span> Resize</button>
-		<button id="dialog_btn_delete" class="btn dialog_btn" style="width: 100%"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-		<button id="dialog_btn_cancel" class="btn dialog_btn" style="width: 100%"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancel</button>
+	<div id="control_option_dialog" class="dialog">
+		<button id="dialog_btn_edit" class="btn dialog_btn "
+			style="width: 100%">
+			<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+			Edit
+		</button>
+		<button id="dialog_btn_resize" class="btn dialog_btn"
+			style="width: 100%">
+			<span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>
+			Resize
+		</button>
+		<button id="dialog_btn_delete" class="btn dialog_btn"
+			style="width: 100%">
+			<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+			Delete
+		</button>
+		<button id="dialog_btn_cancel" class="btn dialog_btn"
+			style="width: 100%">
+			<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+			Cancel
+		</button>
 		<!-- <ol id="selectable">
 			<li class="ui-widget-content">Item 1</li>
 			<li class="ui-widget-content">Item 2</li>
@@ -391,6 +422,40 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 		</ol> -->
 
 	</div>
+
+	<div id="btn_edit_dialog" class="dialog">
+		<p style="font-weight: lighter; font-size: small;">Add Text and Link
+			to your Button. Chnage the style to make it look as you want</p>
+		<div
+			style="height: 150px; border: 1px solid lightgrey; border-radius: 8px; padding: 5px">
+			<p style="padding-top: 5px; font-weight: lighter; font-size: small;">Button
+				Text</p>
+			<input id="btn_text" type="text" placeholder="Click Me"
+				style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
+			
+			<p style="padding-top: 5px; font-weight: lighter; font-size: small">Link
+				To</p>
+			<input id="btn_link" type="text" name="btn_link"
+				placeholder="Fill in your URL"
+				style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
+		
+		</div>
+		<hr></hr>
+		<!-- <button id="btn_dialog_change_color" style="width: 100%; border-radius: 5px; background: #6cc8f9;"><font size= "4px" color= "white" weight="bold">Change Color</font></button>
+		 -->
+		<input type='text' id="color_picker"/>
+		<hr></hr>
+		<button id="btn_dialog_close"
+			style="border-radius: 5px; float: right; margin: 5px; background: white">
+			Close</button>
+		<button id="btn_dialog_save"
+			style="border-radius: 5px; float: right; margin: 5px; background: white">
+			Save</button>
+
+
+	</div>
+
+
 
 
 	<!-- -------------------------------------- Control Templates ----------------------------------------------- -->
@@ -432,13 +497,9 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 	<div id="radiobutton_template"
 		style="display: none; position: absolute; width: 200px">
 
-		<input id="option1" type="radio" name="opt"> </input>
-		<label for="option1">Option 1</label>
-		
-		<br/>
-		
-		<input id="option2" type="radio" name="opt"> </input>
-		<label for="option2">Option 2</label>
+		<input id="option1" type="radio" name="opt"> </input> <label
+			for="option1">Option 1</label> <br /> <input id="option2"
+			type="radio" name="opt"> </input> <label for="option2">Option 2</label>
 
 		<!-- <table>
 			<tr>
