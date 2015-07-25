@@ -109,10 +109,10 @@ $(function() {
 		
 		$("#btn_dialog_save").click(function(){
 			
-			/*var btn_txt = $("#btn_text").value();
-			child_item.css("text", btn_txt);*/
+			var btn_txt = $("#btn_text").val();
 			
-			alert("save " + btn_txt);
+			/*child_item.attr('value', btn_txt);*/
+			child_item.html(btn_txt);
 			$("#btn_edit_dialog").dialog("close");
 		});
 		
