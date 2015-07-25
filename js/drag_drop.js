@@ -103,8 +103,18 @@ $(function() {
 	function showButtonEditPanel() {
 		$("#btn_text").val('');
 		$("#btn_link").val('');
-		$("#btn_dialog_close").click(function(){
+		var old_btn_text = child_item.text();
+		var old_color = child_item.css('backgroundColor');
+		
+		
+		$("#btn_dialog_cancel").click(function(){
+			child_item.html(old_btn_text);
+			child_item.css("background", old_color);
 			$("#btn_edit_dialog").dialog("close");
+		});
+		
+		$("#btn_text").keyup(function(event){
+			child_item.html($("#btn_text").val());
 		});
 		
 		$("#btn_dialog_save").click(function(){

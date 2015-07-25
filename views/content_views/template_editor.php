@@ -445,9 +445,9 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 		 -->
 		<input type='text' id="color_picker"/>
 		<hr></hr>
-		<button id="btn_dialog_close"
+		<button id="btn_dialog_cancel"
 			style="border-radius: 5px; float: right; margin: 5px; background: white">
-			Close</button>
+			Cancel</button>
 		<button id="btn_dialog_save"
 			style="border-radius: 5px; float: right; margin: 5px; background: white">
 			Save</button>
