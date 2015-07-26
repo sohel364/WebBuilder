@@ -451,8 +451,26 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 		<button id="btn_dialog_save"
 			style="border-radius: 5px; float: right; margin: 5px; background: white">
 			Save</button>
-
-
+	</div>
+	
+	<div id="radio_btn_edit_dialog" class="dialog">
+		<p style="font-weight: lighter; font-size: small;">Add Radio Button Options.</p>
+		<div
+			style="height: 150px; border: 1px solid lightgrey; border-radius: 8px; padding: 5px">
+			<p style="padding-top: 5px; font-weight: lighter; font-size: small;">Radio Button
+				Options</p>
+			<textarea id="radio_btn_option_txt" value="Option 1\nOption2"
+				style="width: 100%; height: 90px; resize: none; border: .5px solid lightgrey; border-radius: 5px;"></textarea>
+		</div>
+		<hr></hr>
+		
+		<hr></hr>
+		<button id="radio_btn_dialog_cancel"
+			style="border-radius: 5px; float: right; margin: 5px; background: white">
+			Cancel</button>
+		<button id="radio_btn_dialog_save"
+			style="border-radius: 5px; float: right; margin: 5px; background: white">
+			Save</button>
 	</div>
 
 
@@ -497,9 +515,11 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 	<div id="radiobutton_template"
 		style="display: none; position: absolute; width: 200px">
 
-		<input id="option1" type="radio" name="opt"> </input> <label
-			for="option1">Option 1</label> <br /> <input id="option2"
-			type="radio" name="opt"> </input> <label for="option2">Option 2</label>
+		<!-- <input id="option_1" type="radio" value="radio_1">
+		<label for="option_1">Option 1</label>
+		<br /> 
+		<input id="option_2" type="radio" value="radio_2">
+		<label for="option_2">Option 2</label> -->
 
 		<!-- <table>
 			<tr>

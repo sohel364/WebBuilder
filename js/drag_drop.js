@@ -75,6 +75,10 @@ $(function() {
 
 				draggable[0].id = droppable_name + "_dropped_" + (counter++);
 
+				if (droppable_name == "radiobutton") {
+					createRadioButtonTemplate(draggable);
+				}
+
 				draggable.draggable({
 					containment : "parent",
 					cancel : null
@@ -99,33 +103,148 @@ $(function() {
 
 		}
 	});
-	
+
+	function createRadioButtonTemplate(control) {
+		control.empty();
+		control.append($('<input />', {
+			type : 'radio',
+			name : control.attr("id"),
+			id : control.attr("id") + 0,
+			value : control.attr("id")
+		}));
+		control.append($('<label />', {
+			'style' : "text-indent: 2em;",
+			'text' : "Option 1",
+			'for' : control.attr("id") + 0,
+		}));
+		control.append('<br />');
+		control.append($('<input />', {
+			type : 'radio',
+			name : control.attr("id"),
+			id : control.attr("id") + 1,
+			value : control.attr("id")
+		}));
+		control.append($('<label />', {
+			'style' : "text-indent: 2em;",
+			'text' : "Option 2",
+			'for' : control.attr("id") + 1,
+		}));
+	}
+	function showRadioButtonEditPanel() {
+
+		var count = 0;
+		var radio_btn_array = [];
+		var option_txt = "";
+
+		$("#" + editable_control.attr("id") + " :input").each(
+				function() {
+
+					var radio_id = $(this).attr("id");
+					var radio_name = $(this).attr("name");
+					var radio_txt = $('label[for=' + $(this).attr("id") + ']')
+							.text();
+
+					var radio_btn_info_array = [];
+					radio_btn_info_array["Id"] = radio_id;
+					radio_btn_info_array["Name"] = radio_name;
+					radio_btn_info_array["Text"] = radio_txt;
+
+					radio_btn_array[count++] = radio_btn_info_array;
+
+					console.log("Info For Radio Button : " + radio_id + " : "
+							+ radio_name + " : " + radio_txt);
+				});
+
+		$.each(radio_btn_array, function(index, value) {
+			option_txt += value.Text;
+			if (index != (radio_btn_array.length - 1)) {
+				option_txt += "\n";
+			}
+		});
+
+		$("#radio_btn_option_txt").val(option_txt);
+
+		$("#radio_btn_dialog_cancel").click(function() {
+			$("#radio_btn_edit_dialog").dialog("close");
+		});
+
+		$("#radio_btn_dialog_save").click(function() {
+
+			editable_control.empty();
+
+			var radio_options = $("#radio_btn_option_txt").val();
+			var new_radio_options = radio_options.split('\n');
+			
+			if (new_radio_options[new_radio_options - 1] == null) {
+				//To Do
+				//if extra new lines are detected
+			}
+			var final_radio_options = [];
+
+			$.each(new_radio_options, function(index, value) {
+				var final_radio = [];
+				final_radio["Id"] = editable_control.attr("id") + index;
+				final_radio["Name"] = editable_control.attr("id");
+				final_radio["Text"] = value;
+				final_radio_options[index] = final_radio;
+			});
+
+			$.each(final_radio_options, function() {
+
+				editable_control.append($('<input />', {
+					type : 'radio',
+					name : this.Name,
+					id : this.Id,
+					value : this.Id
+				}));
+				editable_control.append($('<label />', {
+					'style' : "text-indent: 2em;",
+					'text' : this.Text,
+					'for' : this.Id,
+				}));
+
+				editable_control.append('<br />');
+			});
+
+			$("#radio_btn_edit_dialog").dialog("close");
+		});
+
+		$("#radio_btn_edit_dialog").dialog({
+			dialogClass : "no-close",
+			resizable : false,
+			draggable : true,
+			closeOnEscape : true,
+			title : "Button Edit Panel",
+			width : 250,
+			show : {
+				effect : "slide",
+				duration : 200,
+				direction : "up"
+			},
+
+		});
+	}
+
 	function showButtonEditPanel() {
 		$("#btn_text").val('');
 		$("#btn_link").val('');
 		var old_btn_text = child_item.text();
 		var old_color = child_item.css('backgroundColor');
-		
-		
-		$("#btn_dialog_cancel").click(function(){
+
+		$("#btn_dialog_cancel").click(function() {
 			child_item.html(old_btn_text);
 			child_item.css("background", old_color);
 			$("#btn_edit_dialog").dialog("close");
 		});
-		
-		$("#btn_text").keyup(function(event){
+
+		$("#btn_text").keyup(function(event) {
 			child_item.html($("#btn_text").val());
 		});
-		
-		$("#btn_dialog_save").click(function(){
-			
-			var btn_txt = $("#btn_text").val();
-			
-			/*child_item.attr('value', btn_txt);*/
-			child_item.html(btn_txt);
+
+		$("#btn_dialog_save").click(function() {
 			$("#btn_edit_dialog").dialog("close");
 		});
-		
+
 		$("#btn_edit_dialog").dialog({
 			dialogClass : "no-close",
 			resizable : false,
@@ -237,8 +356,7 @@ $(function() {
 											"rgb(32, 18, 77)",
 											"rgb(76, 17, 48)" ] ]
 						});
-		
-		
+
 	}
 
 	function showEditPanel() {
@@ -252,7 +370,7 @@ $(function() {
 		} else if (clicked_dropped_item_id.search('dropdown') == 0) {
 			alert("dropdown : " + clicked_dropped_item_id);
 		} else if (clicked_dropped_item_id.search('radiobutton') == 0) {
-			alert("radiobutton : " + clicked_dropped_item_id);
+			showRadioButtonEditPanel();
 		} else if (clicked_dropped_item_id.search('header') == 0) {
 			alert("header : " + clicked_dropped_item_id);
 		}
@@ -298,6 +416,7 @@ $(function() {
 
 	function droppedItemClickAction() {
 		clicked_dropped_item_id = $(this).attr("id");
+
 		child_item = $("#" + clicked_dropped_item_id + " :first");
 		var title = "";
 
@@ -352,12 +471,34 @@ $(function() {
 
 		});
 
-		/*
-		 * var mouse_click = 0; $("#control_option_dialog").bind("clickoutside",
-		 * function(event) { if (mouse_click > 0) {
-		 * $("#control_option_dialog").dialog("close"); mouse_click = 0; } else {
-		 * mouse_click = 1; } });
-		 */
+		// addClickOutsideEvent($("#control_option_dialog"));
+		//		
+		// window.addEventListener('mouseup', function(event){
+		// var box = $("#control_option_dialog");
+		// if (event.target != box && event.target.parentNode != box){
+		// box.dialog("close");
+		// }
+		// });
+		//
+		// function addClickOutsideEvent(control) {
+		//			
+		//			
+		// var mouse_click = 0;
+		// control.bind("clickoutside", function(event) {
+		// if (control.dialog("isOpen")) {
+		// alert("open : " + mouse_click);
+		// if (mouse_click > 0) {
+		// control.dialog("close");
+		// mouse_click = 0;
+		// } else {
+		// mouse_click = 1;
+		// }
+		// }else{
+		// alert("closed : " + mouse_click);
+		// }
+		// });
+		// }
+
 	}
 
 	/*
