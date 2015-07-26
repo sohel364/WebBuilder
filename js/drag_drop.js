@@ -38,98 +38,105 @@ $(function() {
 		currentMousePos.y = event.pageY;
 	});
 
-	$(".droppedFields").droppable({
-		activeClass : "activeDroppable",
-		hoverClass : "hoverDroppable",
-		/* accept : ":not(.ui-sortable-helper #control_option_dialog)", */
-		accept : ".draggableField",
-		drop : function(event, ui) {
-			var droppable_id = ui.helper.attr('id');
-			var droppable_name = ui.helper.attr("name");
-			var draggable = null;
+	$(".droppedFields").droppable(
+			{
+				activeClass : "activeDroppable",
+				hoverClass : "hoverDroppable",
+				/* accept : ":not(.ui-sortable-helper #control_option_dialog)", */
+				accept : ".draggableField",
+				drop : function(event, ui) {
+					var droppable_id = ui.helper.attr('id');
+					var droppable_name = ui.helper.attr("name");
+					var draggable = null;
 
-			if (droppable_name == "button") {
-				draggable = $("#button_template");
+					if (droppable_name == "button") {
+						draggable = $("#button_template");
 
-			} else if (droppable_name == "textarea") {
-				draggable = $("#text_box_template");
+					} else if (droppable_name == "textarea") {
+						draggable = $("#text_box_template");
 
-			} else if (droppable_name == "dropdown") {
-				draggable = $("#dropdown_template");
+					} else if (droppable_name == "dropdown") {
+						draggable = $("#dropdown_template");
 
-			} else if (droppable_name == "radiobutton") {
-				draggable = $("#radiobutton_template");
+					} else if (droppable_name == "radiobutton") {
+						draggable = $("#radiobutton_template");
 
-			} else if (droppable_name == "header") {
-				draggable = $("#title_template");
-			}
+					} else if (droppable_name == "header") {
+						draggable = $("#title_template");
+					}
 
-			if (droppable_id == null || droppable_id.search('dropped_') < 0) {
+					if (droppable_id == null
+							|| droppable_id.search('dropped_') < 0) {
 
-				draggable = draggable.clone();
-				draggable.css('left', currentMousePos.x + 'px');
-				draggable.css('top', currentMousePos.y + 'px');
+						draggable = draggable.clone();
+						draggable.css('left', currentMousePos.x + 'px');
+						draggable.css('top', currentMousePos.y + 'px');
 
-				draggable.removeClass("selectorField");
-				draggable.addClass("droppedFields");
+						draggable.removeClass("selectorField");
+						draggable.addClass("droppedFields");
 
-				draggable[0].id = droppable_name + "_dropped_" + (counter++);
+						draggable[0].id = droppable_name + "_dropped_"
+								+ (counter++);
 
-				if (droppable_name == "radiobutton") {
-					createRadioButtonTemplate(draggable);
+						if (droppable_name == "radiobutton") {
+							var radio_btn_template_array = [ {
+								"Id" : (draggable.attr("id") + 0),
+								"Name" : draggable.attr("id"),
+								"Text" : "Option 1"
+							}, {
+								"Id" : (draggable.attr("id") + 1),
+								"Name" : draggable.attr("id"),
+								"Text" : "Option 2"
+							} ];
+							createRadioButtonTemplate(draggable,
+									radio_btn_template_array);
+						}
+
+						draggable.draggable({
+							containment : "parent",
+							cancel : null
+						});
+
+						/* draggable.resizable(); */
+						makeDraggable();
+						draggable.click(droppedItemClickAction);
+
+						draggable.show(500);
+						draggable.appendTo(this);
+
+						var pos = draggable.position();
+						/* alert("position : " + pos.left + " : " + pos.top); */
+						/*
+						 * draggable.click(function() { var pos =
+						 * draggable.position(); alert("position : " + pos.left + " : " +
+						 * pos.top);
+						 * 
+						 * });
+						 */
+					}
+
 				}
+			});
 
-				draggable.draggable({
-					containment : "parent",
-					cancel : null
-				});
+	function createRadioButtonTemplate(control, radio_btn_list) {
+		$.each(radio_btn_list, function() {
 
-				/* draggable.resizable(); */
-				makeDraggable();
-				draggable.click(droppedItemClickAction);
+			control.append($('<input />', {
+				type : 'radio',
+				name : this.Name,
+				id : this.Id,
+				value : this.Id
+			}));
+			control.append($('<label />', {
+				'style' : "text-indent: 2em;",
+				'text' : this.Text,
+				'for' : this.Id,
+			}));
 
-				draggable.show(500);
-				draggable.appendTo(this);
-
-				var pos = draggable.position();
-				/* alert("position : " + pos.left + " : " + pos.top); */
-				/*
-				 * draggable.click(function() { var pos = draggable.position();
-				 * alert("position : " + pos.left + " : " + pos.top);
-				 * 
-				 * });
-				 */
-			}
-
-		}
-	});
-
-	function createRadioButtonTemplate(control) {
-		control.empty();
-		control.append($('<input />', {
-			type : 'radio',
-			name : control.attr("id"),
-			id : control.attr("id") + 0,
-			value : control.attr("id")
-		}));
-		control.append($('<label />', {
-			'style' : "text-indent: 2em;",
-			'text' : "Option 1",
-			'for' : control.attr("id") + 0,
-		}));
-		control.append('<br />');
-		control.append($('<input />', {
-			type : 'radio',
-			name : control.attr("id"),
-			id : control.attr("id") + 1,
-			value : control.attr("id")
-		}));
-		control.append($('<label />', {
-			'style' : "text-indent: 2em;",
-			'text' : "Option 2",
-			'for' : control.attr("id") + 1,
-		}));
+			control.append('<br />');
+		});
 	}
+
 	function showRadioButtonEditPanel() {
 
 		var count = 0;
@@ -174,10 +181,10 @@ $(function() {
 
 			var radio_options = $("#radio_btn_option_txt").val();
 			var new_radio_options = radio_options.split('\n');
-			
+
 			if (new_radio_options[new_radio_options - 1] == null) {
-				//To Do
-				//if extra new lines are detected
+				// To Do
+				// if extra new lines are detected
 			}
 			var final_radio_options = [];
 
@@ -189,22 +196,7 @@ $(function() {
 				final_radio_options[index] = final_radio;
 			});
 
-			$.each(final_radio_options, function() {
-
-				editable_control.append($('<input />', {
-					type : 'radio',
-					name : this.Name,
-					id : this.Id,
-					value : this.Id
-				}));
-				editable_control.append($('<label />', {
-					'style' : "text-indent: 2em;",
-					'text' : this.Text,
-					'for' : this.Id,
-				}));
-
-				editable_control.append('<br />');
-			});
+			createRadioButtonTemplate(editable_control, final_radio_options);
 
 			$("#radio_btn_edit_dialog").dialog("close");
 		});
