@@ -58,8 +58,8 @@ error_reporting(E_ERROR);
 	float:left;
 	height: 100%;
 	width: 72%;
-	margin-left: 5px;
 	padding: 5px;
+        margin-left: 14%;
 }
 
 
@@ -107,113 +107,6 @@ error_reporting(E_ERROR);
     </style>
     <div id="showsaveicon"> </div>
     
-<div>
-	
-	<?php if($template=="Medical Practioner"){ include_once '../master_views/topper_view.php'; }?>
-</div>
-
-<div style="height: 25px;">
-    <a style="margin-right:118px;float: right;" class="btn btn-inverse" onclick="savePage();"><i class="icon-star"></i> Save</a>
-</div>
-
-	<div>
-	   	<div style="float: left;" class="tree">
-	    <ul>
-	
-	        <li>
-	            <span><i class="icon-calendar"></i> Pages</span>
-	            <ul style="display: none;">
-	                <li>
-	                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Already Added</span>
-	                    <ul id="ul_tree_menu_list" class="pages">
-	
-	                    </ul>
-	                </li>
-			    </ul>
-	        </li>
-	
-	        <li>
-	            <span><i class="icon-calendar"></i>Design Components</span>
-	            <ul style="display: none;">
-	                <li>
-	                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Background</span>
-	                    <ul id="ul_background_menu">
-	                        <li id="li_background_image">
-		                        <span><i class="icon-time"></i> [+]</span> <a id="bg_set" href="#"> &ndash; Images</a>
-	                        </li>
-	                        <li id="li_background_color">
-		                       <span><i class="icon-time"></i> [+]</span>  <a id="bg_set" href="#"> &ndash; Color</a>
-	                        </li>
-	                    </ul>
-	                </li>
-	                <li>
-	                	<span class="badge badge-success"><i class="icon-minus-sign"></i>Text Color</span>
-	                    <ul id="ul_text_color">
-<!--	                        <li>-->
-<!--		                        <span><i class="icon-time"></i> [+]</span> &ndash;-->
-<!--		                        <a id="bg_color" href="">Red</a>-->
-<!--	                        </li>-->
-<!--	                        <li>-->
-<!--		                        <span><i class="icon-time"></i> [+]</span> &ndash;-->
-<!--		                        <a id="bg_color" href="">Blue</a>-->
-<!--	                        </li>-->
-	                    </ul>
-	                </li>
-	                <li>
-	                	<span class="badge badge-warning"><i class="icon-minus-sign"></i> Font</span>
-	                    <ul id="ul_text_font">
-<!--	                        <li>-->
-<!--		                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Arial</a>-->
-<!--	                        </li>-->
-<!--	                        <li>-->
-<!--		                        <a href=""><span><i class="icon-time"></i> [+]</span> &ndash; Tahoma</a>-->
-<!--	                        </li>-->
-	                    </ul>
-	                </li>
-	            </ul>
-	        </li>
-	        <li>
-	            <span><i class="icon-calendar"></i> Add Tools</span>
-	                    <ul>
-			                <li>
-			                	<span class="badge badge-important"><i class="icon-minus-sign"></i> Media</span>
-			                    <ul>
-			                        <li>
-				                        <a href=""><span><i class="icon-time"></i> [+]</span> Flash</a>
-			                        </li>
-			                        <li>
-				                        <a href=""><span><i class="icon-time"></i> [+]</span> MP3</a>
-			                        </li>
-			                        <li>
-				                        <a href=""><span><i class="icon-time"></i> [+]</span> Video</a>
-			                        </li>
-			                    </ul>
-			                </li>
-			                <li>
-			                	<span class="badge badge-important"><i class="icon-minus-sign"></i> Controls</span>
-			                    <ul>
-			                        <li>
-				                        <a href=""><span><i class="icon-time"></i> [+]</span> Text</a>
-			                        </li>
-			                        <li>
-				                        <a><span><i class="icon-time"></i>
-
-                                        </span> </a>
-			                        </li>
-			                        <li>
-				                        <a><span><i class="icon-time"></i>
-                                            <img class="control-component" src="../../images/loading.gif" width="100" height="100"   />
-                                        </span>
-                                        </a>
-			                        </li>
-			                    </ul>
-			                </li>
-			    	</ul>
-	        </li>
-	
-	    </ul>
-	</div>
-
 		<!-- Template Elements  Here -->
 	<div id="frame" >
 		<div style="background: gray; margin-bottom: 10px;text-align: center; " > <?php include ($turl.'/title.html');?>	</div>
@@ -250,9 +143,6 @@ error_reporting(E_ERROR);
 				<?php include ($turl.'/footer.html');?>
 			</div>
 		</div>
-
-
-	</div>
 
 
 <!-- The option Menu -->
