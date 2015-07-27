@@ -62,7 +62,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 
 	<style>
 #frame {
-	background: rgba(0, 0, 0, .1);
+	background: white;
 	float: left;
 	height: 100%;
 	width: 72%;
@@ -235,11 +235,12 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 		</div>
 
 		<!-- Template Elements  Here -->
+
 		<div id="frame" class="droppedFields">
 			<div
-				style="background: gray; margin-bottom: 10px; text-align: center;"> <?php include ($turl.'/title.html');?>	</div>
+				style="background: grey; margin-bottom: 10px; text-align: center;"> <?php include ($turl.'/title.html');?>	</div>
 			<div
-				style="background-color: white; box-shadow: 10px 10px 5px #888888;">
+				style="background-color: white;">
 
 				<div class="container">
 
@@ -266,16 +267,8 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 				</div>
 			</div>
 
-			<div id="body" contentEditable="true"><?php include ($turl.'/body.html');?></div>
+			<div id="body" contentEditable="false"><?php include ($turl.'/body.html');?></div>
 
-
-			<!-- 
-			<div class="droppedFields" id="div_droppable">
-				<h2 style="text-align: center; line-height: 450px; color: #dddddd">Drop
-					Here</h2>
-			</div>
-
- -->
 			<div id="footer">
 				<?php include ($turl.'/footer.html');?>
 			</div>
@@ -432,10 +425,9 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 				Text</p>
 			<input id="btn_text" type="text" placeholder="Click Me"
 				style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
-			
-			<p style="padding-top: 5px; font-weight: lighter; font-size: small">Link
-				To</p>
-			<input id="btn_link" type="text" name="btn_link"
+
+				<p style="padding-top: 5px; font-weight: lighter; font-size: small">Link
+					To</p> <input id="btn_link" type="text" name="btn_link"
 				placeholder="Fill in your URL"
 				style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
 		
@@ -443,7 +435,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 		<hr></hr>
 		<!-- <button id="btn_dialog_change_color" style="width: 100%; border-radius: 5px; background: #6cc8f9;"><font size= "4px" color= "white" weight="bold">Change Color</font></button>
 		 -->
-		<input type='text' id="color_picker"/>
+		<input type='text' id="color_picker" />
 		<hr></hr>
 		<button id="btn_dialog_cancel"
 			style="border-radius: 5px; float: right; margin: 5px; background: white">
@@ -452,18 +444,19 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 			style="border-radius: 5px; float: right; margin: 5px; background: white">
 			Save</button>
 	</div>
-	
+
 	<div id="radio_btn_edit_dialog" class="dialog">
-		<p style="font-weight: lighter; font-size: small;">Add Radio Button Options.</p>
+		<p style="font-weight: lighter; font-size: small;">Add Radio Button
+			Options.</p>
 		<div
 			style="height: 150px; border: 1px solid lightgrey; border-radius: 8px; padding: 5px">
-			<p style="padding-top: 5px; font-weight: lighter; font-size: small;">Radio Button
-				Options</p>
+			<p style="padding-top: 5px; font-weight: lighter; font-size: small;">Radio
+				Button Options</p>
 			<textarea id="radio_btn_option_txt" value="Option 1\nOption2"
 				style="width: 100%; height: 90px; resize: none; border: .5px solid lightgrey; border-radius: 5px;"></textarea>
 		</div>
 		<hr></hr>
-		
+
 		<hr></hr>
 		<button id="radio_btn_dialog_cancel"
 			style="border-radius: 5px; float: right; margin: 5px; background: white">

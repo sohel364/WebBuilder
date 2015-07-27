@@ -26,6 +26,8 @@ $(function() {
 			helper : "clone",
 			cursor : "move",
 			stack : "div",
+			revert : "invalid",
+			appendTo : $(".droppedFields"),
 			stop : function(event, ui) {
 				pos = $(ui.helper).offset();
 
@@ -67,7 +69,7 @@ $(function() {
 
 					if (droppable_id == null
 							|| droppable_id.search('dropped_') < 0) {
-
+						
 						draggable = draggable.clone();
 						draggable.css('left', currentMousePos.x + 'px');
 						draggable.css('top', currentMousePos.y + 'px');
@@ -94,8 +96,16 @@ $(function() {
 
 						draggable.draggable({
 							containment : "parent",
-							cancel : null
+							addClasses: true,
+							cancel : false,
 						});
+						
+//						draggable.mousedown(function(ev) {
+//							draggable.blur();
+//							draggable.draggable('enable');
+//							}).mouseup(function(ev) {
+//								draggable.draggable('disable');
+//							});
 
 						/* draggable.resizable(); */
 						makeDraggable();
@@ -104,6 +114,12 @@ $(function() {
 						draggable.show(500);
 						draggable.appendTo(this);
 
+//						draggable.bind("click.prevent");
+//						draggable.on( 'click', 'input', function () {    
+//						    $(this).focus();
+//						});
+//						draggable.selectable();
+						
 						var pos = draggable.position();
 						/* alert("position : " + pos.left + " : " + pos.top); */
 						/*
@@ -132,7 +148,6 @@ $(function() {
 				'text' : this.Text,
 				'for' : this.Id,
 			}));
-
 			control.append('<br />');
 		});
 	}
