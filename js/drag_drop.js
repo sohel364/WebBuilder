@@ -10,7 +10,8 @@ var counter = 1001;
 var clicked_dropped_item_id = null;
 var child_item = null;
 var pos;
-var allawable_control_array = ["button", "textarea", "radiobutton", "dropdown", "image"]
+var allawable_control_array = [ "button", "textarea", "radiobutton",
+		"dropdown", "image", "header"]
 
 var currentMousePos = {
 	x : -1,
@@ -19,46 +20,45 @@ var currentMousePos = {
 
 $(function() {
 
-	$("#body").find("*").each(function(){
+	makeDraggable();
+	
+	$("#body").find("*").each(function() {
 		var control_id = $(this).attr("id");
 		var control_name = $(this).attr("name");
-		
-		if (allawable_control_array.indexOf(control_name) > -1)
-		{
+
+		if (allawable_control_array.indexOf(control_name) > -1) {
 			console.log("Control Type : " + control_name);
 			$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
-			
+
 			$(this).draggable({
 				containment : $(".droppedFields"),
 				cancel : false,
 			});
-			
+
 			$(this).click(droppedItemClickAction);
 		}
 	});
 
-	
 	var indexOf = function(needle) {
-	    if(typeof Array.prototype.indexOf === 'function') {
-	        indexOf = Array.prototype.indexOf;
-	    } else {
-	        indexOf = function(needle) {
-	            var i = -1, index = -1;
+		if (typeof Array.prototype.indexOf === 'function') {
+			indexOf = Array.prototype.indexOf;
+		} else {
+			indexOf = function(needle) {
+				var i = -1, index = -1;
 
-	            for(i = 0; i < this.length; i++) {
-	                if(this[i] === needle) {
-	                    index = i;
-	                    break;
-	                }
-	            }
-	            return index;
-	        };
-	    }
-	    return indexOf.call(this, needle);
+				for (i = 0; i < this.length; i++) {
+					if (this[i] === needle) {
+						index = i;
+						break;
+					}
+				}
+				return index;
+			};
+		}
+		return indexOf.call(this, needle);
 	};
+
 	
-	
-	makeDraggable();
 
 	function makeDraggable() {
 		$(".selectorField").draggable({
@@ -105,11 +105,13 @@ $(function() {
 
 					} else if (droppable_name == "header") {
 						draggable = $("#title_template");
+					} else if (droppable_name == "image") {
+						draggable = $("#image_template");
 					}
 
 					if (droppable_id == null
 							|| droppable_id.search('dropped_') < 0) {
-						
+
 						draggable = draggable.clone();
 						draggable.css('left', currentMousePos.x + 'px');
 						draggable.css('top', currentMousePos.y + 'px');
@@ -139,26 +141,12 @@ $(function() {
 							cancel : false,
 						});
 						
-//						draggable.mousedown(function(ev) {
-//							draggable.blur();
-//							draggable.draggable('enable');
-//							}).mouseup(function(ev) {
-//								draggable.draggable('disable');
-//							});
-
-						/* draggable.resizable(); */
 						makeDraggable();
 						draggable.click(droppedItemClickAction);
 
 						draggable.show(500);
 						draggable.appendTo(this);
 
-//						draggable.bind("click.prevent");
-//						draggable.on( 'click', 'input', function () {    
-//						    $(this).focus();
-//						});
-//						draggable.selectable();
-						
 						var pos = draggable.position();
 						/* alert("position : " + pos.left + " : " + pos.top); */
 						/*
@@ -477,6 +465,8 @@ $(function() {
 			title = "RADIO BUTTON ...";
 		} else if (clicked_dropped_item_id.search('header') == 0) {
 			title = "HEADER ...";
+		} else if (clicked_dropped_item_id.search('image') == 0) {
+			title = "IMAGE ...";
 		}
 
 		// child_item.resizable({

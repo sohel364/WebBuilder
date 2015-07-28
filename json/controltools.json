@@ -2,6 +2,7 @@
     "controls": [
         {"button1":{"name": "Button1", "html":"<button name='button' class='selectorField draggableField'>Click Me</button>"}},
         {"TextArea":{"name": "TextArea", "html":"<textarea name='textarea' class='selectorField draggableField'>Text Area</textarea>"}},
+        {"Image":{"name": "Image", "html":"<div name='image' class='selectorField draggableField' style='height: 25px; width: 50px'>Image</div>"}},
         {"DropDown":{"name": "DropDown", "html":"<select name='dropdown' class='selectorField draggableField'><option>Drop Down</option></select>"}},
         {"DropDown":{"name": "DropDown", "html":"<div name='radiobutton' class='selectorField draggableField'><input type=\"radio\">Radio Button</input></div>"}},
         {"label1":{"name": "Label1", "html":"<h1 name='header' class='selectorField draggableField'>Title</h1>"}}

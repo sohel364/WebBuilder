@@ -249,6 +249,17 @@ ul.tabs {
 	position: absolute;
 }
 
+.image_template_non_editable{
+	height: 256px;
+	width: 256px;
+	position: absolute;
+}
+
+.image_template_editable{
+	border: 1px dotted #464c54;
+	position: absolute;
+}
+
 
 .button_template_non_editable {
 	height: 50px;

@@ -492,6 +492,11 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 			Title. Edit me<br />
 		</h1>
 	</div>
+	
+	<div id="image_template" class="image_template_non_editable"
+		style="display: none">
+		<img src="../../images/image_template.png" alt="Image Template"  class="image_template_non_editable"/>
+	</div>
 
 	<div id="button_template" class="button_template_non_editable"
 		style="display: none">
