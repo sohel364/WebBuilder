@@ -10,6 +10,7 @@ var counter = 1001;
 var clicked_dropped_item_id = null;
 var child_item = null;
 var pos;
+var allawable_control_array = ["button", "textarea", "radiobutton", "dropdown", "image"]
 
 var currentMousePos = {
 	x : -1,
@@ -19,21 +20,43 @@ var currentMousePos = {
 $(function() {
 
 	$("#body").find("*").each(function(){
-		console.log($(this).attr("id"));
-		console.log($(this).attr("name"));
 		var control_id = $(this).attr("id");
-		//$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
-		if (control_id != null)
+		var control_name = $(this).attr("name");
+		
+		if (allawable_control_array.indexOf(control_name) > -1)
 		{
-			//$(this).addClass("droppedFields");
+			console.log("Control Type : " + control_name);
 			$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
-			//draggable.click(droppedItemClickAction);
+			
 			$(this).draggable({
 				containment : $(".droppedFields"),
 				cancel : false,
 			});
+			
+			$(this).click(droppedItemClickAction);
 		}
 	});
+
+	
+	var indexOf = function(needle) {
+	    if(typeof Array.prototype.indexOf === 'function') {
+	        indexOf = Array.prototype.indexOf;
+	    } else {
+	        indexOf = function(needle) {
+	            var i = -1, index = -1;
+
+	            for(i = 0; i < this.length; i++) {
+	                if(this[i] === needle) {
+	                    index = i;
+	                    break;
+	                }
+	            }
+	            return index;
+	        };
+	    }
+	    return indexOf.call(this, needle);
+	};
+	
 	
 	makeDraggable();
 
