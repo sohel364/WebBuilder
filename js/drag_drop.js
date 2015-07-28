@@ -449,7 +449,7 @@ $(function() {
 			title = "TEXT ...";
 		} else if (clicked_dropped_item_id.search('dropdown') == 0) {
 			title = "DROP DOWN ...";
-			/*child_item.focus();*/
+			child_item.focus();
 		} else if (clicked_dropped_item_id.search('radiobutton') == 0) {
 			title = "RADIO BUTTON ...";
 		} else if (clicked_dropped_item_id.search('header') == 0) {
