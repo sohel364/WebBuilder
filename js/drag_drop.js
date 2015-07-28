@@ -18,6 +18,23 @@ var currentMousePos = {
 
 $(function() {
 
+	$("#body").find("*").each(function(){
+		console.log($(this).attr("id"));
+		console.log($(this).attr("name"));
+		var control_id = $(this).attr("id");
+		//$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
+		if (control_id != null)
+		{
+			//$(this).addClass("droppedFields");
+			$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
+			//draggable.click(droppedItemClickAction);
+			$(this).draggable({
+				containment : $(".droppedFields"),
+				cancel : false,
+			});
+		}
+	});
+	
 	makeDraggable();
 
 	function makeDraggable() {
@@ -96,7 +113,6 @@ $(function() {
 
 						draggable.draggable({
 							containment : "parent",
-							addClasses: true,
 							cancel : false,
 						});
 						
@@ -433,6 +449,7 @@ $(function() {
 			title = "TEXT ...";
 		} else if (clicked_dropped_item_id.search('dropdown') == 0) {
 			title = "DROP DOWN ...";
+			/*child_item.focus();*/
 		} else if (clicked_dropped_item_id.search('radiobutton') == 0) {
 			title = "RADIO BUTTON ...";
 		} else if (clicked_dropped_item_id.search('header') == 0) {

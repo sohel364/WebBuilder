@@ -239,8 +239,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 		<div id="frame" class="droppedFields">
 			<div
 				style="background: grey; margin-bottom: 10px; text-align: center;"> <?php include ($turl.'/title.html');?>	</div>
-			<div
-				style="background-color: white;">
+			<div style="background-color: white;">
 
 				<div class="container">
 
@@ -477,10 +476,13 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 			Title. Edit me<br />
 		</h1>
 		<p>I am a paragraph. Edit me. I am a paragraph. Edit me. I am a
-			paragraph. Edit me. I am a paragraph. Edit me. I am a paragraph. Edit
-			me. I am a paragraph. Edit me. I am a paragraph. Edit me. I am a
-			paragraph. Edit me. I am a paragraph. Edit me. I am a paragraph. Edit
-			me. I am a paragraph. Edit me. I am a paragraph. Edit me.</p>
+			paragraph. Edit me. I am a paragraph. Edit me.</p>
+		<br />
+		<p>I am a paragraph. Edit me. I am a paragraph. Edit me. I am a
+			paragraph. Edit me. I am a paragraph. Edit me. I am a paragraph.</p>
+		<br />
+		<p>Edit me. I am a paragraph. Edit me. I am a paragraph. Edit me. I am
+			a paragraph. Edit me.</p>
 
 	</div>
 
@@ -498,7 +500,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 
 	<div id="dropdown_template" class="drop_down_template_non_editable"
 		style="display: none">
-		<select class="drop_down_template_non_editable">
+		<select name="dropdown" class="drop_down_template_non_editable">
 			<option value="Option1">Option 1</option>
 			<option value="Option2">Option 2</option>
 			<option value="Option3">Option 3</option>
