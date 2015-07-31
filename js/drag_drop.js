@@ -11,7 +11,7 @@ var clicked_dropped_item_id = null;
 var child_item = null;
 var pos;
 var allawable_control_array = [ "button", "textarea", "radiobutton",
-		"dropdown", "image", "header"]
+		"dropdown", "image", "header" ]
 
 var currentMousePos = {
 	x : -1,
@@ -21,7 +21,7 @@ var currentMousePos = {
 $(function() {
 
 	makeDraggable();
-	
+
 	$("#body").find("*").each(function() {
 		var control_id = $(this).attr("id");
 		var control_name = $(this).attr("name");
@@ -57,8 +57,6 @@ $(function() {
 		}
 		return indexOf.call(this, needle);
 	};
-
-	
 
 	function makeDraggable() {
 		$(".selectorField").draggable({
@@ -140,7 +138,7 @@ $(function() {
 							containment : "parent",
 							cancel : false,
 						});
-						
+
 						makeDraggable();
 						draggable.click(droppedItemClickAction);
 
@@ -392,6 +390,30 @@ $(function() {
 						});
 
 	}
+	
+	function showTextEditPanel(){
+		
+		$("#text_edit_dialog").dialog({
+			dialogClass : "no-close",
+			resizable : false,
+			draggable : true,
+			closeOnEscape : true,
+			title : "Text Editor",
+			height : 90,
+			width : 500,
+			show : {
+				effect : "slide",
+				duration : 200,
+				direction : "up"
+			},
+			position : {
+				my : "center top",
+				at : "center top-100",
+				of : editable_control
+			},
+
+		});
+	}
 
 	function showEditPanel() {
 		editable_control = $("#" + clicked_dropped_item_id);
@@ -400,7 +422,8 @@ $(function() {
 			showButtonEditPanel();
 
 		} else if (clicked_dropped_item_id.search('textarea') == 0) {
-			alert("textarea : " + clicked_dropped_item_id);
+//			alert("textarea : " + clicked_dropped_item_id);
+			showTextEditPanel();
 		} else if (clicked_dropped_item_id.search('dropdown') == 0) {
 			alert("dropdown : " + clicked_dropped_item_id);
 		} else if (clicked_dropped_item_id.search('radiobutton') == 0) {
@@ -507,6 +530,11 @@ $(function() {
 			},
 
 		});
+
+//		$("#control_option_dialog").bind("clickoutside", function(event) {
+//			$("#control_option_dialog").dialog("close");
+//			$("#control_option_dialog").unbind("clickoutside");
+//		});
 
 		// addClickOutsideEvent($("#control_option_dialog"));
 		//		

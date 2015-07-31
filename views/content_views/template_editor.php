@@ -464,6 +464,25 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 			style="border-radius: 5px; float: right; margin: 5px; background: white">
 			Save</button>
 	</div>
+	
+	<div id="text_edit_dialog" class="dialog">
+		<select>
+			<option>Times New Roman</option>
+			<option>Arial</option>
+		</select>
+		<select>
+			<option>8</option>
+			<option>10</option>
+			<option>14</option>
+			<option>18</option>
+		</select>
+		<button><span class="glyphicon glyphicon-font" aria-hidden="true"></span></button>
+		<button><span class="glyphicon glyphicon-bold" aria-hidden="true"></span></button>
+		<button><span class="glyphicon glyphicon-italic" aria-hidden="true"></span></button>
+		<button><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></button>
+		<button><span class="glyphicon glyphicon-align-center" aria-hidden="true"></span></button>
+		<button><span class="glyphicon glyphicon-align-right" aria-hidden="true"></span></button>
+	</div>
 
 
 
