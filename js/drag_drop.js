@@ -455,11 +455,21 @@ $(function() {
 	
 	function makeControlEditable(control) {
 		control.addClass("editable_mode");
+		control.draggable("disable");
+		control.unbind("click", droppedItemClickAction);
+		if (clicked_dropped_item_id.search('textarea') == 0) {
+			control.prop('contenteditable', 'true');
+		}
 		
 	}
 
 	function makeControlNonEditable(control) {
 		control.removeClass("editable_mode");
+		control.draggable("enable");
+		control.click(droppedItemClickAction);
+		if (clicked_dropped_item_id.search('textarea') == 0) {
+			control.prop('contenteditable', 'false');
+		}
 	}
 
 	$("#dialog_btn_delete").click(function() {
