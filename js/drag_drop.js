@@ -9,6 +9,7 @@
 var counter = 1001;
 var clicked_dropped_item_id = null;
 var child_item = null;
+var editable_control = null;
 var pos;
 var allawable_control_array = [ "button", "textarea", "radiobutton",
 		"dropdown", "image", "header" ]
@@ -253,6 +254,9 @@ $(function() {
 				duration : 200,
 				direction : "up"
 			},
+			beforeClose: function( event, ui ) {
+				makeControlNonEditable(editable_control);
+			},
 
 		});
 	}
@@ -266,6 +270,7 @@ $(function() {
 		$("#btn_dialog_cancel").click(function() {
 			child_item.html(old_btn_text);
 			child_item.css("background", old_color);
+			
 			$("#btn_edit_dialog").dialog("close");
 		});
 
@@ -288,6 +293,9 @@ $(function() {
 				effect : "slide",
 				duration : 200,
 				direction : "up"
+			},
+			beforeClose: function( event, ui ) {
+				makeControlNonEditable(editable_control);
 			},
 		/*
 		 * hide : { effect : "slide", duration : 200 }, position : { my : "right
@@ -411,12 +419,16 @@ $(function() {
 				at : "center top-100",
 				of : editable_control
 			},
+			beforeClose: function( event, ui ) {
+				makeControlNonEditable(editable_control);
+			},
 
 		});
 	}
 
 	function showEditPanel() {
 		editable_control = $("#" + clicked_dropped_item_id);
+		makeControlEditable(editable_control);
 
 		if (clicked_dropped_item_id.search('button') == 0) {
 			showButtonEditPanel();
@@ -440,9 +452,14 @@ $(function() {
 		 */
 
 	}
+	
+	function makeControlEditable(control) {
+		control.addClass("editable_mode");
+		
+	}
 
 	function makeControlNonEditable(control) {
-
+		control.removeClass("editable_mode");
 	}
 
 	$("#dialog_btn_delete").click(function() {
