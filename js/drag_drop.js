@@ -403,6 +403,10 @@ $(function() {
 		
 		//$(".ui-dialog-titlebar-close").css("display", true);
 		
+		$("#btn_txt_editor_close").click(function(){
+			$("#text_edit_dialog").dialog("close");
+		});
+		
 		$("#text_edit_dialog").dialog({
 			dialogClass : "no-close",
 			resizable : false,

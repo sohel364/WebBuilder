@@ -294,3 +294,9 @@ ul.tabs {
 .radio_button_template_editable {
 	position: absolute;
 }
+
+.text_editor_component {
+	background: white;
+	height: 30px;
+	border-radius: 5px;
+}

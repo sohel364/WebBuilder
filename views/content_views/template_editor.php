@@ -466,32 +466,36 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 	</div>
 
 	<div id="text_edit_dialog" class="dialog">
-		<select>
+		<select class="text_editor_component">
 			<option>Times New Roman</option>
 			<option>Arial</option>
-		</select> <select>
+		</select> 
+		<select class="text_editor_component">
 			<option>8</option>
 			<option>10</option>
 			<option>14</option>
 			<option>18</option>
 		</select>
-		<button>
+		<button class="text_editor_component">
 			<span class="glyphicon glyphicon-font" aria-hidden="true"></span>
 		</button>
-		<button>
+		<button class="text_editor_component">
 			<span class="glyphicon glyphicon-bold" aria-hidden="true"></span>
 		</button>
-		<button>
+		<button class="text_editor_component">
 			<span class="glyphicon glyphicon-italic" aria-hidden="true"></span>
 		</button>
-		<button>
+		<button class="text_editor_component">
 			<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
 		</button>
-		<button>
+		<button class="text_editor_component">
 			<span class="glyphicon glyphicon-align-center" aria-hidden="true"></span>
 		</button>
-		<button>
+		<button class="text_editor_component">
 			<span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
+		</button>
+		<button id="btn_txt_editor_close" class="text_editor_component">
+			<span class=" 	glyphicon glyphicon-remove" aria-hidden="true"></span>
 		</button>
 	</div>
 
