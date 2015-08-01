@@ -26,6 +26,8 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 <script src="../../js/bootstrap-dialog.js"></script>
 <script src="../../js/jquery-ui.min.js"></script>
 <script src="../../js/spectrum.js"></script>
+<script src="../../js/jquery.iframe-transport.js"></script>
+<script src="../../js/jquery.fileupload.js"></script>
 
 
 <script type="text/javascript">
@@ -464,24 +466,84 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 			style="border-radius: 5px; float: right; margin: 5px; background: white">
 			Save</button>
 	</div>
-	
+
 	<div id="text_edit_dialog" class="dialog">
 		<select>
 			<option>Times New Roman</option>
 			<option>Arial</option>
-		</select>
-		<select>
+		</select> <select>
 			<option>8</option>
 			<option>10</option>
 			<option>14</option>
 			<option>18</option>
 		</select>
-		<button><span class="glyphicon glyphicon-font" aria-hidden="true"></span></button>
-		<button><span class="glyphicon glyphicon-bold" aria-hidden="true"></span></button>
-		<button><span class="glyphicon glyphicon-italic" aria-hidden="true"></span></button>
-		<button><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></button>
-		<button><span class="glyphicon glyphicon-align-center" aria-hidden="true"></span></button>
-		<button><span class="glyphicon glyphicon-align-right" aria-hidden="true"></span></button>
+		<button>
+			<span class="glyphicon glyphicon-font" aria-hidden="true"></span>
+		</button>
+		<button>
+			<span class="glyphicon glyphicon-bold" aria-hidden="true"></span>
+		</button>
+		<button>
+			<span class="glyphicon glyphicon-italic" aria-hidden="true"></span>
+		</button>
+		<button>
+			<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+		</button>
+		<button>
+			<span class="glyphicon glyphicon-align-center" aria-hidden="true"></span>
+		</button>
+		<button>
+			<span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
+		</button>
+	</div>
+
+	<div id="image_edit_dialog" class="dialog">
+		<p style="font-weight: lighter; font-size: small;">Add Images To your
+			Website. Make them stunning with dazzling Effects</p>
+		<div
+			style="height: 300px; border: 1px solid lightgrey; border-radius: 8px; padding: 5px">
+			<input id="file_picker" type="file" name="files[]" multiple style="display: none">
+		
+		
+			<button id="btn_browse_image" style="background: white">
+				<span class="glyphicon glyphicon-folder-open" aria-hidden="true">
+			</button>
+			<input id="dialog_input_image_path" type="text"
+				placeholder="Enter Image Path"
+				style="width: 80%; border: .5px solid lightgrey; border-radius: 5px;">
+			
+			 
+			<p style="padding-top: 5px; font-weight: lighter; font-size: small">Image
+				ALT :</p>
+			<input id="input_image_alt" type="text" placeholder="Enter Image ALT"
+				style=" width: 50%; border: .5px solid lightgrey; border-radius: 5px;">
+			
+				<p style="padding-top: 5px; font-weight: lighter; font-size: small">Height : </p>
+				<input id="input_image_height" type="text"
+				placeholder="Enter Image height in px"
+				style="width: 50%; border: .5px solid lightgrey; border-radius: 5px;">
+				<p style="padding-top: 5px; font-weight: lighter; font-size: small"> px</p>
+				
+				<p style="padding-top: 5px; font-weight: lighter; font-size: small">Width : </p>
+				<input id="input_image_width" type="text"
+				placeholder="Enter Image width in px"
+				style="width: 50%; border: .5px solid lightgrey; border-radius: 5px;">
+				<p style="padding-top: 5px; font-weight: lighter; font-size: small"> px</p>
+		
+		</div>
+		<hr></hr>
+		<button id="btn_image_effect_chooser"
+			style="width: 100%; border-radius: 5px; background: #6cc8f9;">
+			<font size="4px" color="white" weight="bold">Choose Effect</font>
+		</button>
+
+		<hr></hr>
+		<button id="btn_image_dialog_cancel"
+			style="border-radius: 5px; float: right; margin: 5px; background: white">
+			Cancel</button>
+		<button id="btn_imgage_dialog_save"
+			style="border-radius: 5px; float: right; margin: 5px; background: white">
+			Save</button>
 	</div>
 
 
@@ -511,11 +573,12 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 			Title. Edit me<br />
 		</h1>
 	</div>
+
 	
-	<div id="image_template" class="image_template_non_editable"
-		style="display: none">
-		<img src="../../images/image_template.png" alt="Image Template"  class="image_template_non_editable"/>
-	</div>
+		<img id="image_template" src="../../images/image_template.png" alt="Image Template"
+			class="image_template_non_editable" class="image_template_non_editable"
+		style="display: none"/>
+
 
 	<div id="button_template" class="button_template_non_editable"
 		style="display: none">

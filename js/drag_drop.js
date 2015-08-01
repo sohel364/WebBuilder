@@ -401,6 +401,8 @@ $(function() {
 	
 	function showTextEditPanel(){
 		
+		//$(".ui-dialog-titlebar-close").css("display", true);
+		
 		$("#text_edit_dialog").dialog({
 			dialogClass : "no-close",
 			resizable : false,
@@ -424,6 +426,66 @@ $(function() {
 			},
 
 		});
+		
+		
+		
+		
+		
+		//$("#text_edit_dialog").addClass("ui-dialog-titlebar-close");
+		
+		//var dialog_titlebar = this.uiDialog.find( ".ui-dialog-titlebar" );
+		
+	}
+	
+	function showImageEditPanel(){
+		
+		var old_image_path= editable_control.attr("src");
+		var old_image_height= "";
+		var old_image_width= "";
+		
+		$("#image_edit_dialog").dialog({
+			dialogClass : "no-close",
+			resizable : false,
+			draggable : true,
+			closeOnEscape : true,
+			title : "Image Editor",
+			width : 250,
+			show : {
+				effect : "slide",
+				duration : 200,
+				direction : "up"
+			},
+			
+			beforeClose: function( event, ui ) {
+				makeControlNonEditable(editable_control);
+			},
+
+		});
+		
+		$("#btn_browse_image").click(function(){
+			
+			$('#file_picker').change( function(event) {
+				var tmp_file_path = URL.createObjectURL(event.target.files[0]);
+				var file_name = document.getElementById('file_picker').value;
+				$("#dialog_input_image_path").val(file_name);
+				
+				
+				editable_control.attr("src", tmp_file_path);
+				    
+				});
+			
+			$("#file_picker").trigger("click");
+		});
+		
+		$("#btn_image_dialog_cancel").click(function() {
+			
+			editable_control.attr("src", old_image_path);
+			$("#image_edit_dialog").dialog("close");
+		});
+
+		$("#btn_imgage_dialog_save").click(function() {
+			$("#image_edit_dialog").dialog("close");
+		});
 	}
 
 	function showEditPanel() {
@@ -442,6 +504,8 @@ $(function() {
 			showRadioButtonEditPanel();
 		} else if (clicked_dropped_item_id.search('header') == 0) {
 			alert("header : " + clicked_dropped_item_id);
+		} else if (clicked_dropped_item_id.search('image') == 0) {
+			showImageEditPanel();
 		}
 
 		/*
