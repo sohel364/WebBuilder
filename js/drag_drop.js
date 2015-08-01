@@ -74,7 +74,7 @@ $(function() {
 		});
 	}
 
-	$("#frame").mousemove(function(event) {
+	$("#body").mousemove(function(event) {
 		currentMousePos.x = event.pageX;
 		currentMousePos.y = event.pageY;
 	});
