@@ -49,6 +49,9 @@ error_reporting(E_ERROR);
 	
 	<script src="../../js/drag_drop.js"></script>
 	<script src="../../js/outside-click.js"></script>
+	
+	<link href="../../css/drag_drop_style.css" rel="stylesheet" />
+	<link href="../../css/spectrum.css" rel="stylesheet" />
 
 	<link rel="stylesheet" type="text/css" href="<?php echo  $css?>"/>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
