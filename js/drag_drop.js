@@ -32,7 +32,7 @@ $(function() {
 			$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
 
 			$(this).draggable({
-				containment : $(".droppedFields"),
+				containment : $("#frame"),
 				cancel : false,
 			});
 
@@ -66,7 +66,7 @@ $(function() {
 			cursor : "move",
 			stack : "div",
 			revert : "invalid",
-			appendTo : $(".droppedFields"),
+			appendTo : $("#frame"),
 			stop : function(event, ui) {
 				pos = $(ui.helper).offset();
 
@@ -74,12 +74,12 @@ $(function() {
 		});
 	}
 
-	$(".droppedFields").mousemove(function(event) {
+	$("#frame").mousemove(function(event) {
 		currentMousePos.x = event.pageX;
 		currentMousePos.y = event.pageY;
 	});
 
-	$(".droppedFields").droppable(
+	$("#frame").droppable(
 			{
 				activeClass : "activeDroppable",
 				hoverClass : "hoverDroppable",
