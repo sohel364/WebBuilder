@@ -120,7 +120,7 @@
                                                         </div>
                                                         <div class="caption" id="caption-half-up">
                                                                 <button type="submit" class="btn btn-primary">Edit</button>
-                                                                <button type="submit" class="btn btn-primary" onclick="location.href='http://localhost/WebBuilder/views/user_views/user_template_viewer.php?category=uncategorized&template=Black&templateid=<?php echo $template->getTemplateID();?>'">View</button>
+                                                                <button type="submit" class="btn btn-primary" onclick="location.href='../user_views/user_template_viewer.php?category=uncategorized&template=Black&templateid=<?php echo $template->getTemplateID();?>'">View</button>
                                                         </div>
 
                                             </div>  
