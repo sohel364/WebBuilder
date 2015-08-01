@@ -76,7 +76,7 @@ class ContentPageManager {
     }
     
     public function loadUserTemplateListByUserId($objTemplate) {
-        $sqlContent = 'SELECT * FROM TEMPLATE WHERE user_id = \''.$objTemplate->getUserID().'\'';
+        $sqlContent = 'SELECT * FROM template WHERE user_id = \''.$objTemplate->getUserID().'\'';
 
         //'INSERT INTO `webbuilder`.`template` (`template_id`, `user_id`, `template_url`, `template_res_url`) VALUES (\'' . $objTemplate->getTemplateID() . '\',\'' . $objTemplate->getUserID() . '\',\'' . $objTemplate->getTemplateUrl() . '\',\'' . $objTemplate->getTemplateResUrl() . '\')';
         //return $sqlContent;
@@ -87,7 +87,7 @@ class ContentPageManager {
     }
     
     public function loadUserMenuByTemplateID($templateID) {
-        $sqlContent = 'SELECT * FROM MENU WHERE template_id = \''.$templateID.'\'';
+        $sqlContent = 'SELECT * FROM menu WHERE template_id = \''.$templateID.'\'';
 
         //'INSERT INTO `webbuilder`.`template` (`template_id`, `user_id`, `template_url`, `template_res_url`) VALUES (\'' . $objTemplate->getTemplateID() . '\',\'' . $objTemplate->getUserID() . '\',\'' . $objTemplate->getTemplateUrl() . '\',\'' . $objTemplate->getTemplateResUrl() . '\')';
         //return $sqlContent;
@@ -98,7 +98,7 @@ class ContentPageManager {
     }
     
     public function loadUserMenuContentByMenuID($menu_id) {
-        $sqlContent = 'SELECT * FROM CONTENT WHERE content_menu_id = \''.$menu_id.'\'';
+        $sqlContent = 'SELECT * FROM content WHERE content_menu_id = \''.$menu_id.'\'';
 
         //'INSERT INTO `webbuilder`.`template` (`template_id`, `user_id`, `template_url`, `template_res_url`) VALUES (\'' . $objTemplate->getTemplateID() . '\',\'' . $objTemplate->getUserID() . '\',\'' . $objTemplate->getTemplateUrl() . '\',\'' . $objTemplate->getTemplateResUrl() . '\')';
         //return $sqlContent;
