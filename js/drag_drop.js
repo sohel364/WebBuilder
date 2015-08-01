@@ -442,6 +442,7 @@ $(function() {
 		var old_image_path= editable_control.attr("src");
 		var old_image_height= "";
 		var old_image_width= "";
+		$("#dialog_input_image_path").val("");
 		
 		$("#image_edit_dialog").dialog({
 			dialogClass : "no-close",
@@ -487,6 +488,37 @@ $(function() {
 			$("#image_edit_dialog").dialog("close");
 		});
 	}
+	
+	
+function showDropDownEditPanel(){
+		
+		$("#dropdown_edit_dialog").dialog({
+			dialogClass : "no-close",
+			resizable : false,
+			draggable : true,
+			closeOnEscape : true,
+			title : "Drop Down Editor",
+			width : 250,
+			show : {
+				effect : "slide",
+				duration : 200,
+				direction : "up"
+			},
+			
+			beforeClose: function( event, ui ) {
+				makeControlNonEditable(editable_control);
+			},
+
+		});
+		
+		$("#btn_dropdown_dialog_cancel").click(function() {
+			$("#dropdown_edit_dialog").dialog("close");
+		});
+
+		$("#btn_dropdown_dialog_save").click(function() {
+			$("#dropdown_edit_dialogs").dialog("close");
+		});
+	}
 
 	function showEditPanel() {
 		editable_control = $("#" + clicked_dropped_item_id);
@@ -496,14 +528,13 @@ $(function() {
 			showButtonEditPanel();
 
 		} else if (clicked_dropped_item_id.search('textarea') == 0) {
-//			alert("textarea : " + clicked_dropped_item_id);
 			showTextEditPanel();
 		} else if (clicked_dropped_item_id.search('dropdown') == 0) {
-			alert("dropdown : " + clicked_dropped_item_id);
+			showDropDownEditPanel();
 		} else if (clicked_dropped_item_id.search('radiobutton') == 0) {
 			showRadioButtonEditPanel();
 		} else if (clicked_dropped_item_id.search('header') == 0) {
-			alert("header : " + clicked_dropped_item_id);
+			showTextEditPanel();
 		} else if (clicked_dropped_item_id.search('image') == 0) {
 			showImageEditPanel();
 		}

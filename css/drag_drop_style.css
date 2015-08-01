@@ -230,7 +230,8 @@ ul.tabs {
 }
 
 .text_template_non_editable {
-	height: 200px;
+	padding: 5px;
+	height: 400px;
 	width: 400px;
 	position: absolute;
 }

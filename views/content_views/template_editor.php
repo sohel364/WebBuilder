@@ -502,8 +502,8 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 			Website. Make them stunning with dazzling Effects</p>
 		<div
 			style="height: 300px; border: 1px solid lightgrey; border-radius: 8px; padding: 5px">
-			<input id="file_picker" type="file" name="files[]" multiple style="display: none">
-		
+			
+			<input id="file_picker" type="file" name="files[]" single style="display: none">
 		
 			<button id="btn_browse_image" style="background: white">
 				<span class="glyphicon glyphicon-folder-open" aria-hidden="true">
@@ -512,7 +512,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 				placeholder="Enter Image Path"
 				style="width: 80%; border: .5px solid lightgrey; border-radius: 5px;">
 			
-			 
+			<!-- 
 			<p style="padding-top: 5px; font-weight: lighter; font-size: small">Image
 				ALT :</p>
 			<input id="input_image_alt" type="text" placeholder="Enter Image ALT"
@@ -530,6 +530,8 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 				style="width: 50%; border: .5px solid lightgrey; border-radius: 5px;">
 				<p style="padding-top: 5px; font-weight: lighter; font-size: small"> px</p>
 		
+		 --> 
+		
 		</div>
 		<hr></hr>
 		<button id="btn_image_effect_chooser"
@@ -542,6 +544,25 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 			style="border-radius: 5px; float: right; margin: 5px; background: white">
 			Cancel</button>
 		<button id="btn_imgage_dialog_save"
+			style="border-radius: 5px; float: right; margin: 5px; background: white">
+			Save</button>
+	</div>
+	
+	
+	<div id="dropdown_edit_dialog" class="dialog">
+		<p style="font-weight: lighter; font-size: small;">Edit your Dropdown Menue, Add or Delete options</p>
+		<div
+			style="height: 300px; border: 1px solid lightgrey; border-radius: 8px; padding: 5px">
+		
+		</div>
+		<hr></hr>
+		</button>
+
+		<hr></hr>
+		<button id="btn_dropdown_dialog_cancel"
+			style="border-radius: 5px; float: right; margin: 5px; background: white">
+			Cancel</button>
+		<button id="btn_dropdown_dialog_save"
 			style="border-radius: 5px; float: right; margin: 5px; background: white">
 			Save</button>
 	</div>
