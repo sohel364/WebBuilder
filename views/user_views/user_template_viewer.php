@@ -46,6 +46,9 @@ error_reporting(E_ERROR);
   	<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="../../css/bootstrap-dialog.css" rel="stylesheet"/>
 	<link href="../../css/jquery-ui.min.css" rel="stylesheet"/>
+	
+	<script src="../../js/drag_drop.js"></script>
+	<script src="../../js/outside-click.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo  $css?>"/>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
