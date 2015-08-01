@@ -26,8 +26,6 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 <script src="../../js/bootstrap-dialog.js"></script>
 <script src="../../js/jquery-ui.min.js"></script>
 <script src="../../js/spectrum.js"></script>
-<script src="../../js/jquery.iframe-transport.js"></script>
-<script src="../../js/jquery.fileupload.js"></script>
 
 
 <script type="text/javascript">
@@ -608,7 +606,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 
 	<div id="dropdown_template" class="drop_down_template_non_editable"
 		style="display: none">
-		<select name="dropdown" class="drop_down_template_non_editable">
+		<select name="dropdown" class="drop_down_template_non_editable" >
 			<option value="Option1">Option 1</option>
 			<option value="Option2">Option 2</option>
 			<option value="Option3">Option 3</option>

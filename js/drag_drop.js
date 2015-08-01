@@ -566,6 +566,8 @@ function showDropDownEditPanel(){
 			control.prop('contenteditable', 'false');
 		}
 	}
+	
+	
 
 	$("#dialog_btn_delete").click(function() {
 		$("#control_option_dialog").dialog("close");
@@ -578,8 +580,24 @@ function showDropDownEditPanel(){
 	});
 
 	$("#dialog_btn_resize").click(function() {
-		alert("Resize Under Implementation");
 		$("#control_option_dialog").dialog("close");
+//		makeControlEditable(editable_control);
+//		
+//		editable_control.resizable({
+//		 ghost : false,
+//		 animate : false,
+//		 autoHide : true,
+//		 distance : 0,
+//		 /* handles : "n, e, s, w, ne, se, sw, nw", */
+////		 alsoResize : "#" + clicked_dropped_item_id
+//		 /*
+//		 * resize: function(){ $("#" +
+//		 * clicked_dropped_item_id).css("height",child_item.height+"px");
+//		 $("#" +
+//		 * clicked_dropped_item_id).css("width",child_item.width+"px"); }
+//		 */
+//		 });
+		
 	});
 
 	$("#dialog_btn_cancel").click(function() {
@@ -595,6 +613,7 @@ function showDropDownEditPanel(){
 
 	function droppedItemClickAction() {
 		clicked_dropped_item_id = $(this).attr("id");
+		editable_control = $(this);
 
 		child_item = $("#" + clicked_dropped_item_id + " :first");
 		var title = "";
