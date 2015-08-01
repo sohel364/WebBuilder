@@ -32,7 +32,7 @@ $(function() {
 			$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
 
 			$(this).draggable({
-				containment : $("#frame"),
+				containment : $("#body"),
 				cancel : false,
 			});
 
@@ -66,7 +66,7 @@ $(function() {
 			cursor : "move",
 			stack : "div",
 			revert : "invalid",
-			appendTo : $("#frame"),
+			appendTo : $("#body"),
 			stop : function(event, ui) {
 				pos = $(ui.helper).offset();
 
@@ -79,7 +79,7 @@ $(function() {
 		currentMousePos.y = event.pageY;
 	});
 
-	$("#frame").droppable(
+	$("#body").droppable(
 			{
 				activeClass : "activeDroppable",
 				hoverClass : "hoverDroppable",
@@ -556,7 +556,7 @@ function showDropDownEditPanel(){
 		control.addClass("editable_mode");
 		control.draggable("disable");
 		control.unbind("click", droppedItemClickAction);
-		if (clicked_dropped_item_id.search('textarea') == 0) {
+		if (clicked_dropped_item_id.search('textarea') == 0 || clicked_dropped_item_id.search('header') == 0) {
 			control.prop('contenteditable', 'true');
 		}
 		
@@ -566,7 +566,7 @@ function showDropDownEditPanel(){
 		control.removeClass("editable_mode");
 		control.draggable("enable");
 		control.click(droppedItemClickAction);
-		if (clicked_dropped_item_id.search('textarea') == 0) {
+		if (clicked_dropped_item_id.search('textarea') == 0 || clicked_dropped_item_id.search('header') == 0) {
 			control.prop('contenteditable', 'false');
 		}
 	}
