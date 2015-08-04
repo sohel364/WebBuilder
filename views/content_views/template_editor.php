@@ -469,8 +469,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 		<select class="text_editor_component">
 			<option>Times New Roman</option>
 			<option>Arial</option>
-		</select> 
-		<select class="text_editor_component">
+		</select> <select class="text_editor_component">
 			<option>8</option>
 			<option>10</option>
 			<option>14</option>
@@ -504,17 +503,18 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 			Website. Make them stunning with dazzling Effects</p>
 		<div
 			style="height: 300px; border: 1px solid lightgrey; border-radius: 8px; padding: 5px">
-			
-			<input id="file_picker" type="file" name="files[]" single style="display: none">
-		
-			<button id="btn_browse_image" style="background: white">
-				<span class="glyphicon glyphicon-folder-open" aria-hidden="true">
-			</button>
-			<input id="dialog_input_image_path" type="text"
+
+			<input id="file_picker" type="file" name="files[]" single
+				style="display: none">
+
+				<button id="btn_browse_image" style="background: white">
+					<span class="glyphicon glyphicon-folder-open" aria-hidden="true">
+				
+				</button> <input id="dialog_input_image_path" type="text"
 				placeholder="Enter Image Path"
 				style="width: 80%; border: .5px solid lightgrey; border-radius: 5px;">
-			
-			<!-- 
+
+					<!-- 
 			<p style="padding-top: 5px; font-weight: lighter; font-size: small">Image
 				ALT :</p>
 			<input id="input_image_alt" type="text" placeholder="Enter Image ALT"
@@ -532,7 +532,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 				style="width: 50%; border: .5px solid lightgrey; border-radius: 5px;">
 				<p style="padding-top: 5px; font-weight: lighter; font-size: small"> px</p>
 		
-		 --> 
+		 -->
 		
 		</div>
 		<hr></hr>
@@ -549,13 +549,14 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 			style="border-radius: 5px; float: right; margin: 5px; background: white">
 			Save</button>
 	</div>
-	
-	
+
+
 	<div id="dropdown_edit_dialog" class="dialog">
-		<p style="font-weight: lighter; font-size: small;">Edit your Dropdown Menue, Add or Delete options</p>
+		<p style="font-weight: lighter; font-size: small;">Edit your Dropdown
+			Menue, Add or Delete options</p>
 		<div
 			style="height: 300px; border: 1px solid lightgrey; border-radius: 8px; padding: 5px">
-		
+
 		</div>
 		<hr></hr>
 		</button>
@@ -597,20 +598,18 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 		</h1>
 	</div>
 
-	
-		<img id="image_template" src="../../images/image_template.png" alt="Image Template"
-			class="image_template_non_editable" class="image_template_non_editable"
-		style="display: none"/>
+
+	<img id="image_template" src="../../images/image_template.png"
+		alt="Image Template" class="image_template_non_editable"
+		class="image_template_non_editable" style="display: none" />
 
 
-	<div id="button_template" class="button_template_non_editable"
-		style="display: none">
-		<button class="button_template_non_editable">Click Me</button>
-	</div>
+	<button id="button_template" class="button_template_non_editable"
+		style="display: none">Click Me</button>
 
 	<div id="dropdown_template" class="drop_down_template_non_editable"
 		style="display: none">
-		<select name="dropdown" class="drop_down_template_non_editable" >
+		<select name="dropdown" class="drop_down_template_non_editable">
 			<option value="Option1">Option 1</option>
 			<option value="Option2">Option 2</option>
 			<option value="Option3">Option 3</option>

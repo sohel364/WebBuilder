@@ -261,16 +261,18 @@ $(function() {
 	}
 
 	function showButtonEditPanel() {
-		$("#btn_text").val('');
-		$("#btn_link").val('');
-		var old_btn_text = child_item.text();
-		var old_color = child_item.css('backgroundColor');
+		
+		var old_btn_text = editable_control.text();
+		var old_color = editable_control.css('backgroundColor');
 		var isSaved = false;
+		
+		$("#btn_text").val(old_btn_text);
+		$("#btn_link").val('');
 
 		function restoreInitialState() {
 			// If cancel button is pressed, this function will be called
-			child_item.html(old_btn_text);
-			child_item.css("background", old_color);
+			editable_control.html(old_btn_text);
+			editable_control.css("background", old_color);
 		}
 
 		$("#btn_dialog_cancel").click(function() {
@@ -278,7 +280,7 @@ $(function() {
 		});
 
 		$("#btn_text").keyup(function(event) {
-			child_item.html($("#btn_text").val());
+			editable_control.html($("#btn_text").val());
 		});
 
 		$("#btn_dialog_save").click(function() {
@@ -339,7 +341,7 @@ $(function() {
 							hide : function() {
 							},
 							change : function(color) {
-								child_item.css("background", color);
+								editable_control.css("background", color);
 							},
 							palette : [
 									[ "rgb(0, 0, 0)", "rgb(67, 67, 67)",
