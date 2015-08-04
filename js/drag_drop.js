@@ -525,6 +525,8 @@ function showDropDownEditPanel(){
 	}
 
 	function showEditPanel() {
+		
+		closeAllEditDialogPanel();	
 		editable_control = $("#" + clicked_dropped_item_id);
 		makeControlEditable(editable_control);
 
@@ -568,6 +570,29 @@ function showDropDownEditPanel(){
 		control.click(droppedItemClickAction);
 		if (clicked_dropped_item_id.search('textarea') == 0 || clicked_dropped_item_id.search('header') == 0) {
 			control.prop('contenteditable', 'false');
+		}
+	}
+	
+	function closeAllEditDialogPanel(){
+		if ($("#text_edit_dialog").dialog("instance") != undefined)
+		{
+			$("#text_edit_dialog").dialog("close");
+		}
+		if ($("#btn_edit_dialog").dialog("instance") != undefined)
+		{
+			$("#btn_edit_dialog").dialog("close");
+		}
+		if ($("#radio_btn_edit_dialog").dialog("instance") != undefined)
+		{
+			$("#radio_btn_edit_dialog").dialog("close");
+		}
+		if ($("#image_edit_dialog").dialog("instance") != undefined)
+		{
+			$("#image_edit_dialog").dialog("close");
+		}
+		if ($("#dropdown_edit_dialog").dialog("instance") != undefined)
+		{
+			$("#dropdown_edit_dialog").dialog("close");
 		}
 	}
 	
@@ -617,7 +642,7 @@ function showDropDownEditPanel(){
 
 	function droppedItemClickAction() {
 		clicked_dropped_item_id = $(this).attr("id");
-		editable_control = $(this);
+	//	editable_control = $(this);
 
 		child_item = $("#" + clicked_dropped_item_id + " :first");
 		var title = "";
