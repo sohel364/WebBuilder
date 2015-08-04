@@ -21,45 +21,29 @@ var currentMousePos = {
 
 $(function() {
 
-	makeDraggable();
+	makeControlsOfPaletteDraggable();
+	makeTemplateComponetsEditable();
 
-	$("#body").find("*").each(function() {
-		var control_id = $(this).attr("id");
-		var control_name = $(this).attr("name");
+	function makeTemplateComponetsEditable() {
+		$("#body").find("*").each(
+				function() {
+					var control_id = $(this).attr("id");
+					var control_name = $(this).attr("name");
 
-		if (allawable_control_array.indexOf(control_name) > -1) {
-			console.log("Control Type : " + control_name);
-			$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
+					if (allawable_control_array.indexOf(control_name) > -1) {
+						console.log("Control Type : " + control_name);
+						$(this).attr("id",
+								$(this).attr("name") + "_dropped" + counter++);
+						
+						makeDroppedControlsDraggable($(this));
 
-			$(this).draggable({
-				containment : $("#body"),
-				cancel : false,
-			});
-
-			$(this).click(droppedItemClickAction);
-		}
-	});
-
-	var indexOf = function(needle) {
-		if (typeof Array.prototype.indexOf === 'function') {
-			indexOf = Array.prototype.indexOf;
-		} else {
-			indexOf = function(needle) {
-				var i = -1, index = -1;
-
-				for (i = 0; i < this.length; i++) {
-					if (this[i] === needle) {
-						index = i;
-						break;
+						$(this).click(droppedItemClickAction);
 					}
-				}
-				return index;
-			};
-		}
-		return indexOf.call(this, needle);
-	};
+				});
+	}
 
-	function makeDraggable() {
+
+	function makeControlsOfPaletteDraggable() {
 		$(".selectorField").draggable({
 			cancel : null,
 			helper : "clone",
@@ -71,6 +55,14 @@ $(function() {
 				pos = $(ui.helper).offset();
 
 			}
+		});
+	}
+	
+	function makeDroppedControlsDraggable(control){
+		control.draggable({
+			containment : $("#body"),
+			cursor : "move",
+			cancel : false,
 		});
 	}
 
@@ -135,12 +127,9 @@ $(function() {
 									radio_btn_template_array);
 						}
 
-						draggable.draggable({
-							containment : "parent",
-							cancel : false,
-						});
-
-						makeDraggable();
+						makeDroppedControlsDraggable(draggable);						
+						makeControlsOfPaletteDraggable();
+						
 						draggable.click(droppedItemClickAction);
 
 						draggable.show(500);
@@ -735,6 +724,25 @@ function showDropDownEditPanel(){
 		// }
 
 	}
+	
+	var indexOf = function(needle) {
+		if (typeof Array.prototype.indexOf === 'function') {
+			indexOf = Array.prototype.indexOf;
+		} else {
+			indexOf = function(needle) {
+				var i = -1, index = -1;
+
+				for (i = 0; i < this.length; i++) {
+					if (this[i] === needle) {
+						index = i;
+						break;
+					}
+				}
+				return index;
+			};
+		}
+		return indexOf.call(this, needle);
+	};
 
 	/*
 	 * $("#frame").find("*").draggable({ containment : "#frame", // cancel :
