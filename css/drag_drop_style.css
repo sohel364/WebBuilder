@@ -1,9 +1,9 @@
-#div_header{
+#div_header {
 	width: 100%;
 	height: 50px;
 	border-radius: 25px;
-    background: #8AC007; 
-    /* margin: 0 0 30px 0 */	
+	background: #8AC007;
+	/* margin: 0 0 30px 0 */
 }
 
 #div_droppable {
@@ -14,7 +14,6 @@
 	float: right;
 	text-align: center;
 	/* margin: 20px */
-	
 }
 
 #div_control_palette {
@@ -27,7 +26,7 @@
 	margin: 20px
 }
 
-.activeDroppable { 
+.activeDroppable {
 	/* this class is for Droppable Area  */
 	background-color: #eeffee;
 }
@@ -35,17 +34,20 @@
 .hoverDroppable {
 	/* border-radius: 5px; */
 	/* background-color: lightgreen; */
+	
 }
 
 .draggableField {
 	/* float: left; */
 	/* padding-left: 5px; */
+	
 }
 
 .draggableField>input, select, button, h1 {
 	/* margin-top: 10px;
 	margin-right: 10px;
 	margin-bottom: 10px; */
+	
 }
 
 .draggableField:hover {
@@ -54,20 +56,20 @@
 	background-color: #d0f9fb;
 }
 
-.dialog{
+.dialog {
 	display: none;
 	background-color: white;
-	
-	z-index: 1000000 !important ;
+	z-index: 1000000 !important;
 }
 
 .ui-dialog {
 	border-radius: 8px;
-    box-shadow: 0px 0px 10px #888888;
-    background: white;
+	box-shadow: 0px 0px 10px #888888;
+	background: white;
 }
 
-.ui-dialog-content{
+.ui-dialog-content {
+	
 }
 
 .ui-dialog-titlebar {
@@ -85,15 +87,11 @@
 	height: 30px;
 }
 
-
-
 /*-------------------------------------------------Resize Border--------------------------------------------  */
-
-.ui-resizable-disabled .ui-resizable-handle,
-.ui-resizable-autohide .ui-resizable-handle {
+.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle
+	{
 	display: none;
 }
-
 
 .ui-resizable-handle {
 	position: absolute;
@@ -106,36 +104,43 @@
 	width: 100%;
 	border: 0.1px solid #00ff00;
 }
+
 .ui-resizable-s {
 	cursor: s-resize;
 	width: 100%;
 	/* border: 0.1px solid #00ff00; */
 }
+
 .ui-resizable-e {
 	cursor: e-resize;
 	width: 100%;
 	border: 0.1px solid #00ff00;
 }
+
 .ui-resizable-w {
 	cursor: w-resize;
 	width: 100%;
 	border: .1spx solid #00ff00;
 }
+
 .ui-resizable-se {
 	cursor: se-resize;
 	width: 100%;
 	/* border: 1px solid #00ff00; */
 }
+
 .ui-resizable-sw {
 	cursor: sw-resize;
 	width: 100%;
 	/* border: 1px solid #00ff00; */
 }
+
 .ui-resizable-nw {
 	cursor: nw-resize;
 	width: 100%;
 	/* border: 1px solid #00ff00; */
 }
+
 .ui-resizable-ne {
 	cursor: ne-resize;
 	width: 100%;
@@ -144,82 +149,83 @@
 
 /*------------------------------------------Resize Border End------------------------------------  */
 
-
 /* ---------------------------------------- For Tab View ---------------------------------------- */
-
-#tabbed_box{
+#tabbed_box {
 	margin: 0px auto 0px auto;
 }
 
 .tabbed_box h1 h2 h3 h4 {
-	font-family:Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 23px;
 	color: #000;
 	letter-spacing: -1px;
-	margin-bottom:10px;
+	margin-bottom: 10px;
 }
 
 .tabbed_area {
-    border:1px solid #494e52;
-    background-color:#636d76;
-    padding:8px;
-    border-radius: 20px;
-    width: 245px;
+	border: 1px solid #494e52;
+	background-color: #636d76;
+	padding: 8px;
+	border-radius: 20px;
+	width: 245px;
 }
 
 ul.tabs {
-	margin:0px; padding:0px;
+	margin: 0px;
+	padding: 0px;
 	border-radius: 20px;
 }
 
 ul.tabs li {
-    list-style:none;
-    display:inline;
+	list-style: none;
+	display: inline;
 }
 
 ul.tabs li a {
-    background-color:#464c54;
-    color:#ffebb5;
-    padding:8px 14px 8px 14px;
-    text-decoration:none;
-    font-size:9px;
-    font-family:Verdana, Arial, Helvetica, sans-serif;
-    font-weight:bold;
-    text-transform:uppercase;
-    border-radius: 15px 15px 0 0;
-    border:1px solid #464c54; 
+	background-color: #464c54;
+	color: #ffebb5;
+	padding: 8px 14px 8px 14px;
+	text-decoration: none;
+	font-size: 9px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
+	border-radius: 15px 15px 0 0;
+	border: 1px solid #464c54;
 }
+
 ul.tabs li a:hover {
-    background-color:#2f343a;
-    border-color:#2f343a;
+	background-color: #2f343a;
+	border-color: #2f343a;
 }
+
 ul.tabs li a.active {
-    background-color:#ffffff;
-    color:#282e32;
-    border:1px solid #464c54; 
-    border-bottom: 1px solid #ffffff;
-    
+	background-color: #ffffff;
+	color: #282e32;
+	border: 1px solid #464c54;
+	border-bottom: 1px solid #ffffff;
 }
 
 .content {
-    background-color:#ffffff;
-    padding:10px;
-    border-radius: 0 0 15px 15px;
-    border:1px solid #464c54;  
+	background-color: #ffffff;
+	padding: 10px;
+	border-radius: 0 0 15px 15px;
+	border: 1px solid #464c54;
 }
-#content_2, #content_3 { display:none; }
+
+#content_2, #content_3 {
+	display: none;
+}
 
 ul.tabs {
-    margin:0px; padding:0px;
-    margin-top:5px;
-    margin-bottom:6px;
-    
+	margin: 0px;
+	padding: 0px;
+	margin-top: 5px;
+	margin-bottom: 6px;
 }
 
 /* ---------------------------------------- End Tab View ---------------------------------------- */
-
-
-.editable_mode{
+.editable_mode {
 	/* border: 3px dotted grey; */
 	border-radius: 5px;
 	box-shadow: 0px 0px 20px #00a3d9;
@@ -252,17 +258,16 @@ ul.tabs {
 	position: absolute;
 }
 
-.image_template_non_editable{
+.image_template_non_editable {
 	height: 256px;
 	width: 256px;
 	position: absolute;
 }
 
-.image_template_editable{
+.image_template_editable {
 	border: 1px dotted #464c54;
 	position: absolute;
 }
-
 
 .button_template_non_editable {
 	height: 50px;
@@ -299,4 +304,31 @@ ul.tabs {
 	background: white;
 	height: 30px;
 	border-radius: 5px;
+}
+
+.slider_template_non_editable {
+	width: 720px;
+	height: 360px;
+	position: absolute;
+	overflow: hidden;
+}
+
+.slider_template_non_editable ul {
+	display: block;
+	width: 10000px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.slider_template_non_editable li {
+	float: left;
+	list-style-type: none;
+	width: 720px;
+	height: 360px;
+}
+
+.slide {
+	width: 720px;
+	height: 360px;
 }

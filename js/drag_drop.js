@@ -25,8 +25,10 @@ $(function() {
 	makeTemplateComponetsEditable();
 
 	function makeTemplateComponetsEditable() {
+		console.log("Making Template Control Editable");
 		$("#body").find("*").each(
 				function() {
+					console.log("Stated Making Template Control Editable");
 					var control_id = $(this).attr("id");
 					var control_name = $(this).attr("name");
 
@@ -80,6 +82,8 @@ $(function() {
 					var droppable_id = ui.helper.attr('id');
 					var droppable_name = ui.helper.attr("name");
 					var draggable = null;
+					var is_radio_button = false;
+					var is_image_slider = false;
 
 					if (droppable_name == "button") {
 						draggable = $("#button_template");
@@ -92,11 +96,15 @@ $(function() {
 
 					} else if (droppable_name == "radiobutton") {
 						draggable = $("#radiobutton_template");
+						is_radio_button = true;
 
 					} else if (droppable_name == "header") {
 						draggable = $("#title_template");
 					} else if (droppable_name == "image") {
 						draggable = $("#image_template");
+					} else if (droppable_name == "imageslider") {
+						draggable = $("#image_slider_template");
+						is_image_slider = true;
 					}
 
 					if (droppable_id == null
@@ -112,7 +120,7 @@ $(function() {
 						draggable[0].id = droppable_name + "_dropped_"
 								+ (counter++);
 
-						if (droppable_name == "radiobutton") {
+						if (is_radio_button) {
 							var radio_btn_template_array = [ {
 								"Id" : (draggable.attr("id") + 0),
 								"Name" : draggable.attr("id"),
@@ -124,6 +132,10 @@ $(function() {
 							} ];
 							createRadioButtonTemplate(draggable,
 									radio_btn_template_array);
+						}
+						
+						if (is_image_slider){
+							animateImageSlider(draggable);
 						}
 
 						makeDroppedControlsDraggable(draggable);
@@ -147,6 +159,39 @@ $(function() {
 
 				}
 			});
+	
+	function animateImageSlider(control){
+		var width = control.width();
+		console.log("width : " + width);
+		var animation_speed = 1000;
+		var pause = 3000;
+		var current_slide = 1;
+		var $slider_container = control.children('ul');
+		var $slides = $slider_container.children('li');
+		var interval;
+		
+		function startSlider(){
+			interval = setInterval(function(){
+				$slider_container.animate({'margin-left': '-='+width}, animation_speed, function() {
+					current_slide++;
+					if(current_slide == $slides.length){
+						current_slide = 1;
+						$slider_container.css('margin-left', 0);
+					}
+				});
+			}, pause);
+		}
+		
+		function stopSlider(){
+			clearInterval(interval);
+		}
+		
+		startSlider();
+		
+		control.on('mouseenter', stopSlider).on('mouseleave', startSlider);
+		
+		
+	}
 
 	function createRadioButtonTemplate(control, radio_btn_list) {
 		$.each(radio_btn_list, function() {
@@ -571,6 +616,8 @@ $(function() {
 			showTextEditPanel();
 		} else if (clicked_dropped_item_id.search('image') == 0) {
 			showImageEditPanel();
+		} else if (clicked_dropped_item_id.search('imageslider') == 0) {
+			//ToDo
 		}
 
 		/*
@@ -618,6 +665,9 @@ $(function() {
 		}
 		if ($("#dropdown_edit_dialog").dialog("instance") != undefined) {
 			$("#dropdown_edit_dialog").dialog("close");
+		}
+		if ($("#image_slider_edit_dialog").dialog("instance") != undefined) {
+			$("#image_slider_edit_dialog").dialog("close");
 		}
 	}
 
@@ -683,6 +733,8 @@ $(function() {
 			title = "HEADER ...";
 		} else if (clicked_dropped_item_id.search('image') == 0) {
 			title = "IMAGE ...";
+		} else if (clicked_dropped_item_id.search('imageslider') == 0) {
+			title = "IMAGE SLIDER ...";
 		}
 
 		// child_item.resizable({
