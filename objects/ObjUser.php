@@ -1,5 +1,6 @@
 <?php
 class User{
+        private $_id;
 	private $_userName;
 	private $_emailAddress;
 	private $_passWord;
@@ -23,6 +24,13 @@ class User{
 	}
 	public function getPassWord(){
 		return $this->_passWord;
+	}
+	
+        public function setId($id) {
+		$this->_passWord=$id;
+	}
+	public function getId(){
+		return $this->_id;
 	}
 	
         function __construct() {

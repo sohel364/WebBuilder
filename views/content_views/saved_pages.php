@@ -6,8 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Web Builder</title>
 
-        <script type="text/javascript" src="../../js/main.js"></script>
-
 
         <!-- Bootstrap -->
         <link href="../../css/bootstrap.min.css" rel="stylesheet" />

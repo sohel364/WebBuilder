@@ -14,8 +14,8 @@
  * 
  *  
  */ 
-include_once '../objects/ObjUser.php';
-include_once '../dataAccess/databaseHelper.php';
+include_once '../../objects/ObjUser.php';
+include_once '../../dataAccess/databaseHelper.php';
 
 //TestInsert();
 
@@ -48,7 +48,7 @@ class UserManager{
 	        
 	public static function InsertUser($User) {
 		$DataBaseHelper=new databaseHelper();
-		$sql="INSERT INTO `user` (`id`, `name`, `password`, `email`) VALUES (NULL, '".$User->getUserName()."','".$User->getPassWord()."', '".$User->getEmailAddress()."')";
+		$sql="INSERT INTO `user` (`name`, `password`, `email`) VALUES ('".$User->getUserName()."','".$User->getPassWord()."', '".$User->getEmailAddress()."')";
 		return $DataBaseHelper->ExecuteInsertReturnID($sql);
 	}
         
@@ -73,9 +73,19 @@ class UserManager{
          * Gets User Data from User Table by Email Address
          * 
          */
-        public static function getUser($User){
+        public static function getUserByEmail($User){
             $DataBaseHelper=new databaseHelper();
             $sql="SELECT `id`,`name`,`password` FROM `user` WHERE `email`='".$User->getEmailAddress()."'";
+            return $DataBaseHelper->ExecuteDataSet($sql);
+        }
+        
+        /*
+         * Gets User Data from User Table by Id
+         * 
+         */
+        public static function getUserById($User){
+            $DataBaseHelper=new databaseHelper();
+            $sql="SELECT `id`,`name`,`password` FROM `user` WHERE `id`='".$User->getId()."'";
             return $DataBaseHelper->ExecuteDataSet($sql);
         }
         
