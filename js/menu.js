@@ -75,8 +75,10 @@ function onMenuClick(menu) {
     if(menuContens[menuText] === null || typeof menuContens[menuText] === 'undefined') {
         resetMenuContent();
     } else {
-        setBodyHtmlString(menuContens[menuText]);
+        setBodyHtmlString(menuContens[menuText]);       
     }
+    console.log("menu is clicked");
+    makeTemplateComponetsEditable();
 }
 
 
