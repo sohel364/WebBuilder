@@ -94,6 +94,16 @@ class UserManager{
             $sql="SELECT `id`,`name`,`password` FROM `user` WHERE `name`='".$User->getUserName()."'";
             return $DataBaseHelper->ExecuteDataSet($sql);
         }
+        
+        /*
+         * Gets User Data from User Table by Email Address and Password
+         * 
+         */
+        public static function getUserByEmailAndPassword($User){
+            $DataBaseHelper=new databaseHelper();
+            $sql="SELECT `id`,`email`,`name`,`password` FROM `user` WHERE `email`='".$User->getEmailAddress()."' AND `password`='".$User->getPassWord()."'";
+            return $DataBaseHelper->ExecuteDataSet($sql);
+        }
 	
 }
 

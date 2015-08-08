@@ -4,12 +4,23 @@ $(document).ready(function () {
 });
 
 function signIn() {
-    var UserName = $('#userid').val();
-    var PassWord = $('#passwordinput').val();
-    var User = [UserName, PassWord];
+    var userName = $('#userid').val();
+    var pass = $('#passwordinput').val();
+    
+    if(userName === null || userName.length <= 0) {
+        alert("Please enter user name");
+        return;
+    }
+    if(pass === null || pass.length <= 0) {
+        alert("Please enter password");
+        return;
+    }
+    
+    loginUser(userName, pass);
+    /*var User = [userName, pass];
     var isSucceeded = false;
 
-    if (UserName != "" && PassWord != "") {
+    if (userName != "" && pass != "") {
         var responseText = postDataSignIn(User);
         console.log(responseText.charAt(0));
         if (responseText == "\r\n\r\n            \r\n     \r\n1") {
@@ -23,14 +34,16 @@ function signIn() {
     if (isSucceeded) {
         $("#regformstatus").html('Successfully Logged In');
         $('#myModal').modal('hide')
-        var redirectURL = "http://localhost/WebBuilder/index.php?username=" + UserName + "&password=" + PassWord + "&isSuccess=" + isSucceeded;
+        var redirectURL = "http://localhost/WebBuilder/index.php?username=" + userName + "&password=" + pass + "&isSuccess=" + isSucceeded;
         window.location.href = redirectURL;
     }
     else {
         $("#regformstatus").html('Error!Please try again');
         $('#myModal').modal('hide')
-    }
+    }*/
 }
+
+
 
 
 function postDataSignIn(args, callback) {
@@ -108,17 +121,51 @@ function getBaseUrl() {
 }
 
 
-function getUserRegistrationUrl() {
+function getUserServiceUrl() {
     return getBaseUrl()+'/manager/user_manager/user_service.php';
 }
 
-function registerUser(email, name, pass) {
-    var url = getUserRegistrationUrl();
+function loginUser(email, pass) {
+    var url = getUserServiceUrl();
+    
     $.ajax({
             type: "POST",
             url: url,
             dataType: 'json',
-            data: {email: email, name: name, pass: pass},
+            data: {email: email, pass: pass, signin:true},
+            success: function (obj, textstatus) {
+                //hideSavingIcon();
+                if (!('error' in obj)) {
+                    //yourVariable = obj.result;
+                    if(obj.success === '1') {
+                        alert('Sign in successfull!!!');
+                        $('#myModal').modal('hide');
+                        
+                        var redirectURL = getBaseUrl();
+                        window.location.href = redirectURL;
+                    } else {
+                        alert('Error occured during registering!!!');
+                    }
+                }
+                else {
+                    //console.log(obj.error);
+                    alert('Error: ' + obj.error);
+                }
+            },
+            error: function(xhr, status, error) {
+                var err =  xhr.responseText;
+                alert(err);
+            }
+        });
+}
+
+function registerUser(email, name, pass) {
+    var url = getUserServiceUrl();
+    $.ajax({
+            type: "POST",
+            url: url,
+            dataType: 'json',
+            data: {email: email, name: name, pass: pass, register:true},
             success: function (obj, textstatus) {
                 //hideSavingIcon();
                 if (!('error' in obj)) {
