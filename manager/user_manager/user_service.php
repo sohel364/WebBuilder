@@ -13,6 +13,8 @@ header('Content-Type: application/json');
 require_once 'user_manager.php';
 include_once '../../objects/ObjUser.php';
 
+session_start();
+
 
 $aResult = array();
 try {
@@ -80,7 +82,6 @@ try {
                     $row = $retArray[0];
                     $user->setId($row['id']);
                     $user->setUserName($row['name']);
-                    session_start();
                     
                     $_SESSION['user_email'] = $user->getEmailAddress();
                     $_SESSION['user_name'] = $user->getUserName();

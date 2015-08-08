@@ -27,7 +27,7 @@ class User{
 	}
 	
         public function setId($id) {
-		$this->_passWord=$id;
+		$this->_id=$id;
 	}
 	public function getId(){
 		return $this->_id;

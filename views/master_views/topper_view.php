@@ -1,3 +1,11 @@
+<?php
+session_start();
+$user_id = NULL;
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+}
+?>
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -16,7 +24,13 @@
                 <li><a href="#">Billing</a></li>
                 <li><a href="#">Notes</a></li>
                 <li><a href="#">Others</a></li>
+                <?php 
+                    if($user_id != NULL) {
+                ?>
                 <li><a href="./views/content_views/saved_pages.php">Saved Pages</a></li>
+                <?php 
+                    }
+                ?>
             </ul>
             <ul class="nav navbar-nav pull-right" style="font-family: arial,cursive;font-size: 14px">
                 <li>
