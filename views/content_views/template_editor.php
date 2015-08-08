@@ -32,6 +32,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
             var template_id = '<?php echo $category.'_'.$template;?>';
 	</script>
 <script src="../../js/savePage.js"></script>
+<script src="../../js/drag_drop.js"></script>
 <script src="../../js/menu.js"></script>
 <script type="text/javascript" src="../../js/template_editor.js"></script>
 
@@ -56,7 +57,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"> -->
 
 
-	<script src="../../js/drag_drop.js"></script>
+
 	<script src="../../js/outside-click.js"></script>
 
 
@@ -603,6 +604,15 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 		alt="Image Template" class="image_template_non_editable"
 		class="image_template_non_editable" style="display: none" />
 
+	<div id="image_slider_template" class="slider_template_non_editable" style="display: none">
+		<ul>
+			<li><img src="../../images/slider1.jpg" class="slide" alt="Image1"></li>
+			<li><img src="../../images/slider2.jpg" class="slide" alt="Image2"></li>
+			<li><img src="../../images/slider3.jpg" class="slide" alt="Image3"></li>
+			<li><img src="../../images/slider1.jpg" class="slide" alt="Image1"></li>
+		</ul>
+	</div>
+
 
 	<button id="button_template" class="button_template_non_editable"
 		style="display: none">Click Me</button>
@@ -619,13 +629,11 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 	<div id="radiobutton_template"
 		style="display: none; position: absolute; width: 200px">
 
-		<!-- <input id="option_1" type="radio" value="radio_1">
-		<label for="option_1">Option 1</label>
-		<br /> 
-		<input id="option_2" type="radio" value="radio_2">
-		<label for="option_2">Option 2</label> -->
+		<input id="option_1" type="radio" value="option_1"> <label
+			for="option_1">Option 1</label> <br /> <input id="option_2"
+			type="radio" value="option_2"> <label for="option_2">Option 2</label>
 
-		<!-- <table>
+				<!-- <table>
 			<tr>
 				<td><input type="radio" name="opt"></td>
 				<td>Option 1</td>
@@ -635,7 +643,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 				<td>Option 2</td>
 			</tr>
 		</table> -->
-
+	
 	</div>
 
 
