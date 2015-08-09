@@ -886,7 +886,7 @@ $(function() {
 	makeTemplateComponetsEditable();
 	startMonitoringMousePosition();
 	makeBodyDroppable();
-	//initializeAllDialogButton();
+	initializeAllDialogButton();
 	
 	
 	
