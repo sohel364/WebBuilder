@@ -69,6 +69,7 @@ function resetMenuContent() {
  * @param {type} menu
  */
 function onMenuClick(menu) {
+	closeAllEditDialogPanel();
     saveCurrentMenuText();
     var menuText = $(menu).text();
     curMenu = menuText;
