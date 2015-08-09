@@ -69,6 +69,7 @@ function resetMenuContent() {
  * @param {type} menu
  */
 function onMenuClick(menu) {
+	//closeAllEditDialogPanel();
     saveCurrentMenuText();
     var menuText = $(menu).text();
     curMenu = menuText;
@@ -78,7 +79,7 @@ function onMenuClick(menu) {
         setBodyHtmlString(menuContens[menuText]);       
     }
     console.log("menu is clicked");
-    makeTemplateComponetsEditable();
+   // makeTemplateComponetsEditable();
 }
 
 

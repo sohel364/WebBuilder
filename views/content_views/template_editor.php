@@ -576,7 +576,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 
 	<!-- -------------------------------------- Control Templates ----------------------------------------------- -->
 
-	<div id="text_box_template" class="text_template_non_editable"
+	<div id="text_box_template" name="textarea" class="text_template_non_editable"
 		style="display: none">
 		<h1>
 			Title. Edit me<br />
@@ -592,7 +592,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 
 	</div>
 
-	<div id="title_template" class="title_template_non_editable"
+	<div id="title_template"  name="textarea" class="title_template_non_editable"
 		style="display: none">
 		<h1>
 			Title. Edit me<br />
@@ -600,11 +600,11 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 	</div>
 
 
-	<img id="image_template" src="../../images/image_template.png"
+	<img id="image_template" name="image" src="../../images/image_template.png"
 		alt="Image Template" class="image_template_non_editable"
 		class="image_template_non_editable" style="display: none" />
 
-	<div id="image_slider_template" class="slider_template_non_editable" style="display: none">
+	<div id="image_slider_template" name="imageslider" class="slider_template_non_editable" style="display: none">
 		<ul>
 			<li><img src="../../images/slider1.jpg" class="slide" alt="Image1"></li>
 			<li><img src="../../images/slider2.jpg" class="slide" alt="Image2"></li>
@@ -614,10 +614,10 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 	</div>
 
 
-	<button id="button_template" class="button_template_non_editable"
+	<button id="button_template"  name="button" class="button_template_non_editable"
 		style="display: none">Click Me</button>
 
-	<div id="dropdown_template" class="drop_down_template_non_editable"
+	<div id="dropdown_template" name="dropdown" class="drop_down_template_non_editable"
 		style="display: none">
 		<select name="dropdown" class="drop_down_template_non_editable">
 			<option value="Option1">Option 1</option>
@@ -626,12 +626,12 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 		</select>
 	</div>
 
-	<div id="radiobutton_template"
+	<div id="radiobutton_template" name="radiobutton"
 		style="display: none; position: absolute; width: 200px">
 
-		<input id="option_1" type="radio" value="option_1"> <label
+		<!-- <input id="option_1" type="radio" value="option_1"> <label
 			for="option_1">Option 1</label> <br /> <input id="option_2"
-			type="radio" value="option_2"> <label for="option_2">Option 2</label>
+			type="radio" value="option_2"> <label for="option_2">Option 2</label> -->
 
 				<!-- <table>
 			<tr>
