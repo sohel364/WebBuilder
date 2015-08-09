@@ -33,10 +33,23 @@ if (isset($_SESSION['user_id'])) {
                 ?>
             </ul>
             <ul class="nav navbar-nav pull-right" style="font-family: arial,cursive;font-size: 14px">
+                <?php 
+                    if($user_id != NULL) {
+                ?>
+                <li>
+                    <a class="dropdown-toggle btn" onclick="logout()" style="border: 1px solid rgba(186, 220, 255, 0.83);">Log out</a>
+                    <div id="regformstatus"></div>
+                </li>
+                <?php 
+                    } else {
+                ?>
                 <li>
                     <a class="dropdown-toggle btn" href="#signup" data-toggle="modal" data-target=".bs-modal-sm" style="border: 1px solid rgba(186, 220, 255, 0.83);">Sign In/Registration</a>
                     <div id="regformstatus"></div>
                 </li>
+                <?php 
+                    }
+                ?>
                 <li>
                     <form class="navbar-form navbar-left" role="search">
                         <div class="input-group">

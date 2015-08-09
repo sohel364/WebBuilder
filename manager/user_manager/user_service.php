@@ -94,6 +94,10 @@ try {
                 $aResult['error'] = $ex;
             }
         }
+    } else if (isset($_POST["logout"])) {
+        //session_abort();
+        session_unset();
+        $aResult['success'] = "1";
     } else {
         $aResult['error'] = 'Bad request';
     }
