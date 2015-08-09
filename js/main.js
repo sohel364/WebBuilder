@@ -215,3 +215,38 @@ function  postDataRegistration(arguments) {
 
     http.send(params);
 }
+
+
+function logout() {
+    var url = getUserServiceUrl();
+    
+    $.ajax({
+            type: "POST",
+            url: url,
+            dataType: 'json',
+            data: {logout:true},
+            success: function (obj, textstatus) {
+                //hideSavingIcon();
+                if (!('error' in obj)) {
+                    //yourVariable = obj.result;
+                    if(obj.success === '1') {
+                        alert('Successfully logged out!!!');
+                        $('#myModal').modal('hide');
+                        
+                        var redirectURL = getBaseUrl();
+                        window.location.href = redirectURL;
+                    } else {
+                        alert('Error occured during logout!!!');
+                    }
+                }
+                else {
+                    //console.log(obj.error);
+                    alert('Error: ' + obj.error);
+                }
+            },
+            error: function(xhr, status, error) {
+                var err =  xhr.responseText;
+                alert(err);
+            }
+        });
+}
