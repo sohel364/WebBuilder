@@ -20,8 +20,14 @@ if (isset($_SESSION['user_id'])) {
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav" style="font-family: arial,cursive">
                 <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
+                <?php 
+                    if($user_id != NULL) {
+                ?>
                 <li><a href="#">Account</a></li>
                 <li><a href="#">Billing</a></li>
+                <?php 
+                    }
+                ?>
                 <li><a href="#">Notes</a></li>
                 <li><a href="#">Others</a></li>
                 <?php 
