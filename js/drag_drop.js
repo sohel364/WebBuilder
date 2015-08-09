@@ -13,7 +13,7 @@ var editable_control = null;
 var pos;
 var isSaved = false;
 var allawable_control_array = [ "button", "textarea", "radiobutton",
-		"dropdown", "image", "imageslider", "header" ]
+		"dropdown", "image", "imageslider", "header", "feedback_form" ]
 
 var currentMousePos = {
 	x : -1,
@@ -87,6 +87,7 @@ function makeBodyDroppable() {
 					var draggable = null;
 					var is_radio_button = false;
 					var is_image_slider = false;
+					var is_form_builder = false;
 
 					if (droppable_name == "button") {
 						draggable = $("#button_template");
@@ -108,6 +109,9 @@ function makeBodyDroppable() {
 					} else if (droppable_name == "imageslider") {
 						draggable = $("#image_slider_template");
 						is_image_slider = true;
+					} else if (droppable_name == "feedback_form") {
+						draggable = $("#feedback_form_template");
+						is_form_builder = true;
 					}
 
 					if (droppable_id == null
@@ -540,6 +544,7 @@ function showEditPanel() {
 
 	} else if (clicked_dropped_item_id.search('textarea') == 0) {
 		showTextEditPanel();
+		//makeTextAreaEditable();
 	} else if (clicked_dropped_item_id.search('dropdown') == 0) {
 		showDropDownEditPanel();
 	} else if (clicked_dropped_item_id.search('radiobutton') == 0) {
@@ -550,6 +555,9 @@ function showEditPanel() {
 		showImageEditPanel();
 	} else if (clicked_dropped_item_id.search('imageslider') == 0) {
 		// ToDo
+	} else if (clicked_dropped_item_id.search('feedback_form') == 0) {
+		// ToDo
+		makeControlNonEditable(editable_control);
 	}
 
 	/*
@@ -608,8 +616,8 @@ function closeAllEditDialogPanel() {
 }
 
 function makeTextAreaEditable() {
-	child_item.addClass("jqte-test");
-	child_item.jqte({
+	editable_control.addClass("jqte-test");
+	editable_control.jqte({
 		"status" : true
 	});
 }
@@ -637,6 +645,8 @@ function droppedItemClickAction() {
 		title = "IMAGE ...";
 	} else if (clicked_dropped_item_id.search('imageslider') == 0) {
 		title = "IMAGE SLIDER ...";
+	} else if (clicked_dropped_item_id.search('feedback_form') == 0) {
+		title = "FEEDBACK FORM ...";
 	}
 
 	// child_item.resizable({
@@ -750,22 +760,24 @@ function initializeAllDialogButton(){
 
 	$("#dialog_btn_resize").click(function() {
 		$("#control_option_dialog").dialog("close");
-		// makeControlEditable(editable_control);
-		//		
-		// editable_control.resizable({
-		// ghost : false,
-		// animate : false,
-		// autoHide : true,
-		// distance : 0,
-		// /* handles : "n, e, s, w, ne, se, sw, nw", */
-		// // alsoResize : "#" + clicked_dropped_item_id
-		// /*
-		// * resize: function(){ $("#" +
-		// * clicked_dropped_item_id).css("height",child_item.height+"px");
-		// $("#" +
-		// * clicked_dropped_item_id).css("width",child_item.width+"px"); }
-		// */
-		// });
+		editable_control = $("#" + clicked_dropped_item_id);
+		 makeControlEditable(editable_control);
+		 
+		 editable_control.attr('contenteditable', true);
+
+//		editable_control.resizable({
+//			ghost : false,
+//			animate : false,
+//			autoHide : true,
+//			distance : 0,
+//		/* handles : "n, e, s, w, ne, se, sw, nw", */
+//		// alsoResize : "#" + clicked_dropped_item_id
+//		/*
+//		 * resize: function(){ $("#" +
+//		 * clicked_dropped_item_id).css("height",child_item.height+"px"); $("#" +
+//		 * clicked_dropped_item_id).css("width",child_item.width+"px"); }
+//		 */
+//		});
 
 	});
 
@@ -874,6 +886,19 @@ function initializeAllDialogButton(){
 	$("#btn_dropdown_dialog_save").click(function() {
 		isSaved = true;
 		$("#dropdown_edit_dialogs").dialog("close");
+	});
+	
+	/*
+	 * Button Initialization for Text Editor
+	 */
+	
+	$("#btn_txt_editor_bold").click(function(){
+//		var text = editable_control.html();
+//		var selectedText = window.getSelection().toString();
+//		console.log(selectedText);
+//		var replacedText = text.replace(selectedText, "<b>" + selectedText + "</b>");
+//		console.log(replacedText);
+//		editable_control.html(replacedText);
 	});
 			
 	

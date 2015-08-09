@@ -479,7 +479,7 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 		<button class="text_editor_component">
 			<span class="glyphicon glyphicon-font" aria-hidden="true"></span>
 		</button>
-		<button class="text_editor_component">
+		<button id="btn_txt_editor_bold" class="text_editor_component">
 			<span class="glyphicon glyphicon-bold" aria-hidden="true"></span>
 		</button>
 		<button class="text_editor_component">
@@ -576,8 +576,8 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 
 	<!-- -------------------------------------- Control Templates ----------------------------------------------- -->
 
-	<div id="text_box_template" name="textarea" class="text_template_non_editable"
-		style="display: none">
+	<div id="text_box_template" name="textarea"
+		class="text_template_non_editable" style="display: none">
 		<h1>
 			Title. Edit me<br />
 		</h1>
@@ -592,19 +592,21 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 
 	</div>
 
-	<div id="title_template"  name="textarea" class="title_template_non_editable"
-		style="display: none">
+	<div id="title_template" name="textarea"
+		class="title_template_non_editable" style="display: none">
 		<h1>
 			Title. Edit me<br />
 		</h1>
 	</div>
 
 
-	<img id="image_template" name="image" src="../../images/image_template.png"
-		alt="Image Template" class="image_template_non_editable"
+	<img id="image_template" name="image"
+		src="../../images/image_template.png" alt="Image Template"
+		class="image_template_non_editable"
 		class="image_template_non_editable" style="display: none" />
 
-	<div id="image_slider_template" name="imageslider" class="slider_template_non_editable" style="display: none">
+	<div id="image_slider_template" name="imageslider"
+		class="slider_template_non_editable" style="display: none">
 		<ul>
 			<li><img src="../../images/slider1.jpg" class="slide" alt="Image1"></li>
 			<li><img src="../../images/slider2.jpg" class="slide" alt="Image2"></li>
@@ -614,11 +616,12 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 	</div>
 
 
-	<button id="button_template"  name="button" class="button_template_non_editable"
+	<button id="button_template" name="button"
+		class="button_template_non_editable btn btn-primary btn-lg"
 		style="display: none">Click Me</button>
 
-	<div id="dropdown_template" name="dropdown" class="drop_down_template_non_editable"
-		style="display: none">
+	<div id="dropdown_template" name="dropdown"
+		class="drop_down_template_non_editable" style="display: none">
 		<select name="dropdown" class="drop_down_template_non_editable">
 			<option value="Option1">Option 1</option>
 			<option value="Option2">Option 2</option>
@@ -627,23 +630,28 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 	</div>
 
 	<div id="radiobutton_template" name="radiobutton"
-		style="display: none; position: absolute; width: 200px">
+		style="display: none; position: absolute; width: 200px"></div>
 
-		<!-- <input id="option_1" type="radio" value="option_1"> <label
-			for="option_1">Option 1</label> <br /> <input id="option_2"
-			type="radio" value="option_2"> <label for="option_2">Option 2</label> -->
+	<div id="feedback_form_template" name="feedback_form"
+		style="display: none; position: absolute; width: 400px; height: auto; border: 1px solid lightgrey; border-radius: 5px; padding: 10px">
+		<h3 style="">User Feedback</h3>
+		<hr></hr> 
+		<label>Name : </label> <input id="feedback_user_name"
+			type="text" name="feedback_user_name" placeholder="Your Name"
+			style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
 
-				<!-- <table>
-			<tr>
-				<td><input type="radio" name="opt"></td>
-				<td>Option 1</td>
-			</tr>
-			<tr>
-				<td><input type="radio" name="opt"></td>
-				<td>Option 2</td>
-			</tr>
-		</table> -->
-	
+			<label>Email : </label> <input id="feedback_user_email" type="text"
+			name="feedback_user_email" placeholder="Your Email"
+			style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
+
+				<label>Comment : </label> <textarea id="feedback_user_comment"
+					name="feedback_user_comment" value="Fill in your Comment"
+					style="width: 100%; height: 150px; border: .5px solid lightgrey; border-radius: 5px;">
+			</textarea> 
+		<hr></hr>
+		
+		<button class="btn btn-success btn-lg" style="float: right;">Submit</button>
+
 	</div>
 
 
