@@ -41,7 +41,7 @@ error_reporting(E_ERROR);
 	</script>
         <script  src="../../js/savePage.js" ></script>
         <script  src="../../js/menu.js" ></script>
-    <script type="text/javascript" src="../../js/template_editor.js" ></script>
+    
 
   	<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="../../css/bootstrap-dialog.css" rel="stylesheet"/>
@@ -143,7 +143,7 @@ error_reporting(E_ERROR);
 				</div>
 			</div>
 
-			<div id="body" contentEditable="true"><?php include ($turl.'/body.html');?></div>
+			<div id="body" contentEditable="false"><?php include ($turl.'/body.html');?></div>
                         <!--<div id="test_removable"><?php include 'user_menu.php'?></div> -->
 			<div id="footer">
 				<?php include ($turl.'/footer.html');?>
