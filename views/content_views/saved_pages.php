@@ -105,7 +105,7 @@
                                                         <img src="../../images/screen_shot_template_black.png">
                                                         <div class="caption" id="caption-half-down">
                                                             <?php
-                                                                $name = $template->getTemplateName();
+                                                                $name = $template->getTemplateSavedName();
                                                                 if($name == NULL) {
                                                                     $name = 'Name NULL';
                                                                 }

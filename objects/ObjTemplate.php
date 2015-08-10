@@ -8,7 +8,9 @@ class Template {
     private $_user_id;
     private $_template_url; 
     private $_template_res_url;
+    private $_template_saved_name;
     private $_template_name;
+    private $_category_name;
 
 
 
@@ -52,12 +54,28 @@ class Template {
         return $this->_template_res_url;
     }
     
+    public function setTemplateSavedName($value) {
+        $this->_template_saved_name = $value;
+    }
+
+    public function getTemplateSavedName() {
+        return $this->_template_saved_name;
+    }
+    
     public function setTemplateName($value) {
         $this->_template_name = $value;
     }
 
     public function getTemplateName() {
         return $this->_template_name;
+    }
+    
+    public function setCategoryName($value) {
+        $this->_category_name = $value;
+    }
+
+    public function getCategoryName() {
+        return $this->_category_name;
     }
 
     public function __construct() {

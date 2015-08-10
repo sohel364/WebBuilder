@@ -38,7 +38,7 @@ try {
             $templateObject->setUserID($row['user_id']);
             $templateObject->setTemplateUrl($row['template_url']);
             $templateObject->setTemplateResUrl($row['template_res_url']);
-            $templateObject->setTemplateName($row['saved_name']);
+            $templateObject->setTemplateSavedName($row['saved_name']);
             $objTemplateArray[] = $templateObject;
         }
         $index++;
