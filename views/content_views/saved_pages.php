@@ -118,7 +118,7 @@ session_start();
                                                         </div>
                                                         <div class="caption" id="caption-half-up">
                                                                 <button type="submit" class="btn btn-primary">Edit</button>
-                                                                <button type="submit" class="btn btn-primary" onclick="location.href='../user_views/user_template_viewer.php?category=uncategorized&template=Black&templateid=<?php echo $template->getTemplateID();?>'">View</button>
+                                                                <button type="submit" class="btn btn-primary" onclick="location.href='../user_views/user_template_viewer.php?category=<?php echo $template->getCategoryName();?>&template=<?php echo $template->getTemplateName();?>&templateid=<?php echo $template->getTemplateID();?>'">View</button>
                                                         </div>
 
                                             </div>  
