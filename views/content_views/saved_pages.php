@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php 
+session_start();
+?>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -85,11 +88,8 @@
                     require_once '../../manager/content_manager/template_manager.php';
                     require_once '../../objects/ObjTemplate.php';
                         $user_id = NULL;
-                        if (isset($_SESSION['username'])) {
-                            $user_id = $_SESSION['username'];
-                        }
-                        if ($user_id == NULL || count($user_id) <= 0) {
-                            $user_id = 'userId';
+                        if (isset($_SESSION['user_id'])) {
+                            $user_id = $_SESSION['user_id'];
                         }
                         $templateManager = new TemplateManager();
                         $templateList = $templateManager->loadUserTemplates($user_id);
