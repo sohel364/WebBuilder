@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php 
+session_start();
+?>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -85,11 +88,8 @@
                     require_once '../../manager/content_manager/template_manager.php';
                     require_once '../../objects/ObjTemplate.php';
                         $user_id = NULL;
-                        if (isset($_SESSION['username'])) {
-                            $user_id = $_SESSION['username'];
-                        }
-                        if ($user_id == NULL || count($user_id) <= 0) {
-                            $user_id = 'userId';
+                        if (isset($_SESSION['user_id'])) {
+                            $user_id = $_SESSION['user_id'];
                         }
                         $templateManager = new TemplateManager();
                         $templateList = $templateManager->loadUserTemplates($user_id);
@@ -118,7 +118,7 @@
                                                         </div>
                                                         <div class="caption" id="caption-half-up">
                                                                 <button type="submit" class="btn btn-primary">Edit</button>
-                                                                <button type="submit" class="btn btn-primary" onclick="location.href='../user_views/user_template_viewer.php?category=uncategorized&template=Black&templateid=<?php echo $template->getTemplateID();?>'">View</button>
+                                                                <button type="submit" class="btn btn-primary" onclick="location.href='../user_views/user_template_viewer.php?category=<?php echo $template->getCategoryName();?>&template=<?php echo $template->getTemplateName();?>&templateid=<?php echo $template->getTemplateID();?>'">View</button>
                                                         </div>
 
                                             </div>  
