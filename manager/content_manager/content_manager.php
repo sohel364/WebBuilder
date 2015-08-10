@@ -23,7 +23,7 @@ class ContentPageManager {
 
     public function saveUserTemplate($objTemplate) {
 
-        $sqlContent = 'INSERT INTO `webbuilder`.`template` (`template_id`, `user_id`, `template_url`, `template_res_url`) VALUES (\'' . $objTemplate->getTemplateID() . '\',\'' . $objTemplate->getUserID() . '\',\'' . $objTemplate->getTemplateUrl() . '\',\'' . $objTemplate->getTemplateResUrl() . '\')';
+        $sqlContent = 'INSERT INTO `webbuilder`.`template` (`template_id`, `user_id`, `template_url`, `template_res_url`, `saved_name`,`template_name`,`category_name`) VALUES (\'' . $objTemplate->getTemplateID() . '\',\'' . $objTemplate->getUserID() . '\',\'' . $objTemplate->getTemplateUrl() . '\',\'' . $objTemplate->getTemplateResUrl() .  '\',\'' . $objTemplate->getTemplateSavedName() .  '\',\'' . $objTemplate->getTemplateName() .  '\',\'' . $objTemplate->getCategoryName() .'\')';
 
         //return $sqlContent;
 

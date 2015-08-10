@@ -64,6 +64,12 @@ function getMenuList() {
  * @returns {undefined}
  */
 function savePage() {
+    if(isUserLoggedIn === null || isUserLoggedIn === "0") {
+        alert("Please sign in to save the template");
+        var redirectURL = getBaseUrl();
+        window.location.href = redirectURL;
+    }
+    var savedName = prompt("Enter webpage name : ", "Enter page name");
     saveCurrentMenuText();
     var menuList = getMenuList();
     var url = getPageSaverUrl();
@@ -73,7 +79,7 @@ function savePage() {
             type: "POST",
             url: url,
             dataType: 'json',
-            data: {menulists: menuList, menucontentlist: menuContens, templateid: template_id},
+            data: {menulists: menuList, menucontentlist: menuContens, templateid: template_id, savedname: savedName, categoryname:currentCategory, templatename:currentTemplate},
             success: function (obj, textstatus) {
                 hideSavingIcon();
                 if (!('error' in obj)) {

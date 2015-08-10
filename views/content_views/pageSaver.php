@@ -5,6 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+session_start();
 error_reporting(E_ERROR);
 
 header('Content-Type: application/json');
@@ -20,12 +21,19 @@ try {
 
 
 
+    
 
     if (!isset($_POST['menulists']) || !isset($_POST['menucontentlist'])) {
         if(!isset($_POST['menulists']))
             $aResult['error'] = 'There is no menulist to save';
         else 
             $aResult['error'] = 'Content List Error';
+    } else if(!isset($_POST['categoryname'])) {
+        $aResult['error'] = 'Category name not found';
+    } else if(!isset($_POST['templatename'])) {
+        $aResult['error'] = 'Template name not found';
+    } else if (!isset($_SESSION['user_id'])) {
+        $aResult['error'] = 'Your session timed out. Please Login first';
     } else {
         $menuList = $_POST['menulists'];
         $aResult['menuCount'] = count($menuList);
@@ -34,8 +42,9 @@ try {
         $menuContentList = $_POST['menucontentlist'];
         $user_template_id = $_POST['templateid'];
         $user_id;
-        if (isset($_SESSION['username'])) {
-            $user_id = $_SESSION['username'];
+        
+        if (isset($_SESSION['user_id'])) {
+            $user_id = $_SESSION['user_id'];
             $user_template_id .= '_' . $_SESSION['username'];
         }
         $date = date('Y_m_d_h_i_s_a', time());
@@ -69,6 +78,10 @@ try {
             $templateInfo->setUserID($user_id);
             $templateInfo->setTemplateResUrl(NULL);
             $templateInfo->setTemplateUrl(NULL);
+            //savedname: savedName, categoryname:currentCategory, templatename:currentTemplate
+            $templateInfo->setTemplateSavedName($_POST['savedname']);
+            $templateInfo->setTemplateName($_POST['templatename']);
+            $templateInfo->setCategoryName($_POST['categoryname']);
             $returnVal = $contentManager->saveUserTemplate($templateInfo);
 
             if ($returnVal == '1') {

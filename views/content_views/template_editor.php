@@ -1,4 +1,5 @@
 <?php
+session_start();
 error_reporting ( E_ERROR );
 $category;
 $template;
@@ -12,6 +13,10 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 	$css = '../../templates/' . $_GET ['category'] . '/' . $_GET ['template'] . '/css/style.css';
 	$category = $_GET ['category'];
 	$template = $_GET ['template'];
+}
+$user_id = NULL;
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
 }
 ?>
 
@@ -30,6 +35,9 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 
 <script type="text/javascript">
             var template_id = '<?php echo $category.'_'.$template;?>';
+            var currentCategory = '<?php echo $category;?>';
+            var currentTemplate = '<?php echo $template;?>';
+            var isUserLoggedIn = '<?php echo $user_id == NULL ? '0': '1';?>';
 	</script>
 <script src="../../js/savePage.js"></script>
 <script src="../../js/drag_drop.js"></script>
