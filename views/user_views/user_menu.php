@@ -26,6 +26,13 @@ try {
     //echo json_encode($retArray);
     //echo count($retArray);
     
+//    echo "<pre>";
+//    print_r($retArray);
+//    echo "</pre>";
+//    
+//    
+
+    
     foreach ($retArray as $row) {
         if($row != null) {
             //echo $row['template_id'].'<br/>';
@@ -33,9 +40,13 @@ try {
             $menu_id = $row['menu_id'];
             //echo $menu_id;
             $menuContents = $contentManager->loadUserMenuContentByMenuID($menu_id);
+            
+ 
             $menuContent = $menuContents[0];
             $menu_conten_list[$row['menu_title']] = $menuContent['content_html'];
         }
+        
+       
     }
     //echo json_encode($menu_conten_list);
 } catch (Exception $ex) {

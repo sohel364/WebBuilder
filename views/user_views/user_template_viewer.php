@@ -3,6 +3,11 @@ error_reporting(E_ERROR);
         $category;
         $template;
         $template_id;
+        
+        
+        
+        
+        
 	if(isset($_POST['template']) && isset($_POST['category']) )
 	{
 		$turl ='../../templates/'.$_POST['category'].'/'.$_POST['template'];
@@ -22,6 +27,13 @@ error_reporting(E_ERROR);
         } else if(isset($_GET['templateid'])){
             $template_id = $_GET['templateid'];
         }
+        
+        
+//        echo  $category."</br>";
+//        echo  $template_id;
+//        
+//        return;
+        
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

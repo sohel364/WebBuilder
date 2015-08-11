@@ -71,9 +71,8 @@ header {
 }
 nav {
     line-height:30px;
-    background-color:#eeeeee;
-    height:300px;
-    width:100px;
+    background-color:red;
+    width:100%;
     float:left;
     padding:5px;	      
 }

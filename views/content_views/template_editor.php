@@ -143,13 +143,17 @@ if (isset($_SESSION['user_id'])) {
 		no-repeat center center rgba(0, 0, 0, 0.25)
 }
 </style>
-	<div id="showsaveicon"></div>
+        <div id="showsaveicon" style="display: none"></div>
 
-	<div>
-	
-	<?php if($template=="Medical Practioner"){ include_once '../master_views/topper_view.php'; }?>
+<div>	
+	<?php if($template=="Medical Practioner" || $template=="part1"){ include_once '../master_views/topper_view.php'; }?>
 </div>
-
+<div style="height: 25px;">
+		<a onclick="savePage();" class="btn btn-inverse" style="margin-right: 118px; float: right;"><i class="icon-star"></i> Save</a>
+	</div>
+        
+        <br/><br/><br/>
+        
 	<div style="height: 25px;">
 		<a style="margin-right: 118px; float: right;" class="btn btn-inverse"
 			onclick="savePage();"><i class="icon-star"></i> Save</a>
