@@ -212,7 +212,43 @@ class databaseHelper
         
         
         
-      
+      public function ExecuteUpdateQuery($sql)
+        {
+            $RowsAffected = 0;
+            
+           try
+            {
+            
+                $connection = mysql_connect($this->host, $this->user, $this->pass) or die('Unable to connect!');
+                
+                mysql_select_db($this->db)  or die('Unable to select database!');
+                
+                $result = mysql_query($sql)  or die("Error in query: $sql.".mysql_error());
+                                                  
+                if ($result > 0)
+                {
+                           $RowsAffected = $result;
+
+                            mysql_close($connection); 
+                
+                }
+
+                
+                else
+                {
+                    $RowsAffected = 0;
+                } 
+             
+            }
+            
+            catch (Exception $e)
+            {
+                $RowsAffected = 0;
+            }
+                    
+            return $RowsAffected;
+ 
+        }
         
 }
 

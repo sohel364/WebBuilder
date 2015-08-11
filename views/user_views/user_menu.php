@@ -8,6 +8,7 @@
 
 error_reporting(E_ERROR);
 $menu_conten_list = array();
+$menu_id_list = array();
 try {
     require_once '../../manager/content_manager/content_manager.php';
     require_once '../../objects/ObjTemplate.php';
@@ -44,6 +45,7 @@ try {
  
             $menuContent = $menuContents[0];
             $menu_conten_list[$row['menu_title']] = $menuContent['content_html'];
+            $menu_id_list[$row['menu_title']] = $menu_id;
         }
         
        
@@ -54,5 +56,6 @@ try {
 }
 ?>
 <script type="text/javascript">
-    var user_menu_content_array = <?php echo json_encode($menu_conten_list);?>
+    var user_menu_content_array = <?php echo json_encode($menu_conten_list);?>;
+    var user_menu_id_array = <?php echo json_encode($menu_id_list);?>;
 </script>

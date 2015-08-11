@@ -3,6 +3,7 @@ session_start();
 error_reporting ( E_ERROR );
 $category;
 $template;
+$template_id;
 if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 	$turl = '../../templates/' . $_POST ['category'] . '/' . $_POST ['template'];
 	$css = '../../templates/' . $_POST ['category'] . '/' . $_POST ['template'] . '/css/style.css';
@@ -17,6 +18,13 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 $user_id = NULL;
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
+}
+if (isset($_POST['templateid'])) {
+    $template_id = $_POST['templateid'];
+} else if (isset($_GET['templateid'])) {
+    $template_id = $_GET['templateid'];
+} else {
+    $template_id = NULL;
 }
 ?>
 
@@ -34,10 +42,11 @@ if (isset($_SESSION['user_id'])) {
 
 
 <script type="text/javascript">
-            var template_id = '<?php echo $category.'_'.$template;?>';
+            var template_id = '<?php echo $template_id == NULL ? $category.'_'.$template : $template_id;?>';
             var currentCategory = '<?php echo $category;?>';
             var currentTemplate = '<?php echo $template;?>';
             var isUserLoggedIn = '<?php echo $user_id == NULL ? '0': '1';?>';
+            var isView = <?php echo $template_id == NULL ? FALSE : TRUE;?>;
 	</script>
 <script src="../../js/savePage.js"></script>
 <script src="../../js/drag_drop.js"></script>
@@ -270,10 +279,23 @@ if (isset($_SESSION['user_id'])) {
 
 					<!--</nav>-->
 					<div id="mainNav" class="collapse navbar-collapse">
+                                            <?php 
+                                                if($template_id == NULL) {
+                                            ?>
 						<ul id="menu" class="nav navbar-nav navbar">
 									<?php include ($turl.'/menu.html');?>
 									<li class="add-menu"><a>+</a></li>
 						</ul>
+                                            <?php 
+                                                } else {
+                                            ?>
+                                            <ul id="menu" class="nav navbar-nav navbar">
+									<?php include '../user_views/user_menu.php';?>
+									<li class="add-menu"><a >+</a></li>
+								</ul>
+                                            <?php 
+                                                }
+                                            ?>
 					</div>
 
 				</div>
