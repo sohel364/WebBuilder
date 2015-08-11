@@ -108,6 +108,61 @@ class ContentPageManager {
         return $retDataSet;
     }
 
+    
+    public function updateUserTemplate($objTemplate) {
+
+        $sqlContent = 'UPDATE `webbuilder`.`template` (`user_id`, `template_url`, `template_res_url`, `saved_name`,`template_name`,`category_name`) VALUES (\'' . $objTemplate->getUserID() . '\',\'' . $objTemplate->getTemplateUrl() . '\',\'' . $objTemplate->getTemplateResUrl() .  '\',\'' . $objTemplate->getTemplateSavedName() .  '\',\'' . $objTemplate->getTemplateName() .  '\',\'' . $objTemplate->getCategoryName() .'\') WHERE `template_id` = '. $objTemplate->getTemplateID() . '';
+
+        //return $sqlContent;
+
+        $dbHelper = new databaseHelper();
+        $insertID = $dbHelper->ExecuteUpdateQuery($sqlContent);
+        if($insertID == NULL) {
+            return '0';
+        } else {
+            return '1';
+        }
+    }
+
+    public function updateMenuSubmenuContent($objMenuList, $objSubmenuList, $objContentList) {
+        //return $objMenuList[0]->getMenuAhRef();
+        $menuIdArray = array();
+        foreach ($objMenuList as $objMenu) {
+            $insertID = $this->updateMenu($objMenu);
+            if($insertID == NULL ) {
+                return '0';
+            }
+            $menuIdArray[] = $insertID;
+        }
+        $i = 0;
+        foreach ($objContentList as $objContent) {
+            $objContent->setContentMenuID($menuIdArray[$i]);
+            $insertID = $this->updateContent($objContent);
+            if($insertID == NULL ) {
+                return '0';
+            }
+            $i++;
+        }
+        return '1';
+    }
+
+    private function updateMenu($objMenu) {
+        $sqlContent = 'INSERT INTO `webbuilder`.`menu` (`template_id`, `menu_title`, `hassubmenu`, `a_href`) VALUES (\'' . $objMenu->getTemplateID() . '\',\'' . $objMenu->getMenuTitle() . '\',\'' . $objMenu->getHasSubMenu() . '\',\'' . $objMenu->getMenuAhRef() . '\')';
+
+        //return $sqlContent;
+
+        $dbHelper = new databaseHelper();
+        $insertID = $dbHelper->ExecuteUpdateQuery($sqlContent);
+        return $insertID;
+    }
+
+    private function updateContent($objContent) {
+        $sqlContent = 'INSERT INTO `webbuilder`.`content` (`content_html`, `isMenu`, `content_menu_id`) VALUES (\'' . $objContent->getContentHtml() . '\',\'' . $objContent->getIsMenu() . '\',\'' . $objContent->getContentMenuID() . '\')';
+        $dbHelper = new databaseHelper();
+        $insertID = $dbHelper->ExecuteUpdateQuery($sqlContent);
+        return $insertID;
+    }
+    
 }
 
 ?>

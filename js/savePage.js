@@ -27,6 +27,14 @@ function getPageSaverUrl() {
     return getBaseUrl()+'/views/content_views/pageSaver.php';
 }
 
+
+/*
+ * Generates the page updater url with concatenating the base url
+ * @returns {String}
+ */
+function getPageUpdaterUrl() {
+    return getBaseUrl()+'/views/content_views/pageUpdater.php';
+}
 /*
  * Find all the menus created by user
  * @returns {Array|getMenuList.menuList}
@@ -69,13 +77,33 @@ function savePage() {
         var redirectURL = getBaseUrl();
         window.location.href = redirectURL;
     }
-    var savedName = prompt("Enter webpage name : ", "Enter page name");
     saveCurrentMenuText();
     var menuList = getMenuList();
-    var url = getPageSaverUrl();
+    
+    
+    
+    
     if (menuList.length !== 'undefined' && menuList.length > 1) {
         showSavingIcon();
-        $.ajax({
+        if(!isView) {
+            var url = getPageSaverUrl();
+            var savedName = prompt("Enter webpage name : ", "Enter page name");
+            insertPage(url, menuList, savedName);
+        } else {
+            var url = getPageUpdaterUrl();
+            var savedName = prompt("Enter webpage name : ", "Enter page name");
+            updatePage(url, menuList, savedName);
+        }
+    }
+    
+    var x = 0;
+    x++;
+}
+
+
+
+function insertPage(url, menuList, savedName) {
+    $.ajax({
             type: "POST",
             url: url,
             dataType: 'json',
@@ -102,12 +130,39 @@ function savePage() {
                 alert(err.Message);
             }
         });
-    }
-    var x = 0;
-    x++;
 }
 
-
+function updatePage(url, menuList, savedName) {
+    alert("Updating");
+    //return;
+    $.ajax({
+            type: "POST",
+            url: url,
+            dataType: 'json',
+            data: {menulists: menuList, menucontentlist: menuContens, templateid: template_id, savedname: savedName, categoryname:currentCategory, templatename:currentTemplate, menuidlist:user_menu_id_array},
+            success: function (obj, textstatus) {
+                hideSavingIcon();
+                if (!('error' in obj)) {
+                    //yourVariable = obj.result;
+                    if(obj.saveUserTemplate === '1') {
+                        alert('Updated Successfully!!!');
+                    } else {
+                        alert('Error occured during saving!!!');
+                    }
+                    
+                }
+                else {
+                    //console.log(obj.error);
+                    alert('Error: ' + obj.error);
+                }
+            },
+            error: function(xhr, status, error) {
+                hideSavingIcon();
+                var err = eval("(" + xhr.responseText + ")");
+                alert(err.Message);
+            }
+        });
+}
 /*
  * Shows loading icons while saving operation is ongoing
  */
