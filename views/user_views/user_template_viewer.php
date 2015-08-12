@@ -156,7 +156,7 @@ error_reporting(E_ERROR);
 			</div>
 
 			<div id="body" contentEditable="false"><?php include ($turl.'/body.html');?></div>
-                        <!--<div id="test_removable"><?php include 'user_menu.php'?></div> -->
+                        <!--<div id="test_removable"><!--?php include 'user_menu.php'?></div> -->
 			<div id="footer">
 				<?php include ($turl.'/footer.html');?>
 			</div>
