@@ -45,7 +45,7 @@ try {
         
         if (isset($_SESSION['user_id'])) {
             $user_id = $_SESSION['user_id'];
-            $user_template_id .= '_' . $_SESSION['username'];
+            $user_template_id .= '_' . $user_id;
         }
         $date = date('Y_m_d_h_i_s_a', time());
         $user_template_id .= '_' . $date;

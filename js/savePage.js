@@ -85,13 +85,19 @@ function savePage() {
     
     if (menuList.length !== 'undefined' && menuList.length > 1) {
         showSavingIcon();
+        var savedName; 
         if(!isView) {
             var url = getPageSaverUrl();
-            var savedName = prompt("Enter webpage name : ", "Enter page name");
+            savedName = prompt("Enter webpage name : ", "Enter page name");
             insertPage(url, menuList, savedName);
         } else {
             var url = getPageUpdaterUrl();
-            var savedName = prompt("Enter webpage name : ", "Enter page name");
+            if(template_saved_name !== 'undefined' && template_saved_name.length>0) {
+                savedName = prompt("Enter webpage name : ", template_saved_name);
+            } else {
+                savedName = prompt("Enter webpage name : ", "Enter page name");
+            }
+            
             updatePage(url, menuList, savedName);
         }
     }
@@ -126,14 +132,14 @@ function insertPage(url, menuList, savedName) {
             },
             error: function(xhr, status, error) {
                 hideSavingIcon();
-                var err = eval("(" + xhr.responseText + ")");
-                alert(err.Message);
+                var err =  xhr.responseText;
+                alert(err);
             }
         });
 }
 
 function updatePage(url, menuList, savedName) {
-    alert("Updating");
+    //alert("Updating");
     //return;
     $.ajax({
             type: "POST",
@@ -158,8 +164,8 @@ function updatePage(url, menuList, savedName) {
             },
             error: function(xhr, status, error) {
                 hideSavingIcon();
-                var err = eval("(" + xhr.responseText + ")");
-                alert(err.Message);
+                var err =  xhr.responseText;
+                alert(err);
             }
         });
 }

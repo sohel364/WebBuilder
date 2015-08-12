@@ -75,6 +75,17 @@ class ContentPageManager {
         return $insertID;
     }
     
+    public function loadUserTemplateByTemplateID($templateID) {
+        $sqlContent = 'SELECT * FROM template WHERE template_id = \''.$templateID.'\'';
+        
+        //return $sqlContent;
+        //'INSERT INTO `webbuilder`.`template` (`template_id`, `user_id`, `template_url`, `template_res_url`) VALUES (\'' . $objTemplate->getTemplateID() . '\',\'' . $objTemplate->getUserID() . '\',\'' . $objTemplate->getTemplateUrl() . '\',\'' . $objTemplate->getTemplateResUrl() . '\')';
+        //return $sqlContent;
+
+        $dbHelper = new databaseHelper();
+        $retDataSet = $dbHelper->ExecuteDataSet($sqlContent);
+        return $retDataSet;
+    }
     public function loadUserTemplateListByUserId($objTemplate) {
         $sqlContent = 'SELECT * FROM template WHERE user_id = \''.$objTemplate->getUserID().'\'';
 
@@ -111,13 +122,20 @@ class ContentPageManager {
     
     public function updateUserTemplate($objTemplate) {
 
-        $sqlContent = 'UPDATE `webbuilder`.`template` (`user_id`, `template_url`, `template_res_url`, `saved_name`,`template_name`,`category_name`) VALUES (\'' . $objTemplate->getUserID() . '\',\'' . $objTemplate->getTemplateUrl() . '\',\'' . $objTemplate->getTemplateResUrl() .  '\',\'' . $objTemplate->getTemplateSavedName() .  '\',\'' . $objTemplate->getTemplateName() .  '\',\'' . $objTemplate->getCategoryName() .'\') WHERE `template_id` = '. $objTemplate->getTemplateID() . '';
+        $sqlContent = 'UPDATE `webbuilder`.`template` SET '
+                . '`user_id` = \'' . $objTemplate->getUserID() . '\', '
+                . '`template_url` = \'' . $objTemplate->getTemplateUrl() . '\','
+                . '`template_res_url` = \'' . $objTemplate->getTemplateResUrl() .  '\','
+                . ' `saved_name` = \'' . $objTemplate->getTemplateSavedName() .  '\','
+                . '`template_name` = \'' . $objTemplate->getTemplateName() .  '\','
+                . '`category_name` = \'' . $objTemplate->getCategoryName() .'\' '
+                . 'WHERE `template_id` = \''. $objTemplate->getTemplateID() . '\'';
 
         //return $sqlContent;
 
         $dbHelper = new databaseHelper();
         $insertID = $dbHelper->ExecuteUpdateQuery($sqlContent);
-        if($insertID == NULL) {
+        if($insertID == NULL || $insertID == 0) {
             return '0';
         } else {
             return '1';
@@ -127,18 +145,32 @@ class ContentPageManager {
     public function updateMenuSubmenuContent($objMenuList, $objSubmenuList, $objContentList) {
         //return $objMenuList[0]->getMenuAhRef();
         $menuIdArray = array();
+        $retVal = NULL;
         foreach ($objMenuList as $objMenu) {
-            $insertID = $this->updateMenu($objMenu);
-            if($insertID == NULL ) {
+            $insertID = -1;
+            if($objMenu->getMenuID() != NULL) {
+               $retVal = $this->updateMenu($objMenu);
+            } else {
+                $insertID = $this->saveMenu($objMenu);
+                $retVal = $insertID;
+            }
+            
+            if($retVal == NULL || $retVal <= 0) {
                 return '0';
             }
             $menuIdArray[] = $insertID;
         }
         $i = 0;
         foreach ($objContentList as $objContent) {
-            $objContent->setContentMenuID($menuIdArray[$i]);
-            $insertID = $this->updateContent($objContent);
-            if($insertID == NULL ) {
+            $insertID = NULL;
+            if($objContent->getContentMenuID() == NULL) {
+                $objContent->setContentMenuID($menuIdArray[$i]);
+                $insertID = $this->saveContent($objContent);
+                $retVal = $insertID;
+            } else {
+                $retVal = $this->updateContent($objContent);
+            }
+            if($insertID == NULL  || $retVal <= 0) {
                 return '0';
             }
             $i++;
@@ -147,7 +179,12 @@ class ContentPageManager {
     }
 
     private function updateMenu($objMenu) {
-        $sqlContent = 'INSERT INTO `webbuilder`.`menu` (`template_id`, `menu_title`, `hassubmenu`, `a_href`) VALUES (\'' . $objMenu->getTemplateID() . '\',\'' . $objMenu->getMenuTitle() . '\',\'' . $objMenu->getHasSubMenu() . '\',\'' . $objMenu->getMenuAhRef() . '\')';
+        $sqlContent = 'UPDATE `webbuilder`.`menu` SET '
+                . '`template_id` = \'' . $objMenu->getTemplateID() . '\', '
+                . '`menu_title` = \'' . $objMenu->getMenuTitle() . '\','
+                . ' `hassubmenu` = \'' . $objMenu->getHasSubMenu() . '\','
+                . ' `a_href` = \'' . $objMenu->getMenuAhRef() . '\''
+                . ' WHERE `menu_id` = \''. $objMenu->getMenuID() . '\'';
 
         //return $sqlContent;
 
@@ -157,7 +194,10 @@ class ContentPageManager {
     }
 
     private function updateContent($objContent) {
-        $sqlContent = 'INSERT INTO `webbuilder`.`content` (`content_html`, `isMenu`, `content_menu_id`) VALUES (\'' . $objContent->getContentHtml() . '\',\'' . $objContent->getIsMenu() . '\',\'' . $objContent->getContentMenuID() . '\')';
+        $sqlContent = 'UPDATE `webbuilder`.`content` SET '
+                . '`content_html` = \'' . $objContent->getContentHtml() . '\', '
+                . '`isMenu` = \'' . $objContent->getIsMenu() . '\' '
+                . ' WHERE `content_menu_id` = \''. $objContent->getContentMenuID() . '\'';
         $dbHelper = new databaseHelper();
         $insertID = $dbHelper->ExecuteUpdateQuery($sqlContent);
         return $insertID;

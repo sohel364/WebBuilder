@@ -1,5 +1,5 @@
 <?php
-session_start ();
+session_start();
 error_reporting ( E_ERROR );
 $category;
 $template;
@@ -46,7 +46,11 @@ if (isset ( $_POST ['templateid'] )) {
             var currentCategory = '<?php echo $category;?>';
             var currentTemplate = '<?php echo $template;?>';
             var isUserLoggedIn = '<?php echo $user_id == NULL ? '0': '1';?>';
-            var isView = <?php echo $template_id == NULL ? FALSE : TRUE;?>;
+            var tempIsView = '<?php echo $template_id == NULL ? '0' : '1';?>';
+            var isView = false;
+            if(tempIsView === '1') {
+                isView = true;
+            }
 	</script>
 <script src="../../js/savePage.js"></script>
 <script src="../../js/drag_drop.js"></script>

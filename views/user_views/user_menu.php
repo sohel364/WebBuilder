@@ -23,6 +23,8 @@ try {
     
     
     $contentManager = new ContentPageManager();
+    $templateInfo = $contentManager->loadUserTemplateByTemplateID($template_id);
+    $templateName = $templateInfo[0]['saved_name'];
     $retArray = $contentManager->loadUserMenuByTemplateID($template_id);
     //echo json_encode($retArray);
     //echo count($retArray);
@@ -58,4 +60,5 @@ try {
 <script type="text/javascript">
     var user_menu_content_array = <?php echo json_encode($menu_conten_list);?>;
     var user_menu_id_array = <?php echo json_encode($menu_id_list);?>;
+    var template_saved_name = '<?php echo $templateName;?>';
 </script>
