@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start ();
 error_reporting ( E_ERROR );
 $category;
 $template;
@@ -16,15 +16,15 @@ if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 	$template = $_GET ['template'];
 }
 $user_id = NULL;
-if (isset($_SESSION['user_id'])) {
-    $user_id = $_SESSION['user_id'];
+if (isset ( $_SESSION ['user_id'] )) {
+	$user_id = $_SESSION ['user_id'];
 }
-if (isset($_POST['templateid'])) {
-    $template_id = $_POST['templateid'];
-} else if (isset($_GET['templateid'])) {
-    $template_id = $_GET['templateid'];
+if (isset ( $_POST ['templateid'] )) {
+	$template_id = $_POST ['templateid'];
+} else if (isset ( $_GET ['templateid'] )) {
+	$template_id = $_GET ['templateid'];
 } else {
-    $template_id = NULL;
+	$template_id = NULL;
 }
 ?>
 
@@ -152,17 +152,21 @@ if (isset($_POST['templateid'])) {
 		no-repeat center center rgba(0, 0, 0, 0.25)
 }
 </style>
-        <div id="showsaveicon" style="display: none"></div>
+	<div id="showsaveicon" style="display: none"></div>
 
-<div>	
+	<div>	
 	<?php if($template=="Medical Practioner" || $template=="part1"){ include_once '../master_views/topper_view.php'; }?>
 </div>
-<div style="height: 25px;">
-		<a onclick="savePage();" class="btn btn-inverse" style="margin-right: 118px; float: right;"><i class="icon-star"></i> Save</a>
+	<div style="height: 25px;">
+		<a onclick="savePage();" class="btn btn-inverse"
+			style="margin-right: 118px; float: right;"><i class="icon-star"></i>
+			Save</a>
 	</div>
-        
-        <br/><br/><br/>
-        
+
+	<br />
+	<br />
+	<br />
+
 	<div style="height: 25px;">
 		<a style="margin-right: 118px; float: right;" class="btn btn-inverse"
 			onclick="savePage();"><i class="icon-star"></i> Save</a>
@@ -279,23 +283,24 @@ if (isset($_POST['templateid'])) {
 
 					<!--</nav>-->
 					<div id="mainNav" class="collapse navbar-collapse">
-                                            <?php 
-                                                if($template_id == NULL) {
-                                            ?>
+                                            <?php
+																																												if ($template_id == NULL) {
+																																													?>
 						<ul id="menu" class="nav navbar-nav navbar">
 									<?php include ($turl.'/menu.html');?>
 									<li class="add-menu"><a>+</a></li>
 						</ul>
-                                            <?php 
-                                                } else {
-                                            ?>
-                                            <ul id="menu" class="nav navbar-nav navbar">
+                                            <?php
+																																												} else {
+																																													?>
+                                            <ul id="menu"
+							class="nav navbar-nav navbar">
 									<?php include '../user_views/user_menu.php';?>
-									<li class="add-menu"><a >+</a></li>
-								</ul>
-                                            <?php 
-                                                }
-                                            ?>
+									<li class="add-menu"><a>+</a></li>
+						</ul>
+                                            <?php
+																																												}
+																																												?>
 					</div>
 
 				</div>
@@ -590,8 +595,11 @@ if (isset($_POST['templateid'])) {
 		<p style="font-weight: lighter; font-size: small;">Edit your Dropdown
 			Menue, Add or Delete options</p>
 		<div
-			style="height: 300px; border: 1px solid lightgrey; border-radius: 8px; padding: 5px">
-
+			style="height: 150px; border: 1px solid lightgrey; border-radius: 8px; padding: 5px">
+			<p style="padding-top: 5px; font-weight: lighter; font-size: small;">Dropdown
+				Options</p>
+			<textarea id="dropdown_option_txt"
+				style="width: 100%; height: 90px; resize: none; border: .5px solid lightgrey; border-radius: 5px;"></textarea>
 		</div>
 		<hr></hr>
 		</button>
@@ -654,14 +662,12 @@ if (isset($_POST['templateid'])) {
 		class="button_template_non_editable btn btn-primary btn-lg"
 		style="display: none">Click Me</button>
 
-	<div id="dropdown_template" name="dropdown"
+	<select id="dropdown_template" name="dropdown"
 		class="drop_down_template_non_editable" style="display: none">
-		<select name="dropdown" class="drop_down_template_non_editable">
-			<option value="Option1">Option 1</option>
-			<option value="Option2">Option 2</option>
-			<option value="Option3">Option 3</option>
-		</select>
-	</div>
+		<option value="Option1">Option 1</option>
+		<option value="Option2">Option 2</option>
+		<option value="Option3">Option 3</option>
+	</select>
 
 	<div id="radiobutton_template" name="radiobutton"
 		style="display: none; position: absolute; width: 200px"></div>
@@ -669,9 +675,9 @@ if (isset($_POST['templateid'])) {
 	<div id="feedback_form_template" name="feedback_form"
 		style="display: none; position: absolute; width: 400px; height: auto; border: 1px solid lightgrey; border-radius: 5px; padding: 10px">
 		<h3 style="">User Feedback</h3>
-		<hr></hr> 
-		<label>Name : </label> <input id="feedback_user_name"
-			type="text" name="feedback_user_name" placeholder="Your Name"
+		<hr></hr>
+		<label>Name : </label> <input id="feedback_user_name" type="text"
+			name="feedback_user_name" placeholder="Your Name"
 			style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
 
 			<label>Email : </label> <input id="feedback_user_email" type="text"
@@ -681,11 +687,11 @@ if (isset($_POST['templateid'])) {
 				<label>Comment : </label> <textarea id="feedback_user_comment"
 					name="feedback_user_comment" value="Fill in your Comment"
 					style="width: 100%; height: 150px; border: .5px solid lightgrey; border-radius: 5px;">
-			</textarea> 
-		<hr></hr>
-		
-		<button class="btn btn-success btn-lg" style="float: right;">Submit</button>
+			</textarea>
+				<hr></hr>
 
+				<button class="btn btn-success btn-lg" style="float: right;">Submit</button>
+	
 	</div>
 
 

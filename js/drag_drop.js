@@ -10,6 +10,7 @@ var counter = 1001;
 var clicked_dropped_item_id = null;
 var child_item = null;
 var editable_control = null;
+
 var pos;
 var isSaved = false;
 var allawable_control_array = [ "button", "textarea", "radiobutton",
@@ -22,24 +23,22 @@ var currentMousePos = {
 
 function makeTemplateComponetsEditable() {
 	console.log("Making Template Control Editable");
-	
-	$("#body").find("*").each(
-			function() {
-				var control_id = $(this).attr("id");
-				var control_name = $(this).attr("name");
 
-				console.log(control_id + " : " + control_name);
-				
-				if (allawable_control_array.indexOf(control_name) > -1) {
-					console.log(" [Allowable Control] Control Type : " + control_name);
-					$(this).attr("id",
-							$(this).attr("name") + "_dropped" + counter++);
+	$("#body").find("*").each(function() {
+		var control_id = $(this).attr("id");
+		var control_name = $(this).attr("name");
 
-					makeDroppedControlsDraggable($(this));
+		console.log(control_id + " : " + control_name);
 
-					$(this).click(droppedItemClickAction);
-				}
-			});
+		if (allawable_control_array.indexOf(control_name) > -1) {
+			console.log(" [Allowable Control] Control Type : " + control_name);
+			$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
+
+			makeDroppedControlsDraggable($(this));
+
+			$(this).click(droppedItemClickAction);
+		}
+	});
 }
 
 function makeControlsOfPaletteDraggable() {
@@ -77,8 +76,7 @@ function makeBodyDroppable() {
 				activeClass : "activeDroppable",
 				hoverClass : "hoverDroppable",
 				/*
-				 * accept : ":not(.ui-sortable-helper
-				 * #control_option_dialog)",
+				 * accept : ":not(.ui-sortable-helper #control_option_dialog)",
 				 */
 				accept : ".draggableField",
 				drop : function(event, ui) {
@@ -126,7 +124,7 @@ function makeBodyDroppable() {
 
 						draggable[0].id = droppable_name + "_dropped_"
 								+ (counter++);
-						//draggable[0].name = droppable_name;
+						// draggable[0].name = droppable_name;
 
 						if (is_radio_button) {
 							var radio_btn_template_array = [ {
@@ -156,13 +154,12 @@ function makeBodyDroppable() {
 
 						var pos = draggable.position();
 						/*
-						 * alert("position : " + pos.left + " : " +
-						 * pos.top);
+						 * alert("position : " + pos.left + " : " + pos.top);
 						 */
 						/*
 						 * draggable.click(function() { var pos =
-						 * draggable.position(); alert("position : " +
-						 * pos.left + " : " + pos.top);
+						 * draggable.position(); alert("position : " + pos.left + " : " +
+						 * pos.top);
 						 * 
 						 * });
 						 */
@@ -207,10 +204,10 @@ function animateImageSlider(control) {
 
 function createRadioButtonTemplate(control, radio_btn_list) {
 	console.log(radio_btn_list);
-	
+
 	$.each(radio_btn_list, function() {
 		console.log(this);
-		
+
 		control.append($('<input />', {
 			type : 'radio',
 			name : this.Name,
@@ -229,12 +226,13 @@ function createRadioButtonTemplate(control, radio_btn_list) {
 function showRadioButtonEditPanel() {
 
 	var count = 0;
-	var radio_btn_array = [];
 	var option_txt = "";
-	
+	var old_radio_btn_array = [];
 
 	function restoreInitialState() {
 		// If cancel button is pressed, this function will be called
+		createRadioButtonTemplate(editable_control, old_radio_btn_array);
+
 		isSaved = false;
 	}
 
@@ -251,15 +249,15 @@ function showRadioButtonEditPanel() {
 				radio_btn_info_array["Name"] = radio_name;
 				radio_btn_info_array["Text"] = radio_txt;
 
-				radio_btn_array[count++] = radio_btn_info_array;
+				old_radio_btn_array[count++] = radio_btn_info_array;
 
 				console.log("Info For Radio Button : " + radio_id + " : "
 						+ radio_name + " : " + radio_txt);
 			});
 
-	$.each(radio_btn_array, function(index, value) {
-		option_txt += value.Text;
-		if (index != (radio_btn_array.length - 1)) {
+	$.each(old_radio_btn_array, function(index, value) {
+		option_txt += old_radio_btn_array[index]["Text"];
+		if (index != (old_radio_btn_array.length - 1)) {
 			option_txt += "\n";
 		}
 	});
@@ -303,8 +301,6 @@ function showButtonEditPanel() {
 		editable_control.css("background", old_color);
 	}
 
-
-
 	$("#btn_edit_dialog").dialog({
 		dialogClass : "no-close",
 		resizable : false,
@@ -332,105 +328,73 @@ function showButtonEditPanel() {
 
 	});
 
-	$("#color_picker")
-			.spectrum(
-					{
-						color : "#6cc8f9",
-						flat : false,
-						showInput : false,
-						containerClassName : 'color_picker_container',
-						replacerClassName : 'color_picker_icon',
-						showInitial : true,
-						showPalette : true,
-						showSelectionPalette : true,
-						maxPaletteSize : 5,
-						preferredFormat : "hex",
-						localStorageKey : "spectrum.demo",
-						move : function(color) {
+	$("#color_picker").spectrum(
+			{
+				color : "#6cc8f9",
+				flat : false,
+				showInput : false,
+				containerClassName : 'color_picker_container',
+				replacerClassName : 'color_picker_icon',
+				showInitial : true,
+				showPalette : true,
+				showSelectionPalette : true,
+				maxPaletteSize : 5,
+				preferredFormat : "hex",
+				localStorageKey : "spectrum.demo",
+				move : function(color) {
 
-						},
-						show : function() {
+				},
+				show : function() {
 
-						},
-						beforeShow : function() {
-						},
-						hide : function() {
-						},
-						change : function(color) {
-							editable_control.css("background", color);
-						},
-						palette : [
-								[ "rgb(0, 0, 0)", "rgb(67, 67, 67)",
-										"rgb(102, 102, 102)",
-										"rgb(204, 204, 204)",
-										"rgb(217, 217, 217)",
-										"rgb(255, 255, 255)" ],
-								[ "rgb(152, 0, 0)", "rgb(255, 0, 0)",
-										"rgb(255, 153, 0)",
-										"rgb(255, 255, 0)",
-										"rgb(0, 255, 0)",
-										"rgb(0, 255, 255)",
-										"rgb(74, 134, 232)",
-										"rgb(0, 0, 255)",
-										"rgb(153, 0, 255)",
-										"rgb(255, 0, 255)" ],
-								[ "rgb(230, 184, 175)",
-										"rgb(244, 204, 204)",
-										"rgb(252, 229, 205)",
-										"rgb(255, 242, 204)",
-										"rgb(217, 234, 211)",
-										"rgb(208, 224, 227)",
-										"rgb(201, 218, 248)",
-										"rgb(207, 226, 243)",
-										"rgb(217, 210, 233)",
-										"rgb(234, 209, 220)",
-										"rgb(221, 126, 107)",
-										"rgb(234, 153, 153)",
-										"rgb(249, 203, 156)",
-										"rgb(255, 229, 153)",
-										"rgb(182, 215, 168)",
-										"rgb(162, 196, 201)",
-										"rgb(164, 194, 244)",
-										"rgb(159, 197, 232)",
-										"rgb(180, 167, 214)",
-										"rgb(213, 166, 189)",
-										"rgb(204, 65, 37)",
-										"rgb(224, 102, 102)",
-										"rgb(246, 178, 107)",
-										"rgb(255, 217, 102)",
-										"rgb(147, 196, 125)",
-										"rgb(118, 165, 175)",
-										"rgb(109, 158, 235)",
-										"rgb(111, 168, 220)",
-										"rgb(142, 124, 195)",
-										"rgb(194, 123, 160)",
-										"rgb(166, 28, 0)",
-										"rgb(204, 0, 0)",
-										"rgb(230, 145, 56)",
-										"rgb(241, 194, 50)",
-										"rgb(106, 168, 79)",
-										"rgb(69, 129, 142)",
-										"rgb(60, 120, 216)",
-										"rgb(61, 133, 198)",
-										"rgb(103, 78, 167)",
-										"rgb(166, 77, 121)",
-										"rgb(91, 15, 0)", "rgb(102, 0, 0)",
-										"rgb(120, 63, 4)",
-										"rgb(127, 96, 0)",
-										"rgb(39, 78, 19)",
-										"rgb(12, 52, 61)",
-										"rgb(28, 69, 135)",
-										"rgb(7, 55, 99)",
-										"rgb(32, 18, 77)",
-										"rgb(76, 17, 48)" ] ]
-					});
+				},
+				beforeShow : function() {
+				},
+				hide : function() {
+				},
+				change : function(color) {
+					editable_control.css("background", color);
+				},
+				palette : [
+						[ "rgb(0, 0, 0)", "rgb(67, 67, 67)",
+								"rgb(102, 102, 102)", "rgb(204, 204, 204)",
+								"rgb(217, 217, 217)", "rgb(255, 255, 255)" ],
+						[ "rgb(152, 0, 0)", "rgb(255, 0, 0)",
+								"rgb(255, 153, 0)", "rgb(255, 255, 0)",
+								"rgb(0, 255, 0)", "rgb(0, 255, 255)",
+								"rgb(74, 134, 232)", "rgb(0, 0, 255)",
+								"rgb(153, 0, 255)", "rgb(255, 0, 255)" ],
+						[ "rgb(230, 184, 175)", "rgb(244, 204, 204)",
+								"rgb(252, 229, 205)", "rgb(255, 242, 204)",
+								"rgb(217, 234, 211)", "rgb(208, 224, 227)",
+								"rgb(201, 218, 248)", "rgb(207, 226, 243)",
+								"rgb(217, 210, 233)", "rgb(234, 209, 220)",
+								"rgb(221, 126, 107)", "rgb(234, 153, 153)",
+								"rgb(249, 203, 156)", "rgb(255, 229, 153)",
+								"rgb(182, 215, 168)", "rgb(162, 196, 201)",
+								"rgb(164, 194, 244)", "rgb(159, 197, 232)",
+								"rgb(180, 167, 214)", "rgb(213, 166, 189)",
+								"rgb(204, 65, 37)", "rgb(224, 102, 102)",
+								"rgb(246, 178, 107)", "rgb(255, 217, 102)",
+								"rgb(147, 196, 125)", "rgb(118, 165, 175)",
+								"rgb(109, 158, 235)", "rgb(111, 168, 220)",
+								"rgb(142, 124, 195)", "rgb(194, 123, 160)",
+								"rgb(166, 28, 0)", "rgb(204, 0, 0)",
+								"rgb(230, 145, 56)", "rgb(241, 194, 50)",
+								"rgb(106, 168, 79)", "rgb(69, 129, 142)",
+								"rgb(60, 120, 216)", "rgb(61, 133, 198)",
+								"rgb(103, 78, 167)", "rgb(166, 77, 121)",
+								"rgb(91, 15, 0)", "rgb(102, 0, 0)",
+								"rgb(120, 63, 4)", "rgb(127, 96, 0)",
+								"rgb(39, 78, 19)", "rgb(12, 52, 61)",
+								"rgb(28, 69, 135)", "rgb(7, 55, 99)",
+								"rgb(32, 18, 77)", "rgb(76, 17, 48)" ] ]
+			});
 
 }
 
 function showTextEditPanel() {
 
 	// $(".ui-dialog-titlebar-close").css("display", true);
-
 
 	$("#text_edit_dialog").dialog({
 		dialogClass : "no-close",
@@ -502,10 +466,28 @@ function showImageEditPanel() {
 
 function showDropDownEditPanel() {
 
+	var old_select_option_list = [];
+	var option_txt = "";
+
 	function restoreInitialState() {
 		// If cancel button is pressed, this function will be called
+		createDropdownTemplate(old_select_option_list);
 		isSaved = false;
 	}
+
+	$("#" + editable_control.attr("id") + " option").each(
+			function(index, value) {
+				old_select_option_list[index] = $(this).text();
+			});
+
+	$.each(old_select_option_list, function(index, value) {
+		option_txt += old_select_option_list[index];
+		if (index != (old_select_option_list.length - 1)) {
+			option_txt += "\n";
+		}
+	});
+
+	$("#dropdown_option_txt").val(option_txt);
 
 	$("#dropdown_edit_dialog").dialog({
 		dialogClass : "no-close",
@@ -544,7 +526,7 @@ function showEditPanel() {
 
 	} else if (clicked_dropped_item_id.search('textarea') == 0) {
 		showTextEditPanel();
-		//makeTextAreaEditable();
+		// makeTextAreaEditable();
 	} else if (clicked_dropped_item_id.search('dropdown') == 0) {
 		showDropDownEditPanel();
 	} else if (clicked_dropped_item_id.search('radiobutton') == 0) {
@@ -591,7 +573,7 @@ function makeControlNonEditable(control) {
 }
 
 function closeAllEditDialogPanel() {
-	
+
 	if ($("#control_option_dialog").dialog("instance") != undefined) {
 		$("#control_option_dialog").dialog("close");
 	}
@@ -742,12 +724,20 @@ var indexOf = function(needle) {
 	return indexOf.call(this, needle);
 };
 
+function createDropdownTemplate(new_dropdown_options) {
+	$("#" + editable_control.attr("id") + " option").remove();
 
-function initializeAllDialogButton(){
+	$.each(new_dropdown_options, function(index, values) {
+		editable_control.append('<option value="' + new_dropdown_options[index]
+				+ '"> ' + new_dropdown_options[index] + '</option>');
+	});
+}
+
+function initializeAllDialogButton() {
 	/*
 	 * Button Initialization for Option Dialog Panel
 	 */
-	
+
 	$("#dialog_btn_delete").click(function() {
 		$("#control_option_dialog").dialog("close");
 		$("#" + clicked_dropped_item_id).remove();
@@ -761,34 +751,35 @@ function initializeAllDialogButton(){
 	$("#dialog_btn_resize").click(function() {
 		$("#control_option_dialog").dialog("close");
 		editable_control = $("#" + clicked_dropped_item_id);
-		 makeControlEditable(editable_control);
-		 
-		 editable_control.attr('contenteditable', true);
+		makeControlEditable(editable_control);
 
-//		editable_control.resizable({
-//			ghost : false,
-//			animate : false,
-//			autoHide : true,
-//			distance : 0,
-//		/* handles : "n, e, s, w, ne, se, sw, nw", */
-//		// alsoResize : "#" + clicked_dropped_item_id
-//		/*
-//		 * resize: function(){ $("#" +
-//		 * clicked_dropped_item_id).css("height",child_item.height+"px"); $("#" +
-//		 * clicked_dropped_item_id).css("width",child_item.width+"px"); }
-//		 */
-//		});
+		editable_control.attr('contenteditable', true);
+
+		// editable_control.resizable({
+		// ghost : false,
+		// animate : false,
+		// autoHide : true,
+		// distance : 0,
+		// /* handles : "n, e, s, w, ne, se, sw, nw", */
+		// // alsoResize : "#" + clicked_dropped_item_id
+		// /*
+		// * resize: function(){ $("#" +
+		// * clicked_dropped_item_id).css("height",child_item.height+"px");
+		// $("#" +
+		// * clicked_dropped_item_id).css("width",child_item.width+"px"); }
+		// */
+		// });
 
 	});
 
 	$("#dialog_btn_cancel").click(function() {
 		$("#control_option_dialog").dialog("close");
 	});
-	
+
 	/*
 	 * Button Initialization for Radio button
 	 */
-	
+
 	$("#radio_btn_dialog_cancel").click(function() {
 		$("#radio_btn_edit_dialog").dialog("close");
 	});
@@ -820,11 +811,11 @@ function initializeAllDialogButton(){
 
 		$("#radio_btn_edit_dialog").dialog("close");
 	});
-	
+
 	/*
 	 * Button initialization for Button Edit Panel
 	 */
-	
+
 	$("#btn_dialog_cancel").click(function() {
 		$("#btn_edit_dialog").dialog("close");
 	});
@@ -837,19 +828,19 @@ function initializeAllDialogButton(){
 		isSaved = true;
 		$("#btn_edit_dialog").dialog("close");
 	});
-	
+
 	/*
 	 * Button Initialization for Text Edit panel
 	 */
-	
+
 	$("#btn_txt_editor_close").click(function() {
 		$("#text_edit_dialog").dialog("close");
 	});
-	
+
 	/*
 	 * Button Initializatin for Image Edit Panel
 	 */
-	
+
 	$("#btn_browse_image").click(function() {
 
 		$('#file_picker').change(function(event) {
@@ -871,39 +862,50 @@ function initializeAllDialogButton(){
 	$("#btn_imgage_dialog_save").click(function() {
 		isSaved = true;
 		console.log("Save btn Clicked : " + isSaved);
-		
+
 		$("#image_edit_dialog").dialog("close");
 	});
-	
+
 	/*
 	 * Button Initialization for Drop Down Edit Panel
 	 */
-	
+
 	$("#btn_dropdown_dialog_cancel").click(function() {
+
 		$("#dropdown_edit_dialog").dialog("close");
 	});
 
 	$("#btn_dropdown_dialog_save").click(function() {
+
+		var dropdown_options = $("#dropdown_option_txt").val();
+		var new_dropdown_options = dropdown_options.split('\n');
+
+		if (new_dropdown_options[new_dropdown_options.length - 1] == null) {
+			// To Do
+			// if extra new lines are detected
+		}
+
+		createDropdownTemplate(new_dropdown_options);
+
 		isSaved = true;
-		$("#dropdown_edit_dialogs").dialog("close");
+		$("#dropdown_edit_dialog").dialog("close");
 	});
-	
+
 	/*
 	 * Button Initialization for Text Editor
 	 */
-	
-	$("#btn_txt_editor_bold").click(function(){
-//		var text = editable_control.html();
-//		var selectedText = window.getSelection().toString();
-//		console.log(selectedText);
-//		var replacedText = text.replace(selectedText, "<b>" + selectedText + "</b>");
-//		console.log(replacedText);
-//		editable_control.html(replacedText);
-	});
-			
-	
-}
 
+	$("#btn_txt_editor_bold").click(function() {
+		// var text = editable_control.html();
+		// var selectedText = window.getSelection().toString();
+		// console.log(selectedText);
+		// var replacedText = text.replace(selectedText, "<b>" + selectedText +
+		// "</b>");
+		// console.log(replacedText);
+		// editable_control.html(replacedText);
+	});
+
+}
 
 $(function() {
 
@@ -912,9 +914,7 @@ $(function() {
 	startMonitoringMousePosition();
 	makeBodyDroppable();
 	initializeAllDialogButton();
-	
-	
-	
+
 	/*
 	 * $("#frame").find("*").draggable({ containment : "#frame", // cancel :
 	 * null });
