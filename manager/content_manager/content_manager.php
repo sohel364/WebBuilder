@@ -135,7 +135,7 @@ class ContentPageManager {
 
         $dbHelper = new databaseHelper();
         $insertID = $dbHelper->ExecuteUpdateQuery($sqlContent);
-        if($insertID == NULL || $insertID == 0) {
+        if($insertID == NULL || $insertID < 0) {
             return '0';
         } else {
             return '1';
@@ -155,7 +155,7 @@ class ContentPageManager {
                 $retVal = $insertID;
             }
             
-            if($retVal == NULL || $retVal <= 0) {
+            if($retVal == NULL || $retVal < 0) {
                 return '0';
             }
             $menuIdArray[] = $insertID;
@@ -170,7 +170,7 @@ class ContentPageManager {
             } else {
                 $retVal = $this->updateContent($objContent);
             }
-            if($insertID == NULL  || $retVal <= 0) {
+            if($retVal == NULL  || $retVal < 0) {
                 return '0';
             }
             $i++;
