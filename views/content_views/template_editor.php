@@ -39,6 +39,7 @@ if (isset ( $_POST ['templateid'] )) {
 <script src="../../js/bootstrap-dialog.js"></script>
 <script src="../../js/jquery-ui.min.js"></script>
 <script src="../../js/spectrum.js"></script>
+<script src="../../js/jquery.sortable.js"></script>
 
 
 <script type="text/javascript">
@@ -138,6 +139,27 @@ if (isset ( $_POST ['templateid'] )) {
 	border-radius: 7px;
 	width: 100%;
 }
+
+.sortable.grid li {
+			line-height: 80px;
+			float: left;
+			width: 80px;
+			height: 80px;
+			text-align: center;
+			border-radius: 5px;
+			margin-left: 5px;
+		}
+.grid {
+			display: inline;			
+}
+.slider_thumbnail{		
+			width: 80px;
+			height: 80px;
+			text-align: center;
+			border: 1px solid lightgrey;
+			border-radius: 5px;
+}
+
 </style>
 
 </head>
@@ -593,8 +615,48 @@ if (isset ( $_POST ['templateid'] )) {
 			style="border-radius: 5px; float: right; margin: 5px; background: white">
 			Save</button>
 	</div>
+		
+	<div id="imageslider_edit_dialog" class="dialog" style="">
+		<p style="font-weight: lighter; font-size: small;">Add Image Slider To your
+			Website. Make them stunning with dazzling Effects</p>
+		<div
+			style="height: 300px; border: 1px solid lightgrey; border-radius: 8px; padding: 5px; overflow: scroll;">
 
+			<input id="file_picker_imageslider" type="file" name="files[]" single
+				style="display: none">
+				
+				<button id="btn_browse_imageslider" style="background: white">
+					<span class="glyphicon glyphicon-folder-open" aria-hidden="true">				
+				</button>
+				
+				<ul id = "imageslider_edit_panel_thumbnail" class= "sortable grid" style="">
+					<li><img src="../../images/slider1.jpg" class="slider_thumbnail" alt="Image1"></li>
+					<li><img src="../../images/slider2.jpg" class="slider_thumbnail" alt="Image2"></li>
+					<!-- <li id = "btn_img_slider_thumbnail_add">+</li> -->
+				</ul>
 
+				 
+				
+		
+		</div>
+		<hr></hr>
+		<button
+			style="width: 100%; border-radius: 5px; background: #6cc8f9;">
+			<font size="4px" color="white" weight="bold">Choose Effect</font>
+		</button>
+
+		<hr></hr>
+		<button id="btn_imageslider_dialog_cancel"
+			style="border-radius: 5px; float: right; margin: 5px; background: white">
+			Cancel</button>
+		<button id="btn_imgageslider_dialog_save"
+			style="border-radius: 5px; float: right; margin: 5px; background: white">
+			Save</button>
+	</div>
+	
+	
+
+	
 	<div id="dropdown_edit_dialog" class="dialog">
 		<p style="font-weight: lighter; font-size: small;">Edit your Dropdown
 			Menue, Add or Delete options</p>

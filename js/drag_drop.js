@@ -63,6 +63,70 @@ function makeDroppedControlsDraggable(control) {
 		cancel : false,
 	});
 }
+
+function updateImageSliderThumbnail() {
+	$('#imageslider_edit_panel_thumbnail').sortable({
+		items : ':not(#btn_img_slider_thumbnail_add)'
+	});
+
+	$('#imageslider_edit_panel_thumbnail li').on('click', function(el) {
+
+		// if($(this).attr("id") == "btn_img_slider_thumbnail_add"){
+		// $('<li />', {html:
+		// 'new'}).appendTo('#imageslider_edit_panel_thumbnail')
+		// updateImageSliderThumbnail();
+		// }else{
+		// console.log("clicked: Normal : " + $(this).attr("id"));
+		// }
+
+		if (confirm('Remove the Image from Slider?')) {
+			$(this).remove()
+		} else {
+
+		}
+
+	});
+}
+
+function makeImageSliderThumbnailSortable() {
+	updateImageSliderThumbnail();
+
+	$('#file_picker_imageslider').change(
+			function(event) {
+				var tmp_file_path = URL.createObjectURL(event.target.files[0]);
+				var file_name = document
+						.getElementById('file_picker_imageslider').value;
+				$(
+						'<li><img src="' + tmp_file_path
+								+ '" class="slider_thumbnail" alt="'
+								+ file_name + '"></li>').appendTo(
+						'#imageslider_edit_panel_thumbnail')
+				updateImageSliderThumbnail();
+			});
+
+	$("#btn_browse_imageslider").click(function() {
+
+		$("#file_picker_imageslider").trigger("click");
+	});
+
+}
+
+function createImageSlider(imageSliderImageList) {
+	var target_slider = editable_control.children('ul');
+	var file_name = "test_image";
+
+	target_slider.empty();
+
+	$.each(imageSliderImageList, function(index, value) {
+		$(
+				'<li><img src="' + value + '" class="slide" alt="' + file_name
+						+ '"></li>').appendTo(target_slider)
+	});
+
+	animateImageSlider(editable_control);
+
+}
+
 function startMonitoringMousePosition() {
 	$("#body").mousemove(function(event) {
 		currentMousePos.x = event.pageX;
@@ -464,6 +528,60 @@ function showImageEditPanel() {
 	});
 }
 
+function showImageSliderEditPanel() {
+
+	var slider_old_image_list = [];
+	$("#imageslider_edit_panel_thumbnail").empty();
+	var target_slider = editable_control.find("ul");
+	var file_name = "test_image";
+
+	console.log(target_slider.find('li').length);
+
+	target_slider.find('li').each(
+			function(index, value) {
+				var image_url = $(this).children("img").attr("src");
+				slider_old_image_list[index] = image_url;
+
+				if (index < (target_slider.find('li').length - 1)) {
+					$(
+							'<li><img src="' + image_url
+									+ '" class="slider_thumbnail" alt="'
+									+ file_name + '"></li>').appendTo(
+							"#imageslider_edit_panel_thumbnail");
+				}
+			});
+
+	updateImageSliderThumbnail();
+
+	function restoreInitialState() {
+		// If cancel button is pressed, this function will be called
+		isSaved = false;
+	}
+
+	$("#imageslider_edit_dialog").dialog({
+		dialogClass : "no-close",
+		resizable : false,
+		draggable : true,
+		closeOnEscape : true,
+		title : "Image Slider Editor",
+		width : 250,
+		show : {
+			effect : "slide",
+			duration : 200,
+			direction : "up"
+		},
+
+		beforeClose : function(event, ui) {
+			makeControlNonEditable(editable_control);
+			if (isSaved == false) {
+				console.log("Restoring Initial State");
+				restoreInitialState();
+			}
+		},
+
+	});
+}
+
 function showDropDownEditPanel() {
 
 	var old_select_option_list = [];
@@ -533,10 +651,10 @@ function showEditPanel() {
 		showRadioButtonEditPanel();
 	} else if (clicked_dropped_item_id.search('header') == 0) {
 		showTextEditPanel();
+	} else if (clicked_dropped_item_id.search('imageslider') == 0) {
+		showImageSliderEditPanel();
 	} else if (clicked_dropped_item_id.search('image') == 0) {
 		showImageEditPanel();
-	} else if (clicked_dropped_item_id.search('imageslider') == 0) {
-		// ToDo
 	} else if (clicked_dropped_item_id.search('feedback_form') == 0) {
 		// ToDo
 		makeControlNonEditable(editable_control);
@@ -623,10 +741,10 @@ function droppedItemClickAction() {
 		title = "RADIO BUTTON ...";
 	} else if (clicked_dropped_item_id.search('header') == 0) {
 		title = "HEADER ...";
-	} else if (clicked_dropped_item_id.search('image') == 0) {
-		title = "IMAGE ...";
 	} else if (clicked_dropped_item_id.search('imageslider') == 0) {
 		title = "IMAGE SLIDER ...";
+	} else if (clicked_dropped_item_id.search('image') == 0) {
+		title = "IMAGE ...";
 	} else if (clicked_dropped_item_id.search('feedback_form') == 0) {
 		title = "FEEDBACK FORM ...";
 	}
@@ -905,6 +1023,38 @@ function initializeAllDialogButton() {
 		// editable_control.html(replacedText);
 	});
 
+	/*
+	 * Button Initialization for Image Slider
+	 */
+	$("#btn_imgageslider_dialog_save").click(
+			function() {
+
+				var slider_image_list = [];
+				var first_image_url = "";
+
+				$("#imageslider_edit_panel_thumbnail").find('li').each(
+						function(index, value) {
+							slider_image_list[index] = $(this).children("img")
+									.attr("src");
+							if (index == 0) {
+								first_image_url = $(this).children("img").attr(
+										"src");
+							}
+						});
+				slider_image_list.push(first_image_url);
+
+				isSaved = true;
+				console.log(slider_image_list);
+
+				createImageSlider(slider_image_list);
+
+				$("#imageslider_edit_dialog").dialog("close");
+			});
+
+	$("#btn_imageslider_dialog_cancel").click(function() {
+		$("#imageslider_edit_dialog").dialog("close");
+	});
+
 }
 
 $(function() {
@@ -913,6 +1063,7 @@ $(function() {
 	makeTemplateComponetsEditable();
 	startMonitoringMousePosition();
 	makeBodyDroppable();
+	makeImageSliderThumbnailSortable();
 	initializeAllDialogButton();
 
 	/*
