@@ -234,7 +234,6 @@ function makeBodyDroppable() {
 }
 function animateImageSlider(control) {
 	var width = control.width();
-	console.log("width : " + width);
 	var animation_speed = 1000;
 	var pause = 3000;
 	var current_slide = 1;
@@ -243,6 +242,9 @@ function animateImageSlider(control) {
 	var interval;
 
 	function startSlider() {
+		
+		console.log("speed : pause = " + animation_speed + " : " + pause);
+		
 		interval = setInterval(function() {
 			$slider_container.animate({
 				'margin-left' : '-=' + width

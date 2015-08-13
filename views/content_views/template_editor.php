@@ -141,20 +141,21 @@ if (isset ( $_POST ['templateid'] )) {
 }
 
 .sortable.grid li {
-			line-height: 80px;
+			line-height: 60px;
 			float: left;
 			width: 80px;
-			height: 80px;
+			height: 60px;
 			text-align: center;
 			border-radius: 5px;
 			margin-left: 5px;
+			margin-top: 5px;
 		}
 .grid {
 			display: inline;			
 }
 .slider_thumbnail{		
 			width: 80px;
-			height: 80px;
+			height: 60px;
 			text-align: center;
 			border: 1px solid lightgrey;
 			border-radius: 5px;
@@ -625,8 +626,8 @@ if (isset ( $_POST ['templateid'] )) {
 			<input id="file_picker_imageslider" type="file" name="files[]" single
 				style="display: none">
 				
-				<button id="btn_browse_imageslider" style="background: white">
-					<span class="glyphicon glyphicon-folder-open" aria-hidden="true">				
+				<button id="btn_browse_imageslider" class="btn" style="background: white; width: 100%">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true">				
 				</button>
 				
 				<ul id = "imageslider_edit_panel_thumbnail" class= "sortable grid" style="">
