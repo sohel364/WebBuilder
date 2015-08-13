@@ -118,8 +118,11 @@ function insertPage(url, menuList, savedName) {
                 hideSavingIcon();
                 if (!('error' in obj)) {
                     //yourVariable = obj.result;
-                    if(obj.saveUserTemplate === '1') {
+                    if(obj.saveUserTemplate === '1' && 'savedTemplateId' in obj) {
                         alert('Saved Successfully!!!');
+                        var savedTemplateID = obj.savedTemplateId;
+                        var redirectURL = getBaseUrl()+'/views/content_views/template_editor.php?category='+currentCategory+'&template='+currentTemplate+'&templateid='+savedTemplateID;
+                        window.location.href = redirectURL;
                     } else {
                         alert('Error occured during saving!!!');
                     }
@@ -152,6 +155,9 @@ function updatePage(url, menuList, savedName) {
                     //yourVariable = obj.result;
                     if(obj.saveUserTemplate === '1') {
                         alert('Updated Successfully!!!');
+                        ///views/content_views/template_editor.php?category=uncategorized&template=part1&templateid=uncategorized_part1_1_2015_08_13_04_56_32_pm
+                        var redirectURL = getBaseUrl()+'/views/content_views/template_editor.php?category='+currentCategory+'&template='+currentTemplate+'&templateid='+template_id;
+                        window.location.href = redirectURL;
                     } else {
                         alert('Error occured during saving!!!');
                     }

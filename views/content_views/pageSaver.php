@@ -83,6 +83,8 @@ try {
             $templateInfo->setTemplateName($_POST['templatename']);
             $templateInfo->setCategoryName($_POST['categoryname']);
             $returnVal = $contentManager->saveUserTemplate($templateInfo);
+            
+            $aResult['savedTemplateId'] = $user_template_id;
 
             if ($returnVal == '1') {
                 // Saving menu, submenu and contents 
