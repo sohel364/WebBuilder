@@ -86,7 +86,7 @@ function savePage() {
     if (menuList.length !== 'undefined' && menuList.length > 1) {
         showSavingIcon();
         var savedName; 
-        if(!isView) {
+        if(!isEdit) {
             var url = getPageSaverUrl();
             savedName = prompt("Enter webpage name : ", "Enter page name");
             insertPage(url, menuList, savedName);

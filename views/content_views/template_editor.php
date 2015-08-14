@@ -47,10 +47,10 @@ if (isset ( $_POST ['templateid'] )) {
             var currentCategory = '<?php echo $category;?>';
             var currentTemplate = '<?php echo $template;?>';
             var isUserLoggedIn = '<?php echo $user_id == NULL ? '0': '1';?>';
-            var tempIsView = '<?php echo $template_id == NULL ? '0' : '1';?>';
-            var isView = false;
-            if(tempIsView === '1') {
-                isView = true;
+            var tempIsEdit = '<?php echo $template_id == NULL ? '0' : '1';?>';
+            var isEdit = false;
+            if(tempIsEdit === '1') {
+                isEdit = true;
             }
 	</script>
 <script src="../../js/savePage.js"></script>

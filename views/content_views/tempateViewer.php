@@ -37,7 +37,7 @@ error_reporting(E_ERROR);
 
 	<script type="text/javascript">
             var template_id = '<?php echo $template_id;?>';
-            var isView = true;
+            var isEdit = true;
 	</script>
         <script  src="../../js/savePage.js" ></script>
         <script  src="../../js/menu.js" ></script>

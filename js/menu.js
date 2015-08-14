@@ -25,9 +25,12 @@ function onLoadMenus() {
     var curLi = $lis[0];
     $ahref = $(curLi).find('a');
     curMenu = $ahref.text();
-    if (typeof isView !== 'undefined' && isView) {
+    if (typeof isEdit !== 'undefined' && isEdit) {
         getSavedMenuContents();
         makeTemplateComponetsEditable();
+    } else if(typeof isView !== 'undefined' && isView){
+        getSavedMenuContents();
+        makeTemplateComponetsNotEditable();
     } else {
         menuContens[curMenu] = getBodyHtmlString();
     }
@@ -80,7 +83,11 @@ function onMenuClick(menu) {
         setBodyHtmlString(menuContens[menuText]);       
     }
     console.log("menu is clicked");
-    makeTemplateComponetsEditable();
+    if(typeof isView !== 'undefined' && isView){
+        makeTemplateComponetsNotEditable();
+    } else {
+        makeTemplateComponetsEditable();
+    }
 }
 
 
