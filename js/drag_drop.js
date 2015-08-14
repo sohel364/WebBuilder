@@ -1092,7 +1092,6 @@ $(function() {
 	makeBodyDroppable();
 	makeImageSliderThumbnailSortable();
 	initializeAllDialogButton();
-	makeTemplateComponetsNotEditable();
 
 	/*
 	 * $("#frame").find("*").draggable({ containment : "#frame", // cancel :
