@@ -42,6 +42,26 @@ function makeTemplateComponetsEditable() {
 	});
 }
 
+function makeTemplateComponetsNotEditable() {
+	console.log("Making Template Control Not Editable");
+
+	$("#body").find("*").each(function() {
+		var control_id = $(this).attr("id");
+		var control_name = $(this).attr("name");
+
+		console.log(control_id + " : " + control_name);
+
+		if (allawable_control_array.indexOf(control_name) > -1) {
+			console.log(" [Allowable Control] Control Type : " + control_name);
+			$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
+
+			$(this).draggable("destroy");
+
+			$(this).click(function(){});
+		}
+	});
+}
+
 function makeControlsOfPaletteDraggable() {
 	$(".selectorField").draggable({
 		cancel : null,
@@ -1072,6 +1092,7 @@ $(function() {
 	makeBodyDroppable();
 	makeImageSliderThumbnailSortable();
 	initializeAllDialogButton();
+	makeTemplateComponetsNotEditable();
 
 	/*
 	 * $("#frame").find("*").draggable({ containment : "#frame", // cancel :
