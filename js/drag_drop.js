@@ -13,6 +13,7 @@ var editable_control = null;
 
 var pos;
 var isSaved = false;
+var isResizeOn = false;
 var allawable_control_array = [ "button", "textarea", "radiobutton",
 		"dropdown", "image", "imageslider", "header", "feedback_form" ]
 
@@ -242,20 +243,18 @@ function animateImageSlider(control) {
 	var interval;
 
 	function startSlider() {
-		
-		console.log("speed : pause = " + animation_speed + " : " + pause);
-		
+
 		interval = setInterval(function() {
 			$slider_container.animate({
 				'margin-left' : '-=' + width
-			}, animation_speed, function() {
+			}, 1000, function() {
 				current_slide++;
 				if (current_slide == $slides.length) {
 					current_slide = 1;
 					$slider_container.css('margin-left', 0);
 				}
 			});
-		}, pause);
+		}, 3000);
 	}
 
 	function stopSlider() {
@@ -787,6 +786,13 @@ function droppedItemClickAction() {
 			at : "center bottom",
 			of : $(this)
 		},
+		close : function(){
+			if (isResizeOn){
+				isResizeOn = false;
+				makeControlNonEditable(editable_control);
+				editable_control.resizable( "disable" );
+			}
+		},
 
 	});
 
@@ -871,24 +877,23 @@ function initializeAllDialogButton() {
 	$("#dialog_btn_resize").click(function() {
 		$("#control_option_dialog").dialog("close");
 		editable_control = $("#" + clicked_dropped_item_id);
-		makeControlEditable(editable_control);
-
-		editable_control.attr('contenteditable', true);
-
-		// editable_control.resizable({
-		// ghost : false,
-		// animate : false,
-		// autoHide : true,
-		// distance : 0,
-		// /* handles : "n, e, s, w, ne, se, sw, nw", */
-		// // alsoResize : "#" + clicked_dropped_item_id
-		// /*
-		// * resize: function(){ $("#" +
-		// * clicked_dropped_item_id).css("height",child_item.height+"px");
-		// $("#" +
-		// * clicked_dropped_item_id).css("width",child_item.width+"px"); }
-		// */
-		// });
+//		makeControlEditable(editable_control);
+//		isResizeOn  = true;
+//		// editable_control.attr('contenteditable', true);
+//
+//		editable_control.resizable({
+//			ghost : false,
+//			animate : false,
+//			autoHide : false,
+//			distance : 0,
+//		    handles : "n, e, s, w, ne, se, sw, nw",
+//		// alsoResize : "#" + clicked_dropped_item_id
+//		/*
+//		 * resize: function(){ $("#" +
+//		 * clicked_dropped_item_id).css("height",child_item.height+"px"); $("#" +
+//		 * clicked_dropped_item_id).css("width",child_item.width+"px"); }
+//		 */
+//		});
 
 	});
 
