@@ -27,6 +27,7 @@ function onLoadMenus() {
     curMenu = $ahref.text();
     if (typeof isView !== 'undefined' && isView) {
         getSavedMenuContents();
+        makeTemplateComponetsEditable();
     } else {
         menuContens[curMenu] = getBodyHtmlString();
     }
