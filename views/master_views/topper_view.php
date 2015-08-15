@@ -32,7 +32,7 @@ if (isset($_SESSION['user_id'])) {
                 <?php 
                     if($user_id != NULL) {
                 ?>
-                <li><a href="./views/content_views/saved_pages.php">Saved Pages</a></li>
+                <li><a href="../../views/content_views/saved_pages.php">Saved Pages</a></li>
                 <?php 
                     }
                 ?>
