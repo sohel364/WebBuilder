@@ -733,6 +733,9 @@ function closeAllEditDialogPanel() {
 	}
 	if ($("#image_slider_edit_dialog").dialog("instance") != undefined) {
 		$("#image_slider_edit_dialog").dialog("close");
+	}	
+	if ($("#resize_dialog").dialog("instance") != undefined) {
+		$("#resize_dialog").dialog("close");
 	}
 }
 
@@ -807,11 +810,6 @@ function droppedItemClickAction() {
 			of : $(this)
 		},
 		close : function(){
-			if (isResizeOn){
-				isResizeOn = false;
-				makeControlNonEditable(editable_control);
-				editable_control.resizable( "disable" );
-			}
 		},
 
 	});
@@ -895,25 +893,51 @@ function initializeAllDialogButton() {
 	});
 
 	$("#dialog_btn_resize").click(function() {
-		$("#control_option_dialog").dialog("close");
+		//$("#control_option_dialog").dialog("close");
+		closeAllEditDialogPanel();
 		editable_control = $("#" + clicked_dropped_item_id);
-//		makeControlEditable(editable_control);
-//		isResizeOn  = true;
-//		// editable_control.attr('contenteditable', true);
-//
-//		editable_control.resizable({
-//			ghost : false,
-//			animate : false,
-//			autoHide : false,
-//			distance : 0,
-//		    handles : "n, e, s, w, ne, se, sw, nw",
-//		// alsoResize : "#" + clicked_dropped_item_id
-//		/*
-//		 * resize: function(){ $("#" +
-//		 * clicked_dropped_item_id).css("height",child_item.height+"px"); $("#" +
-//		 * clicked_dropped_item_id).css("width",child_item.width+"px"); }
-//		 */
-//		});
+		makeControlEditable(editable_control);
+		editable_control.prop('contenteditable', 'false');
+		isResizeOn  = true;
+		
+		$("#resize_dialog").dialog({
+			dialogClass : "no-close",
+			resizable : false,
+			draggable : true,
+			closeOnEscape : true,
+			title : "Resize Option Panel",
+			height : 90,
+			width : 350,
+			show : {
+				effect : "slide",
+				duration : 200,
+				direction : "up"
+			},
+			position : {
+				my : "center bottom",
+				at : "center top-100",
+				of : editable_control
+			},
+			beforeClose : function(event, ui) {
+				makeControlNonEditable(editable_control);
+				editable_control.resizable( "destroy" );
+			},
+
+		});
+
+		editable_control.resizable({
+			ghost : false,
+			animate : false,
+			autoHide : false,
+			distance : 0,
+		    handles : "n, e, s, w, ne, se, sw, nw",
+		// alsoResize : "#" + clicked_dropped_item_id
+		/*
+		 * resize: function(){ $("#" +
+		 * clicked_dropped_item_id).css("height",child_item.height+"px"); $("#" +
+		 * clicked_dropped_item_id).css("width",child_item.width+"px"); }
+		 */
+		});
 
 	});
 
@@ -1081,6 +1105,10 @@ function initializeAllDialogButton() {
 	$("#btn_imageslider_dialog_cancel").click(function() {
 		$("#imageslider_edit_dialog").dialog("close");
 	});
+	
+	$("#btn_resize_close").click(function(){
+		$("#resize_dialog").dialog("close");
+	});
 
 }
 
@@ -1092,6 +1120,17 @@ $(function() {
 	makeBodyDroppable();
 	makeImageSliderThumbnailSortable();
 	initializeAllDialogButton();
+	
+//	$(document).mouseup(function(e){
+//		var clicked_item = e.target;
+//		
+//		if ( editable_control != null ){
+//			if (editable_control.is(clicked_item))
+//				{
+//					console.log("Matched");
+//				}
+//		}
+//	});
 
 	/*
 	 * $("#frame").find("*").draggable({ containment : "#frame", // cancel :

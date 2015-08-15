@@ -95,8 +95,8 @@
 
 .ui-resizable-handle {
 	position: absolute;
-	border: 2px solid grey;
-	display: block;
+	border: 2px dashed grey;
+	display: marker;
 	overflow: hide;
 }
 

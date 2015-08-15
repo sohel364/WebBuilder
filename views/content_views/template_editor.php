@@ -564,6 +564,22 @@ if (isset ( $_POST ['templateid'] )) {
 			<span class=" 	glyphicon glyphicon-remove" aria-hidden="true"></span>
 		</button>
 	</div>
+	
+	<div id="resize_dialog" class="dialog">
+		<label>Height :</label>
+		<textarea style="resize: none; height: 25px; width: 50px;"></textarea>
+		<label>Width :</label>
+		<textarea style="resize: none; height: 25px; width: 50px;"></textarea>
+		
+		<button id = "btn_resize_apply" class="text_editor_component">
+			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+		</button>
+		
+		<button id = "btn_resize_close" class="text_editor_component">
+			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+		</button>
+	</div>
+	
 
 	<div id="image_edit_dialog" class="dialog">
 		<p style="font-weight: lighter; font-size: small;">Add Images To your
