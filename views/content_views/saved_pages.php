@@ -1,25 +1,11 @@
-<!DOCTYPE html>
 <?php 
-session_start();
+//session_start();
 ?>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Web Builder</title>
 
+<?php include_once '../../common_html_headercontent.php'; ?>
 
-        <!-- Bootstrap -->
-        <link href="../../css/bootstrap.min.css" rel="stylesheet" />
-        <link href="../../css/bootstrap-combined.min.css" rel="stylesheet" />
-        <link href="../../css/overlay-bootstrap.css" rel="stylesheet" />
-        <link href="../../css/overlay-bootstrap.min.css" rel="stylesheet" />
-    </head>
-    <body>
         <div class="container">
-            <?php include_once '../master_views/topper_view.php'; ?>
-            
+            <?php include_once '../master_views/topper_view.php'; ?>          
             <div class="row" style="padding-top:60px;">
                 <div class="col-sm-3" style="  padding-right: 0px;">
                     <div class="panel-group" style="padding-top:0px;" id="accordion">

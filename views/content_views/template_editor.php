@@ -40,7 +40,7 @@ if (isset ( $_POST ['templateid'] )) {
 <script src="../../js/jquery-ui.min.js"></script>
 <script src="../../js/spectrum.js"></script>
 <script src="../../js/jquery.sortable.js"></script>
-
+<script src="../../js/main.js"></script>
 
 <script type="text/javascript">
             var template_id = '<?php echo $template_id == NULL ? $category.'_'.$template : $template_id;?>';
