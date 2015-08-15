@@ -70,7 +70,6 @@ if (isset($_SESSION['user_id'])) {
     </div>
 </nav>
 
-
 <!--sign up/registration code start-->
 <div class="modal fade bs-modal-sm" style="padding-top: 150px;" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 
