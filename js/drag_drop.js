@@ -10,6 +10,8 @@ var counter = 1001;
 var clicked_dropped_item_id = null;
 var child_item = null;
 var editable_control = null;
+var image_slider_animation_speed = 1000;
+var image_slider_pause = 3000;
 
 var pos;
 var isSaved = false;
@@ -57,7 +59,8 @@ function makeTemplateComponetsNotEditable() {
 
 			$(this).draggable("destroy");
 
-			$(this).click(function(){});
+			$(this).click(function() {
+			});
 		}
 	});
 }
@@ -144,7 +147,7 @@ function createImageSlider(imageSliderImageList) {
 						+ '"></li>').appendTo(target_slider)
 	});
 
-	animateImageSlider(editable_control);
+	animateImageSlider(editable_control, editable_control.width(), image_slider_animation_speed, image_slider_pause);
 
 }
 
@@ -226,7 +229,7 @@ function makeBodyDroppable() {
 						}
 
 						if (is_image_slider) {
-							animateImageSlider(draggable);
+							animateImageSlider(draggable, draggable.width(), image_slider_animation_speed, image_slider_pause);
 						}
 
 						makeDroppedControlsDraggable(draggable);
@@ -253,10 +256,10 @@ function makeBodyDroppable() {
 				}
 			});
 }
-function animateImageSlider(control) {
-	var width = control.width();
-	var animation_speed = 1000;
-	var pause = 3000;
+function animateImageSlider(control, width, animation_speed, pause) {
+	//var width = control.width();
+//	var animation_speed = image_slider_animation_speed;
+//	var pause = image_slider_pause;
 	var current_slide = 1;
 	var $slider_container = control.children('ul');
 	var $slides = $slider_container.children('li');
@@ -267,20 +270,21 @@ function animateImageSlider(control) {
 		interval = setInterval(function() {
 			$slider_container.animate({
 				'margin-left' : '-=' + width
-			}, 1000, function() {
+			}, animation_speed, function() {
 				current_slide++;
 				if (current_slide == $slides.length) {
 					current_slide = 1;
 					$slider_container.css('margin-left', 0);
 				}
 			});
-		}, 3000);
+		}, pause);
 	}
 
 	function stopSlider() {
 		clearInterval(interval);
 	}
 
+	stopSlider();
 	startSlider();
 
 	control.on('mouseenter', stopSlider).on('mouseleave', startSlider);
@@ -651,6 +655,71 @@ function showDropDownEditPanel() {
 	});
 }
 
+function showResizePanel() {
+	closeAllEditDialogPanel();
+	editable_control = $("#" + clicked_dropped_item_id);
+	makeControlEditable(editable_control);
+	editable_control.prop('contenteditable', 'false');
+
+	$("#txt_height_resize_dialog").val(editable_control.height());
+	$("#txt_width_resize_dialog").val(editable_control.width());
+
+	$("#resize_dialog").dialog({
+		dialogClass : "no-close",
+		resizable : false,
+		draggable : true,
+		closeOnEscape : true,
+		title : "Resize Option Panel",
+		height : 90,
+		width : 350,
+		show : {
+			effect : "slide",
+			duration : 200,
+			direction : "up"
+		},
+		position : {
+			my : "center bottom",
+			at : "center top-50",
+			of : editable_control
+		},
+		beforeClose : function(event, ui) {
+			makeControlNonEditable(editable_control);
+			editable_control.resizable("destroy");
+		},
+
+	});
+
+	editable_control.resizable({
+		ghost : false,
+		animate : false,
+		autoHide : false,
+		distance : 0,
+		handles : "n, e, s, w, ne, se, sw, nw",
+		create : function(event, ui) {
+		},
+		resize : function(event, ui) {
+			$("#txt_height_resize_dialog").val(ui.size.height);
+			$("#txt_width_resize_dialog").val(ui.size.width);
+
+			if (editable_control.attr("name") == "imageslider") {
+				editable_control.children("ul").children("li").each(function() {
+					$(this).height(ui.size.height);
+					$(this).width(ui.size.width);
+
+					$(this).children("img").height(ui.size.height);
+					$(this).children("img").width(ui.size.width);
+				});
+				
+				
+			}
+
+		},
+		stop : function(event, ui){
+			animateImageSlider(editable_control, editable_control.width(), image_slider_animation_speed, image_slider_pause);
+		},
+	});
+}
+
 function showEditPanel() {
 
 	closeAllEditDialogPanel();
@@ -733,7 +802,7 @@ function closeAllEditDialogPanel() {
 	}
 	if ($("#image_slider_edit_dialog").dialog("instance") != undefined) {
 		$("#image_slider_edit_dialog").dialog("close");
-	}	
+	}
 	if ($("#resize_dialog").dialog("instance") != undefined) {
 		$("#resize_dialog").dialog("close");
 	}
@@ -809,7 +878,7 @@ function droppedItemClickAction() {
 			at : "center bottom",
 			of : $(this)
 		},
-		close : function(){
+		close : function() {
 		},
 
 	});
@@ -893,60 +962,7 @@ function initializeAllDialogButton() {
 	});
 
 	$("#dialog_btn_resize").click(function() {
-		//$("#control_option_dialog").dialog("close");
-		closeAllEditDialogPanel();
-		editable_control = $("#" + clicked_dropped_item_id);
-		makeControlEditable(editable_control);
-		editable_control.prop('contenteditable', 'false');
-		
-		$("#txt_height_resize_dialog").val(editable_control.height());
-    	$("#txt_width_resize_dialog").val(editable_control.width());
-		
-		$("#resize_dialog").dialog({
-			dialogClass : "no-close",
-			resizable : false,
-			draggable : true,
-			closeOnEscape : true,
-			title : "Resize Option Panel",
-			height : 90,
-			width : 350,
-			show : {
-				effect : "slide",
-				duration : 200,
-				direction : "up"
-			},
-			position : {
-				my : "center bottom",
-				at : "center top-100",
-				of : editable_control
-			},
-			beforeClose : function(event, ui) {
-				makeControlNonEditable(editable_control);
-				editable_control.resizable( "destroy" );
-			},
-
-		});
-
-		editable_control.resizable({
-			ghost : false,
-			animate : false,
-			autoHide : false,
-			distance : 0,
-		    handles : "n, e, s, w, ne, se, sw, nw",
-		    create : function(event, ui){
-		    },
-		    resize : function(event, ui){
-		    	$("#txt_height_resize_dialog").val(ui.size.height);
-		    	$("#txt_width_resize_dialog").val(ui.size.width);
-		    	
-		    },
-		// alsoResize : "#" + clicked_dropped_item_id
-		/*
-		 * resize: function(){ $("#" +
-		 * clicked_dropped_item_id).css("height",child_item.height+"px"); $("#" +
-		 * clicked_dropped_item_id).css("width",child_item.width+"px"); }
-		 */
-		});
+		showResizePanel();
 
 	});
 
@@ -1114,16 +1130,16 @@ function initializeAllDialogButton() {
 	$("#btn_imageslider_dialog_cancel").click(function() {
 		$("#imageslider_edit_dialog").dialog("close");
 	});
-	
+
 	/*
 	 * Button Initialization for Resize Option panel
-	 */		
-	
-	$("#btn_resize_close").click(function(){
+	 */
+
+	$("#btn_resize_close").click(function() {
 		$("#resize_dialog").dialog("close");
 	});
-	
-	$("#btn_resize_apply").click(function(){
+
+	$("#btn_resize_apply").click(function() {
 		editable_control.height($("#txt_height_resize_dialog").val());
 		editable_control.width($("#txt_width_resize_dialog").val());
 	});
@@ -1138,17 +1154,17 @@ $(function() {
 	makeBodyDroppable();
 	makeImageSliderThumbnailSortable();
 	initializeAllDialogButton();
-	
-//	$(document).mouseup(function(e){
-//		var clicked_item = e.target;
-//		
-//		if ( editable_control != null ){
-//			if (editable_control.is(clicked_item))
-//				{
-//					console.log("Matched");
-//				}
-//		}
-//	});
+
+	// $(document).mouseup(function(e){
+	// var clicked_item = e.target;
+	//		
+	// if ( editable_control != null ){
+	// if (editable_control.is(clicked_item))
+	// {
+	// console.log("Matched");
+	// }
+	// }
+	// });
 
 	/*
 	 * $("#frame").find("*").draggable({ containment : "#frame", // cancel :
