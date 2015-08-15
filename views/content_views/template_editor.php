@@ -567,9 +567,9 @@ if (isset ( $_POST ['templateid'] )) {
 	
 	<div id="resize_dialog" class="dialog">
 		<label>Height :</label>
-		<textarea style="resize: none; height: 25px; width: 50px;"></textarea>
+		<textarea id = "txt_height_resize_dialog" style="resize: none; height: 25px; width: 50px;"></textarea>
 		<label>Width :</label>
-		<textarea style="resize: none; height: 25px; width: 50px;"></textarea>
+		<textarea id = "txt_width_resize_dialog" style="resize: none; height: 25px; width: 50px;"></textarea>
 		
 		<button id = "btn_resize_apply" class="text_editor_component">
 			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>

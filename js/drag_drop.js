@@ -898,7 +898,9 @@ function initializeAllDialogButton() {
 		editable_control = $("#" + clicked_dropped_item_id);
 		makeControlEditable(editable_control);
 		editable_control.prop('contenteditable', 'false');
-		isResizeOn  = true;
+		
+		$("#txt_height_resize_dialog").val(editable_control.height());
+    	$("#txt_width_resize_dialog").val(editable_control.width());
 		
 		$("#resize_dialog").dialog({
 			dialogClass : "no-close",
@@ -931,6 +933,13 @@ function initializeAllDialogButton() {
 			autoHide : false,
 			distance : 0,
 		    handles : "n, e, s, w, ne, se, sw, nw",
+		    create : function(event, ui){
+		    },
+		    resize : function(event, ui){
+		    	$("#txt_height_resize_dialog").val(ui.size.height);
+		    	$("#txt_width_resize_dialog").val(ui.size.width);
+		    	
+		    },
 		// alsoResize : "#" + clicked_dropped_item_id
 		/*
 		 * resize: function(){ $("#" +
@@ -1106,8 +1115,17 @@ function initializeAllDialogButton() {
 		$("#imageslider_edit_dialog").dialog("close");
 	});
 	
+	/*
+	 * Button Initialization for Resize Option panel
+	 */		
+	
 	$("#btn_resize_close").click(function(){
 		$("#resize_dialog").dialog("close");
+	});
+	
+	$("#btn_resize_apply").click(function(){
+		editable_control.height($("#txt_height_resize_dialog").val());
+		editable_control.width($("#txt_width_resize_dialog").val());
 	});
 
 }
