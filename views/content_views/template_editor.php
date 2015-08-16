@@ -533,31 +533,42 @@ if (isset ( $_POST ['templateid'] )) {
 	</div>
 
 	<div id="text_edit_dialog" class="dialog">
-		<select class="text_editor_component">
-			<option>Times New Roman</option>
-			<option>Arial</option>
-		</select> <select class="text_editor_component">
-			<option>8</option>
-			<option>10</option>
-			<option>14</option>
-			<option>18</option>
+		<select id="dropdown_txt_editor_font_family" class="text_editor_component">			
+			<option value="Arial" selected>Arial</option>
+			<option value="Times New Roman">Times New Roman</option>
+			<option value="Comic Sans MS">Comic Sans MS</option>
+			<option value="Verdana">Verdana</option>
+			<option value="Courier New">Courier New</option>
+			<option value="Helvetica">Helvetica</option>
+			<option value="sans-serif">sans-serif</option>
+		</select> 
+		<select id="dropdown_txt_editor_font_size" class="text_editor_component">
+			<option value="8">8</option>
+			<option value="10">10</option>
+			<option value="14">14</option>
+			<option value="15" selected>15</option>
+			<option value="16">16</option>
+			<option value="20">20</option>
+			<option value="24">24</option>
+			<option value="30">30</option>
+			<option value="36">36</option>
 		</select>
-		<button class="text_editor_component">
+		<button id="btn_txt_editor_normal" class="text_editor_component">
 			<span class="glyphicon glyphicon-font" aria-hidden="true"></span>
 		</button>
 		<button id="btn_txt_editor_bold" class="text_editor_component">
 			<span class="glyphicon glyphicon-bold" aria-hidden="true"></span>
 		</button>
-		<button class="text_editor_component">
+		<button id="btn_txt_editor_italic" class="text_editor_component">
 			<span class="glyphicon glyphicon-italic" aria-hidden="true"></span>
 		</button>
-		<button class="text_editor_component">
+		<button id="btn_txt_editor_left_align" class="text_editor_component">
 			<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
 		</button>
-		<button class="text_editor_component">
+		<button id="btn_txt_editor_center_align" class="text_editor_component">
 			<span class="glyphicon glyphicon-align-center" aria-hidden="true"></span>
 		</button>
-		<button class="text_editor_component">
+		<button id="btn_txt_editor_right_align" class="text_editor_component">
 			<span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
 		</button>
 		<button id="btn_txt_editor_close" class="text_editor_component">
@@ -647,8 +658,8 @@ if (isset ( $_POST ['templateid'] )) {
 				</button>
 				
 				<ul id = "imageslider_edit_panel_thumbnail" class= "sortable grid" style="">
-					<li><img src="../../images/slider1.jpg" class="slider_thumbnail" alt="Image1"></li>
-					<li><img src="../../images/slider2.jpg" class="slider_thumbnail" alt="Image2"></li>
+					<!-- <li><img src="../../images/slider1.jpg" class="slider_thumbnail" alt="Image1"></li>
+					<li><img src="../../images/slider2.jpg" class="slider_thumbnail" alt="Image2"></li> -->
 					<!-- <li id = "btn_img_slider_thumbnail_add">+</li> -->
 				</ul>
 

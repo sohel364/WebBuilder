@@ -17,7 +17,7 @@ var pos;
 var isSaved = false;
 var isResizeOn = false;
 var allawable_control_array = [ "button", "textarea", "radiobutton",
-		"dropdown", "image", "imageslider", "header", "feedback_form" ]
+		"dropdown", "image", "imageslider", "header", "feedback_form", "separator" ]
 
 var currentMousePos = {
 	x : -1,
@@ -829,7 +829,11 @@ function droppedItemClickAction() {
 		title = "TEXT ...";
 	} else if (clicked_dropped_item_id.search('dropdown') == 0) {
 		title = "DROP DOWN ...";
-		$("#" + clicked_dropped_item_id + " :first").focus();
+		//$(this).draggable("disable");
+		//$("#" + clicked_dropped_item_id + " :first").focus();
+		$(this).focus();
+		//$(this).parent().focus();
+		//$(this).draggable("enable");
 	} else if (clicked_dropped_item_id.search('radiobutton') == 0) {
 		title = "RADIO BUTTON ...";
 	} else if (clicked_dropped_item_id.search('header') == 0) {
@@ -1031,6 +1035,73 @@ function initializeAllDialogButton() {
 		$("#text_edit_dialog").dialog("close");
 	});
 
+	$("#btn_txt_editor_normal").click(function() {
+		editable_control.css('font-weight', 'normal');
+		editable_control.css('font-style', 'normal');
+		
+	});
+	
+	$("#btn_txt_editor_bold").click(function() {
+		
+		if (editable_control.data("isbold") == null)
+		{
+			editable_control.data("isbold", "false");
+		}
+		
+		if (editable_control.data("isbold") == "false")
+		{
+			editable_control.css('font-weight', 'bold');
+			editable_control.data("isbold", "true");
+			
+		}else{
+			editable_control.css('font-weight', 'normal');
+			editable_control.data("isbold", "false");
+		}
+		
+		
+	});
+	
+	$("#btn_txt_editor_italic").click(function() {
+		
+		if (editable_control.data("isitalic") == null)
+		{
+			editable_control.data("isitalic", "false");
+		}
+		
+		if (editable_control.data("isitalic") == "false")
+		{
+			editable_control.css('font-style', 'italic');
+			editable_control.data("isitalic", "true");
+			
+		}else{
+			editable_control.css('font-style', 'normal');
+			editable_control.data("isitalic", "false");
+		}
+		
+	});
+	
+	$("#btn_txt_editor_left_align").click(function() {
+		editable_control.css('text-align', 'left');
+	});
+	
+	$("#btn_txt_editor_center_align").click(function() {
+		editable_control.css('text-align', 'center');
+	});
+	
+	$("#btn_txt_editor_right_align").click(function() {
+		editable_control.css('text-align', 'right');
+	});
+	
+	$("#dropdown_txt_editor_font_family").on("change", function(){
+		editable_control.css("font-family", this.value);
+	});
+	
+	$("#dropdown_txt_editor_font_size").on("change", function(){
+		editable_control.css("font-size", this.value + "px");
+	});
+	
+	
+
 	/*
 	 * Button Initializatin for Image Edit Panel
 	 */
@@ -1083,20 +1154,6 @@ function initializeAllDialogButton() {
 
 		isSaved = true;
 		$("#dropdown_edit_dialog").dialog("close");
-	});
-
-	/*
-	 * Button Initialization for Text Editor
-	 */
-
-	$("#btn_txt_editor_bold").click(function() {
-		// var text = editable_control.html();
-		// var selectedText = window.getSelection().toString();
-		// console.log(selectedText);
-		// var replacedText = text.replace(selectedText, "<b>" + selectedText +
-		// "</b>");
-		// console.log(replacedText);
-		// editable_control.html(replacedText);
 	});
 
 	/*
