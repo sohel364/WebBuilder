@@ -552,6 +552,9 @@ if (isset ( $_POST ['templateid'] )) {
 			<option value="24">24</option>
 			<option value="30">30</option>
 			<option value="36">36</option>
+			<option value="40">40</option>
+			<option value="50">50</option>
+			<option value="60">60</option>
 		</select>
 		<button id="btn_txt_editor_normal" class="text_editor_component">
 			<span class="glyphicon glyphicon-font" aria-hidden="true"></span>
@@ -728,12 +731,11 @@ if (isset ( $_POST ['templateid'] )) {
 
 	</div>
 
-	<div id="title_template" name="textarea"
+	
+		<h1 id="title_template" name="textarea"
 		class="title_template_non_editable" style="display: none">
-		<h1>
 			Title. Edit me<br />
 		</h1>
-	</div>
 
 
 	<img id="image_template" name="image"
