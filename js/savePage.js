@@ -76,6 +76,7 @@ function savePage() {
         alert("Please sign in to save the template");
         var redirectURL = getBaseUrl();
         window.location.href = redirectURL;
+        return;
     }
     saveCurrentMenuText();
     var menuList = getMenuList();
