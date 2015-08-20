@@ -1,0 +1,96 @@
+@charset "utf-8";
+/* CSS Document */
+
+@media only screen and (width : 1024px){
+	
+	.big-img{height:430px;}
+	.mg-img .caption h4{font-size:15px;}
+	.mg-img .caption ul li{padding:10px 17.5px;}
+	.newsletter_inner h2{font-size:13px;}
+	.newsletter_inner p{font-size:12px; padding-bottom:5px;}
+	.newsletter_inner input[type="submit"]{padding:4px 26px; font-size:12px;}
+	.newsletter_inner input[type="email"]{margin-bottom:0; height:26px;}
+	.tips_inner ul li{font-size:7px;}
+	.tips_inner h2{font-size:13px; padding-bottom:13px;}
+	.tips_inner a{padding:7px 20px; font-size:12px;}
+	
+	.main-nav .navbar-default .navbar-nav li a{padding:25px 17px;}
+}
+
+
+@media only screen and (min-width : 768px) and (max-width : 1023px){
+	
+	.big-img{height:auto;}
+	.mg-img .caption h4{font-size:15px;}
+	.mg-img .caption ul li{padding:10px 5.2px;}
+	.newsletter{padding:8px;}
+	.newsletter_inner{padding:12px;}
+	.newsletter_inner h2{font-size:13px;}
+	.newsletter_inner p{font-size:12px; padding-bottom:5px;}
+	.newsletter_inner input[type="submit"]{padding:4px 26px; font-size:12px;}
+	.newsletter_inner input[type="email"]{margin-bottom:0; height:26px;}
+	.tips{padding:8px;}
+	.tips_inner{padding:12px;}
+	.tips_inner ul li{font-size:7px;}
+	.tips_inner h2{font-size:13px; padding-bottom:13px;}
+	.tips_inner a{padding:7px 20px; font-size:12px;}
+	
+	.welcome .page-header{margin-top:0;}
+	.tabsection .nav-pills li a{padding:28px 50px 5px;}
+	.nbs-flexisel-nav-right{right:-20px;}
+	.nbs-flexisel-nav-left{left:-17px;}
+	
+	.main-nav{background:none; font-size:12px;}
+	.main-nav .navbar-default .navbar-nav li a{padding:19px 6px;}	
+}
+
+
+@media only screen and (width : 640px){
+	.tabsection .nav-pills li a{font-size:17px !important; padding:11px 29px 5px !important;}
+}
+
+
+@media only screen and (min-width : 480px) and (max-width : 767px){
+	
+	.whitepart .navbar-brand{width:67%;}
+	.whitepart input[type="text"]{width:347px;}
+	.whitepart .btn-info{padding-left:23px; padding-right:23px;}
+	.mg-img{width:100%;}
+	.mg-img .caption{width:100%;}
+	
+	.tabsection .nav-pills li a{font-size:13px; padding:11px 20px 5px;}
+	.nbs-flexisel-nav-left{left:-11px;}
+	.nbs-flexisel-nav-right{right:-10px;}
+	#flexiselDemo2 .nbs-flexisel-item{margin:0 47px;}
+	.three_boxes{margin-bottom:50px;}
+	.footer-top .social-icons2 ul{text-align:center;}
+	
+	.main-nav{background:none; position:static;}
+	.main-nav .container-fluid{padding-right:7px;}
+	.banner{margin-bottom:8px;}
+}
+
+@media only screen and (min-width : 320px) and (max-width : 479px){
+	
+	.whitepart .navbar-brand{width:67%;}
+	.whitepart input[type="text"]{width:209px;}
+	.whitepart .btn-info{padding-left:12px; padding-right:12px;}
+	.big-img{height:auto;}
+	.banner{margin-bottom:0;}
+	.tabsection .nav-pills li a{font-size:8px; padding:11px 14px 5px;}
+	
+	.nbs-flexisel-item img{width:auto;}
+	.nbs-flexisel-nav-left{left:-10px;}
+	.nbs-flexisel-nav-right{right:-12px;}
+	#flexiselDemo2 .nbs-flexisel-item{margin:0 80px;}
+	.three_boxes{margin-bottom:50px;}
+	.footer-top .social-icons2 ul{text-align:center;}
+	
+	.main-nav{background:none; position:static;}
+	.carousel-caption{display:none;}
+	.main-nav .container-fluid{padding-right:7px;}
+	.banner .carousel-indicators{bottom:-6px; left:47%;}
+	
+	.mynavbar .navbar-nav li{border:none; text-align:center;}
+	.welcome .page-header h1{font-size:27px;}
+}

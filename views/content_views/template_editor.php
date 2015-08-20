@@ -182,7 +182,7 @@ if (isset ( $_POST ['templateid'] )) {
 	<div id="showsaveicon" style="display: none"></div>
 
 	<div>	
-	<?php if($template=="Medical Practioner" || $template=="part1"){ include_once '../master_views/topper_view.php'; }?>
+	<?php if($template=="Medical Practioner" || $template=="part1" || $template == "furniture"){ include_once '../master_views/topper_view.php'; }?>
 </div>
 	<div style="height: 25px;">
 		<a onclick="savePage();" class="btn btn-inverse"
@@ -303,37 +303,36 @@ if (isset ( $_POST ['templateid'] )) {
 								class="icon-bar"></span> <span class="icon-bar"></span> <span
 								class="icon-bar"></span>
 						</button>
-						<a href="#" class="navbar-brand">
-				                    <?php echo $_GET['template']; ?>
-				                </a>
 					</div>
 
 					<!--</nav>-->
 					<div id="mainNav" class="collapse navbar-collapse">
                                             <?php
-																																												if ($template_id == NULL) {
-																																													?>
-						<ul id="menu" class="nav navbar-nav navbar">
-									<?php include ($turl.'/menu.html');?>
-									<li class="add-menu"><a>+</a></li>
-						</ul>
+						if ($template_id == NULL) {
+                                            ?>
+						
+						<?php include ($turl.'/menu.html');?>
+                                                <?php include ($turl.'/menu.php');?>
+                                            
+									
+						
                                             <?php
-																																												} else {
-																																													?>
-                                            <ul id="menu"
-							class="nav navbar-nav navbar">
+						} else {
+                                            ?>
 									<?php include '../user_views/user_menu.php';?>
-									<li class="add-menu"><a>+</a></li>
-						</ul>
+					
                                             <?php
-																																												}
-																																												?>
+					}
+					?>
 					</div>
 
 				</div>
 			</div>
 
-			<div id="body" contentEditable="false"><?php include ($turl.'/body.html');?></div>
+			<div id="body" contentEditable="false">
+                            <?php include ($turl.'/body.html');?>
+                            <?php include ($turl.'/body.php');?>
+                        </div>
 
 			<div id="footer">
 				<?php include ($turl.'/footer.html');?>

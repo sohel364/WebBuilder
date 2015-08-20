@@ -35,11 +35,11 @@ try {
 //    
 //    
 
-    
+    echo '<ul id="menu" class="nav navbar-nav navbar">';
     foreach ($retArray as $row) {
         if($row != null) {
             //echo $row['template_id'].'<br/>';
-            echo '<li><a onclick="onMenuClick(this);">'.$row['menu_title'].'</a></li>';
+            echo '<li><a href="#" onclick="onMenuClick(this);">'.$row['menu_title'].'</a></li>';
             $menu_id = $row['menu_id'];
             //echo $menu_id;
             $menuContents = $contentManager->loadUserMenuContentByMenuID($menu_id);
@@ -52,6 +52,7 @@ try {
         
        
     }
+    echo '<li class="add-menu"><a>+</a></li></ul>';
     //echo json_encode($menu_conten_list);
 } catch (Exception $ex) {
     echo 'Exception occured: ' . $ex->getMessage();
