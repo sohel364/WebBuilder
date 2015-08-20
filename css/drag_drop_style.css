@@ -57,9 +57,9 @@
 }
 
 .ui-draggable:hover {
-/* 	cursor: move;
+	cursor: move;
 	border-radius: 5px;
-	box-shadow: 0px 0px 20px #888888; */
+	box-shadow: 0px 0px 20px #888888;
 }
 
 .dialog {
