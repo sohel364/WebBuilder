@@ -758,7 +758,8 @@ function showFormEditPanel() {
 			makeControlNonEditable(editable_form);
 			editable_form.resizable("destroy");
 			$("#body").droppable("enable");
-
+			is_form_edit_mode = false;
+			
 			editable_form.find("*").each(function() {
 				var control_name = $(this).attr("name");
 				if (allawable_control_array.indexOf(control_name) > -1) {
@@ -792,7 +793,7 @@ function makeFormControlDraggable() {
 				cancel : false,
 			});
 
-			$(this).attr("id", "form_" + control_name + "_" + counter++);
+			$(this).attr("id", control_name + "_form_" + counter++);
 			$(this).click(droppedItemClickAction);
 		}
 	});
@@ -914,6 +915,7 @@ function droppedItemClickAction() {
 		title = "BUTTON ...";
 	} else if (clicked_dropped_item_id.search('textarea') == 0) {
 		title = "TEXT ...";
+		console.log("Text Area Clicked");
 	} else if (clicked_dropped_item_id.search('dropdown') == 0) {
 		title = "DROP DOWN ...";
 		// $(this).draggable("disable");
@@ -937,10 +939,12 @@ function droppedItemClickAction() {
 		title = "INPUT TEXT ...";
 	}
 
-	if (clicked_dropped_item_id.search('form_') == 0) {
+	if (clicked_dropped_item_id.indexOf("_form_") >= 0) {
 		is_form_edit_mode = true;
+		console.log("Form Control Clicked");
 	} else {
 		is_form_edit_mode = false;
+		console.log("Normal Control Clicked");
 	}
 
 	// child_item.resizable({
