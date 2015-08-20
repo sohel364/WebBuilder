@@ -829,9 +829,11 @@ function showEditPanel() {
 		showFormEditPanel();
 	} else if (clicked_dropped_item_id.search('separator') == 0) {
 		// ToDo
+		alert("Under Construction");
 		makeControlNonEditable(editable_control);
-	} else if (clicked_dropped_item_id.search('inputtext') == 0) {
+	} else if (clicked_dropped_item_id.search('textinput') == 0) {
 		// ToDo
+		alert("Under Construction");
 		makeControlNonEditable(editable_control);
 	}
 
@@ -856,6 +858,7 @@ function makeControlEditable(control) {
 }
 
 function makeControlNonEditable(control) {
+	console.log("Making Control Non Editable");
 	control.removeClass("editable_mode");
 	control.draggable("enable");
 	control.click(droppedItemClickAction);
@@ -935,8 +938,8 @@ function droppedItemClickAction() {
 		title = "FEEDBACK FORM ...";
 	} else if (clicked_dropped_item_id.search('separator') == 0) {
 		title = "SEPARATOR ...";
-	} else if (clicked_dropped_item_id.search('inputtext') == 0) {
-		title = "INPUT TEXT ...";
+	} else if (clicked_dropped_item_id.search('textinput') == 0) {
+		title = "TEXT INPUT ...";
 	}
 
 	if (clicked_dropped_item_id.indexOf("_form_") >= 0) {
