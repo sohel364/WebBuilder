@@ -942,7 +942,7 @@ function droppedItemClickAction() {
 		title = "TEXT INPUT ...";
 	}
 
-	if (clicked_dropped_item_id.indexOf("_form_") >= 0) {
+	if (clicked_dropped_item_id.indexOf("_form_") >= 0 && $("#"+clicked_dropped_item_id).attr("name").indexOf("form") < 0) {
 		is_form_edit_mode = true;
 		console.log("Form Control Clicked");
 	} else {
