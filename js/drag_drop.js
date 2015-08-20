@@ -776,6 +776,45 @@ function showFormEditPanel() {
 	makeFormEditable();
 }
 
+
+function showTextInputEditPanel(){
+	
+	var old_hint = editable_control.attr("placeholder");
+	$("#text_input_hint_text").val(old_hint);
+	
+	function restoreInitialState() {
+		// If cancel button is pressed, this function will be called
+		editable_control.attr("placeholder", old_hint);
+		isSaved = false;
+	}
+	
+	$("#text_input_edit_dialog").dialog({
+		dialogClass : "no-close",
+		resizable : false,
+		draggable : true,
+		closeOnEscape : true,
+		title : "Text Input edit Panel",
+		width : 350,
+		show : {
+			effect : "slide",
+			duration : 200,
+			direction : "up"
+		},
+		position : {
+			my : "center bottom",
+			at : "center top-50",
+			of : editable_form
+		},
+		beforeClose : function(event, ui) {
+			makeControlNonEditable(editable_control);
+			if (isSaved == false) {
+				restoreInitialState();
+			}
+		},
+
+	});
+}
+
 function makeFormEditable() {
 	makeControlResizable();
 	makeFormControlDraggable();
@@ -798,6 +837,9 @@ function makeFormControlDraggable() {
 		}
 	});
 }
+
+
+
 
 function showEditPanel() {
 
@@ -832,9 +874,7 @@ function showEditPanel() {
 		alert("Under Construction");
 		makeControlNonEditable(editable_control);
 	} else if (clicked_dropped_item_id.search('textinput') == 0) {
-		// ToDo
-		alert("Under Construction");
-		makeControlNonEditable(editable_control);
+		showTextInputEditPanel();
 	}
 
 	/*
@@ -939,7 +979,7 @@ function droppedItemClickAction() {
 	} else if (clicked_dropped_item_id.search('separator') == 0) {
 		title = "SEPARATOR ...";
 	} else if (clicked_dropped_item_id.search('textinput') == 0) {
-		title = "TEXT INPUT ...";
+		title = "TEXT INPUT ..."; 
 	}
 
 	if (clicked_dropped_item_id.indexOf("_form_") >= 0 && $("#"+clicked_dropped_item_id).attr("name").indexOf("form") < 0) {
@@ -1305,6 +1345,23 @@ function initializeAllDialogButton() {
 	 */
 	$("#btn_form_edit_panel_close").click(function() {
 		$("#form_edit_dialog").dialog("close");
+	});
+	
+	/*
+	 * Button Initialization for Text Input Editor
+	 */
+	$("#btn_text_input_cancel").click(function(){
+		isSaved = false;
+		$("#text_input_edit_dialog").dialog("close");
+	});
+	
+	$("#btn_text_input_save").click(function(){
+		isSaved = true;
+		$("#text_input_edit_dialog").dialog("close");
+	});
+	
+	$("#text_input_hint_text").keyup(function(event) {
+		editable_control.attr("placeholder", $("#text_input_hint_text").val());
 	});
 
 }

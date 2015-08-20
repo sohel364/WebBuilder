@@ -510,6 +510,26 @@ if (isset ( $_POST ['templateid'] )) {
 			style="border-radius: 5px; float: right; margin: 5px; background: white">
 			Save</button>
 	</div>
+	
+	
+	<div id="text_input_edit_dialog" class="dialog">
+		<p style="font-weight: lighter; font-size: small;">Text Input Editor, Take Input from user as your wish</p>
+		<div
+			style="height: 150px; border: 1px solid lightgrey; border-radius: 8px; padding: 5px">
+			<p style="padding-top: 5px; font-weight: lighter; font-size: small;">Text Hint</p>
+			<input id="text_input_hint_text" type="text"
+				style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
+		
+		</div>
+		<hr></hr>
+		<button id="btn_text_input_cancel"
+			style="border-radius: 5px; float: right; margin: 5px; background: white">
+			Cancel</button>
+		<button id="btn_text_input_save"
+			style="border-radius: 5px; float: right; margin: 5px; background: white">
+			Save</button>
+	</div>
+	
 
 	<div id="radio_btn_edit_dialog" class="dialog">
 		<p style="font-weight: lighter; font-size: small;">Add Radio Button
@@ -791,7 +811,7 @@ if (isset ( $_POST ['templateid'] )) {
 
 				<label name="textarea">Comment : </label> 
 				<textarea id="feedback_user_comment"
-					name="textarea" value="Fill in your Comment"
+					name="textinput" value="Fill in your Comment"
 					style="resize: none; width: 100%; height: 150px; border: .5px solid lightgrey; border-radius: 5px;">
 			</textarea>
 				<hr name="separator"></hr>
