@@ -723,7 +723,7 @@ if (isset ( $_POST ['templateid'] )) {
 	<!-- -------------------------------------- Control Templates ----------------------------------------------- -->
 
 	<div id="text_box_template" name="textarea"
-		class="text_template_non_editable" style="display: none">
+		class="text_template_non_editable" style="display: none; position: absolute;">
 		<h1>
 			Title. Edit me<br />
 		</h1>
@@ -740,7 +740,7 @@ if (isset ( $_POST ['templateid'] )) {
 
 	
 		<h1 id="title_template" name="textarea"
-		class="title_template_non_editable" style="display: none">
+		class="title_template_non_editable" style="display: none; position: absolute;">
 			Title. Edit me<br />
 		</h1>
 
@@ -748,10 +748,10 @@ if (isset ( $_POST ['templateid'] )) {
 	<img id="image_template" name="image"
 		src="../../images/image_template.png" alt="Image Template"
 		class="image_template_non_editable"
-		class="image_template_non_editable" style="display: none" />
+		class="image_template_non_editable" style="display: none; position: absolute;" />
 
 	<div id="image_slider_template" name="imageslider"
-		class="slider_template_non_editable" style="display: none">
+		class="slider_template_non_editable" style="display: none; position: absolute;">
 		<ul>
 			<li><img src="../../images/slider1.jpg" class="slide" alt="Image1"></li>
 			<li><img src="../../images/slider2.jpg" class="slide" alt="Image2"></li>
@@ -763,10 +763,10 @@ if (isset ( $_POST ['templateid'] )) {
 
 	<button id="button_template" name="button"
 		class="button_template_non_editable btn btn-primary btn-lg"
-		style="display: none">Click Me</button>
+		style="display: none; position: absolute;">Click Me</button>
 
 	<select id="dropdown_template" name="dropdown"
-		class="drop_down_template_non_editable" style="display: none">
+		class="drop_down_template_non_editable" style="display: none; position: absolute;">
 		<option value="Option1">Option 1</option>
 		<option value="Option2">Option 2</option>
 		<option value="Option3">Option 3</option>
