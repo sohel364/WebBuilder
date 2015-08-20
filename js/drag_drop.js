@@ -1363,8 +1363,38 @@ function initializeAllDialogButton() {
 	$("#text_input_hint_text").keyup(function(event) {
 		editable_control.attr("placeholder", $("#text_input_hint_text").val());
 	});
+	
+	$("#btn_form_edit_add_label").click(function(){
+		var new_label = $('<label name="textarea">New Label : </label>');
+		new_label.attr("id", "textarea_form_" + counter++);
+		
+		new_label.draggable({
+			containment : editable_form,
+			cursor : "move",
+			cancel : false,
+		});
+		new_label.click(droppedItemClickAction);
+		
+		new_label.prependTo(editable_form);
+	});
+	
+	$("#btn_form_edit_add_input_text").click(function(){
+		var new_text_input = $('<input name="textinput" type="text"' +
+				' name="textinput" placeholder="Write Here"' +
+					' style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">');
+		new_text_input.attr("id", "textinput_form_" + counter++);
+		
+		new_text_input.draggable({
+			containment : editable_form,
+			cursor : "move",
+			cancel : false,
+		});
+		new_text_input.click(droppedItemClickAction);
+		
+		new_text_input.prependTo(editable_form);
+	});
 
-}
+} 
 
 $(function() {
 

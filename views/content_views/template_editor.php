@@ -615,6 +615,13 @@ if (isset ( $_POST ['templateid'] )) {
 	</div>
 	
 	<div id="form_edit_dialog" class="dialog">
+		<button id = "btn_form_edit_add_label" class="text_editor_component">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Label
+		</button>
+		
+		<button id = "btn_form_edit_add_input_text" class="text_editor_component">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Text Input
+		</button>
 		
 		<button id = "btn_form_edit_panel_close" class="text_editor_component">
 			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
