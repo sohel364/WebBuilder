@@ -594,6 +594,13 @@ if (isset ( $_POST ['templateid'] )) {
 		</button>
 	</div>
 	
+	<div id="form_edit_dialog" class="dialog">
+		
+		<button id = "btn_form_edit_panel_close" class="text_editor_component">
+			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+		</button>
+	</div>
+	
 
 	<div id="image_edit_dialog" class="dialog">
 		<p style="font-weight: lighter; font-size: small;">Add Images To your
@@ -770,23 +777,26 @@ if (isset ( $_POST ['templateid'] )) {
 
 	<div id="feedback_form_template" name="feedback_form"
 		style="display: none; position: absolute; width: 400px; height: auto; border: 1px solid lightgrey; border-radius: 5px; padding: 10px">
-		<h3 style="">User Feedback</h3>
-		<hr></hr>
-		<label>Name : </label> <input id="feedback_user_name" type="text"
+		<h3 name="textarea" style="">User Feedback</h3>
+		<hr name="separator"></hr>
+		<label name="textarea">Name : </label> 
+		<input id="feedback_user_name" name="textinput" type="text"
 			name="feedback_user_name" placeholder="Your Name"
 			style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
 
-			<label>Email : </label> <input id="feedback_user_email" type="text"
+			<label name="textarea">Email : </label> 
+			<input id="feedback_user_email" name="textinput" type="text"
 			name="feedback_user_email" placeholder="Your Email"
 			style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
 
-				<label>Comment : </label> <textarea id="feedback_user_comment"
-					name="feedback_user_comment" value="Fill in your Comment"
-					style="width: 100%; height: 150px; border: .5px solid lightgrey; border-radius: 5px;">
+				<label name="textarea">Comment : </label> 
+				<textarea id="feedback_user_comment"
+					name="textarea" value="Fill in your Comment"
+					style="resize: none; width: 100%; height: 150px; border: .5px solid lightgrey; border-radius: 5px;">
 			</textarea>
-				<hr></hr>
+				<hr name="separator"></hr>
 
-				<button class="btn btn-success btn-lg" style="float: right;">Submit</button>
+				<button name="button" class="btn btn-success btn-lg" style="float: right;">Submit</button>
 	
 	</div>
 

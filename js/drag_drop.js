@@ -12,12 +12,15 @@ var child_item = null;
 var editable_control = null;
 var image_slider_animation_speed = 1000;
 var image_slider_pause = 3000;
+var is_form_edit_mode = false;
+var editable_form = null;
 
 var pos;
 var isSaved = false;
 var isResizeOn = false;
 var allawable_control_array = [ "button", "textarea", "radiobutton",
-		"dropdown", "image", "imageslider", "header", "feedback_form", "separator" ]
+		"dropdown", "image", "imageslider", "header", "feedback_form",
+		"separator", "textinput" ]
 
 var currentMousePos = {
 	x : -1,
@@ -147,7 +150,8 @@ function createImageSlider(imageSliderImageList) {
 						+ '"></li>').appendTo(target_slider)
 	});
 
-	animateImageSlider(editable_control, editable_control.width(), image_slider_animation_speed, image_slider_pause);
+	animateImageSlider(editable_control, editable_control.width(),
+			image_slider_animation_speed, image_slider_pause);
 
 }
 
@@ -229,7 +233,9 @@ function makeBodyDroppable() {
 						}
 
 						if (is_image_slider) {
-							animateImageSlider(draggable, draggable.width(), image_slider_animation_speed, image_slider_pause);
+							animateImageSlider(draggable, draggable.width(),
+									image_slider_animation_speed,
+									image_slider_pause);
 						}
 
 						makeDroppedControlsDraggable(draggable);
@@ -256,10 +262,11 @@ function makeBodyDroppable() {
 				}
 			});
 }
+
 function animateImageSlider(control, width, animation_speed, pause) {
-	//var width = control.width();
-//	var animation_speed = image_slider_animation_speed;
-//	var pause = image_slider_pause;
+	// var width = control.width();
+	// var animation_speed = image_slider_animation_speed;
+	// var pause = image_slider_pause;
 	var current_slide = 1;
 	var $slider_container = control.children('ul');
 	var $slides = $slider_container.children('li');
@@ -278,6 +285,8 @@ function animateImageSlider(control, width, animation_speed, pause) {
 				}
 			});
 		}, pause);
+
+		console.log(interval);
 	}
 
 	function stopSlider() {
@@ -287,7 +296,7 @@ function animateImageSlider(control, width, animation_speed, pause) {
 	stopSlider();
 	startSlider();
 
-	control.on('mouseenter', stopSlider).on('mouseleave', startSlider);
+	// control.on('mouseenter', stopSlider).on('mouseleave', startSlider);
 
 }
 
@@ -689,6 +698,10 @@ function showResizePanel() {
 
 	});
 
+	makeControlResizable();
+}
+
+function makeControlResizable() {
 	editable_control.resizable({
 		ghost : false,
 		animate : false,
@@ -709,14 +722,79 @@ function showResizePanel() {
 					$(this).children("img").height(ui.size.height);
 					$(this).children("img").width(ui.size.width);
 				});
-				
-				
+
 			}
 
 		},
-		stop : function(event, ui){
-			animateImageSlider(editable_control, editable_control.width(), image_slider_animation_speed, image_slider_pause);
+		stop : function(event, ui) {
+			animateImageSlider(editable_control, editable_control.width(),
+					image_slider_animation_speed, image_slider_pause);
 		},
+	});
+}
+
+function showFormEditPanel() {
+	editable_form = editable_control;
+	
+	$("#form_edit_dialog").dialog({
+		dialogClass : "no-close",
+		resizable : false,
+		draggable : true,
+		closeOnEscape : true,
+		title : "Form edit Panel",
+		height : 100,
+		width : 350,
+		show : {
+			effect : "slide",
+			duration : 200,
+			direction : "up"
+		},
+		position : {
+			my : "center bottom",
+			at : "center top-50",
+			of : editable_form
+		},
+		beforeClose : function(event, ui) {
+			makeControlNonEditable(editable_form);
+			editable_form.resizable("destroy");
+			$("#body").droppable("enable");
+
+			editable_form.find("*").each(function() {
+				var control_name = $(this).attr("name");
+				if (allawable_control_array.indexOf(control_name) > -1) {
+					$(this).draggable("destroy");
+					$(this).click(function() {
+					});
+				}
+			});
+
+		},
+
+	});
+
+	makeFormEditable();
+}
+
+function makeFormEditable() {
+	makeControlResizable();
+	makeFormControlDraggable();
+	$("#body").droppable("disable");
+}
+
+function makeFormControlDraggable() {
+	editable_form.find("*").each(function() {
+		var control_name = $(this).attr("name");
+		if (allawable_control_array.indexOf(control_name) > -1) {
+			console.log(" [Allowable Control] Control Type : " + control_name);
+			$(this).draggable({
+				containment : editable_form,
+				cursor : "move",
+				cancel : false,
+			});
+
+			$(this).attr("id", "form_" + control_name + "_" + counter++);
+			$(this).click(droppedItemClickAction);
+		}
 	});
 }
 
@@ -746,6 +824,12 @@ function showEditPanel() {
 	} else if (clicked_dropped_item_id.search('image') == 0) {
 		showImageEditPanel();
 	} else if (clicked_dropped_item_id.search('feedback_form') == 0) {
+		// ToDo
+		showFormEditPanel();
+	} else if (clicked_dropped_item_id.search('separator') == 0) {
+		// ToDo
+		makeControlNonEditable(editable_control);
+	} else if (clicked_dropped_item_id.search('inputtext') == 0) {
 		// ToDo
 		makeControlNonEditable(editable_control);
 	}
@@ -806,6 +890,12 @@ function closeAllEditDialogPanel() {
 	if ($("#resize_dialog").dialog("instance") != undefined) {
 		$("#resize_dialog").dialog("close");
 	}
+
+	if (!is_form_edit_mode) {
+		if ($("#form_edit_dialog").dialog("instance") != undefined) {
+			$("#form_edit_dialog").dialog("close");
+		}
+	}
 }
 
 function makeTextAreaEditable() {
@@ -818,9 +908,6 @@ function makeTextAreaEditable() {
 function droppedItemClickAction() {
 
 	clicked_dropped_item_id = $(this).attr("id");
-	// editable_control = $(this);
-
-	// child_item = $("#" + clicked_dropped_item_id + " :first");
 	var title = "";
 
 	if (clicked_dropped_item_id.search('button') == 0) {
@@ -829,11 +916,11 @@ function droppedItemClickAction() {
 		title = "TEXT ...";
 	} else if (clicked_dropped_item_id.search('dropdown') == 0) {
 		title = "DROP DOWN ...";
-		//$(this).draggable("disable");
-		//$("#" + clicked_dropped_item_id + " :first").focus();
+		// $(this).draggable("disable");
+		// $("#" + clicked_dropped_item_id + " :first").focus();
 		$(this).focus();
-		//$(this).parent().focus();
-		//$(this).draggable("enable");
+		// $(this).parent().focus();
+		// $(this).draggable("enable");
 	} else if (clicked_dropped_item_id.search('radiobutton') == 0) {
 		title = "RADIO BUTTON ...";
 	} else if (clicked_dropped_item_id.search('header') == 0) {
@@ -844,6 +931,16 @@ function droppedItemClickAction() {
 		title = "IMAGE ...";
 	} else if (clicked_dropped_item_id.search('feedback_form') == 0) {
 		title = "FEEDBACK FORM ...";
+	} else if (clicked_dropped_item_id.search('separator') == 0) {
+		title = "SEPARATOR ...";
+	} else if (clicked_dropped_item_id.search('inputtext') == 0) {
+		title = "INPUT TEXT ...";
+	}
+
+	if (clicked_dropped_item_id.search('form_') == 0) {
+		is_form_edit_mode = true;
+	} else {
+		is_form_edit_mode = false;
 	}
 
 	// child_item.resizable({
@@ -861,6 +958,8 @@ function droppedItemClickAction() {
 	// */
 	// });
 
+	console.log("clicked Id: " + clicked_dropped_item_id + " Title: " + title);
+	
 	$("#control_option_dialog").dialog({
 		dialogClass : "no-close",
 		resizable : false,
@@ -1038,69 +1137,62 @@ function initializeAllDialogButton() {
 	$("#btn_txt_editor_normal").click(function() {
 		editable_control.css('font-weight', 'normal');
 		editable_control.css('font-style', 'normal');
-		
+
 	});
-	
+
 	$("#btn_txt_editor_bold").click(function() {
-		
-		if (editable_control.data("isbold") == null)
-		{
+
+		if (editable_control.data("isbold") == null) {
 			editable_control.data("isbold", "false");
 		}
-		
-		if (editable_control.data("isbold") == "false")
-		{
+
+		if (editable_control.data("isbold") == "false") {
 			editable_control.css('font-weight', 'bold');
 			editable_control.data("isbold", "true");
-			
-		}else{
+
+		} else {
 			editable_control.css('font-weight', 'normal');
 			editable_control.data("isbold", "false");
 		}
-		
-		
+
 	});
-	
+
 	$("#btn_txt_editor_italic").click(function() {
-		
-		if (editable_control.data("isitalic") == null)
-		{
+
+		if (editable_control.data("isitalic") == null) {
 			editable_control.data("isitalic", "false");
 		}
-		
-		if (editable_control.data("isitalic") == "false")
-		{
+
+		if (editable_control.data("isitalic") == "false") {
 			editable_control.css('font-style', 'italic');
 			editable_control.data("isitalic", "true");
-			
-		}else{
+
+		} else {
 			editable_control.css('font-style', 'normal');
 			editable_control.data("isitalic", "false");
 		}
-		
+
 	});
-	
+
 	$("#btn_txt_editor_left_align").click(function() {
 		editable_control.css('text-align', 'left');
 	});
-	
+
 	$("#btn_txt_editor_center_align").click(function() {
 		editable_control.css('text-align', 'center');
 	});
-	
+
 	$("#btn_txt_editor_right_align").click(function() {
 		editable_control.css('text-align', 'right');
 	});
-	
-	$("#dropdown_txt_editor_font_family").on("change", function(){
+
+	$("#dropdown_txt_editor_font_family").on("change", function() {
 		editable_control.css("font-family", this.value);
 	});
-	
-	$("#dropdown_txt_editor_font_size").on("change", function(){
+
+	$("#dropdown_txt_editor_font_size").on("change", function() {
 		editable_control.css("font-size", this.value + "px");
 	});
-	
-	
 
 	/*
 	 * Button Initializatin for Image Edit Panel
@@ -1199,6 +1291,13 @@ function initializeAllDialogButton() {
 	$("#btn_resize_apply").click(function() {
 		editable_control.height($("#txt_height_resize_dialog").val());
 		editable_control.width($("#txt_width_resize_dialog").val());
+	});
+
+	/*
+	 * Button Initialization for Form Editor
+	 */
+	$("#btn_form_edit_panel_close").click(function() {
+		$("#form_edit_dialog").dialog("close");
 	});
 
 }
