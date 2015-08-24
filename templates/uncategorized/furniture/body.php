@@ -125,10 +125,10 @@
 	<div class="container">
     	<div class="row">
         	<div class="col-lg-12">
-				<div class="page-header">
+				<div class="page-header" name="textarea">
                     <h1>Welcome to our store</h1>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. </p>
+                <p name="textarea">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. </p>
     		</div>
     	</div>
     </div>
@@ -141,7 +141,7 @@
     	<div class="row">
         	<div class="copl-lg-12">
             	<aside class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="mg-img">
+                <div class="mg-img" name = "image">
                 	<figure>
                     	<img src="<?php echo $turl.'/';?>images/img1.jpg" alt="img1">
                     </figure>
@@ -155,7 +155,7 @@
                     </div>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="mg-img">
+                    <div class="mg-img" name = "image">
                     <figure>
                     	<img src="<?php echo $turl.'/';?>images/img1.jpg" alt="img1">
                     </figure>
@@ -170,7 +170,7 @@
                     </div>
                 </aside>
                 <aside class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                	<div class="mg-img big-img">
+                	<div class="mg-img big-img" name="image">
                     	<figure>
                        		<img src="<?php echo $turl.'/';?>images/img3.jpg" alt="img3"> 
                         </figure>
@@ -185,7 +185,7 @@
                     </div>
                 </aside>
                 <aside class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                	<div class="newsletter">
+                	<div class="newsletter" name= "textarea">
                     	<div class="newsletter_inner">
                         	<h2>newsletter sign up</h2>
                             <p>Get exclusive deals straight to your inbox</p>
@@ -196,7 +196,7 @@
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="tips">
+                    <div class="tips" name="textarea">
                     	<div class="tips_inner">
                         	<h2>need decorating tips?</h2>
                             <a href="#">Contact Us</a>
@@ -219,7 +219,7 @@
 <section class="tabsection">
 	<div class="container">
     	<div class="row">
-        	<div class="col-lg-12">
+        	<div class="col-lg-12" name="textarea">
             	<ul class="col-md-offset-3 col-lg-offset-3 nav nav-pills text-uppercase">
                     <li class="active"><a data-toggle="pill" href="#popular">popular</a></li>
                     <li><a data-toggle="pill" href="#newarrivals">new arrivals</a></li>

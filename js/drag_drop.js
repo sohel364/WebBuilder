@@ -45,12 +45,45 @@ function makeTemplateComponetsEditable() {
 			$(this).click(droppedItemClickAction);
 		}
 	});
+	
+	$("#footer").find("*").each(function() {
+		var control_id = $(this).attr("id");
+		var control_name = $(this).attr("name");
+
+		console.log(control_id + " : " + control_name);
+
+		if (allawable_control_array.indexOf(control_name) > -1) {
+			console.log(" [Allowable Control] Control Type : " + control_name);
+			$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
+
+			makeDroppedControlsDraggable($(this));
+
+			$(this).click(droppedItemClickAction);
+		}
+	});
 }
 
 function makeTemplateComponetsNotEditable() {
 	console.log("Making Template Control Not Editable");
 
 	$("#body").find("*").each(function() {
+		var control_id = $(this).attr("id");
+		var control_name = $(this).attr("name");
+
+		console.log(control_id + " : " + control_name);
+
+		if (allawable_control_array.indexOf(control_name) > -1) {
+			console.log(" [Allowable Control] Control Type : " + control_name);
+			$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
+
+			$(this).draggable("destroy");
+
+			$(this).click(function() {
+			});
+		}
+	});
+	
+	$("#footer").find("*").each(function() {
 		var control_id = $(this).attr("id");
 		var control_name = $(this).attr("name");
 
@@ -262,6 +295,11 @@ function makeBodyDroppable() {
 				}
 			});
 }
+
+
+
+
+
 
 function animateImageSlider(control, width, animation_speed, pause) {
 	// var width = control.width();
@@ -533,7 +571,8 @@ function showImageEditPanel() {
 	function restoreInitialState() {
 		// If cancel button is pressed, this function will be called
 		isSaved = false;
-		editable_control.attr("src", old_image_path);
+		findAndSetImage(old_image_path);
+		//editable_control.attr("src", old_image_path);
 	}
 
 	$("#dialog_input_image_path").val(old_image_path);
@@ -884,6 +923,18 @@ function showEditPanel() {
 	 * editable_control.attr("contentEditable", true);
 	 */
 
+}
+
+function findAndSetImage(image_url){
+	console.log("Setting Image");
+	
+	if (editable_control.is("img")){
+		console.log("Editable Control is Image");
+		editable_control.attr("src", image_url);
+	}else{
+		console.log("Searching for Image");
+		editable_control.find("figure").find("img").attr("src", image_url);
+	}
 }
 
 function makeControlEditable(control) {
@@ -1252,7 +1303,8 @@ function initializeAllDialogButton() {
 			var file_name = document.getElementById('file_picker').value;
 			$("#dialog_input_image_path").val(file_name);
 
-			editable_control.attr("src", tmp_file_path);
+			findAndSetImage(tmp_file_path);
+			//editable_control.attr("src", tmp_file_path);
 
 		});
 
