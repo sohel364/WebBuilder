@@ -4,6 +4,7 @@ $user_id = NULL;
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
 }
+$baseUrl = "http://" . $_SERVER['SERVER_NAME'] ."/WebBuilder";
 ?>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -14,11 +15,11 @@ if (isset($_SESSION['user_id'])) {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" style="color: ORANGE;weight:bold;font-size:36px">Web Builder</a>
+            <a class="navbar-brand" href="<?Php echo $baseUrl?>" style="color: ORANGE;weight:bold;font-size:36px">Web Builder</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav" style="font-family: arial,cursive">
-                <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="<?Php echo $baseUrl?>">Home<span class="sr-only">(current)</span></a></li>
                 <?php 
                     if($user_id != NULL) {
                 ?>
@@ -32,7 +33,7 @@ if (isset($_SESSION['user_id'])) {
                 <?php 
                     if($user_id != NULL) {
                 ?>
-                <li><a href="../../../webbuilder/views/content_views/saved_pages.php">Saved Pages</a></li>
+                <li><a href="<?Php echo $baseUrl."/views/content_views/saved_pages.php"?>">Saved Pages</a></li>
                 <?php 
                     }
                 ?>

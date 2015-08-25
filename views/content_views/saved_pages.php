@@ -1,5 +1,6 @@
 <?php 
-//session_start();
+    //session_start();
+    $baseUrl = "http://" . $_SERVER['SERVER_NAME'] ."/WebBuilder";
 ?>
 
 <?php include_once '../../common_html_headercontent.php'; ?>
@@ -47,8 +48,7 @@
 
                                         <div class="panel-body">
                                             <span>
-                                                <a href="./views/content_views/template_editor.php?
-                                                   category=<?php echo $dirs[$i] ?>&template=<?php echo $templates[$j] ?>" >
+                                                <a href="<?php echo $baseUrl;?>/views/content_views/template_editor.php?category=<?php echo $dirs[$i] ?>&template=<?php echo $templates[$j] ?>" >
                                         <?php echo $templates [$j] ?>
                                                 </a>
                                             </span> 
@@ -80,7 +80,7 @@
                         $templateManager = new TemplateManager();
                         $templateList = $templateManager->loadUserTemplates($user_id);
                         if($templateList == NULL || count($templateList) <= 0) {
-                            echo 'There is no tamplates found';
+                            echo 'There are no tamplates found';
                         } else {
                             //echo count($templateList);
                             foreach ($templateList as $template) {
