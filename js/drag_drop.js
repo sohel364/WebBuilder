@@ -118,7 +118,7 @@ function makeControlsOfPaletteDraggable() {
 
 function makeDroppedControlsDraggable(control) {
 	control.draggable({
-		containment : $("#body"),
+		containment : $("#body footer"),
 		cursor : "move",
 		cancel : false,
 	});
@@ -295,9 +295,6 @@ function makeBodyDroppable() {
 				}
 			});
 }
-
-
-
 
 
 
