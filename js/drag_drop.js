@@ -39,6 +39,7 @@ function makeTemplateComponetsEditable() {
 		if (allawable_control_array.indexOf(control_name) > -1) {
 			console.log(" [Allowable Control] Control Type : " + control_name);
 			$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
+			$(this).data("is_dropped","true");
 
 			makeDroppedControlsDraggable($(this));
 
@@ -55,7 +56,8 @@ function makeTemplateComponetsEditable() {
 		if (allawable_control_array.indexOf(control_name) > -1) {
 			console.log(" [Allowable Control] Control Type : " + control_name);
 			$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
-
+			$(this).data("is_dropped","true");
+			
 			makeDroppedControlsDraggable($(this));
 
 			$(this).click(droppedItemClickAction);
@@ -118,7 +120,7 @@ function makeControlsOfPaletteDraggable() {
 
 function makeDroppedControlsDraggable(control) {
 	control.draggable({
-		containment : $("#body footer"),
+		containment : $("#frame"),
 		cursor : "move",
 		cancel : false,
 	});
@@ -237,8 +239,10 @@ function makeBodyDroppable() {
 						is_form_builder = true;
 					}
 
-					if (droppable_id == null
-							|| droppable_id.search('dropped_') < 0) {
+//					if (droppable_id == null
+//							|| droppable_id.search('dropped_') < 0) {
+					if (draggable.data("is_dropped") == null
+							|| draggable.data("is_dropped") == "false") {
 
 						draggable = draggable.clone();
 						draggable.css('left', currentMousePos.x + 'px');
@@ -249,6 +253,10 @@ function makeBodyDroppable() {
 
 						draggable[0].id = droppable_name + "_dropped_"
 								+ (counter++);
+						
+						draggable.data("is_dropped","true");
+						
+						
 						// draggable[0].name = droppable_name;
 
 						if (is_radio_button) {
