@@ -95,6 +95,10 @@ try {
                     if ($menu['menuTitle'] == '+') {
                         break;
                     }
+                    $contentHtml = $menuContentList[$menu['menuTitle']];
+                    if($contentHtml == NULL || count($contentHtml)<= 0) {
+                        continue;
+                    }
                     $menuObject = new Menu();
                     $menuObject->setMenuTitle($menu['menuTitle']);
                     $menuObject->setMenuAhRef($menu['aHref']);
