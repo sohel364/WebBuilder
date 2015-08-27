@@ -101,7 +101,7 @@ class UserManager{
          */
         public static function getUserByEmailAndPassword($User){
             $DataBaseHelper=new databaseHelper();
-            $sql="SELECT `id`,`email`,`name`,`password` FROM `user` WHERE `email`='".$User->getEmailAddress()."' AND `password`='".$User->getPassWord()."'";
+            $sql="SELECT `id`,`email`,`name`,`password` FROM `user` WHERE `email`='".$User->getEmailAddress()."' OR `name`='".$User->getUserName()."' AND `password`='".$User->getPassWord()."'";
             return $DataBaseHelper->ExecuteDataSet($sql);
         }
 	

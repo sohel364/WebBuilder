@@ -42,9 +42,12 @@ try {
                 $user->setUserName($name);
                 $user->setPassWord($pass);
 
-                $retArray = $userManager->getUserByEmail($user);
-                if (count($retArray) > 0) {
+                $retArrayEmail = $userManager->getUserByEmail($user);
+                $retArrayName = $userManager->getUserbyUserName($user);
+                if (count($retArrayEmail) > 0) {
                     $aResult['error'] = "This email is already registered";
+                } else if(count($retArrayName) > 0) {
+                    $aResult['error'] = "This user name is already registered";
                 } else {
                     $returnVal = $userManager->InsertUser($user);
                     if ($returnVal > 0) {
@@ -58,12 +61,12 @@ try {
             }
         }
     } else if (isset($_POST["signin"])) {
-        if (!isset($_POST['email'])) {
-            $aResult['error'] = 'Email not found';
+        if (!isset($_POST['emailorusername'])) {
+            $aResult['error'] = 'Email or user name not found';
         } else if (!isset($_POST['pass'])) {
             $aResult['error'] = 'Password not found';
         } else {
-            $email = $_POST['email'];
+            $emailOrUserName = $_POST['emailorusername'];
             $pass = $_POST['pass'];
             
             try {
@@ -74,10 +77,12 @@ try {
                 }
                 // Saving template information
                 $user = new User();
-                $user->setEmailAddress($email);
+                $user->setEmailAddress($emailOrUserName);
+                $user->setUserName($emailOrUserName);
                 $user->setPassWord($pass);
 
                 $retArray = $userManager->getUserByEmailAndPassword($user);
+                
                 if (count($retArray) > 0) {
                     $row = $retArray[0];
                     $user->setId($row['id']);

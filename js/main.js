@@ -91,13 +91,17 @@ function signUp() {
         alert("Please enter your name properly!!!");
         return;
     }
+    if(isValidUserName(name)) {
+        alert("No space allowed in user name!!!");
+        return;
+    }
     if(pass === null || pass.length<=0){
         alert("Password cannot be empty!!!");
         return;
     }
     // if(email.contains())
     if (pass !== retypepass) {
-        alert("Pass doesn't match");
+        alert("Password doesn't match");
         return;
     }
 
@@ -108,6 +112,11 @@ function signUp() {
 function isValidEmailAddress(emailAddress) {
     var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
     return pattern.test(emailAddress);
+}
+
+function isValidUserName(userName) {
+    var pattern = new RegExp(/\s/g);
+    return pattern.test(userName);
 }
 
 /*
@@ -125,26 +134,26 @@ function getUserServiceUrl() {
     return getBaseUrl()+'/manager/user_manager/user_service.php';
 }
 
-function loginUser(email, pass) {
+function loginUser(userNameEmail, pass) {
     var url = getUserServiceUrl();
     
     $.ajax({
             type: "POST",
             url: url,
             dataType: 'json',
-            data: {email: email, pass: pass, signin:true},
+            data: {emailorusername: userNameEmail, pass: pass, signin:true},
             success: function (obj, textstatus) {
                 //hideSavingIcon();
                 if (!('error' in obj)) {
                     //yourVariable = obj.result;
                     if(obj.success === '1') {
-                        alert('Sign in successfull!!!');
+                        //alert('Sign in successfull!!!');
                         $('#myModal').modal('hide');
                         
                         var redirectURL = getBaseUrl();
                         window.location.href = redirectURL;
                     } else {
-                        alert('Error occured during registering!!!');
+                        alert('Error occured during sign in!!!');
                     }
                 }
                 else {
@@ -171,7 +180,8 @@ function registerUser(email, name, pass) {
                 if (!('error' in obj)) {
                     //yourVariable = obj.result;
                     if(obj.savedUserID === '1') {
-                        alert('Saved Successfully!!!');
+                        alert('Registered Successfully!!!');
+                        window.location.href = redirectURL;
                         $('#myModal').modal('hide');
                     } else {
                         alert('Error occured during registering!!!');
@@ -230,7 +240,7 @@ function logout() {
                 if (!('error' in obj)) {
                     //yourVariable = obj.result;
                     if(obj.success === '1') {
-                        alert('Successfully logged out!!!');
+                        //alert('Successfully logged out!!!');
                         $('#myModal').modal('hide');
                         
                         var redirectURL = getBaseUrl();
