@@ -95,7 +95,7 @@ $baseUrl = "http://" . $_SERVER['SERVER_NAME'] ."/WebBuilder";
                                 <div class="control-group">
 
                                     <div class="controls control-label">
-                                        <input required="" id="userid" name="userid" type="text" class="form-control" placeholder="User Name Or Email" class="input-medium" required="">
+                                        <input required="" id="userid" name="userid" type="text" class="form-control" placeholder="User Name Or Email" class="input-medium" required="" onkeypress="onEnterKeyPress(event, 'signin')"/>
                                     </div>
                                 </div>
 
@@ -103,7 +103,7 @@ $baseUrl = "http://" . $_SERVER['SERVER_NAME'] ."/WebBuilder";
                                 <div class="control-group">
 
                                     <div class="controls control-label">
-                                        <input required="" id="passwordinput" name="passwordinput" class="form-control" type="password" placeholder="*********************" class="input-medium">
+                                        <input required="" id="passwordinput" name="passwordinput" class="form-control" type="password" placeholder="*********************" class="input-medium" onkeypress="onEnterKeyPress(event, 'signin')"/>
                                     </div>
                                 </div>
 
@@ -134,28 +134,28 @@ $baseUrl = "http://" . $_SERVER['SERVER_NAME'] ."/WebBuilder";
                                 <!-- Text input-->
                                 <div class="control-group">
                                     <div class="controls control-label">
-                                        <input id="Email" name="Email" class="form-control" type="text" placeholder="Name@domain.com" class="input-large" required="">
+                                        <input id="Email" name="Email" class="form-control" type="text" placeholder="Name@domain.com" class="input-large" required="" onkeypress="onEnterKeyPress(event, 'register')"/>
                                     </div>
                                 </div>
 
                                 <!-- Text input-->
                                 <div class="control-group">
                                     <div class="controls control-label">
-                                        <input id="userid_reg" name="userid_reg" class="form-control" type="text" placeholder="User Name" class="input-large" required="">
+                                        <input id="userid_reg" name="userid_reg" class="form-control" type="text" placeholder="User Name" class="input-large" required="" onkeypress="onEnterKeyPress(event, 'register')"/>
                                     </div>
                                 </div>
 
                                 <!-- Password input-->
                                 <div class="control-group">
                                     <div class="controls control-label">
-                                        <input id="password_reg" name="password_reg" class="form-control" type="password" placeholder="Enter Password" class="input-large" required="">
+                                        <input id="password_reg" name="password_reg" class="form-control" type="password" placeholder="Enter Password" class="input-large" required="" onkeypress="onEnterKeyPress(event, 'register')"/>
                                     </div>
                                 </div>
 
                                 <!-- Text input-->
                                 <div class="control-group">
                                     <div class="controls control-label">
-                                        <input id="reenterpassword" class="form-control" name="reenterpassword" type="password" placeholder="Re-enter Password" class="input-large" required="">
+                                        <input id="reenterpassword" class="form-control" name="reenterpassword" type="password" placeholder="Re-enter Password" class="input-large" required="" onkeypress="onEnterKeyPress(event, 'register')"/>
                                     </div>
                                 </div>
 

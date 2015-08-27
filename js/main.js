@@ -260,3 +260,20 @@ function logout() {
             }
         });
 }
+
+function onEnterKeyPress(e, type) {
+    if(e.keyCode === 13){
+        //alert("Enter was pressed was presses");
+        switch(type) {
+            case 'signin':
+                signIn();
+                break;
+            case 'register':
+                signUp();
+                break;
+            default:
+                break;
+        }
+    }
+    return false;
+}
