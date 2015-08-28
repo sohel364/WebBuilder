@@ -52,7 +52,12 @@ try {
         
        
     }
-    echo '<li class="add-menu"><a>+</a></li></ul>';
+    if($isInEditor) {
+        echo '<li class="add-menu"><a>+</a></li></ul>';
+    } else {
+        echo '</ul>';
+    }
+    
     //echo json_encode($menu_conten_list);
 } catch (Exception $ex) {
     echo 'Exception occured: ' . $ex->getMessage();

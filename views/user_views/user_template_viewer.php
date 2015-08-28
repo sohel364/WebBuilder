@@ -28,6 +28,7 @@ error_reporting(E_ERROR);
             $template_id = $_GET['templateid'];
         }
         
+        $isInEditor = false;
         
 //        echo  $category."</br>";
 //        echo  $template_id;
@@ -148,7 +149,6 @@ error_reporting(E_ERROR);
 							<div id="mainNav" class="collapse navbar-collapse">
 								<ul id="menu" class="nav navbar-nav navbar">
 									<?php include ('user_menu.php');?>
-									<li class="add-menu"><a >+</a></li>
 								</ul>
 							</div>
 
