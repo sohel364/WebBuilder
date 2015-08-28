@@ -5,6 +5,34 @@ if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
 }
 $baseUrl = "http://" . $_SERVER['SERVER_NAME'] ."/WebBuilder";
+$actualLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$active;
+switch($actualLink) {
+    case $baseUrl:
+        $active = 0;
+        break;
+    case $baseUrl."/index.php":
+        $active = 0;
+        break;
+    case $baseUrl."/views/user_views/accounts.php" :
+        $active = 1;
+        break;
+    case $baseUrl."/views/user_views/billing.php" :
+        $active = 2;
+        break;
+    case $baseUrl."/views/other_views/notes.php" :
+        $active = 3;
+        break;
+    case $baseUrl."/views/other_views/others.php" :
+        $active = 4;
+        break;
+    case $baseUrl."/views/content_views/saved_pages.php" :
+        $active = 5;
+        break;
+    default:
+        $active = 111;
+        break;
+}
 ?>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -19,21 +47,15 @@ $baseUrl = "http://" . $_SERVER['SERVER_NAME'] ."/WebBuilder";
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav" style="font-family: arial,cursive">
-                <li class="active"><a href="<?Php echo $baseUrl?>">Home<span class="sr-only">(current)</span></a></li>
+                <li <?php if($active == 0) {?> class="active" <?php }?> ><a href="<?Php echo $baseUrl."/index.php"?>">Home<span class="sr-only">(current)</span></a></li>
                 <?php 
                     if($user_id != NULL) {
                 ?>
-                <li><a href="#">Account</a></li>
-                <li><a href="#">Billing</a></li>
-                <?php 
-                    }
-                ?>
-                <li><a href="#">Notes</a></li>
-                <li><a href="#">Others</a></li>
-                <?php 
-                    if($user_id != NULL) {
-                ?>
-                <li><a href="<?Php echo $baseUrl."/views/content_views/saved_pages.php"?>">Saved Pages</a></li>
+                <li <?php if($active == 1) {?> class="active" <?php }?> ><a href="<?Php echo $baseUrl."/views/user_views/accounts.php"?>">Account</a></li>
+                <li <?php if($active == 2) {?> class="active" <?php }?> ><a href="<?Php echo $baseUrl."/views/user_views/billing.php"?>">Billing</a></li>
+                <li <?php if($active == 3) {?> class="active" <?php }?> ><a href="<?Php echo $baseUrl."/views/other_views/notes.php"?>">Notes</a></li>
+                <li <?php if($active == 4) {?> class="active" <?php }?> ><a href="<?Php echo $baseUrl."/views/other_views/others.php"?>">Others</a></li>
+                <li <?php if($active == 5) {?> class="active" <?php }?> ><a href="<?Php echo $baseUrl."/views/content_views/saved_pages.php"?>">Saved Pages</a></li>
                 <?php 
                     }
                 ?>
