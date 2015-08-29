@@ -890,34 +890,36 @@ function showEditPanel() {
 	closeAllEditDialogPanel();
 
 	editable_control = $("#" + clicked_dropped_item_id);
+	var editable_control_name = editable_control.attr("name");
+	
 	child_item = $("#" + clicked_dropped_item_id + " :first");
 
 	makeControlEditable(editable_control);
 
-	if (clicked_dropped_item_id.search('button') == 0) {
+	if (editable_control_name == 'button') {
 		showButtonEditPanel();
 
-	} else if (clicked_dropped_item_id.search('textarea') == 0) {
+	} else if (editable_control_name == 'textarea') {
 		showTextEditPanel();
 		// makeTextAreaEditable();
-	} else if (clicked_dropped_item_id.search('dropdown') == 0) {
+	} else if (editable_control_name == 'dropdown') {
 		showDropDownEditPanel();
-	} else if (clicked_dropped_item_id.search('radiobutton') == 0) {
+	} else if (editable_control_name == 'radiobutton') {
 		showRadioButtonEditPanel();
-	} else if (clicked_dropped_item_id.search('header') == 0) {
+	} else if (editable_control_name == 'header') {
 		showTextEditPanel();
-	} else if (clicked_dropped_item_id.search('imageslider') == 0) {
+	} else if (editable_control_name == 'imageslider') {
 		showImageSliderEditPanel();
-	} else if (clicked_dropped_item_id.search('image') == 0) {
+	} else if (editable_control_name == 'image') {
 		showImageEditPanel();
-	} else if (clicked_dropped_item_id.search('feedback_form') == 0) {
+	} else if (editable_control_name == 'feedback_form') {
 		// ToDo
 		showFormEditPanel();
-	} else if (clicked_dropped_item_id.search('separator') == 0) {
+	} else if (editable_control_name == 'separator') {
 		// ToDo
 		alert("Under Construction");
 		makeControlNonEditable(editable_control);
-	} else if (clicked_dropped_item_id.search('textinput') == 0) {
+	} else if (editable_control_name == 'textinput') {
 		showTextInputEditPanel();
 	}
 
@@ -1008,33 +1010,34 @@ function makeTextAreaEditable() {
 function droppedItemClickAction() {
 
 	clicked_dropped_item_id = $(this).attr("id");
+	var clicked_dropped_item_name = $(this).attr("name");
 	var title = "";
 
-	if (clicked_dropped_item_id.search('button') == 0) {
+	if (clicked_dropped_item_name == 'button') {
 		title = "BUTTON ...";
-	} else if (clicked_dropped_item_id.search('textarea') == 0) {
+	} else if (clicked_dropped_item_name == 'textarea') {
 		title = "TEXT ...";
 		console.log("Text Area Clicked");
-	} else if (clicked_dropped_item_id.search('dropdown') == 0) {
+	} else if (clicked_dropped_item_name == 'dropdown') {
 		title = "DROP DOWN ...";
 		// $(this).draggable("disable");
 		// $("#" + clicked_dropped_item_id + " :first").focus();
 		$(this).focus();
 		// $(this).parent().focus();
 		// $(this).draggable("enable");
-	} else if (clicked_dropped_item_id.search('radiobutton') == 0) {
+	} else if (clicked_dropped_item_name == 'radiobutton') {
 		title = "RADIO BUTTON ...";
-	} else if (clicked_dropped_item_id.search('header') == 0) {
+	} else if (clicked_dropped_item_name == 'header') {
 		title = "HEADER ...";
-	} else if (clicked_dropped_item_id.search('imageslider') == 0) {
+	} else if (clicked_dropped_item_name == 'imageslider') {
 		title = "IMAGE SLIDER ...";
-	} else if (clicked_dropped_item_id.search('image') == 0) {
+	} else if (clicked_dropped_item_name == 'image') {
 		title = "IMAGE ...";
-	} else if (clicked_dropped_item_id.search('feedback_form') == 0) {
+	} else if (clicked_dropped_item_name == 'feedback_form') {
 		title = "FEEDBACK FORM ...";
-	} else if (clicked_dropped_item_id.search('separator') == 0) {
+	} else if (clicked_dropped_item_name == 'separator') {
 		title = "SEPARATOR ...";
-	} else if (clicked_dropped_item_id.search('textinput') == 0) {
+	} else if (clicked_dropped_item_name == 'textinput') {
 		title = "TEXT INPUT ..."; 
 	}
 
