@@ -4,7 +4,7 @@ $user_id = NULL;
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
 }
-$baseUrl = "http://" . $_SERVER['SERVER_NAME'] ."/WebBuilder";
+$baseUrl = "http://" . $_SERVER['SERVER_NAME'] ."/webbuilder";
 $actualLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $active;
 switch($actualLink) {
