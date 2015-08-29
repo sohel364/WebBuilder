@@ -53,8 +53,14 @@ switch($actualLink) {
                 ?>
                 <li <?php if($active == 1) {?> class="active" <?php }?> ><a href="<?Php echo $baseUrl."/views/user_views/accounts.php"?>">Account</a></li>
                 <li <?php if($active == 2) {?> class="active" <?php }?> ><a href="<?Php echo $baseUrl."/views/user_views/billing.php"?>">Billing</a></li>
+                <?php 
+                    }
+                ?>
                 <li <?php if($active == 3) {?> class="active" <?php }?> ><a href="<?Php echo $baseUrl."/views/other_views/notes.php"?>">Notes</a></li>
                 <li <?php if($active == 4) {?> class="active" <?php }?> ><a href="<?Php echo $baseUrl."/views/other_views/others.php"?>">Others</a></li>
+                <?php 
+                    if($user_id != NULL) {
+                ?>
                 <li <?php if($active == 5) {?> class="active" <?php }?> ><a href="<?Php echo $baseUrl."/views/content_views/saved_pages.php"?>">Saved Pages</a></li>
                 <?php 
                     }
