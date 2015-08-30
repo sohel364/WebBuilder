@@ -306,40 +306,45 @@ function makeBodyDroppable() {
 
 
 
-function animateImageSlider(control, width, animation_speed, pause) {
-	// var width = control.width();
-	// var animation_speed = image_slider_animation_speed;
-	// var pause = image_slider_pause;
+function startSlider(control, width, animation_speed, pause) {
 	var current_slide = 1;
 	var $slider_container = control.children('ul');
 	var $slides = $slider_container.children('li');
-	var interval;
+	$slider_container.css('margin-left', 0);
+	
+	var interval = setInterval(function() {
+		$slider_container.animate({
+			'margin-left' : '-=' + width
+		}, animation_speed, function() {
+			current_slide++;
+			if (current_slide == $slides.length) {
+				current_slide = 1;
+				$slider_container.css('margin-left', 0);
+			}
+		});
+		console.log("Slider Time : " + new Date($.now()));
+		
+	}, pause);
+	
+	control.data("interval", interval);
+}
 
-	function startSlider() {
+function stopSlider(control) {
+	console.log("Stop Slider : " + control.attr("id") + " : " + control.data("interval") );
+	
+	if(control.data("interval") != undefined)
+	{
+		clearInterval(control.data("interval"));
+	}	
+}
 
-		interval = setInterval(function() {
-			$slider_container.animate({
-				'margin-left' : '-=' + width
-			}, animation_speed, function() {
-				current_slide++;
-				if (current_slide == $slides.length) {
-					current_slide = 1;
-					$slider_container.css('margin-left', 0);
-				}
-			});
-		}, pause);
+function animateImageSlider(control, width, animation_speed, pause) {
 
-		console.log(interval);
-	}
 
-	function stopSlider() {
-		clearInterval(interval);
-	}
+	stopSlider(control);
+	startSlider(control, width, animation_speed, pause);
 
-	stopSlider();
-	startSlider();
-
-	// control.on('mouseenter', stopSlider).on('mouseleave', startSlider);
+//	control.on('mouseenter', stopSlider(control)).on('mouseleave', startSlider(control, width, animation_speed, pause));
 
 }
 
@@ -1162,7 +1167,9 @@ function initializeAllDialogButton() {
 
 	$("#dialog_btn_delete").click(function() {
 		$("#control_option_dialog").dialog("close");
+		stopSlider($("#" + clicked_dropped_item_id));
 		$("#" + clicked_dropped_item_id).remove();
+		
 	});
 
 	$("#dialog_btn_edit").click(function() {
