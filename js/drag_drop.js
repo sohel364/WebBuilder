@@ -548,8 +548,8 @@ function showTextEditPanel() {
 		draggable : true,
 		closeOnEscape : true,
 		title : "Text Editor",
-		height : 90,
-		width : 500,
+		height : 100,
+		width : 550,
 		show : {
 			effect : "slide",
 			duration : 200,
