@@ -6,14 +6,12 @@
  * and open the template in the editor.
  */
 
-error_reporting(E_ERROR);
-
+error_reporting(E_ALL);
+session_start();
 header('Content-Type: application/json');
 
 require_once 'user_manager.php';
 include_once '../../objects/ObjUser.php';
-
-session_start();
 
 
 $aResult = array();
@@ -32,10 +30,7 @@ try {
             
             try {
                 $userManager = new UserManager();
-
-                if ($user_id == NULL || count($user_id) <= 0) {
-                    $user_id = 'userId';
-                }
+                
                 // Saving template information
                 $user = new User();
                 $user->setEmailAddress($email);
@@ -71,10 +66,7 @@ try {
             
             try {
                 $userManager = new UserManager();
-
-                if ($user_id == NULL || count($user_id) <= 0) {
-                    $user_id = 'userId';
-                }
+                
                 // Saving template information
                 $user = new User();
                 $user->setEmailAddress($emailOrUserName);
@@ -91,7 +83,11 @@ try {
                     $_SESSION['user_email'] = $user->getEmailAddress();
                     $_SESSION['user_name'] = $user->getUserName();
                     $_SESSION['user_id'] = $user->getId();
-                    $aResult['success'] = "1";
+                    if(isset($_SESSION['user_id'])) {
+                        $aResult['success'] = "1";
+                    } else {
+                        $aResult['error'] = "Could not create session object";
+                    }
                 } else {
                     $aResult['error'] = "Email id or password is incorrect!!!";
                 }
