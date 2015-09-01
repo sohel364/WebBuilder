@@ -42,7 +42,10 @@ function makeTemplateComponetsEditable() {
 
 		if (allawable_control_array.indexOf(control_name) > -1) {
 			console.log(" [Allowable Control] Control Type : " + control_name);
-			$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
+			if ($(this).attr("id") == null)
+			{
+				$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
+			}
 			$(this).data("is_dropped","true");
 
 			makeDroppedControlsDraggable($(this));
@@ -59,7 +62,10 @@ function makeTemplateComponetsEditable() {
 
 		if (allawable_control_array.indexOf(control_name) > -1) {
 			console.log(" [Allowable Control] Control Type : " + control_name);
-			$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
+			if ($(this).attr("id") == null)
+			{
+				$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
+			}
 			$(this).data("is_dropped","true");
 			
 			makeDroppedControlsDraggable($(this));
@@ -958,8 +964,8 @@ function makeControlEditable(control) {
 	control.addClass("editable_mode");
 	control.draggable("disable");
 	control.unbind("click", droppedItemClickAction);
-	if (clicked_dropped_item_id.search('textarea') == 0
-			|| clicked_dropped_item_id.search('header') == 0) {
+	if ($("#"+clicked_dropped_item_id).attr('name') == 'textarea'
+			|| $("#"+clicked_dropped_item_id).attr('name') == 'header') {
 		control.prop('contenteditable', 'true');
 	}
 
@@ -970,8 +976,8 @@ function makeControlNonEditable(control) {
 	control.removeClass("editable_mode");
 	control.draggable("enable");
 	control.click(droppedItemClickAction);
-	if (clicked_dropped_item_id.search('textarea') == 0
-			|| clicked_dropped_item_id.search('header') == 0) {
+	if ($("#"+clicked_dropped_item_id).attr('name') == 'textarea'
+			|| $("#"+clicked_dropped_item_id).attr('name') == 'header') {
 		control.prop('contenteditable', 'false');
 	}
 }
