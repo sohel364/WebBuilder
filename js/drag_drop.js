@@ -19,8 +19,12 @@ var pos;
 var isSaved = false;
 var isResizeOn = false;
 var allawable_control_array = [ "button", "textarea", "radiobutton",
-		"dropdown", "image", "imageslider", "header", "feedback_form",
+		"dropdown", "image", "imageslider", "header", "form",
 		"separator", "textinput" ]
+
+var allawable_form_control_array = [ "form_button", "form_textarea", "form_radiobutton",
+                        		"form_dropdown", "form_image", "form_imageslider", "form_header",
+                        		"form_separator", "form_textinput" ]
 
 var currentMousePos = {
 	x : -1,
@@ -209,6 +213,7 @@ function makeBodyDroppable() {
 				drop : function(event, ui) {
 					var droppable_id = ui.helper.attr('id');
 					var droppable_name = ui.helper.attr("name");
+					console.log("Dropped Item name : " + droppable_name);
 					var draggable = null;
 					var is_radio_button = false;
 					var is_image_slider = false;
@@ -234,8 +239,8 @@ function makeBodyDroppable() {
 					} else if (droppable_name == "imageslider") {
 						draggable = $("#image_slider_template");
 						is_image_slider = true;
-					} else if (droppable_name == "feedback_form") {
-						draggable = $("#feedback_form_template");
+					} else if (droppable_name == "form") {
+						draggable = $("#form_template");
 						is_form_builder = true;
 					}
 
@@ -811,7 +816,7 @@ function showFormEditPanel() {
 			
 			editable_form.find("*").each(function() {
 				var control_name = $(this).attr("name");
-				if (allawable_control_array.indexOf(control_name) > -1) {
+				if (allawable_form_control_array.indexOf(control_name) > -1) {
 					$(this).draggable("destroy");
 					$(this).click(function() {
 					});
@@ -873,7 +878,7 @@ function makeFormEditable() {
 function makeFormControlDraggable() {
 	editable_form.find("*").each(function() {
 		var control_name = $(this).attr("name");
-		if (allawable_control_array.indexOf(control_name) > -1) {
+		if (allawable_form_control_array.indexOf(control_name) > -1) {
 			console.log(" [Allowable Control] Control Type : " + control_name);
 			$(this).draggable({
 				containment : editable_form,
@@ -901,30 +906,30 @@ function showEditPanel() {
 
 	makeControlEditable(editable_control);
 
-	if (editable_control_name == 'button') {
+	if (editable_control_name.indexOf("button") >= 0) {
 		showButtonEditPanel();
 
-	} else if (editable_control_name == 'textarea') {
+	} else if (editable_control_name.indexOf("textarea") >= 0) {
 		showTextEditPanel();
 		// makeTextAreaEditable();
-	} else if (editable_control_name == 'dropdown') {
+	} else if (editable_control_name.indexOf("dropdown") >= 0) {
 		showDropDownEditPanel();
-	} else if (editable_control_name == 'radiobutton') {
+	} else if (editable_control_name.indexOf("radiobutton") >= 0) {
 		showRadioButtonEditPanel();
-	} else if (editable_control_name == 'header') {
+	} else if (editable_control_name.indexOf("header") >= 0) {
 		showTextEditPanel();
-	} else if (editable_control_name == 'imageslider') {
+	} else if (editable_control_name.indexOf("imageslider") >= 0) {
 		showImageSliderEditPanel();
-	} else if (editable_control_name == 'image') {
+	} else if (editable_control_name.indexOf("image") >= 0) {
 		showImageEditPanel();
-	} else if (editable_control_name == 'feedback_form') {
+	} else if (editable_control_name == 'form') {
 		// ToDo
 		showFormEditPanel();
-	} else if (editable_control_name == 'separator') {
+	} else if (editable_control_name.indexOf("separator") >= 0) {
 		// ToDo
 		alert("Under Construction");
 		makeControlNonEditable(editable_control);
-	} else if (editable_control_name == 'textinput') {
+	} else if (editable_control_name.indexOf("textinput") >= 0) {
 		showTextInputEditPanel();
 	}
 
@@ -997,6 +1002,9 @@ function closeAllEditDialogPanel() {
 	if ($("#resize_dialog").dialog("instance") != undefined) {
 		$("#resize_dialog").dialog("close");
 	}
+	if ($("#text_input_edit_dialog").dialog("instance") != undefined) {
+		$("#text_input_edit_dialog").dialog("close");
+	}
 
 	if (!is_form_edit_mode) {
 		if ($("#form_edit_dialog").dialog("instance") != undefined) {
@@ -1018,35 +1026,35 @@ function droppedItemClickAction() {
 	var clicked_dropped_item_name = $(this).attr("name");
 	var title = "";
 
-	if (clicked_dropped_item_name == 'button') {
+	if (clicked_dropped_item_name.indexOf("button") >= 0) {
 		title = "BUTTON ...";
-	} else if (clicked_dropped_item_name == 'textarea') {
+	} else if (clicked_dropped_item_name.indexOf("textarea") >= 0) {
 		title = "TEXT ...";
 		console.log("Text Area Clicked");
-	} else if (clicked_dropped_item_name == 'dropdown') {
+	} else if (clicked_dropped_item_name.indexOf("dropdown") >= 0) {
 		title = "DROP DOWN ...";
 		// $(this).draggable("disable");
 		// $("#" + clicked_dropped_item_id + " :first").focus();
 		$(this).focus();
 		// $(this).parent().focus();
 		// $(this).draggable("enable");
-	} else if (clicked_dropped_item_name == 'radiobutton') {
+	} else if (clicked_dropped_item_name.indexOf("radiobutton") >= 0) {
 		title = "RADIO BUTTON ...";
-	} else if (clicked_dropped_item_name == 'header') {
+	} else if (clicked_dropped_item_name.indexOf("header") >= 0) {
 		title = "HEADER ...";
-	} else if (clicked_dropped_item_name == 'imageslider') {
+	} else if (clicked_dropped_item_name.indexOf("imageslider") >= 0) {
 		title = "IMAGE SLIDER ...";
-	} else if (clicked_dropped_item_name == 'image') {
+	} else if (clicked_dropped_item_name.indexOf("image") >= 0) {
 		title = "IMAGE ...";
-	} else if (clicked_dropped_item_name == 'feedback_form') {
-		title = "FEEDBACK FORM ...";
-	} else if (clicked_dropped_item_name == 'separator') {
+	} else if (clicked_dropped_item_name == 'form') {
+		title = "FORM ...";
+	} else if (clicked_dropped_item_name.indexOf("separator") >= 0) {
 		title = "SEPARATOR ...";
-	} else if (clicked_dropped_item_name == 'textinput') {
+	} else if (clicked_dropped_item_name.indexOf("textinput") >= 0) {
 		title = "TEXT INPUT ..."; 
 	}
 
-	if (clicked_dropped_item_id.indexOf("_form_") >= 0 && $("#"+clicked_dropped_item_id).attr("name").indexOf("form") < 0) {
+	if ($("#"+clicked_dropped_item_id).attr("name").indexOf("form_") >= 0 || $("#"+clicked_dropped_item_id).attr("name") == "form") {
 		is_form_edit_mode = true;
 		console.log("Form Control Clicked");
 	} else {

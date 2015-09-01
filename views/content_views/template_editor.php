@@ -802,28 +802,26 @@ $isInEditor = true;
 	<div id="radiobutton_template" name="radiobutton"
 		style="display: none; position: absolute; width: 200px"></div>
 
-	<div id="feedback_form_template" name="feedback_form"
+	<div id="form_template" name="form"
 		style="display: none; position: absolute; width: 400px; height: auto; border: 1px solid lightgrey; border-radius: 5px; padding: 10px">
-		<h3 name="textarea" style="">User Feedback</h3>
-		<hr name="separator"></hr>
-		<label name="textarea">Name : </label> 
-		<input id="feedback_user_name" name="textinput" type="text"
-			name="feedback_user_name" placeholder="Your Name"
+		<h3 name="form_textarea" style="">User Feedback</h3>
+		<hr name="form_separator"></hr>
+		<label name="form_textarea">Name : </label> 
+		<input id="feedback_user_name" name="form_textinput" type="text" placeholder="Your Name"
 			style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
 
-			<label name="textarea">Email : </label> 
-			<input id="feedback_user_email" name="textinput" type="text"
-			name="feedback_user_email" placeholder="Your Email"
+			<label name="form_textarea">Email : </label> 
+			<input id="feedback_user_email" name="form_textinput" type="text" placeholder="Your Email"
 			style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
 
-				<label name="textarea">Comment : </label> 
+				<label name="form_textarea">Comment : </label> 
 				<textarea id="feedback_user_comment"
-					name="textinput" value="Fill in your Comment"
+					name="form_textinput" value="Fill in your Comment"
 					style="resize: none; width: 100%; height: 150px; border: .5px solid lightgrey; border-radius: 5px;">
 			</textarea>
-				<hr name="separator"></hr>
+				<hr name="form_separator"></hr>
 
-				<button name="button" class="btn btn-success btn-lg" style="float: right;">Submit</button>
+				<button name="form_button" class="btn btn-success btn-lg" style="float: right;">Submit</button>
 	
 	</div>
 

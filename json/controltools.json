@@ -7,6 +7,6 @@
         {"DropDown":{"name": "DropDown", "html":"<select name='dropdown' class='selectorField draggableField'><option>Drop Down</option></select>"}},
         {"DropDown":{"name": "DropDown", "html":"<div name='radiobutton' class='selectorField draggableField'><input type=\"radio\">Radio Button</input></div>"}},
         {"label1":{"name": "Label1", "html":"<h1 name='header' class='selectorField draggableField'>Title</h1>"}},
-        {"FeedbackForm":{"name": "FeedbackForm", "html":"<div name='feedback_form' class='selectorField draggableField' style='height: 50px; width: 50px'>Feedback Form</div>"}}
+        {"Form":{"name": "Form", "html":"<div name='form' class='selectorField draggableField' style='height: 50px; width: 50px'>Feedback Form</div>"}}
     ]
 }
