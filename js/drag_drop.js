@@ -1442,6 +1442,7 @@ function initializeAllDialogButton() {
 	$("#btn_form_edit_add_label").click(function(){
 		var new_label = $('<label name="textarea">New Label : </label>');
 		new_label.attr("id", "textarea_form_" + counter++);
+		new_label.attr("name", "form_textarea");
 		
 		new_label.draggable({
 			containment : editable_form,
@@ -1458,6 +1459,7 @@ function initializeAllDialogButton() {
 				' name="textinput" placeholder="Write Here"' +
 					' style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">');
 		new_text_input.attr("id", "textinput_form_" + counter++);
+		new_label.attr("name", "form_textinput");
 		
 		new_text_input.draggable({
 			containment : editable_form,
