@@ -478,10 +478,6 @@ function showButtonEditPanel() {
 				restoreInitialState();
 			}
 		},
-	/*
-	 * hide : { effect : "slide", duration : 200 }, position : { my : "right
-	 * top", at : "right top", of : $(".droppedFields") },
-	 */
 
 	});
 
