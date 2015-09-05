@@ -685,7 +685,7 @@ $isInEditor = true;
 		<p style="font-weight: lighter; font-size: small;">Add Image Slider To your
 			Website. Make them stunning with dazzling Effects</p>
 		<div
-			style="height: 300px; border: 1px solid lightgrey; border-radius: 8px; padding: 5px; overflow: scroll;">
+			style="height: 200px; border: 1px solid lightgrey; border-radius: 8px; padding: 5px; overflow: scroll;">
 
 			<input id="file_picker_imageslider" type="file" name="files[]" single
 				style="display: none">
@@ -695,9 +695,6 @@ $isInEditor = true;
 				</button>
 				
 				<ul id = "imageslider_edit_panel_thumbnail" class= "sortable grid" style="">
-					<!-- <li><img src="../../images/slider1.jpg" class="slider_thumbnail" alt="Image1"></li>
-					<li><img src="../../images/slider2.jpg" class="slider_thumbnail" alt="Image2"></li> -->
-					<!-- <li id = "btn_img_slider_thumbnail_add">+</li> -->
 				</ul>
 
 				 
@@ -705,6 +702,39 @@ $isInEditor = true;
 		
 		</div>
 		<hr></hr>
+		<div
+			style="height: 100px; border: 1px solid lightgrey; border-radius: 8px; padding: 5px; overflow: hidden;">
+			
+			<table style="width: 100%; ">
+				<tr>
+					<td><label style="padding-top: 5px; font-weight: lighter; font-size: small;">Pause Time </label></td>
+					<td>
+						<select id="dropdown_slider_pause_time" class="text_editor_component">
+							<option value="1">1 Sec</option>
+							<option value="2">2 Sec</option>
+							<option value="3" selected >3 Sec</option>
+							<option value="4" >4 Sec</option>
+							<option value="5">5 Sec</option>
+			    		</select>	
+					</td>
+				</tr>
+				<tr>
+					<td><label style="padding-top: 5px; font-weight: lighter; font-size: small;">Animation Speed </label></td>
+					<td>
+						<select id="dropdown_slider_animation_speed" class="text_editor_component">
+							<option value="1" selected>1 Sec</option>
+							<option value="2">2 Sec</option>
+							<option value="3">3 Sec</option>
+			    		</select>	
+					</td>
+				</tr>
+			</table>
+				
+		
+		</div>
+		
+		<hr></hr>
+		
 		<button
 			style="width: 100%; border-radius: 5px; background: #6cc8f9;">
 			<font size="4px" color="white" weight="bold">Choose Effect</font>
@@ -778,7 +808,7 @@ $isInEditor = true;
 		class="image_template_non_editable" style="display: none; position: absolute;" />
 
 	<div id="image_slider_template" name="imageslider"
-		class="slider_template_non_editable" style="display: none; position: absolute;">
+		class="slider_template_non_editable" data-pause="3000" data-speed="1000" style="display: none; position: absolute;">
 		<ul>
 			<li><img src="../../images/slider1.jpg" class="slide" alt="Image1"></li>
 			<li><img src="../../images/slider2.jpg" class="slide" alt="Image2"></li>
