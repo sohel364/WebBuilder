@@ -12,19 +12,19 @@ var child_item = null;
 var editable_control = null;
 var SLIDER_ANIMATION_SPEED = 1000;
 var SLIDER_PAUSE = 3000;
-var is_form_edit_mode = false;
-var editable_form = null;
+var is_group_edit_mode = false;
+var editable_group = null;
 
 var pos;
 var isSaved = false;
 var isResizeOn = false;
 var allawable_control_array = [ "button", "textarea", "radiobutton",
-		"dropdown", "image", "imageslider", "header", "form",
+		"dropdown", "image", "imageslider", "header", "group",
 		"separator", "textinput" ]
 
-var allawable_form_control_array = [ "form_button", "form_textarea", "form_radiobutton",
-                        		"form_dropdown", "form_image", "form_imageslider", "form_header",
-                        		"form_separator", "form_textinput" ]
+var allawable_group_control_array = [ "group_button", "group_textarea", "group_radiobutton",
+                        		"group_dropdown", "group_image", "group_imageslider", "group_header",
+                        		"group_separator", "group_textinput" ]
 
 var currentMousePos = {
 	x : -1,
@@ -223,7 +223,7 @@ function makeBodyDroppable() {
 					var draggable = null;
 					var is_radio_button = false;
 					var is_image_slider = false;
-					var is_form_builder = false;
+					var is_group_builder = false;
 
 					if (droppable_name == "button") {
 						draggable = $("#button_template");
@@ -245,9 +245,9 @@ function makeBodyDroppable() {
 					} else if (droppable_name == "imageslider") {
 						draggable = $("#image_slider_template");
 						is_image_slider = true;
-					} else if (droppable_name == "form") {
-						draggable = $("#form_template");
-						is_form_builder = true;
+					} else if (droppable_name == "group") {
+						draggable = $("#group_template");
+						is_group_builder = true;
 					}
 
 //					if (droppable_id == null
@@ -805,15 +805,15 @@ function makeControlResizable() {
 	});
 }
 
-function showFormEditPanel() {
-	editable_form = editable_control;
+function showGroupEditPanel() {
+	editable_group = editable_control;
 	
-	$("#form_edit_dialog").dialog({
+	$("#group_edit_dialog").dialog({
 		dialogClass : "no-close",
 		resizable : false,
 		draggable : true,
 		closeOnEscape : true,
-		title : "Form edit Panel",
+		title : "Group edit Panel",
 		height : 100,
 		width : 350,
 		show : {
@@ -824,17 +824,17 @@ function showFormEditPanel() {
 		position : {
 			my : "center bottom",
 			at : "center top-50",
-			of : editable_form
+			of : editable_group
 		},
 		beforeClose : function(event, ui) {
-			makeControlNonEditable(editable_form);
-			editable_form.resizable("destroy");
+			makeControlNonEditable(editable_group);
+			editable_group.resizable("destroy");
 			$("#body").droppable("enable");
-			is_form_edit_mode = false;
+			is_group_edit_mode = false;
 			
-			editable_form.find("*").each(function() {
+			editable_group.find("*").each(function() {
 				var control_name = $(this).attr("name");
-				if (allawable_form_control_array.indexOf(control_name) > -1) {
+				if (allawable_group_control_array.indexOf(control_name) > -1) {
 					$(this).draggable("destroy");
 					$(this).click(function() {
 					});
@@ -845,7 +845,7 @@ function showFormEditPanel() {
 
 	});
 
-	makeFormEditable();
+	makeGroupEditable();
 }
 
 
@@ -875,7 +875,7 @@ function showTextInputEditPanel(){
 		position : {
 			my : "center bottom",
 			at : "center top-50",
-			of : editable_form
+			of : editable_group
 		},
 		beforeClose : function(event, ui) {
 			makeControlNonEditable(editable_control);
@@ -887,24 +887,24 @@ function showTextInputEditPanel(){
 	});
 }
 
-function makeFormEditable() {
+function makeGroupEditable() {
 	makeControlResizable();
-	makeFormControlDraggable();
+	makeGroupControlDraggable();
 	$("#body").droppable("disable");
 }
 
-function makeFormControlDraggable() {
-	editable_form.find("*").each(function() {
+function makeGroupControlDraggable() {
+	editable_group.find("*").each(function() {
 		var control_name = $(this).attr("name");
-		if (allawable_form_control_array.indexOf(control_name) > -1) {
+		if (allawable_group_control_array.indexOf(control_name) > -1) {
 			console.log(" [Allowable Control] Control Type : " + control_name);
 			$(this).draggable({
-				containment : editable_form,
+				containment : editable_group,
 				cursor : "move",
 				cancel : false,
 			});
 
-			$(this).attr("id", control_name + "_form_" + counter++);
+			$(this).attr("id", control_name + "_group_" + counter++);
 			$(this).click(droppedItemClickAction);
 		}
 	});
@@ -940,9 +940,9 @@ function showEditPanel() {
 		showImageSliderEditPanel();
 	} else if (editable_control_name.indexOf("image") >= 0) {
 		showImageEditPanel();
-	} else if (editable_control_name == 'form') {
+	} else if (editable_control_name == 'group') {
 		// ToDo
-		showFormEditPanel();
+		showGroupEditPanel();
 	} else if (editable_control_name.indexOf("separator") >= 0) {
 		// ToDo
 		alert("Under Construction");
@@ -1024,9 +1024,9 @@ function closeAllEditDialogPanel() {
 		$("#text_input_edit_dialog").dialog("close");
 	}
 
-	if (!is_form_edit_mode) {
-		if ($("#form_edit_dialog").dialog("instance") != undefined) {
-			$("#form_edit_dialog").dialog("close");
+	if (!is_group_edit_mode) {
+		if ($("#group_edit_dialog").dialog("instance") != undefined) {
+			$("#group_edit_dialog").dialog("close");
 		}
 	}
 }
@@ -1064,19 +1064,19 @@ function droppedItemClickAction() {
 		title = "IMAGE SLIDER ...";
 	} else if (clicked_dropped_item_name.indexOf("image") >= 0) {
 		title = "IMAGE ...";
-	} else if (clicked_dropped_item_name == 'form') {
-		title = "FORM ...";
+	} else if (clicked_dropped_item_name == 'group') {
+		title = "GROUP ...";
 	} else if (clicked_dropped_item_name.indexOf("separator") >= 0) {
 		title = "SEPARATOR ...";
 	} else if (clicked_dropped_item_name.indexOf("textinput") >= 0) {
 		title = "TEXT INPUT ..."; 
 	}
-
-	if ($("#"+clicked_dropped_item_id).attr("name").indexOf("form_") >= 0 || $("#"+clicked_dropped_item_id).attr("name") == "form") {
-		is_form_edit_mode = true;
-		console.log("Form Control Clicked");
+	
+	if ($("#"+clicked_dropped_item_id).attr("name").indexOf("group_") >= 0) {
+		is_group_edit_mode = true;
+		console.log("group Control Clicked");
 	} else {
-		is_form_edit_mode = false;
+		is_group_edit_mode = false;
 		console.log("Normal Control Clicked");
 	}
 
@@ -1444,10 +1444,10 @@ function initializeAllDialogButton() {
 	});
 
 	/*
-	 * Button Initialization for Form Editor
+	 * Button Initialization for Group Editor
 	 */
-	$("#btn_form_edit_panel_close").click(function() {
-		$("#form_edit_dialog").dialog("close");
+	$("#btn_group_edit_panel_close").click(function() {
+		$("#group_edit_dialog").dialog("close");
 	});
 	
 	/*
@@ -1467,36 +1467,36 @@ function initializeAllDialogButton() {
 		editable_control.attr("placeholder", $("#text_input_hint_text").val());
 	});
 	
-	$("#btn_form_edit_add_label").click(function(){
+	$("#btn_group_edit_add_label").click(function(){
 		var new_label = $('<label name="textarea">New Label : </label>');
-		new_label.attr("id", "textarea_form_" + counter++);
-		new_label.attr("name", "form_textarea");
+		new_label.attr("id", "textarea_group_" + counter++);
+		new_label.attr("name", "group_textarea");
 		
 		new_label.draggable({
-			containment : editable_form,
+			containment : editable_group,
 			cursor : "move",
 			cancel : false,
 		});
 		new_label.click(droppedItemClickAction);
 		
-		new_label.prependTo(editable_form);
+		new_label.prependTo(editable_group);
 	});
 	
-	$("#btn_form_edit_add_input_text").click(function(){
+	$("#btn_group_edit_add_input_text").click(function(){
 		var new_text_input = $('<input name="textinput" type="text"' +
 				' name="textinput" placeholder="Write Here"' +
 					' style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">');
-		new_text_input.attr("id", "textinput_form_" + counter++);
-		new_label.attr("name", "form_textinput");
+		new_text_input.attr("id", "textinput_group_" + counter++);
+		new_label.attr("name", "group_textinput");
 		
 		new_text_input.draggable({
-			containment : editable_form,
+			containment : editable_group,
 			cursor : "move",
 			cancel : false,
 		});
 		new_text_input.click(droppedItemClickAction);
 		
-		new_text_input.prependTo(editable_form);
+		new_text_input.prependTo(editable_group);
 	});
 
 } 

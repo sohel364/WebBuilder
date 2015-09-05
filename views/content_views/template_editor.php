@@ -614,16 +614,16 @@ $isInEditor = true;
 		</button>
 	</div>
 	
-	<div id="form_edit_dialog" class="dialog">
-		<button id = "btn_form_edit_add_label" class="text_editor_component">
+	<div id="group_edit_dialog" class="dialog">
+		<button id = "btn_group_edit_add_label" class="text_editor_component">
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Label
 		</button>
 		
-		<button id = "btn_form_edit_add_input_text" class="text_editor_component">
+		<button id = "btn_group_edit_add_input_text" class="text_editor_component">
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Text Input
 		</button>
 		
-		<button id = "btn_form_edit_panel_close" class="text_editor_component">
+		<button id = "btn_group_edit_panel_close" class="text_editor_component">
 			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 		</button>
 	</div>
@@ -832,26 +832,26 @@ $isInEditor = true;
 	<div id="radiobutton_template" name="radiobutton"
 		style="display: none; position: absolute; width: 200px"></div>
 
-	<div id="form_template" name="form"
+	<div id="group_template" name="group"
 		style="display: none; position: absolute; width: 400px; height: auto; border: 1px solid lightgrey; border-radius: 5px; padding: 10px">
-		<h3 name="form_textarea" style="">User Feedback</h3>
-		<hr name="form_separator"></hr>
-		<label name="form_textarea">Name : </label> 
-		<input id="feedback_user_name" name="form_textinput" type="text" placeholder="Your Name"
+		<h3 name="group_textarea" style="">User Feedback</h3>
+		<hr name="group_separator"></hr>
+		<label name="group_textarea">Name : </label> 
+		<input id="feedback_user_name" name="group_textinput" type="text" placeholder="Your Name"
 			style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
 
-			<label name="form_textarea">Email : </label> 
-			<input id="feedback_user_email" name="form_textinput" type="text" placeholder="Your Email"
+			<label name="group_textarea">Email : </label> 
+			<input id="feedback_user_email" name="group_textinput" type="text" placeholder="Your Email"
 			style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
 
-				<label name="form_textarea">Comment : </label> 
+				<label name="group_textarea">Comment : </label> 
 				<textarea id="feedback_user_comment"
-					name="form_textinput" value="Fill in your Comment"
+					name="group_textinput" value="Fill in your Comment"
 					style="resize: none; width: 100%; height: 150px; border: .5px solid lightgrey; border-radius: 5px;">
 			</textarea>
-				<hr name="form_separator"></hr>
+				<hr name="group_separator"></hr>
 
-				<button name="form_button" class="btn btn-success btn-lg" style="float: right;">Submit</button>
+				<button name="group_button" class="btn btn-success btn-lg" style="float: right;">Submit</button>
 	
 	</div>
 
