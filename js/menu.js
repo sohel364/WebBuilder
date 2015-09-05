@@ -9,6 +9,11 @@
 var menuContens = {}; //Global Menu Content Array(Key-value pair)
 var curMenu; //Current Menu
 var defaultMenuHtml; // Default body html of the current template
+var allImages = {};
+var imageObjects = {};
+var imageCounter = -1;
+var imageArrayLength = 0;
+var curMenuForImage;
 
 // onload functionalities
 $(document).ready(function() {
@@ -75,6 +80,7 @@ function resetMenuContent() {
 function onMenuClick(menu) {
 	closeAllEditDialogPanel();
     saveCurrentMenuText();
+    saveCurrentPageImages();
     var menuText = $(menu).text();
     curMenu = menuText;
     if(menuContens[menuText] === null || typeof menuContens[menuText] === 'undefined') {
@@ -94,4 +100,65 @@ function onMenuClick(menu) {
 function getSavedMenuContents() {
     menuContens = user_menu_content_array;
     setBodyHtmlString(menuContens[curMenu]);
+}
+
+function saveCurrentPageImages() {
+    var images = document.getElementsByTagName('img'); 
+    
+    var srcList = {};
+    
+    for(var i = 0; i < images.length; i++) {
+        
+        //if(images[i].id)
+        srcList[images[i].id] = images[i];
+        
+        
+    }
+    allImages[curMenu] = srcList;
+}
+
+/*function saveCurrentPageImages() {
+    var dummy = 0;
+    while(imageCounter+1 < imageArrayLength) {
+        dummy++;
+    }
+    imageCounter = 0;
+    curMenuForImage = curMenu;
+    var images = document.getElementsByTagName('img'); 
+    imageArrayLength = images.length;
+    imageObjects = {};
+    //var srcList = {};
+    
+    for(var i = 0; i < images.length; i++) {
+        //srcList.push(images[i].src);
+        ///*var img = images[i];
+        //var id = '#'+images[i].id;
+        //var image = $(id)[0].files[0];
+        
+        //srcList[images[i].id] = images[i].src;
+        createBlobObject(images[i].src, images[i].id);
+        
+    }
+    //allImages[curMenu] = srcList;
+}
+
+
+function createBlobObject(url, key) {
+        var xhr = new XMLHttpRequest(); 
+        xhr.open("GET", url); 
+        xhr.responseType = "blob"; //force the HTTP response, response-type header to be blob
+        xhr.onload = function() 
+        {
+            imageObjects[key] = xhr.response;//xhr.response is now a blob object
+            imageCounter++;
+            if(imageCounter+1 >= imageArrayLength) {
+                allImages[curMenuForImage] = imageObjects;
+                var x = 0;
+            }
+        };
+        xhr.send();
+}*/
+
+function createImageForm() {
+    
 }

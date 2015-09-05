@@ -7,7 +7,59 @@
 // onload functionalities
 $(document).ready(function() {
     hideSavingIcon();
+    $("#uploadimage").on('submit', (function (e) {
+        e.preventDefault();
+        
+        $.ajax({
+            url: getBaseUrl()+'/views/content_views/savePage.php', // Url to which the request is send
+            type: "POST", // Type of request to be send, called as method
+            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false, // The content type used when sending data to the server.
+            cache: false, // To unable request pages to be cached
+            processData: false, // To send DOMDocument or non processed data file it is set to false
+            success: function (data)   // A function to be called if request succeeds
+            {
+                
+            },
+            error: function(xhr, status, error) {
+                hideSavingIcon();
+                var err =  xhr.responseText;
+                alert(err);
+            }
+        });
+    }));
 });
+
+
+function executeBeforeSend() {
+    if(isUserLoggedIn === null || isUserLoggedIn === "0") {
+        alert("Please sign in to save the template");
+        var redirectURL = getBaseUrl();
+        window.location.href = redirectURL;
+        return;
+    }
+    saveCurrentMenuText();
+    saveCurrentPageImages();
+    var menuList = getMenuList();
+    
+    if (menuList.length !== 'undefined' && menuList.length > 1) {
+        showSavingIcon();
+        var savedName; 
+        if(!isEdit) {
+            var url = getPageSaverUrl();
+            savedName = prompt("Enter webpage name : ", "Enter page name");
+            //insertPage(url, menuList, savedName);
+        } else {
+            var url = getPageUpdaterUrl();
+            if(template_saved_name !== 'undefined' && template_saved_name.length>0) {
+                savedName = prompt("Enter webpage name : ", template_saved_name);
+            } else {
+                savedName = prompt("Enter webpage name : ", "Enter page name");
+            }
+            //updatePage(url, menuList, savedName);
+        }
+    }
+}
 
 /*
  * Finds the base url of the current page
@@ -29,7 +81,7 @@ function getPageSaverUrl() {
 
 
 /*
- * Generates the page updater url with concatenating the base url
+ * Generates the page 0updater url with concatenating the base url
  * @returns {String}
  */
 function getPageUpdaterUrl() {
@@ -67,6 +119,7 @@ function getMenuList() {
 }
 
 
+
 /*
  * Calls ajax to save the page contents(menu, submenu, contents etc)
  * @returns {undefined}
@@ -79,10 +132,8 @@ function savePage() {
         return;
     }
     saveCurrentMenuText();
+    saveCurrentPageImages();
     var menuList = getMenuList();
-    
-    
-    
     
     if (menuList.length !== 'undefined' && menuList.length > 1) {
         showSavingIcon();
@@ -110,11 +161,22 @@ function savePage() {
 
 
 function insertPage(url, menuList, savedName) {
+    /*while(imageCounter+1 < imageArrayLength) {
+        dummy++;
+    }*/
     $.ajax({
             type: "POST",
             url: url,
             dataType: 'json',
-            data: {menulists: menuList, menucontentlist: menuContens, templateid: template_id, savedname: savedName, categoryname:currentCategory, templatename:currentTemplate},
+            data: {
+                menulists: menuList, 
+                menucontentlist: menuContens, 
+                templateid: template_id, 
+                savedname: savedName, 
+                categoryname:currentCategory, 
+                templatename:currentTemplate,
+                //imagelists: allImages
+            },
             success: function (obj, textstatus) {
                 hideSavingIcon();
                 if (!('error' in obj)) {

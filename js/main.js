@@ -162,8 +162,10 @@ function loginUser(userNameEmail, pass) {
                 }
             },
             error: function(xhr, status, error) {
-                var err =  xhr.responseText;
-                alert(err);
+                var responseText =  xhr.responseText;
+                var sts = status;
+                var err = error.message;
+                alert(sts+': '+err);
             }
         });
 }
