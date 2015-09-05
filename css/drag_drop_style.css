@@ -255,7 +255,7 @@ ul.tabs {
 }
 
 .title_template_non_editable {
-	height: 70px;
+	/* height: 70px; */
 	width: 250px;
 	position: absolute;
 }
