@@ -10,8 +10,8 @@ var counter = 1001;
 var clicked_dropped_item_id = null;
 var child_item = null;
 var editable_control = null;
-var image_slider_animation_speed = 1000;
-var image_slider_pause = 3000;
+var SLIDER_ANIMATION_SPEED = 1000;
+var SLIDER_PAUSE = 3000;
 var is_form_edit_mode = false;
 var editable_form = null;
 
@@ -196,7 +196,7 @@ function createImageSlider(imageSliderImageList) {
 	});
 
 	animateImageSlider(editable_control, editable_control.width(),
-			image_slider_animation_speed, image_slider_pause);
+			editable_control.data("speed"), editable_control.data("pause"));
 
 }
 
@@ -285,9 +285,10 @@ function makeBodyDroppable() {
 						}
 
 						if (is_image_slider) {
+							
 							animateImageSlider(draggable, draggable.width(),
-									image_slider_animation_speed,
-									image_slider_pause);
+									draggable.data("speed"),
+									draggable.data("pause"));
 						}
 
 						makeDroppedControlsDraggable(draggable);
@@ -318,11 +319,16 @@ function makeBodyDroppable() {
 
 
 function startSlider(control, width, animation_speed, pause) {
+	
+	console.log("Speed : " + animation_speed + " : " + control.data("speed"));
+	console.log("Pause : " + pause + " : " + control.data("pause"));
+	
 	var current_slide = 1;
 	var $slider_container = control.children('ul');
 	var $slides = $slider_container.children('li');
-	$slider_container.css('margin-left', 0);
 	
+	$slider_container.css('margin-left', 0);
+		
 	var interval = setInterval(function() {
 		$slider_container.animate({
 			'margin-left' : '-=' + width
@@ -333,7 +339,7 @@ function startSlider(control, width, animation_speed, pause) {
 				$slider_container.css('margin-left', 0);
 			}
 		});
-		console.log("Slider Time : " + new Date($.now()));
+		//console.log("Slider Time : " + new Date($.now()));
 		
 	}, pause);
 	
@@ -642,6 +648,16 @@ function showImageSliderEditPanel() {
 			});
 
 	updateImageSliderThumbnail();
+	
+	if(editable_control.data("pause") != undefined){
+	}else{
+		editable_control.data("pause", SLIDER_PAUSE);
+	}
+	
+	if(editable_control.data("speed") != undefined){
+	}else{
+		editable_control.data("speed", SLIDER_ANIMATION_SPEED);
+	}
 
 	function restoreInitialState() {
 		// If cancel button is pressed, this function will be called
@@ -784,7 +800,7 @@ function makeControlResizable() {
 		},
 		stop : function(event, ui) {
 			animateImageSlider(editable_control, editable_control.width(),
-					image_slider_animation_speed, image_slider_pause);
+					editable_control.data("speed"), editable_control.data("pause"));
 		},
 	});
 }
@@ -1402,6 +1418,16 @@ function initializeAllDialogButton() {
 
 	$("#btn_imageslider_dialog_cancel").click(function() {
 		$("#imageslider_edit_dialog").dialog("close");
+	});
+	
+	$("#dropdown_slider_pause_time").on("change", function() {
+		var new_pause = this.value*1000;
+		editable_control.data("pause", new_pause);
+	});
+
+	$("#dropdown_slider_animation_speed").on("change", function() {
+		var new_speed = this.value*1000;
+		editable_control.data("speed", new_speed);
 	});
 
 	/*
