@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-error_reporting(E_ALL);
+error_reporting(E_ERROR);
 session_start();
 header('Content-Type: application/json');
 
