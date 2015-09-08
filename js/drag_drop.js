@@ -1504,7 +1504,7 @@ function initializeAllDialogButton() {
 $(function() {
 
 	makeControlsOfPaletteDraggable();
-	makeTemplateComponetsEditable();
+	//makeTemplateComponetsEditable();
 	startMonitoringMousePosition();
 	makeBodyDroppable();
 	makeImageSliderThumbnailSortable();

@@ -35,7 +35,7 @@ function onLoadMenus() {
         makeTemplateComponetsEditable();
     } else if(typeof isView !== 'undefined' && isView){
         getSavedMenuContents();
-        makeTemplateComponetsNotEditable();
+        //makeTemplateComponetsNotEditable();
     } else {
         menuContens[curMenu] = getBodyHtmlString();
     }
@@ -90,7 +90,7 @@ function onMenuClick(menu) {
     }
     console.log("menu is clicked");
     if(typeof isView !== 'undefined' && isView){
-        makeTemplateComponetsNotEditable();
+        //makeTemplateComponetsNotEditable();
     } else {
         makeTemplateComponetsEditable();
     }

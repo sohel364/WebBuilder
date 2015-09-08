@@ -110,6 +110,7 @@ function savePage() {
         window.location.href = redirectURL;
         return;
     }
+    makeTemplateComponetsNotEditable();
     saveCurrentMenuText();
     saveCurrentPageImages();
     var menuList = getMenuList();
