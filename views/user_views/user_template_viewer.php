@@ -11,13 +11,15 @@ error_reporting(E_ERROR);
 	if(isset($_POST['template']) && isset($_POST['category']) )
 	{
 		$turl ='../../templates/'.$_POST['category'].'/'.$_POST['template'];
-		$css='../../templates/'.$_POST['category'].'/'.$_POST['template'].'/css/style.css';
+		$css = '../../templates/' . $_POST ['category'] . '/' . $_POST ['template'] . '/css/*.css';
+		$jsdir = '../../templates/' . $_POST ['category'] . '/' . $_POST ['template'] . '/js/*.js';
 		$category = $_POST['category'];
                 $template = $_POST['template'];
 	}else if(isset($_GET['template']) &&  isset($_GET['category']))
 	{
 		$turl ='../../templates/'.$_GET['category'].'/'.$_GET['template'];
-		$css='../../templates/'.$_GET['category'].'/'.$_GET['template'].'/css/style.css';
+		$css = '../../templates/' . $_GET ['category'] . '/' . $_GET ['template'] . '/css/*.css';
+		$jsdir = '../../templates/' . $_GET ['category'] . '/' . $_GET ['template'] . '/js/*.js';
                 $category = $_GET['category'];
                 $template = $_GET['template'];
 
@@ -63,10 +65,16 @@ error_reporting(E_ERROR);
 	<script src="../../js/drag_drop.js"></script>
 	<script src="../../js/outside-click.js"></script>
 	
+	<?php foreach (glob("$jsdir") as $jsfile){
+		echo "<script src='$jsfile'></script>";
+	}?>>
+	
 	<link href="../../css/drag_drop_style.css" rel="stylesheet" />
 	<link href="../../css/spectrum.css" rel="stylesheet" />
 
-	<link rel="stylesheet" type="text/css" href="<?php echo  $css?>"/>
+	<?php foreach (glob("$css") as $cssfile){
+		echo "<link rel='stylesheet' type='text/css' href='$cssfile' />";
+	}?>>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
 
 <style>
@@ -155,6 +163,10 @@ error_reporting(E_ERROR);
 				</div>
 			</div>
 
+			<div id="header">
+				<?php include ($turl.'/header.html');?>
+			</div>			
+			
 			<div id="body" contentEditable="false"><?php include ($turl.'/body.html');?></div>
                         <!--<div id="test_removable"><!--?php include 'user_menu.php'?></div> -->
 			<div id="footer">
