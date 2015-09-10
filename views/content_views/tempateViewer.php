@@ -6,13 +6,15 @@ error_reporting(E_ERROR);
 	if(isset($_POST['template']) && isset($_POST['category']) )
 	{
 		$turl ='../../templates/'.$_POST['category'].'/'.$_POST['template'];
-		$css='../../templates/'.$_POST['category'].'/'.$_POST['template'].'/css/style.css';
+		$css = '../../templates/' . $_POST ['category'] . '/' . $_POST ['template'] . '/css/*.css';
+		$jsdir = '../../templates/' . $_POST ['category'] . '/' . $_POST ['template'] . '/js/*.js';
 		$category = $_POST['category'];
                 $template = $_POST['template'];
 	}else if(isset($_GET['template']) &&  isset($_GET['category']))
 	{
 		$turl ='../../templates/'.$_GET['category'].'/'.$_GET['template'];
-		$css='../../templates/'.$_GET['category'].'/'.$_GET['template'].'/css/style.css';
+		$css = '../../templates/' . $_GET ['category'] . '/' . $_GET ['template'] . '/css/*.css';
+		$jsdir = '../../templates/' . $_GET ['category'] . '/' . $_GET ['template'] . '/js/*.js';
                 $category = $_GET['category'];
                 $template = $_GET['template'];
 
@@ -37,17 +39,23 @@ error_reporting(E_ERROR);
 
 	<script type="text/javascript">
             var template_id = '<?php echo $template_id;?>';
-            var isEdit = true;
+            var isEdit = false;
 	</script>
         <script  src="../../js/savePage.js" ></script>
         <script  src="../../js/menu.js" ></script>
     <script type="text/javascript" src="../../js/template_editor.js" ></script>
+    <?php foreach (glob("$css") as $cssfile){
+		echo "<link rel='stylesheet' type='text/css' href='$cssfile' />";
+	}?>>
+    
 
   	<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="../../css/bootstrap-dialog.css" rel="stylesheet"/>
 	<link href="../../css/jquery-ui.min.css" rel="stylesheet"/>
 
-	<link rel="stylesheet" type="text/css" href="<?php echo  $css?>"/>
+	<?php foreach (glob("$jsdir") as $jsfile){
+		echo "<script src='$jsfile'></script>";
+	}?>>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
 
 <style>

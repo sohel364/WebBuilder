@@ -6,12 +6,14 @@ $template;
 $template_id;
 if (isset ( $_POST ['template'] ) && isset ( $_POST ['category'] )) {
 	$turl = '../../templates/' . $_POST ['category'] . '/' . $_POST ['template'];
-	$css = '../../templates/' . $_POST ['category'] . '/' . $_POST ['template'] . '/css/style.css';
+	$css = '../../templates/' . $_POST ['category'] . '/' . $_POST ['template'] . '/css/*.css';
+	$jsdir = '../../templates/' . $_POST ['category'] . '/' . $_POST ['template'] . '/js/*.js';
 	$category = $_POST ['category'];
 	$template = $_POST ['template'];
 } else if (isset ( $_GET ['template'] ) && isset ( $_GET ['category'] )) {
 	$turl = '../../templates/' . $_GET ['category'] . '/' . $_GET ['template'];
-	$css = '../../templates/' . $_GET ['category'] . '/' . $_GET ['template'] . '/css/style.css';
+	$css = '../../templates/' . $_GET ['category'] . '/' . $_GET ['template'] . '/css/*.css';
+	$jsdir = '../../templates/' . $_GET ['category'] . '/' . $_GET ['template'] . '/js/*.js';
 	$category = $_GET ['category'];
 	$template = $_GET ['template'];
 }
@@ -49,42 +51,39 @@ $isInEditor = true;
             var currentTemplate = '<?php echo $template;?>';
             var isUserLoggedIn = '<?php echo $user_id == NULL ? '0': '1';?>';
             var tempIsEdit = '<?php echo $template_id == NULL ? '0' : '1';?>';
-            var isEdit = false;
+            var isEdit = true;
             if(tempIsEdit === '1') {
                 isEdit = true;
             }
-	</script>
+</script>
 <script src="../../js/savePage.js"></script>
 <script src="../../js/drag_drop.js"></script>
 <script src="../../js/menu.js"></script>
 <script type="text/javascript" src="../../js/template_editor.js"></script>
+<script type="text/javascript" src="../../js/jquery-te-1.4.0.min.js"
+		charset="utf-8"></script>
+<script src="../../js/outside-click.js"></script>
+
+<?php foreach (glob("$jsdir") as $jsfile){
+	echo "<script src='$jsfile'></script>";
+}?>>
 
 <link href="../../css/bootstrap.min.css" rel="stylesheet" />
 <link href="../../css/bootstrap-dialog.css" rel="stylesheet" />
 <link href="../../css/jquery-ui.min.css" rel="stylesheet" />
 <link href="../../css/drag_drop_style.css" rel="stylesheet" />
 <link href="../../css/spectrum.css" rel="stylesheet" />
-
-<link rel="stylesheet" type="text/css" href="<?php echo  $css?>" />
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
 <link type="text/css" rel="stylesheet"
 	href="../../css/jquery-te-1.4.0.css">
-	<script type="text/javascript" src="../../js/jquery-te-1.4.0.min.js"
-		charset="utf-8"></script>
+<?php foreach (glob("$css") as $cssfile){
+	echo "<link rel='stylesheet' type='text/css' href='$cssfile' />";
+}?>>
 
 
-	<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"> -->
+<style>
 
-
-
-	<script src="../../js/outside-click.js"></script>
-
-
-	<style>
 #frame {
 	background: white;
 	float: left;
