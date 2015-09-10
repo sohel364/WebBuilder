@@ -81,7 +81,7 @@ error_reporting(E_ERROR);
 
 #frame
 {
-	background:rgba(0,0,0,.1);
+	background:rgba(0,0,0,0);
 	float:left;
 	height: 100%;
 	width: 72%;
