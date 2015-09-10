@@ -328,11 +328,15 @@ $isInEditor = true;
 
 				</div>
 			</div>
-
+			
+			<div id="header">
+				<?php include ($turl.'/header.html');?>
+			</div>
+			
 			<div id="body" contentEditable="false">
                             <?php include ($turl.'/body.html');?>
                             <?php include ($turl.'/body.php');?>
-                        </div>
+            </div>
 
 			<div id="footer">
 				<?php include ($turl.'/footer.html');?>
