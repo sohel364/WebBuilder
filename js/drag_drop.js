@@ -1504,7 +1504,14 @@ function initializeAllDialogButton() {
 $(function() {
 
 	makeControlsOfPaletteDraggable();
-	//makeTemplateComponetsEditable();
+	
+	if (typeof isEdit !== 'undefined' && isEdit) {
+        makeTemplateComponetsEditable();
+    } else if(typeof isView !== 'undefined' && isView){
+    } else {
+    	alert("Can't recognize Whether it is editor or viewer");
+    }
+	
 	startMonitoringMousePosition();
 	makeBodyDroppable();
 	makeImageSliderThumbnailSortable();
