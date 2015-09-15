@@ -10,6 +10,7 @@ var counter = 1001;
 var clicked_dropped_item_id = null;
 var child_item = null;
 var editable_control = null;
+var editable_image = null;
 var SLIDER_ANIMATION_SPEED = 1000;
 var SLIDER_PAUSE = 3000;
 var is_group_edit_mode = false;
@@ -587,15 +588,19 @@ function showTextEditPanel() {
 
 function showImageEditPanel() {
 
-	var old_image_path = editable_control.attr("src");
+	editable_image = findImage();
+	var old_image_path = editable_image.attr("src");
 	var old_image_height = "";
 	var old_image_width = "";
+	
+	if (editable_image.attr("id") == null){
+		editable_image.attr("id", "image_" + counter++);
+	}
 
 	function restoreInitialState() {
 		// If cancel button is pressed, this function will be called
 		isSaved = false;
-		findAndSetImage(old_image_path);
-		//editable_control.attr("src", old_image_path);
+		setImage(old_image_path);
 	}
 
 	$("#dialog_input_image_path").val(old_image_path);
@@ -622,6 +627,25 @@ function showImageEditPanel() {
 		},
 
 	});
+}
+
+function findImage(){
+	if (editable_control.is("img")){
+		return editable_control;
+	}else if(editable_control.is("figure")){
+		return editable_control.find("img");
+	}else{
+		return editable_control.find("figure").find("img");
+	}
+}
+
+function setImage(image_url){
+	console.log("Image URL: " + image_url);
+	var h = editable_image.height();
+	var w = editable_image.width();
+	editable_image.attr("src", image_url);
+	editable_image.height(h);
+	editable_image.width(w);
 }
 
 function showImageSliderEditPanel() {
@@ -960,24 +984,12 @@ function showEditPanel() {
 
 }
 
-function findAndSetImage(image_url){
-	console.log("Setting Image");
-	
-	if (editable_control.is("img")){
-		console.log("Editable Control is Image");
-		editable_control.attr("src", image_url);
-	}else{
-		console.log("Searching for Image");
-		editable_control.find("figure").find("img").attr("src", image_url);
-	}
-}
-
 function makeControlEditable(control) {
 	control.addClass("editable_mode");
 	control.draggable("disable");
 	control.unbind("click", droppedItemClickAction);
-	if ($("#"+clicked_dropped_item_id).attr('name') == 'textarea'
-			|| $("#"+clicked_dropped_item_id).attr('name') == 'header') {
+	if ($("#"+clicked_dropped_item_id).attr('name').indexOf("textarea") >= 0
+			|| $("#"+clicked_dropped_item_id).attr('name').indexOf("header") >= 0) {
 		control.prop('contenteditable', 'true');
 	}
 
@@ -988,8 +1000,8 @@ function makeControlNonEditable(control) {
 	control.removeClass("editable_mode");
 	control.draggable("enable");
 	control.click(droppedItemClickAction);
-	if ($("#"+clicked_dropped_item_id).attr('name') == 'textarea'
-			|| $("#"+clicked_dropped_item_id).attr('name') == 'header') {
+	if ($("#"+clicked_dropped_item_id).attr('name').indexOf("textarea") >= 0
+			|| $("#"+clicked_dropped_item_id).attr('name').indexOf("header") >= 0) {
 		control.prop('contenteditable', 'false');
 	}
 }
@@ -1343,9 +1355,7 @@ function initializeAllDialogButton() {
 			var tmp_file_path = URL.createObjectURL(event.target.files[0]);
 			var file_name = document.getElementById('file_picker').value;
 			$("#dialog_input_image_path").val(file_name);
-
-			findAndSetImage(tmp_file_path);
-			//editable_control.attr("src", tmp_file_path);
+			setImage(tmp_file_path);
 
 		});
 
