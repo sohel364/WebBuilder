@@ -184,7 +184,7 @@ $isInEditor = true;
 	<div id="showsaveicon" style="display: none"></div>
 
 	<div>	
-	<?php if($template=="Medical Practioner" || $template=="part1" || $template == "furniture"){ include_once '../master_views/topper_view.php'; }?>
+	<?php include_once '../master_views/topper_view.php';?>
 </div>
 	<div style="height: 25px;">
 		<a onclick="savePage();" class="btn btn-inverse"

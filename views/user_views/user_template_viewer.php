@@ -66,17 +66,18 @@ error_reporting(E_ERROR);
 	<script src="../../js/outside-click.js"></script>
 	
 	<?php foreach (glob("$jsdir") as $jsfile){
-		echo "<script src='$jsfile'></script>";
+		//echo "<script src='$jsfile'></script>";
 	}?>>
 	
 	<link href="../../css/drag_drop_style.css" rel="stylesheet" />
 	<link href="../../css/spectrum.css" rel="stylesheet" />
 
 	<?php foreach (glob("$css") as $cssfile){
-		echo "<link rel='stylesheet' type='text/css' href='$cssfile' />";
+		//echo "<link rel='stylesheet' type='text/css' href='$cssfile' />";
 	}?>>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
-
+	<?php include ($turl.'/header.html');?>
+	
 <style>
 
 #frame
@@ -161,11 +162,7 @@ error_reporting(E_ERROR);
 							</div>
 
 				</div>
-			</div>
-
-			<div id="header">
-				<?php include ($turl.'/header.html');?>
-			</div>			
+			</div>		
 			
 			<div id="body" contentEditable="false"><?php include ($turl.'/body.html');?></div>
                         <!--<div id="test_removable"><!--?php include 'user_menu.php'?></div> -->
