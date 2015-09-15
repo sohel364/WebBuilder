@@ -65,7 +65,7 @@ $isInEditor = true;
 <script src="../../js/outside-click.js"></script>
 
 <?php foreach (glob("$jsdir") as $jsfile){
-	echo "<script src='$jsfile'></script>";
+	//echo "<script src='$jsfile'></script>";
 }?>>
 
 <link href="../../css/bootstrap.min.css" rel="stylesheet" />
@@ -78,7 +78,7 @@ $isInEditor = true;
 <link type="text/css" rel="stylesheet"
 	href="../../css/jquery-te-1.4.0.css">
 <?php foreach (glob("$css") as $cssfile){
-	echo "<link rel='stylesheet' type='text/css' href='$cssfile' />";
+	//echo "<link rel='stylesheet' type='text/css' href='$cssfile' />";
 }?>>
 
 
