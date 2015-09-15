@@ -570,8 +570,8 @@ function showTextEditPanel() {
 			direction : "up"
 		},
 		position : {
-			my : "center top",
-			at : "center top-100",
+			my : "center bottom",
+			at : "center top-50",
 			of : editable_control
 		},
 		beforeClose : function(event, ui) {
