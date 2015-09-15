@@ -98,7 +98,7 @@ function onMenuClick(menu) {
 
 
 function getSavedMenuContents() {
-    menuContens = user_menu_content_array;
+    //menuContens = user_menu_content_array;
     setBodyHtmlString(menuContens[curMenu]);
 }
 
