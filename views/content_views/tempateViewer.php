@@ -45,7 +45,7 @@ error_reporting(E_ERROR);
         <script  src="../../js/menu.js" ></script>
     <script type="text/javascript" src="../../js/template_editor.js" ></script>
     <?php foreach (glob("$css") as $cssfile){
-		echo "<link rel='stylesheet' type='text/css' href='$cssfile' />";
+		//echo "<link rel='stylesheet' type='text/css' href='$cssfile' />";
 	}?>>
     
 
@@ -54,10 +54,11 @@ error_reporting(E_ERROR);
 	<link href="../../css/jquery-ui.min.css" rel="stylesheet"/>
 
 	<?php foreach (glob("$jsdir") as $jsfile){
-		echo "<script src='$jsfile'></script>";
+		//echo "<script src='$jsfile'></script>";
 	}?>>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
-
+	<?php include ($turl.'/header.html');?>
+	
 <style>
 
 #frame

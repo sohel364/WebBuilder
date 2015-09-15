@@ -81,6 +81,8 @@ $isInEditor = true;
 	//echo "<link rel='stylesheet' type='text/css' href='$cssfile' />";
 }?>>
 
+<?php include ($turl.'/header.html');?>
+
 
 <style>
 
@@ -329,9 +331,7 @@ $isInEditor = true;
 				</div>
 			</div>
 			
-			<div id="header">
-				<?php include ($turl.'/header.html');?>
-			</div>
+
 			
 			<div id="body" contentEditable="false">
                             <?php include ($turl.'/body.html');?>
