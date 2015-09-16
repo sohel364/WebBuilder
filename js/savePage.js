@@ -21,7 +21,7 @@ function executeBeforeSend() {
     saveCurrentPageImages();
     var menuList = getMenuList();
     
-    if (menuList.length !== 'undefined' && menuList.length > 1) {
+    if (typeof menuList.length !== 'undefined' && menuList.length > 1) {
         showSavingIcon();
         var savedName; 
         if(!isEdit) {
@@ -30,7 +30,7 @@ function executeBeforeSend() {
             //insertPage(url, menuList, savedName);
         } else {
             var url = getPageUpdaterUrl();
-            if(template_saved_name !== 'undefined' && template_saved_name.length>0) {
+            if(typeof template_saved_name !== 'undefined' && template_saved_name.length>0) {
                 savedName = prompt("Enter webpage name : ", template_saved_name);
             } else {
                 savedName = prompt("Enter webpage name : ", "Enter page name");
@@ -115,7 +115,7 @@ function savePage() {
     saveCurrentPageImages();
     var menuList = getMenuList();
     
-    if (menuList.length !== 'undefined' && menuList.length > 1) {
+    if (typeof menuList.length !== 'undefined' && menuList.length > 1) {
         showSavingIcon();
         var savedName; 
         if(!isEdit) {
@@ -124,7 +124,7 @@ function savePage() {
             insertPage(url, menuList, savedName);
         } else {
             var url = getPageUpdaterUrl();
-            if(template_saved_name !== 'undefined' && template_saved_name.length>0) {
+            if(typeof template_saved_name !== 'undefined' && template_saved_name.length>0) {
                 savedName = prompt("Enter webpage name : ", template_saved_name);
             } else {
                 savedName = prompt("Enter webpage name : ", "Enter page name");

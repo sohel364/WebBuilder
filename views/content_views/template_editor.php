@@ -51,10 +51,11 @@ $isInEditor = true;
             var currentTemplate = '<?php echo $template;?>';
             var isUserLoggedIn = '<?php echo $user_id == NULL ? '0': '1';?>';
             var tempIsEdit = '<?php echo $template_id == NULL ? '0' : '1';?>';
-            var isEdit = true;
+            var isEdit = false;
             if(tempIsEdit === '1') {
                 isEdit = true;
             }
+            var isInEditor = true;
 </script>
 <script src="../../js/savePage.js"></script>
 <script src="../../js/drag_drop.js"></script>

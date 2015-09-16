@@ -1515,7 +1515,7 @@ $(function() {
 
 	makeControlsOfPaletteDraggable();
 	
-	if (typeof isEdit !== 'undefined' && isEdit) {
+	if (typeof isInEditor !== 'undefined' && isInEditor) {
         makeTemplateComponetsEditable();
     } else if(typeof isView !== 'undefined' && isView){
     } else {
