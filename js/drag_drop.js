@@ -185,19 +185,25 @@ function makeImageSliderThumbnailSortable() {
 }
 
 function createImageSlider(imageSliderImageList) {
-	var target_slider = editable_control.children('ul');
+	var target_slider = editable_control.find('ul');
 	var file_name = "test_image";
+	
+	console.log("ul ID : " + target_slider.attr("id"));
 
 	target_slider.empty();
 
 	$.each(imageSliderImageList, function(index, value) {
 		$(
-				'<li><img src="' + value + '" class="slide" alt="' + file_name
+				'<li ><img src="' + value + '"  alt="' + file_name
 						+ '"></li>').appendTo(target_slider)
 	});
+	
+	target_slider.data("total_item", imageSliderImageList.length);
 
-	animateImageSlider(editable_control, editable_control.width(),
-			editable_control.data("speed"), editable_control.data("pause"));
+	startImageSlider(target_slider.attr("id"));
+	
+//	animateImageSlider(editable_control, editable_control.width(),
+//			editable_control.data("speed"), editable_control.data("pause"));
 
 }
 
@@ -287,9 +293,11 @@ function makeBodyDroppable() {
 
 						if (is_image_slider) {
 							
-							animateImageSlider(draggable, draggable.width(),
-									draggable.data("speed"),
-									draggable.data("pause"));
+//							animateImageSlider(draggable, draggable.width(),
+//									draggable.data("speed"),
+//									draggable.data("pause"));
+							
+							startImageSlider(draggable.attr("id"));
 						}
 
 						makeDroppedControlsDraggable(draggable);
@@ -361,9 +369,44 @@ function animateImageSlider(control, width, animation_speed, pause) {
 
 	stopSlider(control);
 	startSlider(control, width, animation_speed, pause);
+	
 
 //	control.on('mouseenter', stopSlider(control)).on('mouseleave', startSlider(control, width, animation_speed, pause));
 
+}
+
+function SstartImageSlider(slider_id){
+	var control = $("#" + slider_id);
+	
+	var slider = control.find("ul");
+	var visible_items = slider.data("visible_items");
+	var animation_speed = slider.data("animation_speed");
+	var pause_time = slider.data("pause_time");
+	
+	alert(visible_items);
+	
+	slider.flexisel({
+        visibleItems: visible_items,
+        animationSpeed: animation_speed,
+        autoPlay: true,
+        autoPlaySpeed: pause_time,            
+        pauseOnHover: true,
+        enableResponsiveBreakpoints: true,
+        responsiveBreakpoints: { 
+            portrait: { 
+                changePoint:480,
+                visibleItems: 1
+            }, 
+            landscape: { 
+                changePoint:640,
+                visibleItems: 2
+            },
+            tablet: { 
+                changePoint:768,
+                visibleItems: 3
+            }
+        }
+    });
 }
 
 function createRadioButtonTemplate(control, radio_btn_list) {
@@ -656,13 +699,19 @@ function showImageSliderEditPanel() {
 	var file_name = "test_image";
 
 	console.log(target_slider.find('li').length);
+	var count_image = target_slider.data("total_item");
+	
+//	$("select#dropdown_slider_pause_time").val(target_slider.data("pause_time")/1000);
+//	$("select#dropdown_slider_animation_speed").val(target_slider.data("animation_speed"/1000));
+	$("select#dropdown_slider_visible_item").val(target_slider.data("visible_items"));
 
 	target_slider.find('li').each(
 			function(index, value) {
 				var image_url = $(this).children("img").attr("src");
 				slider_old_image_list[index] = image_url;
 
-				if (index < (target_slider.find('li').length - 1)) {
+//				if (index < (target_slider.find('li').length - 1)) {
+				if (index < count_image) {
 					$(
 							'<li><img src="' + image_url
 									+ '" class="slider_thumbnail" alt="'
@@ -673,15 +722,15 @@ function showImageSliderEditPanel() {
 
 	updateImageSliderThumbnail();
 	
-	if(editable_control.data("pause") != undefined){
-	}else{
-		editable_control.data("pause", SLIDER_PAUSE);
-	}
-	
-	if(editable_control.data("speed") != undefined){
-	}else{
-		editable_control.data("speed", SLIDER_ANIMATION_SPEED);
-	}
+//	if(editable_control.data("pause") != undefined){
+//	}else{
+//		editable_control.data("pause", SLIDER_PAUSE);
+//	}
+//	
+//	if(editable_control.data("speed") != undefined){
+//	}else{
+//		editable_control.data("speed", SLIDER_ANIMATION_SPEED);
+//	}
 
 	function restoreInitialState() {
 		// If cancel button is pressed, this function will be called
@@ -810,21 +859,21 @@ function makeControlResizable() {
 			$("#txt_height_resize_dialog").val(ui.size.height);
 			$("#txt_width_resize_dialog").val(ui.size.width);
 
-			if (editable_control.attr("name") == "imageslider") {
-				editable_control.children("ul").children("li").each(function() {
-					$(this).height(ui.size.height);
-					$(this).width(ui.size.width);
-
-					$(this).children("img").height(ui.size.height);
-					$(this).children("img").width(ui.size.width);
-				});
-
-			}
+//			if (editable_control.attr("name") == "imageslider") {
+//				editable_control.children("ul").children("li").each(function() {
+//					$(this).height(ui.size.height);
+//					$(this).width(ui.size.width);
+//
+//					$(this).children("img").height(ui.size.height);
+//					$(this).children("img").width(ui.size.width);
+//				});
+//
+//			}
 
 		},
 		stop : function(event, ui) {
-			animateImageSlider(editable_control, editable_control.width(),
-					editable_control.data("speed"), editable_control.data("pause"));
+//			animateImageSlider(editable_control, editable_control.width(),
+//					editable_control.data("speed"), editable_control.data("pause"));
 		},
 	});
 }
@@ -1416,7 +1465,7 @@ function initializeAllDialogButton() {
 										"src");
 							}
 						});
-				slider_image_list.push(first_image_url);
+				//slider_image_list.push(first_image_url);
 
 				isSaved = true;
 				console.log(slider_image_list);
@@ -1432,12 +1481,17 @@ function initializeAllDialogButton() {
 	
 	$("#dropdown_slider_pause_time").on("change", function() {
 		var new_pause = this.value*1000;
-		editable_control.data("pause", new_pause);
+		editable_control.find('ul').data("pause_time", new_pause);
 	});
 
 	$("#dropdown_slider_animation_speed").on("change", function() {
 		var new_speed = this.value*1000;
-		editable_control.data("speed", new_speed);
+		editable_control.find('ul').data("animation_speed", new_speed);
+	});
+	
+	$("#dropdown_slider_visible_item").on("change", function() {
+		var visible_item = this.value;
+		editable_control.find('ul').data("visible_items", visible_item);
 	});
 
 	/*
@@ -1517,6 +1571,7 @@ $(function() {
 	
 	if (typeof isInEditor !== 'undefined' && isInEditor) {
         makeTemplateComponetsEditable();
+        //onTemplateMenuLoad();
     } else if(typeof isView !== 'undefined' && isView){
     } else {
     	alert("Can't recognize Whether it is editor or viewer");

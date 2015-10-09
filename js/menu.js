@@ -33,6 +33,7 @@ function onLoadMenus() {
     if (typeof isEdit !== 'undefined' && isEdit) {
         getSavedMenuContents();
         makeTemplateComponetsEditable();
+        //onTemplateMenuLoad();
     } else if(typeof isView !== 'undefined' && isView){
         getSavedMenuContents();
         //makeTemplateComponetsNotEditable();
@@ -93,6 +94,7 @@ function onMenuClick(menu) {
         //makeTemplateComponetsNotEditable();
     } else {
         makeTemplateComponetsEditable();
+        onTemplateMenuLoad();
     }
 }
 
