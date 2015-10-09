@@ -320,7 +320,7 @@ ul.tabs {
 	overflow: hidden;
 }
 
-.slider_template_non_editable ul {
+/* .slider_template_non_editable ul {
 	display: block;
 	width: 10000px;
 	list-style: none;
@@ -338,4 +338,60 @@ ul.tabs {
 .slide {
 	width: 720px;
 	height: 360px;
+} */
+
+.nbs-flexisel-container {
+    position:relative;
+    max-width:100%;
 }
+.nbs-flexisel-ul {
+    position:relative;
+    width:9999px;
+    margin:0px;
+    padding:0px;
+    list-style-type:none;   
+    text-align:center;  
+}
+.nbs-flexisel-inner {
+    overflow:hidden;
+    float:left;
+    width:100%;     
+}
+.nbs-flexisel-item {
+    float:left;
+    padding:0px 0px 20px;
+    cursor:pointer;
+    position:relative;
+    line-height:0px;
+	/*width:165px !important;*/
+}
+.nbs-flexisel-item img {
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+	padding:0 0 18px;
+}
+
+.nbs-flexisel-nav-left,
+.nbs-flexisel-nav-right {
+    width: 22px;
+    height: 22px; 
+    position: absolute;
+    cursor: pointer;
+    z-index: 100;
+    opacity: 0.5;
+}
+
+/* .nbs-flexisel-nav-left {
+    left: -21px;
+    background: url(../images/button-previous.png) no-repeat;
+	height:43px;
+	width:21px;
+}
+
+.nbs-flexisel-nav-right {
+    right: -26px;
+    background: url(../images/button-next.png) no-repeat;
+	height:43px;
+	width:21px;
+} */
