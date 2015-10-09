@@ -38,12 +38,14 @@ $isInEditor = true;
 <title>Edit Template</title>
 <script src="../../js/tinymce/tinymce.min.js"></script>
 <script src="../../js/jquery-2.1.1.min.js"></script>
+<script src="../../js/jquery.flexisel.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/bootstrap-dialog.js"></script>
 <script src="../../js/jquery-ui.min.js"></script>
 <script src="../../js/spectrum.js"></script>
 <script src="../../js/jquery.sortable.js"></script>
 <script src="../../js/main.js"></script>
+
 
 <script type="text/javascript">
             var template_id = '<?php echo $template_id == NULL ? $category.'_'.$template : $template_id;?>';
@@ -57,6 +59,7 @@ $isInEditor = true;
             }
             var isInEditor = true;
 </script>
+<?php include ($turl.'/header.html');?>
 <script src="../../js/savePage.js"></script>
 <script src="../../js/drag_drop.js"></script>
 <script src="../../js/menu.js"></script>
@@ -82,7 +85,7 @@ $isInEditor = true;
 	//echo "<link rel='stylesheet' type='text/css' href='$cssfile' />";
 }?>>
 
-<?php include ($turl.'/header.html');?>
+
 
 
 <style>
@@ -707,7 +710,7 @@ $isInEditor = true;
 		</div>
 		<hr></hr>
 		<div
-			style="height: 100px; border: 1px solid lightgrey; border-radius: 8px; padding: 5px; overflow: hidden;">
+			style="height: 120px; border: 1px solid lightgrey; border-radius: 8px; padding: 5px; overflow: hidden;">
 			
 			<table style="width: 100%; ">
 				<tr>
@@ -729,6 +732,20 @@ $isInEditor = true;
 							<option value="1" selected>1 Sec</option>
 							<option value="2">2 Sec</option>
 							<option value="3">3 Sec</option>
+			    		</select>	
+					</td>
+				</tr>
+				<tr>
+					<td><label style="padding-top: 5px; font-weight: lighter; font-size: small;">Visible Item </label></td>
+					<td>
+						<select id="dropdown_slider_visible_item" class="text_editor_component">
+							<option value="1" selected>1 Item</option>
+							<option value="2">2 Items</option>
+							<option value="3">3 Items</option>
+							<option value="4">4 Items</option>
+							<option value="5">5 Items</option>
+							<option value="6">6 Items</option>
+							<option value="7">7 Items</option>
 			    		</select>	
 					</td>
 				</tr>
@@ -813,11 +830,10 @@ $isInEditor = true;
 
 	<div id="image_slider_template" name="imageslider"
 		class="slider_template_non_editable" data-pause="3000" data-speed="1000" style="display: none; position: absolute;">
-		<ul>
+		<ul id="image_slider_1" data-pause_time="3000" data-animation_speed="1000" data-visible_items="1" data-total_item="3">
 			<li><img src="../../images/slider1.jpg" class="slide" alt="Image1"></li>
 			<li><img src="../../images/slider2.jpg" class="slide" alt="Image2"></li>
 			<li><img src="../../images/slider3.jpg" class="slide" alt="Image3"></li>
-			<li><img src="../../images/slider1.jpg" class="slide" alt="Image1"></li>
 		</ul>
 	</div>
 
