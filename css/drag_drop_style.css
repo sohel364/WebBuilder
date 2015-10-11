@@ -355,7 +355,7 @@ ul.tabs {
 .nbs-flexisel-inner {
     overflow:hidden;
     float:left;
-    width:100%;     
+   /*  width:100%; */     
 }
 .nbs-flexisel-item {
     float:left;
@@ -382,16 +382,16 @@ ul.tabs {
     opacity: 0.5;
 }
 
-.nbs-flexisel-nav-left {
-    left: -21px;
+/* .nbs-flexisel-nav-left {
+    left: 10px;
     background: url(../images/button-previous.png) no-repeat;
 	height:43px;
 	width:21px;
 }
 
 .nbs-flexisel-nav-right {
-    right: -26px;
+    right: 5px;
     background: url(../images/button-next.png) no-repeat;
 	height:43px;
 	width:21px;
-}
+} */
