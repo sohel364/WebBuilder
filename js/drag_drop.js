@@ -53,6 +53,12 @@ function makeTemplateComponetsEditable() {
 
 			$(this).click(droppedItemClickAction);
 		}
+		
+		if (control_name == "imageslider" || control_name == "group_imageslider" )
+		{
+			alert("found Image Slider");
+			startImageSlider($(this));
+		}
 	});
 	
 	$("#footer").find("*").each(function() {
@@ -72,6 +78,12 @@ function makeTemplateComponetsEditable() {
 			makeDroppedControlsDraggable($(this));
 
 			$(this).click(droppedItemClickAction);
+		}
+		
+		if (control_name == "imageslider" || control_name == "group_imageslider" )
+		{
+			alert("found Image Slider");
+			startImageSlider($(this));
 		}
 	});
 }
@@ -200,7 +212,7 @@ function createImageSlider(imageSliderImageList) {
 	
 	target_slider.data("total_item", imageSliderImageList.length);
 
-	startImageSlider(target_slider.attr("id"));
+	startImageSlider(editable_control);
 	
 //	animateImageSlider(editable_control, editable_control.width(),
 //			editable_control.data("speed"), editable_control.data("pause"));
@@ -291,14 +303,7 @@ function makeBodyDroppable() {
 									radio_btn_template_array);
 						}
 
-						if (is_image_slider) {
-							
-//							animateImageSlider(draggable, draggable.width(),
-//									draggable.data("speed"),
-//									draggable.data("pause"));
-							
-							startImageSlider(draggable.attr("id"));
-						}
+						
 
 						makeDroppedControlsDraggable(draggable);
 						makeControlsOfPaletteDraggable();
@@ -307,6 +312,15 @@ function makeBodyDroppable() {
 
 						draggable.show(500);
 						draggable.appendTo(this);
+						
+						if (is_image_slider) {
+							
+//							animateImageSlider(draggable, draggable.width(),
+//									draggable.data("speed"),
+//									draggable.data("pause"));
+							
+							startImageSlider(draggable);
+						}
 
 						var pos = draggable.position();
 						/*
@@ -367,16 +381,19 @@ function stopSlider(control) {
 function animateImageSlider(control, width, animation_speed, pause) {
 
 
-	stopSlider(control);
-	startSlider(control, width, animation_speed, pause);
-	
+//	stopSlider(control);
+//	startSlider(control, width, animation_speed, pause);
 
 //	control.on('mouseenter', stopSlider(control)).on('mouseleave', startSlider(control, width, animation_speed, pause));
 
 }
 
-function SstartImageSlider(slider_id){
-	var control = $("#" + slider_id);
+function startImageSlider(control){
+//	console.log("inside function, ID: " + slider_id);
+//	
+//	var control = $("#" + slider_id);
+//	
+//	console.log("ID: " + control.attr("id"));
 	
 	var slider = control.find("ul");
 	var visible_items = slider.data("visible_items");
@@ -701,8 +718,11 @@ function showImageSliderEditPanel() {
 	console.log(target_slider.find('li').length);
 	var count_image = target_slider.data("total_item");
 	
-//	$("select#dropdown_slider_pause_time").val(target_slider.data("pause_time")/1000);
-//	$("select#dropdown_slider_animation_speed").val(target_slider.data("animation_speed"/1000));
+	var pause_time = target_slider.data("pause_time")/1000;
+	var animation_speed = target_slider.data("animation_speed")/1000;
+	
+	$("select#dropdown_slider_pause_time").val(pause_time);
+	$("select#dropdown_slider_animation_speed").val(animation_speed);
 	$("select#dropdown_slider_visible_item").val(target_slider.data("visible_items"));
 
 	target_slider.find('li').each(
