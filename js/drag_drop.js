@@ -56,7 +56,6 @@ function makeTemplateComponetsEditable() {
 		
 		if (control_name == "imageslider" || control_name == "group_imageslider" )
 		{
-			alert("found Image Slider");
 			startImageSlider($(this));
 		}
 	});
@@ -82,7 +81,6 @@ function makeTemplateComponetsEditable() {
 		
 		if (control_name == "imageslider" || control_name == "group_imageslider" )
 		{
-			alert("found Image Slider");
 			startImageSlider($(this));
 		}
 	});
@@ -399,8 +397,6 @@ function startImageSlider(control){
 	var visible_items = slider.data("visible_items");
 	var animation_speed = slider.data("animation_speed");
 	var pause_time = slider.data("pause_time");
-	
-	alert(visible_items);
 	
 	slider.flexisel({
         visibleItems: visible_items,
