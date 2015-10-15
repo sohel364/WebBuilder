@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 14, 2015 at 07:26 PM
+-- Generation Time: Oct 15, 2015 at 05:56 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `content` (
   `content_html` longtext,
   `isMenu` varchar(1) NOT NULL,
   `content_menu_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -72,6 +72,21 @@ CREATE TABLE IF NOT EXISTS `jd_repair` (
   `institute` varchar(255) DEFAULT NULL,
   `itemurl` varchar(1000) DEFAULT NULL,
   `assigned_user` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=165 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `media_arch`
+--
+
+CREATE TABLE IF NOT EXISTS `media_arch` (
+`id` int(100) NOT NULL,
+  `res_name` varchar(100) NOT NULL,
+  `type` varchar(100) NOT NULL,
+  `status` varchar(100) NOT NULL,
+  `user_id` varchar(100) NOT NULL,
+  `template_id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -86,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `menu_title` varchar(255) NOT NULL,
   `hassubmenu` tinyint(1) DEFAULT '1',
   `a_href` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -115,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `template` (
   `saved_name` varchar(255) DEFAULT NULL,
   `template_name` varchar(255) NOT NULL,
   `category_name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -128,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -164,6 +179,12 @@ ALTER TABLE `jd_repair`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indexes for table `media_arch`
+--
+ALTER TABLE `media_arch`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `menu`
 --
 ALTER TABLE `menu`
@@ -185,7 +206,7 @@ ALTER TABLE `template`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `email` (`email`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `email` (`email`), ADD UNIQUE KEY `email_2` (`email`);
 
 --
 -- Indexes for table `user_html`
@@ -201,7 +222,7 @@ ALTER TABLE `user_html`
 -- AUTO_INCREMENT for table `content`
 --
 ALTER TABLE `content`
-MODIFY `content_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `content_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `html`
 --
@@ -211,22 +232,27 @@ MODIFY `id` int(255) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `jd_repair`
 --
 ALTER TABLE `jd_repair`
-MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=165;
+--
+-- AUTO_INCREMENT for table `media_arch`
+--
+ALTER TABLE `media_arch`
+MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `template`
 --
 ALTER TABLE `template`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
