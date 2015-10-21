@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Getting-Start | Inzaana</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Loading bootstrap css-->
+  <link type="text/css" rel="stylesheet" href="styles/jquery-ui-1.10.4.custom.min.css">
+  <link type="text/css" rel="stylesheet" href="../css/font-awesome-4.2.0/css/font-awesome.min.css">
+  <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/all.css">
+  <link type="text/css" rel="stylesheet" href="styles/main.css">
+  <link type="text/css" rel="stylesheet" href="styles/style-responsive.css">
+  <link type="text/css" rel="stylesheet" href="styles/sidebar.css">
+  <link type="text/css" rel="stylesheet" href="../css3-animate-it-master/css/animations.css">
+</head>
+
+<body>
+
+  <div>
+
+    <!--BEGIN BACK TO TOP-->
+    <a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
+    <!--END BACK TO TOP-->
+
+    <!--BEGIN TOPBAR-->
+    <div id="header-topbar-option-demo" class="page-header-topbar">
+
+      <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a id="logo" href="index.html" class="navbar-brand">
+            <span class="fa fa-rocket"></span>
+            <span class="logo-text">Inzaana</span>
+            <span style="display: none" class="logo-text-icon">µ</span>
+          </a>
+        </div>
+
+        <div class="topbar-main">
+          <a id="menu-toggle" href="#" class="hidden-xs">
+            <i class="fa fa-bars"></i>
+          </a>
+
+          <form id="topbar-search" action="" method="" class="hidden-sm hidden-xs">
+            <div class="input-icon right text-white"><a href="#"><i class="fa fa-search"></i></a>
+              <input type="text" placeholder="Search here..." class="form-control text-white" />
+            </div>
+          </form>
+
+          <ul class="nav navbar navbar-top-links navbar-right mbn">
+
+            <li class="dropdown">
+              <a data-hover="dropdown" href="#" class="dropdown-toggle">
+                <i class="fa fa-bell fa-fw"></i>
+                <span class="badge badge-green">3</span>
+              </a>
+            </li>
+
+            <li class="dropdown">
+              <a data-hover="dropdown" href="#" class="dropdown-toggle">
+                <i class="fa fa-envelope fa-fw"></i>
+                <span class="badge badge-orange">7</span>
+              </a>
+            </li>
+
+            <li class="dropdown">
+              <a data-hover="dropdown" href="#" class="dropdown-toggle">
+                <i class="fa fa-tasks fa-fw"></i>
+                <span class="badge badge-yellow">8</span>
+              </a>
+            </li>
+
+            <li class="dropdown topbar-user">
+              <a data-hover="dropdown" href="#" class="dropdown-toggle">
+                <img src="images/48.jpg" alt="" class="img-responsive img-circle" />&nbsp;<span class="hidden-xs">Shrabon Mohsin</span>&nbsp;<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu dropdown-user pull-right">
+                <li><a href="#"><i class="fa fa-user"></i>My Profile</a></li>
+                <li><a href="#"><i class="fa fa-calendar"></i>My Calendar</a></li>
+                <li><a href="#"><i class="fa fa-envelope"></i>My Inbox</a></li>
+                <li><a href="#"><i class="fa fa-tasks"></i>My Tasks</a></li>
+                <li class="divider"></li>
+                <li><a href="Login.html"><i class="fa fa-key"></i>Log Out</a></li>
+              </ul>
+            </li>
+
+          </ul>
+
+        </div>
+      </nav>
+    </div>
+    <!--END OF TOPBAR-->
+
+    <div id="wrapper">
+      <!--BEGIN SIDEBAR MENU-->
+      <nav id="sidebar" role="navigation" data-step="2" data-position="right" class="navbar-default navbar-static-side nav-side-menu">
+
+        <div class="sidebar-collapse menu-scroll menu-list">
+
+          <ul id="side-menu" class="nav out">
+            <div class="clearfix"></div>
+
+            <li class="active">
+              <a href="dashboard.html">
+                <i class="fa fa-home fa-fw"></i>
+                <span class="menu-title">Dashboard</span>
+              </a>
+            </li>
+
+            <li data-toggle="collapse" data-target="#products" class="collapsed">
+              <a href="#">
+                <i class="fa fa-shopping-cart fa-fw"></i>
+                <span class="menu-title">Orders <span class="arrow"></span></span>
+              </a>
+            </li>
+            <ul class="sub-menu collapse" id="products">
+              <div class="clearfix"></div>
+              <li><a href="#">View</a></li>
+              <li><a href="#">Add</a></li>
+              <li><a href="#">Search</a></li>
+              <li><a href="#">Export</a></li>
+              <li><a href="#">Shipments</a></li>
+              <li><a href="#">Tracking Numbers</a></li>
+            </ul>
+
+            <li>
+              <a href="UIElements.html">
+                <i class="fa fa-tags fa-fw"></i>
+                <span class="menu-title">Products</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="Forms.html">
+                <i class="fa fa-users fa-fw"></i>
+                <span class="menu-title">Customers</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="Tables.html">
+                <i class="fa fa-newspaper-o fa-fw"></i>
+                <span class="menu-title">Content</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="DataGrid.html">
+                <i class="fa fa-bullhorn fa-fw"></i>
+                <span class="menu-title">Marketing</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="Pages.html">
+                <i class="fa fa-area-chart fa-fw">
+                </i><span class="menu-title">Analytics</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="Extras.html">
+                <i class="fa fa-gift fa-fw">
+                </i><span class="menu-title">Apps</span>
+              </a>
+            </li>
+
+          </ul>
+
+          <ul id="side-menu" class="nav">
+            <div class="clearfix"></div>
+
+            <li>
+              <a href="Dropdown.html">
+                <i class="fa fa-sitemap fa-fw"></i>
+                <span class="menu-title">Settings</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="Email.html">
+                <i class="fa fa-life-ring fa-fw"></i>
+                <span class="menu-title">Help</span>
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+      </nav>
+
+      <div id="page-wrapper">
+        <!--BEGIN TITLE & BREADCRUMB PAGE-->
+        <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+          <div class="page-header pull-left mediaCr">
+            <div class="page-title titleEx">
+              Shop Name
+            </div>
+            <div class="page-title hidden-xs">
+              | Dashboard</div>
+          </div>
+          <ol class="breadcrumb page-breadcrumb pull-right">
+            <li><i class="fa fa-home"></i>&nbsp;<a href="dashboard.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+            <li class="active">Getting-Start</li>
+          </ol>
+          <div class="clearfix">
+          </div>
+        </div>
+        <!--END TITLE & BREADCRUMB PAGE-->
+        <!--BEGIN CONTENT-->
+        <div class="page-content">
+          <div id="tab-general">
+            <div class="row mbl animatedParent">
+              <div class="col-md-12">
+                <div class="alert alert-info alert-dismissable text-center WelcomePanel">
+                  <button type="button" data-dismiss="alert" aria-hidden="true" class="close">&times;</button>
+                  Welcome to your Control Panel! We’ve completed some key tasks to help you get started.
+                </div>
+              </div>
+              <!--Card-->
+              <div class="col-lg-12">
+                <div class=" CardBoard1">
+                  <div class="col-md-9 vertical-alignment">
+                    <div class="media noMarPad">
+                      <div class="media-left media-middle">
+                        <a href="#">
+                          <span class="glyphicon glyphicon-ok cardIcon" aria-hidden="true"></span>
+                        </a>
+                      </div>
+                      <div class="media-body padL10">
+                        <h2 class="media-heading CardHeading">Choose a template for your Store!</h2>
+                        <h4 class="padT20 cardPara">You can choice the best template from our hundred of free templates! </h4>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3 hoverOff ">
+                    <div class="form-actions text-right pal ">
+                      <button type="submit" class="btn btn-lg btn-info animated fadeIn">
+                        Eidt Themes
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--End of Card-->
+              
+              
+              <!--Headline-->
+              <div class="col-md-12 WelcomePanelPlus">
+                <div class="alert CardPanel">
+                  Here are some next steps to get your store up and running: <a href="#" class="">Skip these steps</a>
+                </div>
+              </div>
+              <!--End of Headline-->
+              
+              <!--Card-->
+              <div class="col-lg-12">
+                <div class=" CardBoard1">
+                  <div class="col-md-9 vertical-alignment">
+                    <div class="media noMarPad">
+                      <div class="media-left media-middle">
+                        <a href="#">
+                          <span class="fa fa-money cardIcon1" aria-hidden="true"></span>
+                        </a>
+                      </div>
+                      <div class="media-body padL10">
+                        <h2 class="media-heading CardHeading">Add a payment method!</h2>
+                        <h4 class="padT20 cardPara">You can add a payment method to get paid from your Customers! </h4>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3 hoverOff">
+                    <div class="form-actions text-right pal ">
+                      <button type="submit" class="btn btn-lg btn-info animated fadeIn">
+                        Add Payment Method
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--End of Card-->
+              
+               <!--Card-->
+              <div class="col-lg-12">
+                <div class=" CardBoard1">
+                  <div class="col-md-9 vertical-alignment">
+                    <div class="media noMarPad">
+                      <div class="media-left media-middle">
+                        <a href="#">
+                          <span class="glyphicon glyphicon-tags cardIcon1" aria-hidden="true"></span>
+                        </a>
+                      </div>
+                      <div class="media-body padL10">
+                        <h2 class="media-heading CardHeading">Add Your Products!</h2>
+                        <h4 class="padT20 cardPara">Simply add your latest product to display on your store! </h4>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3 hoverOff">
+                    <div class="form-actions text-right pal ">
+                      <button type="submit" class="btn btn-lg btn-info animated fadeIn">
+                        Add Product
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--End of Card-->
+              
+              <!--Card-->
+              <div class="col-lg-12">
+                <div class=" CardBoard1">
+                  <div class="col-md-9 vertical-alignment">
+                    <div class="media noMarPad">
+                      <div class="media-left media-middle">
+                        <a href="#">
+                          <span class="fa fa-truck cardIcon1" aria-hidden="true"></span>
+                        </a>
+                      </div>
+                      <div class="media-body padL10">
+                        <h2 class="media-heading CardHeading">Set up Sipping Product!</h2>
+                        <h4 class="padT20 cardPara">Add some shipping method for your customers for ensuring best delivery service! </h4>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3 hoverOff">
+                    <div class="form-actions text-right pal ">
+                      <button type="submit" class="btn btn-lg btn-info animated fadeIn">
+                        Add Delevery Way
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--End of Card-->
+              
+              <!--Card-->
+              <div class="col-lg-12">
+                <div class=" CardBoard1">
+                  <div class="col-md-9 vertical-alignment">
+                    <div class="media noMarPad">
+                      <div class="media-left media-middle">
+                        <a href="#">
+                          <span class="fa fa-fighter-jet cardIcon1" aria-hidden="true"></span>
+                        </a>
+                      </div>
+                      <div class="media-body padL10">
+                        <h2 class="media-heading CardHeading">Review Your Store!</h2>
+                        <h4 class="padT20 cardPara">Review your store before launch finally! </h4>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3 hoverOff ">
+                    <div class="form-actions text-right pal ">
+                      <button type="submit" class="btn btn-lg btn-info animated fadeIn">
+                        Launch Your Store!
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--End of Card-->
+              
+              <!--Some Usefull link-->
+              <div class="col-md-12 WelcomePanelPlus">
+                <div class="alert CardPanel">
+                  Want some more? See these links to speedup your business!
+                </div>
+                <div class="useful-link CardPanel">
+                  <ul>
+                    <li><a href="#">How can i change theme of my sore?</a></li>
+                    <li><a href="#">How can i change theme of my sore?</a></li>
+                    <li><a href="#">How can i change theme of my sore?</a></li>
+                    <li><a href="#">How can i change theme of my sore?</a></li>
+                    <li><a href="#">How can i change theme of my sore?</a></li>
+                    <li><a href="#">How can i change theme of my sore?</a></li>
+                    <li><a href="#">How can i change theme of my sore?</a></li>
+                  </ul>
+                </div>
+              </div>
+              <!--End of Some Usefull link-->
+
+            </div>
+          </div>
+        </div>
+        <!--END CONTENT-->
+
+      </div>
+      <!--END PAGE WRAPPER-->
+    </div>
+  </div>
+  <script src="script/jquery-1.10.2.min.js"></script>
+  <script src="script/jquery-migrate-1.2.1.min.js"></script>
+  <script src="script/jquery-ui.js"></script>
+  <script src="script/bootstrap.min.js"></script>
+  <script src="script/jquery.metisMenu.js"></script>
+  <script src="script/jquery.slimscroll.js"></script>
+  <script src="script/jquery.cookie.js"></script>
+  <script src="script/icheck.min.js"></script>
+  <script src="script/custom.min.js"></script>
+  <script src="script/jquery.menu.js"></script>
+  <script src="script/bootstrap-hover-dropdown.js"></script>
+  <script src="../css3-animate-it-master/js/css3-animate-it.js"></script>
+  <!--CORE JAVASCRIPT-->
+  <script src="script/main.js"></script>
+
+</body>
+
+</html>
