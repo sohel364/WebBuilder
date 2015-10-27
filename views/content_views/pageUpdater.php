@@ -5,6 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+  
 session_start();
 error_reporting(E_ERROR);
 
@@ -14,20 +15,20 @@ try {
 
 
     require_once '../../manager/content_manager/content_manager.php';
+    require_once '../../manager/content_manager/media_manager.php';
     require_once '../../objects/ObjTemplate.php';
     require_once '../../objects/ObjContent.php';
     require_once '../../objects/ObjMenu.php';
     require_once '../../objects/ObjSubMenu.php';
-
-
-
-    
+    require_once '../../objects/ObjMedia.php';
 
     if (!isset($_POST['menulists']) || !isset($_POST['menucontentlist'])) {
         if(!isset($_POST['menulists']))
             $aResult['error'] = 'There is no menulist to save';
         else 
             $aResult['error'] = 'Content List Error';
+    } else if(!isset($_POST['images'])) {
+        //$aResult['error'] = 'User selected images not found';
     } else if(!isset($_POST['categoryname'])) {
         $aResult['error'] = 'Categoryname  not found';
     } else if(!isset($_POST['templatename'])) {
@@ -44,6 +45,7 @@ try {
         $menuContentList = $_POST['menucontentlist'];
         $user_template_id = $_POST['templateid'];
         $userMenuIDList = $_POST['menuidlist'];
+        $userImages = $_POST['images'];
         
         $user_id;
         
@@ -71,8 +73,32 @@ try {
             $contentManager = new ContentPageManager();
 
             if ($user_id == NULL || count($user_id) <= 0) {
-                $user_id = 'userId';
+                $user_id = 'invalid_user';
             }
+            if ($user_template_id == NULL) {
+                $user_template_id = 'invalid_template';
+            }
+            // Saving resources to archive
+            $media_man = new MediaManager();
+            foreach($userImages as $menu => $srcList)
+            {
+                foreach($srcList as $image)
+                {
+                    $objImage = json_decode($image);
+                    $objMedia = new Media();
+                    $objMedia->setStatus(true);
+                    $objMedia->setUserID($user_id);
+                    $objMedia->setTemplateID($user_template_id);
+                    $objMedia->seType("image");
+                    $media_id = $objMedia->getUserID() . '_' . $objMedia->getTemplateID() . '_' . $menu;
+                    $objMedia->setResName($media_id .  '_' . md5($image));
+                    $media_man->SavePageContent($objMedia);
+
+                }
+
+            }
+
+
             // Saving template information
             $templateInfo = new Template();
             $templateInfo->setTemplateID($user_template_id);

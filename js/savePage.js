@@ -97,13 +97,13 @@ function getMenuList() {
     return menuList;
 }
 
-
-
 /*
  * Calls ajax to save the page contents(menu, submenu, contents etc)
  * @returns {undefined}
  */
-function savePage() {
+function savePage(user_id, template_id) {
+    //var user_id = 'id', template_id = '87349q64';
+
     if(isUserLoggedIn === null || isUserLoggedIn === "0") {
         alert("Please sign in to save the template");
         var redirectURL = getBaseUrl();
@@ -112,7 +112,13 @@ function savePage() {
     }
     makeTemplateComponetsNotEditable();
     saveCurrentMenuText();
-    saveCurrentPageImages();
+    console.log("[WB]" + user_id + " " + template_id + " SAVING...");
+    saveCurrentPageImages(user_id, template_id, isEdit);
+    console.log("[WB]" + user_id + " " + template_id + " SAVED!");
+
+    //var images = [];
+    //var imagesCurList = allImages[curMenu];
+    //images = allImages;
     var menuList = getMenuList();
     
     if (typeof menuList.length !== 'undefined' && menuList.length > 1) {
@@ -121,16 +127,16 @@ function savePage() {
         if(!isEdit) {
             var url = getPageSaverUrl();
             savedName = prompt("Enter webpage name : ", "Enter page name");
-            insertPage(url, menuList, savedName);
+            insertPage(url, menuList, allImages, savedName);
         } else {
             var url = getPageUpdaterUrl();
-            if(typeof template_saved_name !== 'undefined' && template_saved_name.length>0) {
+            if(typeof template_saved_name !== 'undefined' && template_saved_name.length > 0) {
                 savedName = prompt("Enter webpage name : ", template_saved_name);
             } else {
                 savedName = prompt("Enter webpage name : ", "Enter page name");
             }
             
-            updatePage(url, menuList, savedName);
+            updatePage(url, menuList, allImages, savedName);
         }
     }
     
@@ -140,22 +146,20 @@ function savePage() {
 
 
 
-function insertPage(url, menuList, savedName) {
-    /*while(imageCounter+1 < imageArrayLength) {
-        dummy++;
-    }*/
+function insertPage(url, menuList, images, savedName) {
     $.ajax({
             type: "POST",
             url: url,
             dataType: 'json',
             data: {
-                menulists: menuList, 
+                menulists: menuList,
+                images: images,
                 menucontentlist: menuContens, 
                 templateid: template_id, 
                 savedname: savedName, 
                 categoryname:currentCategory, 
                 templatename:currentTemplate,
-                //imagelists: allImages
+                images: images
             },
             success: function (obj, textstatus) {
                 hideSavingIcon();
@@ -172,7 +176,7 @@ function insertPage(url, menuList, savedName) {
                     
                 }
                 else {
-                    //console.log(obj.error);
+                    console.log(obj.error);
                     alert('Error: ' + obj.error);
                 }
             },
@@ -184,18 +188,16 @@ function insertPage(url, menuList, savedName) {
         });
 }
 
-function updatePage(url, menuList, savedName) {
-    //alert("Updating");
-    //return;
+function updatePage(url, menuList, imagesList, savedName) {
     $.ajax({
             type: "POST",
             url: url,
             dataType: 'json',
-            data: {menulists: menuList, menucontentlist: menuContens, templateid: template_id, savedname: savedName, categoryname:currentCategory, templatename:currentTemplate, menuidlist:user_menu_id_array},
+            data: {menulists: menuList, images: imagesList, menucontentlist: menuContens, templateid: template_id, savedname: savedName, categoryname:currentCategory, templatename:currentTemplate, menuidlist:user_menu_id_array},
             success: function (obj, textstatus) {
+                console.log("[WB]" + textstatus + "%%%####");
                 hideSavingIcon();
                 if (!('error' in obj)) {
-                    //yourVariable = obj.result;
                     if(obj.saveUserTemplate === '1') {
                         alert('Updated Successfully!!!');
                         ///views/content_views/template_editor.php?category=uncategorized&template=part1&templateid=uncategorized_part1_1_2015_08_13_04_56_32_pm
@@ -207,7 +209,6 @@ function updatePage(url, menuList, savedName) {
                     
                 }
                 else {
-                    //console.log(obj.error);
                     alert('Error: ' + obj.error);
                 }
             },

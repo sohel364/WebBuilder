@@ -54,6 +54,7 @@ $isInEditor = true;
             var isUserLoggedIn = '<?php echo $user_id == NULL ? '0': '1';?>';
             var tempIsEdit = '<?php echo $template_id == NULL ? '0' : '1';?>';
             var isEdit = false;
+			var user_id = '<?php echo $user_id;?>';
             if(tempIsEdit === '1') {
                 isEdit = true;
             }
@@ -70,7 +71,8 @@ $isInEditor = true;
 
 <?php foreach (glob("$jsdir") as $jsfile){
 	//echo "<script src='$jsfile'></script>";
-}?>>
+}
+?>
 
 <link href="../../css/bootstrap.min.css" rel="stylesheet" />
 <link href="../../css/bootstrap-dialog.css" rel="stylesheet" />
@@ -83,7 +85,8 @@ $isInEditor = true;
 	href="../../css/jquery-te-1.4.0.css">
 <?php foreach (glob("$css") as $cssfile){
 	//echo "<link rel='stylesheet' type='text/css' href='$cssfile' />";
-}?>>
+}
+?>
 
 
 
@@ -191,7 +194,7 @@ $isInEditor = true;
 	<?php include_once '../master_views/topper_view.php';?>
 </div>
 	<div style="height: 25px;">
-		<a onclick="savePage();" class="btn btn-inverse"
+		<a onclick="savePage(user_id, template_id);" class="btn btn-inverse"
 			style="margin-right: 118px; float: right;"><i class="icon-star"></i>
 			Save</a>
 	</div>
@@ -202,7 +205,8 @@ $isInEditor = true;
 
 	<div style="height: 25px;">
 		<a style="margin-right: 118px; float: right;" class="btn btn-inverse"
-			onclick="savePage();"><i class="icon-star"></i> Save</a>
+			onclick="savePage(user_id, template_id);"><i class="icon-star"></i> Save</a>
+		<canvas id="hidden-canvas" style="display:none"></canvas>
 	</div>
 
 	<div>
@@ -874,9 +878,6 @@ $isInEditor = true;
 				<button name="group_button" class="btn btn-success btn-lg" style="float: right;">Submit</button>
 	
 	</div>
-
-
-
 
 </body>
 
