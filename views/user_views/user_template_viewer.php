@@ -85,9 +85,9 @@ error_reporting(E_ERROR);
 	background:rgba(0,0,0,0);
 	float:left;
 	height: 100%;
-	width: 72%;
-	padding: 5px;
-        margin-left: 14%;
+	width: 100%;
+	/* padding: 5px;
+    margin-left: 14%; */
 }
 
 

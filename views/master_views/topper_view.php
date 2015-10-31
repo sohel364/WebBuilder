@@ -1,6 +1,11 @@
 <?php
 session_start();
 $user_id = NULL;
+$isInEditor = NULL;
+if (isset($_SESSION['isInEditor'])) {
+	$isInEditor = $_SESSION['isInEditor'];
+}
+
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
 }
@@ -34,7 +39,7 @@ switch($actualLink) {
         break;
 }
 ?>
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top" style="box-shadow: 0px 0px 20px #888888;">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -94,6 +99,15 @@ switch($actualLink) {
                         </div>
                     </form>
                 </li>
+                <?php
+                    if($isInEditor == true) {
+                ?>        
+                <li>
+                    <a class="dropdown-toggle btn" onclick="savePage()" style="border: 1px solid rgba(186, 220, 255, 0.83);"><span class="glyphicon glyphicon-save" aria-hidden="true"> Save</a>
+                </li>
+                <?php 
+                    }
+                ?>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
