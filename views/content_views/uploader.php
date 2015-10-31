@@ -40,7 +40,7 @@ else
 	$menu_id = $_REQUEST['menu_id'];
 
 	$data = $_REQUEST['image'];
-	$patterns = '/^data:image\/(png|jpg);base64,/';
+	$patterns = '/^data:image\/(png|jpg|jpeg);base64,/';
 	$replacements = '';
 	$binary = preg_replace($patterns, $replacements, $data);
 	$binary = str_replace(' ', '+', $binary);

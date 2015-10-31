@@ -188,6 +188,10 @@ function getBase64Image(img, id) {
         return dataURL;
     }
 
+	if(s.indexOf("jpeg")>-1){
+			 var dataURL = canvas.toDataURL("image/jpeg");
+			 return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+		}
     return null;
 }
 
