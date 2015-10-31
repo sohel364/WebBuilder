@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Chapter 4 : Data Types - Data URI </title>
+
+	<script type="text/javascript">
+
+		var imageType;
+
+		function Test(){
+			var image = document.getElementById('tst');
+
+			var binary=getBase64Image(image, "myCanvas");
+
+			sendRequest(binary);
+
+		}
+
+
+		function getBase64Image(img, id) {
+			// Create an empty canvas element
+			var canvas = document.getElementById(id);
+			canvas.width = img.width;
+			canvas.height = img.height;
+
+			// Copy the image contents to the canvas
+			var ctx = canvas.getContext("2d");
+			ctx.drawImage(img, 0, 0);
+
+			console.log(ctx.canvas === canvas);
+
+			// Get the data-URL formatted image
+			// Firefox supports PNG and JPEG. You could check img.src to
+			// guess the original format, but be aware the using "image/jpg"
+			// will re-encode the image.
+
+			var s = img.src.split('.').pop();
+
+//			alert(s);
+
+			if(s.indexOf("png")>-1){
+				var dataURL = canvas.toDataURL("image/png");
+				imageType = "png";
+				return dataURL;
+//				return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+			}
+
+			if(s.indexOf("jpg")>-1){
+				var dataURL = canvas.toDataURL("image/jpeg")
+				imageType = "jpg";
+				return dataURL;
+//				return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+			}
+
+			return null;
+		}
+
+
+		function createXHR()
+		{
+
+			try { return new XMLHttpRequest(); } catch(e) { alert(e);}
+			try { return new ActiveXObject("Msxml2.XMLHTTP.6.0"); } catch (e) {alert(e);}
+			try { return new ActiveXObject("Msxml2.XMLHTTP.3.0"); } catch (e) {alert(e);}
+			try { return new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {alert(e);}
+			try { return new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {alert(e);}
+
+			return null;
+		}
+
+		function sendRequest(data)
+		{
+			var xhr = createXHR();
+
+			if (xhr)
+			{
+				var url = "http://localhost/webbuilder/views/content_views/uploader.php";
+				var payload = "image=" + data + "&type=" + imageType;
+				xhr.open("POST",url,true);
+				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded ');
+				xhr.setRequestHeader("Content-length", payload.length);
+				xhr.setRequestHeader("Connection", "close");
+				xhr.onreadystatechange = function(){handleResponse(xhr);};
+				xhr.send(payload);
+			}
+			else
+			{
+				alert('failed!');
+			}
+		}
+
+		function handleResponse(xhr)
+		{
+			if (xhr.readyState == 4  && xhr.status == 200)
+			{
+//				alert("incoming...[READY STATE: " + xhr.readyState + "][STATUS: " + xhr.status + "]");
+//				alert(xhr.responseText);
+//				var out = document.getElementById("out");
+//				out.innerHTML = xhr.responseText;
+
+				var responseImage = document.getElementById("responseImage");
+				responseImage.src = "data:image/png;base64," + xhr.responseText;
+				responseImage.style.display = "";
+//				responseImage.src = xhr.responseText;
+//				alert(responseImage.height);
+			}
+		}
+
+
+	</script>
+
+<body>
+<input type="button" value="Test" text="Button" onclick="Test()"/>
+<div style="display:none">
+	<img id="tst" src="2.png">
+</div>
+<canvas id="myCanvas" style="display:none"></canvas>
+<img id="responseImage" width="680px" height="480px">
+<div id="out"></div>
+</body>
+
