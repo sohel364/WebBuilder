@@ -683,4 +683,18 @@ display:none;
 	padding:5px 8px;
 }
 
+#mainNav {
+	background: #e5e5e5;
+	font-size: 20px;
+	font-family: fantasy;
+	font-weight: bold;
+	background: radial-gradient(white, #efefef);
+	border-radius: 10px;
+}
+
+#menu {
+	margin-left: 300px;
+	text-align: center;
+	justify-content: center;
+}
 	
