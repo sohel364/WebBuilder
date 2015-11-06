@@ -67,7 +67,7 @@ ul {
     padding: 6px 12px;
     text-align: center;
 }
-.navbar {
+/* .navbar {
 	border: 0px none !important;
 	position: relative;
 	min-height: 40px;
@@ -111,7 +111,7 @@ ul {
 .navbar-default .navbar-nav > li > a:hover {
 	color:#fff !important;
 	background-color:#eab830 !important
-}
+} */
 /*-------Dropdown Menus & Submenus Css------*/
 .dropdown-menu {
 	padding: 0 !important;
