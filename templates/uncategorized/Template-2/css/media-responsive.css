@@ -1,0 +1,88 @@
+@media only screen and (min-width: 960px) and (max-width: 1200px) {
+/*---Slider----*/
+.text-caption{
+  margin-top:80px ;
+}
+.caption h1{
+    font-size:44px ;
+}
+.student-image img{
+  height:400px;
+}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+/*---Slider----*/
+.text-caption{
+  margin-top:60px ;
+}
+.caption h1{
+   font-size:36px ;
+}
+.student-image img{
+  height:350px;
+}
+.search-box-top{
+  margin:25px !important;
+}
+
+}	
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+/*--Slider----*/
+.text-caption{
+  margin-top:40px ;
+}
+.caption h1{
+    font-size:28px ;
+}
+.caption p{
+    font-size:14px;
+    margin-bottom:15px ;
+}
+ .view-all-btn {
+    font-size:14px;
+    margin: 10px 0px;
+    padding:10px 18px;
+} 
+.student-image img{
+  height:300px;
+}
+.page-breadcrumb {
+    text-align:left !important;
+}
+.search-box-top{
+  margin:25px !important;
+}
+
+} 
+
+@media only screen and (min-width: 200px) and (max-width: 480px) {
+/*--Slider----*/
+.text-caption{
+  margin-top:20px !important;
+}
+.caption h1{
+    font-size:20px;
+	line-height:26px ;
+}
+.caption p{
+    font-size:12px;
+    margin-bottom:10px ;
+}
+ .view-all-btn {
+    font-size:10px;
+    margin: 6px 0px;
+    padding:8px 12px;
+} 
+.student-image img{
+  height:250px;
+}
+.page-breadcrumb {
+    text-align:left !important;
+}
+.search-box-top{
+  margin:25px !important;
+}
+
+}

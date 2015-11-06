@@ -1,0 +1,113 @@
+﻿#style-switcher h3 {  
+	border-bottom: 1px dashed #303030;
+    color: #eee;
+    font-size: 13px;
+	line-height: 20px;
+    font-weight: 600;
+	text-transform: uppercase;
+    margin: 20px 0 10px 1px;
+    padding-bottom: 12px;
+	}
+	#style-switcher {
+	background-color: #fff;
+	position:fixed;
+	width: 140px;
+	top: 140px;
+	left: -140px;
+	z-index: 999;
+	border-radius: 0 0 3px 0;
+	border-bottom: 0;
+	border-top: 0;
+	border-right: 0;
+	border-left: 0;
+	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.08);
+	}
+#style-switcher div {
+	padding: 3px 8px 5px 8px;
+	background: #1B1C1D;;
+	}
+#style-switcher h2 {
+	background-color: #2b3d4c;
+	color: #fff;
+	font-weight: bold;
+	font-size: 15px;
+	padding: 0 0 0 20px;
+	margin:0;
+	line-height:40px;
+	}
+#style-switcher h2 a {
+	background-color: #2b3d4c;
+	display: block;
+	height: 43px;
+	position: absolute;
+	right: -43px;
+	font-size:26px;
+	text-align:center;
+	padding: 0px;
+	color:#fff;
+	top: 0;
+	width: 43px;
+	text-decoration:none;
+	border-radius: 0 3px 3px 0;
+	}
+#style-switcher h2 a > i {
+	font-size: 22px;
+	}	
+	.colors {
+		list-style:none;
+		margin: 0 0px 20px 0;
+		overflow: hidden;
+		padding: 0 0 5px;
+	}
+	
+	.colors li {
+		/* float:left; */
+		margin: 7px 0px 0 0px;
+	}
+	
+	.colors li a {
+		display: block;
+		/* width: 35px; */
+		height: 25px;
+		cursor: pointer;
+		border-radius: 50px;
+	} 
+	
+	.layout-style select, .header-style select, 
+	.footer-style select, .header-color input {
+		width: 164px;
+		padding: 2px 5px;
+		color: #888;
+		cursor: pointer;
+		border-radius: 2px;
+		font-size: 13px;
+		margin: 2px 0 2px 2px;
+	}
+	
+	.header-color .sp-replacer  {
+		padding:4px 6px !important;
+	}
+	
+	.header-color .sp-replacer .sp-dd, .header-color .sp-replacer .sp-preview, div.header-color {
+		padding:0px 1px !important;
+	}
+	
+	.layout-style, .header-style, .header-color
+	.footer-style { padding: 0 !important; }
+	
+	.default { 
+	   background: #ce0a6c; 
+	}
+	.light_blue { 
+	   background: #0074D9; 
+	}
+	.navy { 
+	   background: #001f3f; 
+	}
+	.light_red { 
+	   background: #FF4136; 
+	}
+
+
+	/* @media only screen and (max-width: 1023px) { #style-switcher { display: none; }  */}
+	   

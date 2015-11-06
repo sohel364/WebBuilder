@@ -1,0 +1,167 @@
+﻿#style-switcher h3 {  
+	color: #eee;
+	font-size: 15px;
+	letter-spacing: 1px;
+	margin: 5px 0 10px 1px;
+	padding: 0;
+	border: 0px;
+}
+#style-switcher {
+	background-color: #fff;
+	width: 205px;
+	position:fixed;
+	top: 140px;
+	z-index: 999;
+	border-radius: 0 0 3px 0;
+	left: -206px;
+	border: 1px solid #e4e4e4;
+	border-left: 0;
+	border-top: 0;
+	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.08);
+}
+
+#style-switcher div { padding: 3px 10px 0 18px; margin:0px;    background-color: #060c17; overflow: hidden; }
+#style-switcher h2 {
+	background-color: #040914;
+	border-top: 2px solid #eee;
+	color: #fff;
+	font-weight: bold;
+	font-size: 14px;
+	padding: 0 0 0 20px;
+	margin:0;
+	line-height:40px;
+	text-transform: uppercase;
+}
+#style-switcher h2 a {
+	background-color: #040914;
+	border-top: 2px solid #eee;
+	display: block;
+	height: 40px;
+	position: absolute;
+	right: -43px;
+	font-size:22px;
+	text-align:center;
+	color:#fff;
+	top: 0;
+	width: 44px;
+	text-decoration:none;
+	border-radius: 0 3px 3px 0;
+}
+#style-switcher h2 a i {
+	line-height:40px;
+}		
+#style-switcher h2 a:focus { outline: none; }
+.colors1 { list-style: none outside none; margin: 0 0 10px; border-bottom: 1px solid #d2d2d2; overflow: hidden; padding: 0 0 20px; }
+.colors1 li { float:left; margin: 0px 5px 0; }
+.colors1 li a { 
+	border-radius:50px; 
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    font-size: 13px;
+    height: 30px;
+    padding: 5px;
+    text-align: center;
+    width: 80px;
+} 
+
+.colors { list-style: none outside none; margin: 0 0 10px; border-bottom: 1px dotted #eee; overflow: hidden; padding: 0 0 20px; }
+.colors:last-child { border-bottom: 0 none; padding: 0 0 10px; }
+.colors li { float:left; margin:8px 6px 0; }
+.colors li a { display: block; width: 29px; height: 29px; cursor: pointer; border-radius: 50px; } 
+.layout-style select, .header-style select, 
+.footer-style select, .header-color input {
+	width: 164px;
+	padding: 7px 5px;
+	color: #363636;
+	cursor: pointer;
+	border-radius: 0px;
+	height: 35px;
+	font-size: 14px;
+	margin: 2px 0 2px 2px;
+	border: 1px solid #ccc;
+	
+}
+.header-color .sp-replacer  { padding:4px 6px !important; }
+.header-color .sp-replacer .sp-dd, 
+.header-color .sp-replacer .sp-preview, 
+div.header-color { padding:0px 1px !important; }
+.layout-style, .header-style, .header-color
+.footer-style { padding: 0 !important; }
+
+.btn_layout {
+	background-color: #242424;
+    color: #eee;
+    box-shadow: 0 0px 2px 0 #000000;
+    border-radius: 4px;
+	border: 0px none;
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    line-height: 20px;
+    margin: 0 0 2px;
+    padding: 6px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease 0s;
+    vertical-align: middle;
+}
+.btn_layout_box {
+	background-color: #eee !important ;
+    color: #101010 !important;
+}
+   .default { 
+	   background: #80b500; 
+	}
+	.orange { 
+	   background: #fc5a0a; 
+	}
+	.yellow { 
+	   background:#ffd63b; 
+	}
+	.purple { 
+	   background:#EF3F57; 
+	}
+
+.bg1 { background-image: url("../../images/bg-pattern/bg-img1.jpg"); }
+.bg2 { background-image: url("../../images/bg-pattern/bg-img2.jpg"); }
+.bg3 { background-image: url("../../images/bg-pattern/bg-img3.jpg"); }
+.bg4 { background-image: url("../../images/bg-pattern/bg-img4.jpg"); }
+
+
+	
+@media only screen and (max-width: 1023px) { #style-switcher { display: none; } }
+
+/* This media query for layout resize with boxed layout */
+
+@media(min-width: 1200px) {
+
+body.boxed {
+    width: 1210px;
+    -webkit-box-shadow: 0 0 10px 0 rgba(48, 48, 48, 0.5);
+    box-shadow: 0 0 10px 0 rgba(48, 48, 48, 0.5);
+    margin: 0 auto;
+	position: relative;
+	background: url(../../images/bg-pattern/bg-img1.png) repeat fixed;
+}
+
+}
+
+@media (min-width: 768px) and (max-width: 979px)  {
+
+body.boxed { width: 100%; }
+
+}
+
+@media (max-width: 767px) {
+
+body.boxed { width: 100%; /* padding: 0px 20px !important; */ }
+body { padding-left: 0px !important; padding-right: 0px !important; }
+	
+}
+
+@media (min-width: 980px) and (max-width: 1199px) {
+
+body.boxed { width: 100%; }
+	
+}   

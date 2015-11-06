@@ -1,0 +1,81 @@
+@media only screen and (min-width: 960px) and (max-width: 1200px){
+.carousel-caption {
+  top:5% !important;
+}
+.carousel-caption h1{
+ font-size:54px;
+ margin:5px 0 !important;
+}
+.carousel-caption p{
+ font-size:20px;
+ line-height:36px;
+}
+.main-btn {
+    font-size: 16px;
+    padding:10px 20px;
+    margin:5px 10px;
+}
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+.carousel-caption {
+  top:5% !important;
+}
+.carousel-caption h1{
+ font-size:48px;
+ margin:5px 0 !important;
+}
+.carousel-caption p{
+ font-size:24px;
+ line-height:38px;
+}
+.main-btn {
+    font-size: 16px;
+    padding:10px 20px;
+    margin:5px 10px;
+}
+ 
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px){ 
+ .carousel-caption {
+  top:5% !important;
+}
+.carousel-caption h1{
+ font-size:40px;
+ margin:5px 0 !important;
+}
+.carousel-caption p{
+ font-size:18px;
+ line-height:30px;
+}
+.main-btn {
+    font-size: 14px;
+    padding:8px 18px;
+    margin:5px 10px;
+}
+
+ 
+}
+@media only screen and (min-width: 200px) and (max-width: 480px) { 
+.carousel-caption {
+  top:0% !important;
+}
+.carousel-caption h1{
+ font-size:30px;
+ margin:5px 0 !important;
+}
+.carousel-caption p{
+ font-size:14px;
+ line-height:24px;
+}
+.main-btn {
+    font-size: 12px;
+    padding:6px 15px;
+    margin:5px 10px;
+}
+
+
+ 
+}

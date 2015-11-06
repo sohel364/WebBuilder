@@ -1,0 +1,351 @@
+/*-----------------------------Custom Css------------------------------------------ */
+.wrapper {
+    background-color: #fff;
+}
+.white{
+  color:#fff !important;
+}
+.section-title h1 {
+  color: #060c17;
+}
+.section-title  p {
+  color: #929292;
+}
+.main-btn {
+  background-color: #8c20ba;
+  color: #fff;
+  border: 1px solid #8c20ba;
+}
+.main-btn:hover {
+  color:#fff;
+}
+.callout-title h1, .callout-title p {
+  color: #eee !important;
+}
+ul.contact-top li {
+    color: #fff;
+}
+ul.contact-top li i {
+   color:#8c20ba;
+}
+/*--------------- Menu-css------------- */ 
+.header-section{
+  background-color: #060c17;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+}
+.site-logo h2 a {
+	color:#fff;
+}
+/*----Top Search Box-------*/
+.input-group > .form-control {
+	background-color:#fff;
+}
+.input-group > .input-group-addon {
+    background-color: #fff;
+    color: #202020;
+}
+.navbar {
+	border: 2px solid #8c20ba !important;
+}
+.navbar-default .navbar-nav > li > a {
+    border-right: 1px solid #ddd;
+	color:#060c17 !important;
+}
+.navbar-default .navbar-nav > li > a:hover {
+	color:#fff !important;
+	background-color:#8c20ba !important;
+	border-right: 1px solid #8c20ba;
+}
+/*-------Dropdown Menus & Submenus Css------*/
+.dropdown-menu {
+	background-color: #2f3338;
+	box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);	
+}
+.dropdown-menu > li > a {
+	color: #fff !important;
+	background-color: #060c17;
+    border-bottom: 1px solid #101010 !important;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+	color:#fff !important;
+    background-color:#8c20ba !important
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+   color:#fff !important;
+   background-color:#8c20ba !important;
+   border-right: 1px solid #8c20ba;
+}
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+   color:#fff !important;
+   background-color:#8c20ba !important
+}
+/*-----------Main Carousel--------------*/
+.carousel-caption h1  span{
+ color:#8c20ba; 
+}
+.carousel-caption p{
+ color:#fff;
+}
+/* Direction Nav */
+.carou-direction-nav a {
+	background-color:rgba(0,0,0, 0.7);
+}
+.carou-direction-nav :hover .carou-prev { background-color:#8c20ba;}
+.carou-direction-nav :hover .carou-next { background-color:#8c20ba;}
+.carou-direction-nav :hover .carou-next:hover, 
+.carou-direction-nav :hover .carou-prev:hover {
+	 color:#fff !important;
+}
+.carou-direction-nav .carou-disabled { opacity: 0!important; filter: alpha(opacity=0); cursor: default; }
+.carou-direction-nav a:before {
+	color:#fff;
+}
+/*-----------Service Section--------------*/
+.portfolio-showcase-overlay {
+	background: rgba(140, 32, 186, 0.8);
+}
+
+.portfolio-image .portfolio-showcase-icons a {
+	border:1px solid #eee;
+	background:#eee;
+}
+.portfolio-image .portfolio-showcase-icons a:hover {
+	background:#eee;
+	border:1px solid #eee;
+}
+.portfolio-image .portfolio-showcase-icons a i{
+	color:#060c17;
+}
+.portfolio-image .portfolio-showcase-icons a i:hover{
+	color:#060c17;
+}
+.col-item{
+    border: 1px solid #E1E1E1;
+    background: #FFF;
+}
+.col-item:hover .info {
+   box-shadow:0 0 4px 0 rgba(0, 0, 0, 0.5);
+}
+.col-item .price h5{
+    color: #060c17;
+}
+.price-text-color{
+    color: #219FD1;
+}
+.col-item:hover .price-text-color{
+    color: #8c20ba;
+}
+.col-item .info .rating{
+    color: #777;
+}
+.col-item .separator{
+    border-top: 1px solid #E1E1E1;
+}
+.col-item .separator p i{
+	color:#219FD1;
+}
+.col-item .btn-add {
+    border-right: 1px solid #E1E1E1;
+	color:#219FD1;
+}
+.col-item .btn-add a {
+	color: #060c17;
+}
+.col-item .btn-details{
+	color:#219FD1;
+}
+.col-item .btn-details a{
+	color: #060c17;
+}
+/*Project Pagination Scroll*/
+
+.course-scroll-btn li {
+	background-color: #8c20ba;
+	color: #ffffff;
+}
+.course-scroll-btn li:hover {
+   background: #383838;
+}
+.course-scroll-btn li a {
+	color: #ffffff;
+}
+.course-scroll-btn li a:hover {
+	color: #ffffff;
+} 
+/*-----------------Product Offer----------------------------------*/
+.service-caption {
+	background-color:rgba(0, 0 ,0 , 0.8);
+}
+.service-caption p {
+    color:#fff;
+}
+.service-caption-offer {
+	background: rgba(140, 32, 186, 0.8);
+}
+.service-caption-label {
+    color: #555 !important;
+}
+.service-caption-label span {
+    color:#fff;
+    background: rgba(140, 32, 186, 0.8);
+    padding:8px 15px;
+}
+/*------------------Footer----------------------------------------*/
+.footer {
+  background-color: #060c17;
+  color: #fff;
+}
+.footer-widget h4{
+  color:#fff;
+}
+.footer-widget p{
+  color:#d1d1d1;
+}
+.footer-widget ul li a {
+    color: #d1d1d1;
+}
+/*blog post*/
+.footer-blog-post h3 a {
+	color:#eee;
+}
+.footer-blog-post span {
+    color: #d1d1d1;
+}
+.contact_link a {
+    color: #ccc;
+}
+.contact_link a i {
+	color:#fff;
+}
+.footer-social-icon a i{
+	color: #fff;
+}
+.facebook:hover{
+	background:#3b5998;
+}
+.twitter:hover {
+	background:#4099FF;
+}
+.skype:hover {
+  background:#00aff0;
+}
+.google-plus:hover {
+  background:#d34836;
+}
+.footer-bottom{
+   background-color: #040914;
+}
+/*Callout Section-----------------------------------------------------------------------------------------------*/
+.callout-section {
+    background: url("../resource/images/bg-2.jpg") no-repeat fixed 0 0 / cover rgba(0, 0, 0, 0);
+}
+.callout-section .overlay {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
+}
+.callout-section h1 {
+    color: #ffffff;
+}
+.callout-section p {
+	color: #ffffff;
+}
+.email_input {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: 1px solid #eee;
+    color: #fff;
+}
+.email_submit {
+    background-color: #8c20ba;
+    border: 1px solid #8c20ba;
+    color: #eee;
+}
+/*---------------------About Page---------------------------------------------*/
+/*----------------Page Title Section Css--------------------------*/
+.page-title-section {
+	background: url("../resource/images/bg-2.jpg") no-repeat fixed 0 0 / cover rgba(0, 0, 0, 0);
+}
+.page-title-section .overlay {
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
+}
+.page-title h1 {
+	color: #ffffff;
+}
+.page-breadcrumb > li + li:before {
+	color: #ffffff;
+}
+.page-breadcrumb > li.active a {
+	color: #8c20ba;
+}
+.page-breadcrumb > li a { color: #ffffff; }
+.about-section h2{
+    color: #060c17;
+}
+.about-section p{
+    color: #929292;
+}
+.our-teacher .box-container h3{
+	color: #eab830;
+}
+.our-teacher .box-container span{
+	color:#ef4836;	
+}
+.our-teacher .box-container .read-more{
+	color:#ef4836;
+}
+.service-showcase-overlay {
+	background: rgba(140, 32, 186, 0.8);
+}
+.teacher-image .service-showcase-icons a {
+	color:#fff;
+}
+.social-icon a {
+	background-color:#eee;
+	border:1px solid #eee;
+}
+.social-icon a i{
+	color:#060c17;
+}
+.social-icon  i:hover {
+     color:#060c17 !important;
+}
+.social-icon a:hover {
+    color:#060c17 !important;
+    background-color: #eee !important;
+}	
+.teamdesc p{
+    color: #545454;
+}
+/*---------------------------------Services Page-----------------------------------*/
+.block-title {
+    color: #060c17;
+    border-bottom: 1px #ebebeb solid;
+}
+.product-sm {
+	border-bottom: 1px #f0f0f0 solid;
+}
+.product-sm  h3 a {
+	color: #060c17;
+}
+.product-sm .prev {
+    color: #060c17;
+}
+.product-sm .current {
+    color:#8c20ba !important;
+}
+
+/*--------------------Contact Page----------------------------------------*/
+.contact-title h3{
+    color: #060c17;
+}
+.cont-info address {
+    color: #64646d;
+}
+.cont-info address > i {
+	color:#8c20ba;
+}
+.google_map{
+ border:3px solid #eee;
+}
+/*--------Scroll Top---------*/
+.hc_scrollup {background-color:#ffd63b;}
+.hc_scrollup i{color: #fff;}

@@ -1,0 +1,44 @@
+
+@font-face {
+    font-family: 'ArimoRegular';
+    src: url('Arimo-Regular.eot');
+    src: url('Arimo-Regular.eot?#iefix') format('embedded-opentype'),
+         url('Arimo-Regular.woff') format('woff'),
+         url('Arimo-Regular.ttf') format('truetype'),
+         url('Arimo-Regular.svg#ArimoRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'allertamedium';
+    src: url('allerta_medium.eot');
+    src: url('allerta_medium.eot?#iefix') format('embedded-opentype'),
+         url('allerta_medium.woff') format('woff'),
+         url('allerta_medium.ttf') format('truetype'),
+         url('allerta_medium.svg#allertamedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'allertastencil';
+    src: url('allerta_stencil.eot');
+    src: url('allerta_stencil.eot?#iefix') format('embedded-opentype'),
+         url('allerta_stencil.woff') format('woff'),
+         url('allerta_stencil.ttf') format('truetype'),
+         url('allerta_stencil.svg#allertastencil') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ArbutusSlabRegular';
+    src: url('ArbutusSlab-Regular.eot');
+    src: url('ArbutusSlab-Regular.eot?#iefix') format('embedded-opentype'),
+         url('ArbutusSlab-Regular.woff') format('woff'),
+         url('ArbutusSlab-Regular.ttf') format('truetype'),
+         url('ArbutusSlab-Regular.svg#ArbutusSlabRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
