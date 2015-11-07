@@ -112,9 +112,6 @@ function savePage(user_id, template_id) {
     }
     makeTemplateComponetsNotEditable();
     saveCurrentMenuText();
-    console.log("[WB]" + user_id + " " + template_id + " SAVING...");
-    saveCurrentPageImages(user_id, template_id, isEdit);
-    console.log("[WB]" + user_id + " " + template_id + " SAVED!");
 
     //var images = [];
     //var imagesCurList = allImages[curMenu];
@@ -127,7 +124,13 @@ function savePage(user_id, template_id) {
         if(!isEdit) {
             var url = getPageSaverUrl();
             savedName = prompt("Enter webpage name : ", "Enter page name");
+
+            console.log("[WB]" + user_id + " " + template_id + " SAVING...");
+            saveCurrentPageImages(user_id, template_id, isEdit);
+            console.log("[WB]" + user_id + " " + template_id + " SAVED!");
+
             insertPage(url, menuList, allImages, savedName);
+
         } else {
             var url = getPageUpdaterUrl();
             if(typeof template_saved_name !== 'undefined' && template_saved_name.length > 0) {
@@ -135,7 +138,11 @@ function savePage(user_id, template_id) {
             } else {
                 savedName = prompt("Enter webpage name : ", "Enter page name");
             }
-            
+
+            console.log("[WB]" + user_id + " " + template_id + " SAVING...");
+            saveCurrentPageImages(user_id, template_id, isEdit);
+            console.log("[WB]" + user_id + " " + template_id + " SAVED!");
+
             updatePage(url, menuList, allImages, savedName);
         }
     }
