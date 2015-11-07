@@ -99,16 +99,6 @@ switch($actualLink) {
                         </div>
                     </form>
                 </li>
-                <?php
-                    if($isInEditor == true) {
-                ?>        
-                <li>
-                    <a class="dropdown-toggle btn" onclick="savePage(user_id, template_id);" style="border: 1px solid rgba(186, 220, 255, 0.83);"><span class="glyphicon glyphicon-save" aria-hidden="true"> Save</a>
-                    - <canvas id="hidden-canvas" style="display:none"></canvas>
-                </li>
-                <?php 
-                    }
-                ?>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

@@ -81,6 +81,7 @@ $_SESSION['isInEditor'] = $isInEditor;
 <link href="../../css/jquery-ui.min.css" rel="stylesheet" />
 <link href="../../css/drag_drop_style.css" rel="stylesheet" />
 <link href="../../css/control_palette.css" rel="stylesheet" />
+<link href="../../css/control_template.css" rel="stylesheet" />
 <link href="../../css/spectrum.css" rel="stylesheet" />
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
@@ -173,6 +174,25 @@ $_SESSION['isInEditor'] = $isInEditor;
 			border-radius: 5px;
 }
 
+.template_save_btn {
+	margin-right: 100px;
+	float: right;
+	border-radius: 20px;
+	z-index: 10000000000 !important;
+	font-size: 20px;
+	font-family: fantasy;
+	position: fixed;
+}
+
+.template_save_btn:HOVER {
+	
+}
+
+.editor_topper_view {
+	width: 80%;
+}
+
+
 </style>
 
 </head>
@@ -193,19 +213,27 @@ $_SESSION['isInEditor'] = $isInEditor;
 </style>
 	<div id="showsaveicon" style="display: none"></div>
 
-	<div>	
-	<?php include_once '../master_views/topper_view.php';?>
-</div>
+	<div>
+		<?php include_once '../master_views/topper_view.php';?>
+	</div>
+<!-- 
 	<div style="height: 25px;">
 		<a onclick="savePage(user_id, template_id);" class="btn btn-inverse"
 			style="margin-right: 118px; float: right;"><i class="icon-star"></i>
 			Save</a>
 	</div>
+ -->
+ 	<div>
+		<button class="template_save_btn btn btn-success"
+			onclick="savePage(user_id, template_id);">Save</button>
+		<canvas id="hidden-canvas" style="display:none"></canvas>
+	</div>
 
 	<br />
 	<br />
 	<br />
-
+	
+	
 		<!-- Template Elements  Here -->
 
 		<div id="frame" class="droppedFields">
@@ -248,7 +276,7 @@ $_SESSION['isInEditor'] = $isInEditor;
 				</div>
 			</div>
 			
-
+			<?php include_once 'control_template.php';?>
 			
 			<div id="body" contentEditable="false">
                             <?php include ($turl.'/body.html');?>
