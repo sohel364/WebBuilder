@@ -71,6 +71,7 @@ $_SESSION['isInEditor'] = $isInEditor;
 <script src="../../js/outside-click.js"></script>
 <script src="../../js/control_palette.js"></script>
 
+
 <?php foreach (glob("$jsdir") as $jsfile){
 	//echo "<script src='$jsfile'></script>";
 }
@@ -175,16 +176,10 @@ $_SESSION['isInEditor'] = $isInEditor;
 }
 
 .template_save_btn {
-	margin-right: 100px;
-	float: right;
-	border-radius: 20px;
-	z-index: 10000000000 !important;
-	font-size: 20px;
-	font-family: fantasy;
 	position: fixed;
-}
-
-.template_save_btn:HOVER {
+	top: 0;
+	right: 0;
+	z-index: 10000000000 !important;
 	
 }
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<script src="../../js/jquery.path.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 
@@ -98,5 +99,7 @@
 	<div id="cp_holder_pointer" class="cp_pointer pointer"></div>
 	<div id="cp_pointer_outcurve_bottom" class="cp_pointer_outcurve_bottom pointer"></div>
 	<div id="cp_pointer_outcurve_top" class="cp_pointer_outcurve_top pointer"></div>
+	
+	<button id="btn_collasp_cp" class="collasp_cp btn btn-info">Collasp</button>
 		
 </body>

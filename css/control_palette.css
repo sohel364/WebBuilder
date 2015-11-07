@@ -115,6 +115,13 @@
 	/* overflow: scroll; */
 }
 
+.collasp_cp {
+	position: fixed;
+	top: 0;
+	right: 80px;
+	z-index: 1000000000 !important;
+}
+
 <!-- dsfsdfsdfsdfddddddddddddddddddddddddddddddddddddddddddddddddddddddd-->
 
 .ui-tabs.ui-tabs-vertical {

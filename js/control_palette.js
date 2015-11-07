@@ -1,6 +1,10 @@
 // Global variables
 
 var is_control_palette_open = false;
+var is_cp_collasped = false;
+var pos_collasp_btn;
+var cp_list;
+var cp_position_list;
 
 
 $(function(){	
@@ -12,12 +16,22 @@ $(function(){
 
 function initializeControlPalette(){
 	
+	pos_collasp_btn = $('#btn_collasp_cp').position();
+	cp_list = [$('#cp_background'), $('#cp_add_control'), $('#cp_menu'), $('#cp_media')];
+	cp_position_list = [$('#cp_background').position(), $('#cp_add_control').position(), $('#cp_menu').position(), $('#cp_media').position()];
+	
+	
 	$(".cp_btn").click(function(){
 		showControlPalette($(this));
 	});
 	
 	$(".cp_holder_close_btn").click(function(){
 		closeAllControlPalette();
+	});
+	
+	$("#btn_collasp_cp").click(function(){
+		closeAllControlPalette();
+		collaspControlPalette()
 	});
 	
 	initiateControls("btn_template");
@@ -28,6 +42,55 @@ function initializeControlPalette(){
 //	control.appendTo($("#btn_template_palette"));
 ////	$("#btn_template_palette").append(control);
 	
+	
+}
+
+function collaspControlPalette(){
+	var start_x;
+	var start_y;
+	var end_x;
+	var end_y;
+	var bezier_params;
+	var path_angle = 100;
+	
+	$.each(cp_list, function(index, cp_btn) {
+		
+		if (is_cp_collasped){
+			start_x = pos_collasp_btn.left;
+			start_y = pos_collasp_btn.top;
+			end_x = cp_position_list[index].left;
+			end_y = cp_position_list[index].top;
+			path_angle = path_angle * (-1);
+		}else{
+			start_x = cp_position_list[index].left;
+			start_y = cp_position_list[index].top;
+			end_x = pos_collasp_btn.left;
+			end_y = pos_collasp_btn.top;
+		}
+		
+		bezier_params = {
+			    start: { 
+			      x: start_x, 
+			      y: start_y, 
+			      angle: path_angle
+			    },  
+			    end: { 
+			      x:end_x,
+			      y:end_y, 
+			      angle: 0,
+			    }
+			  }
+
+		cp_btn.animate({path : new $.path.bezier(bezier_params)}, 1000);
+		
+		
+	});
+	
+	if (is_cp_collasped){
+		is_cp_collasped = false;
+	}else{
+		is_cp_collasped = true;
+	}
 	
 }
 

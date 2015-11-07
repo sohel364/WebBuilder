@@ -42,7 +42,7 @@ function makeTemplateComponetsEditable() {
 		console.log(control_id + " : " + control_name);
 
 		if (allawable_control_array.indexOf(control_name) > -1) {
-			console.log(" [Allowable Control] Control Type : " + control_name);
+			//console.log(" [Allowable Control] Control Type : " + control_name);
 			if ($(this).attr("id") == null)
 			{
 				$(this).attr("id", $(this).attr("name") + "_dropped" + counter++);
@@ -64,7 +64,7 @@ function makeTemplateComponetsEditable() {
 		var control_id = $(this).attr("id");
 		var control_name = $(this).attr("name");
 
-		console.log(control_id + " : " + control_name);
+		//console.log(control_id + " : " + control_name);
 
 		if (allawable_control_array.indexOf(control_name) > -1) {
 			console.log(" [Allowable Control] Control Type : " + control_name);
