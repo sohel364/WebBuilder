@@ -19,6 +19,33 @@ function initializeControlPalette(){
 	$(".cp_holder_close_btn").click(function(){
 		closeAllControlPalette();
 	});
+	
+	initiateControls("btn_template");
+//	var control = $("#btn_template_1").clone();
+////	control.css('left', '100px');
+////	control.css('top', '200px');
+//	control.css('display', 'block');
+//	control.appendTo($("#btn_template_palette"));
+////	$("#btn_template_palette").append(control);
+	
+	
+}
+
+function initiateControls(control_name){
+	var count = 1;
+	var control_template = $("#" + control_name + "_" + count);
+	while (control_template.data("type") != undefined) {
+		var control = control_template.clone();
+		control.css('display', 'block');
+		control.css('left', '50px');
+		control.addClass("selectorField");
+		control.addClass("draggableField");
+		control.appendTo($("#" + control_name + "_palette"));
+		count++;
+		control_template = $("#" + control_name + "_" + count);		
+	}
+	
+	makeControlsOfPaletteDraggable();
 }
 
 

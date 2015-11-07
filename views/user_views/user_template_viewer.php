@@ -70,6 +70,7 @@ error_reporting(E_ERROR);
 	}?>>
 	
 	<link href="../../css/drag_drop_style.css" rel="stylesheet" />
+	<link href="../../css/control_template.css" rel="stylesheet" />
 	<link href="../../css/spectrum.css" rel="stylesheet" />
 
 	<?php foreach (glob("$css") as $cssfile){

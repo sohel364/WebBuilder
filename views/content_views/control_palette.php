@@ -32,7 +32,7 @@
 		<div id="tabs">
 		    <ul>
 		        <li>
-		            <a href="#buttons">Button</a>
+		            <a href="#btn_template_palette">Button</a>
 		        </li>
 		        <li>
 		            <a href="#images">Image</a>
@@ -44,14 +44,14 @@
 		            <a href="#text">Text</a>
 		        </li>
 		    </ul>
-		    <div id="buttons">
-		        <button name='button' class='selectorField draggableField btn-primary btn-lg'>Click Me</button>
+		    <div id="btn_template_palette">
+		        <!-- <button name='button' class='selectorField draggableField btn-primary btn-lg'>Click Me</button> -->
 		    </div>
 		    <div id="images">
 		        <img name="image" class="selectorField draggableField" src="../../images/image_template.png" alt="Image Template" style="margin-left: 20px; width: 200px; height: 200px" />
 		    </div>
 		    <div id="slider">
-		        <img name="imageslider" class="selectorField draggableField" src="../../images/slider-skin.jpg" alt="ImageSlider Template" style="margin-left: 20px; width: 250px; height: 150px" />
+		        <img name="imageslider" class="selectorField draggableField" src="../../images/slider-skin.jpg" alt="ImageSlider Template" style="margin-left: 20px; width: 200px; height: 100px" />
 		    </div>
 		    <div id="text">
 		        <div name='textarea' class='selectorField draggableField'>

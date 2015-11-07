@@ -266,9 +266,7 @@ function makeBodyDroppable() {
 						draggable = $("#group_template");
 						is_group_builder = true;
 					}
-
-//					if (droppable_id == null
-//							|| droppable_id.search('dropped_') < 0) {
+					
 					if (draggable.data("is_dropped") == null
 							|| draggable.data("is_dropped") == "false") {
 
@@ -283,9 +281,6 @@ function makeBodyDroppable() {
 								+ (counter++);
 						
 						draggable.data("is_dropped","true");
-						
-						
-						// draggable[0].name = droppable_name;
 
 						if (is_radio_button) {
 							var radio_btn_template_array = [ {
@@ -313,24 +308,10 @@ function makeBodyDroppable() {
 						
 						if (is_image_slider) {
 							
-//							animateImageSlider(draggable, draggable.width(),
-//									draggable.data("speed"),
-//									draggable.data("pause"));
-							
 							startImageSlider(draggable);
 						}
 
 						var pos = draggable.position();
-						/*
-						 * alert("position : " + pos.left + " : " + pos.top);
-						 */
-						/*
-						 * draggable.click(function() { var pos =
-						 * draggable.position(); alert("position : " + pos.left + " : " +
-						 * pos.top);
-						 * 
-						 * });
-						 */
 					}
 
 				}
