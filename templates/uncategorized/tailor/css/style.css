@@ -18,6 +18,14 @@ table,tr,td{
 	vertical-align:top;
 }
 
+#body {
+/* 	background-image: url("../resource/images/banner1.png"); */
+	/* background-repeat: repeat-y;
+    background-attachment: fixed;
+    background-color: black; */
+   /*  background: #f62157 none repeat scroll 0 0; */
+}
+
 
 .header-top{
 	background:url(../resource/images/header-top.jpg) repeat-x;

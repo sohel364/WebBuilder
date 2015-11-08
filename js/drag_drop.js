@@ -305,6 +305,7 @@ function makeBodyDroppable() {
 
 						draggable.show(500);
 						draggable.appendTo(this);
+						draggable.css("z-index", "100");
 						
 						if (is_image_slider) {
 							
@@ -672,7 +673,7 @@ function findImage(){
 	}else if(editable_control.is("figure")){
 		return editable_control.find("img");
 	}else{
-		return editable_control.find("figure").find("img");
+		return editable_control.find("img");
 	}
 }
 

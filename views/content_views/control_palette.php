@@ -21,8 +21,10 @@
 		<button id="cp_media"
 				class="cp cp_media cp_btn btn"><span class="glyphicon glyphicon-film cp_icon" aria-hidden="true"></span><font style="font-size: 18px"> Add Media</font></button>
 	</div>
-    	
-			
+	
+	<div id="cp_holder_pointer" class="cp_pointer pointer"></div>
+	<div id="cp_pointer_outcurve_bottom" class="cp_pointer_outcurve_bottom pointer"></div>
+	<div id="cp_pointer_outcurve_top" class="cp_pointer_outcurve_top pointer"></div>
 			
 	<div id="cp_holder_add_control" class="cp_holder">
 		<div class="cp_holder_title_bg_color" style="width: 100%; height: 45px; border-radius: 0 10px 0 0; ">
@@ -79,7 +81,21 @@
 			<button id="btn_cp_holder_close" class="cp_holder_close_btn cp_holder_btn">X</button>
 			<button id="btn_cp_holder_info" class="cp_holder_btn ">?</button>
 		</div>
-		<p>Background</p>
+		<div class="backgroud_edit">
+			<div>
+				<label>Background Color : </label>
+				<input type='text' id="color_picker_background" class="background_color_picker" />
+			</div>
+			<button id="btn_set_bg_gradient" class="btn btn-default btn-block">Set background Gradient</button>
+			<button id="btn_set_bg_image" class="btn btn-default btn-block">Set background Image</button>
+			<button id="btn_fix_bg_image" class="btn btn-default btn-block">Set Fixed background Image</button>
+			<input id="file_picker_bg" type="file" name="files[]" single
+						style="display: none">
+				
+			
+		</div>
+		<div class="background_theme">
+		</div>
 	</div>
 	<div id="cp_holder_menu" class="cp_holder">
 		<div class="cp_holder_title_bg_color" style="width: 100%; height: 45px; border-radius: 0 10px 0 0; ">
@@ -95,10 +111,6 @@
 		</div>
 		<p>Add Media</p>
 	</div>
-	
-	<div id="cp_holder_pointer" class="cp_pointer pointer"></div>
-	<div id="cp_pointer_outcurve_bottom" class="cp_pointer_outcurve_bottom pointer"></div>
-	<div id="cp_pointer_outcurve_top" class="cp_pointer_outcurve_top pointer"></div>
 	
 	<button id="btn_collasp_cp" class="collasp_cp btn btn-info">Collasp</button>
 		

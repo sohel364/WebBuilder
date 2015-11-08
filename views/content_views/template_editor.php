@@ -105,7 +105,7 @@ $_SESSION['isInEditor'] = $isInEditor;
 	width: 100%;
 	margin-left: 5px;
 	padding: 5px;
-	z-index: 100;
+/* 	z-index: 10000000; */
 }
 
 .edit_option {
@@ -249,23 +249,12 @@ $_SESSION['isInEditor'] = $isInEditor;
 
 					<!--</nav>-->
 					<div id="mainNav" class="collapse navbar-collapse">
-                                            <?php
-						if ($template_id == NULL) {
-                                            ?>
-						
+                        <?php if ($template_id == NULL) { ?>
 						<?php include ($turl.'/menu.html');?>
-                                                <?php include ($turl.'/menu.php');?>
-                                            
-									
-						
-                                            <?php
-						} else {
-                                            ?>
-									<?php include '../user_views/user_menu.php';?>
-					
-                                            <?php
-					}
-					?>
+                        <?php include ($turl.'/menu.php');?>
+                        <?php } else { ?>
+						<?php include '../user_views/user_menu.php';?>
+						<?php } ?>
 					</div>
 
 				</div>
