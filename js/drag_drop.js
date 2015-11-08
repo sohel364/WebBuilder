@@ -1530,9 +1530,11 @@ function initializeAllDialogButton() {
 	});
 	
 	$("#btn_group_edit_add_label").click(function(){
-		var new_label = $('<label name="textarea">New Label : </label>');
+		var new_label = $('<div><h2>Title, Edit me</h2><p>Lorem Ipsum is simply dummy text</p></div>');
 		new_label.attr("id", "textarea_group_" + counter++);
 		new_label.attr("name", "group_textarea");
+		new_label.css("width", "300px");
+		new_label.css("height", "70px");
 		
 		new_label.draggable({
 			containment : editable_group,
@@ -1541,7 +1543,7 @@ function initializeAllDialogButton() {
 		});
 		new_label.click(droppedItemClickAction);
 		
-		new_label.prependTo(editable_group);
+		new_label.appendTo(editable_group);
 	});
 	
 	$("#btn_group_edit_add_input_text").click(function(){

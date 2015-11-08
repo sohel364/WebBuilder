@@ -554,7 +554,7 @@ $_SESSION['isInEditor'] = $isInEditor;
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Label
 		</button>
 		
-		<button id = "btn_group_edit_add_input_text" class="text_editor_component">
+		<button id = "btn_group_edit_add_input_text" class="text_editor_component" style="display: none;">
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Text Input
 		</button>
 		
