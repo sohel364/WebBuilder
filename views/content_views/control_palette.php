@@ -8,7 +8,7 @@
 
 <body>
 
-	<div class="cp_box">
+	<div class="cp_box" style="<?php echo $user_id == NULL? "display: none;" : "display: block;"?>">
 		<button id="cp_background"
 				class="cp cp_background cp_btn btn" data-top="true"><span class="glyphicon glyphicon-modal-window cp_icon" aria-hidden="true"></span><font style="font-size: 18px"> Background</font> </button>
 				
@@ -95,6 +95,9 @@
 			
 		</div>
 		<div class="background_theme">
+			<br />
+			<label>Still under construction</label>
+		
 		</div>
 	</div>
 	<div id="cp_holder_menu" class="cp_holder">
@@ -112,6 +115,6 @@
 		<p>Add Media</p>
 	</div>
 	
-	<button id="btn_collasp_cp" class="collasp_cp btn btn-info">Collasp</button>
+	<button id="btn_collasp_cp" class="collasp_cp btn btn-info" style="<?php echo $user_id == NULL? "display: none;" : "display: block;"?>">Collasp</button>
 		
 </body>

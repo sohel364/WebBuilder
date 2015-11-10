@@ -218,9 +218,11 @@ $_SESSION['isInEditor'] = $isInEditor;
 			Save</a>
 	</div>
  -->
+ 
+ 
  	<div>
 		<button class="template_save_btn btn btn-success"
-			onclick="savePage(user_id, template_id);">Save</button>
+			onclick="savePage(user_id, template_id);" style="<?php echo $user_id == NULL? "display: none;" : "display: block;"?>">Save</button>
 		<canvas id="hidden-canvas" style="display:none"></canvas>
 	</div>
 
