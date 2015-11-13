@@ -106,39 +106,53 @@ function getSavedMenuContents() {
 var _user_id, _template_id;
 
 var imageType = "png";
+var _callbackFn = null;
 
 function uploadImage(images, i, srcList) {
-    var binary = getBase64Image(images[i], "hidden-canvas");
 
-    // TODO: Image Type is set after above line is executed [getBase64Image(images[i], "hidden-canvas");]
-    srcList[images[i].id] = "{ 'src': " + images[i] + ", 'index': " + i + ", 'type': " + imageType + " }";
-
-    sendRequest(binary, srcList[images[i].id]);
+    sendRequest(binary, i);
 
     //console.log("[WB]Saving ...###" + images[i].src + "###");
 }
 
-function saveCurrentPageImages(user_id, template_id, isEdit) {
-    var images = document.getElementsByTagName('img');
+function loadImages(user_id, template_id, callbackFunc)
+{
     _user_id = user_id;
     _template_id  = template_id;
+    _callbackFn = callbackFunc;
+
+    var images = document.getElementsByTagName('img');
 
     var srcList = {};
 
     for(var i = 0; i < images.length; i++) {
 
-        if(!isEdit) {
-            uploadImage(images, i, srcList);
-        }
-        else
-        {
-            if(images[i].src.indexOf("blob") < 0 || images[i].src.indexOf("localhost") < 0)
-            {
-                uploadImage(images, i, srcList);
-            }
-        }
+        var binary = getBase64Image(images[i], "hidden-canvas");
+
+        //console.log("[WB] image-type: " + imageType);
+
+        // TODO: Image Type is set after above line is executed [getBase64Image(images[i], "hidden-canvas");]
+        srcList[i] = '{ "src": "' + images[i].src + '", "index": ' + i + ', "type": "' + imageType + '", "id": "' + images[i].id + '", "data": "' + binary + '", "menu": "' + curMenu + '" }';
+        //var image = JSON.parse(srcList[i]);
+        //console.log("[WB] ALL images of " + curMenu + " image-info is: " + image.type + "#" + image.index);
     }
     allImages[curMenu] = srcList;
+}
+
+function saveCurrentPageImages(isEdit, imageObj) {
+
+    if(!isEdit) {
+        sendRequest(imageObj);
+        console.log("[WB] on insert image-menu: " + imageObj.menu);
+    }
+    else
+    {
+        if(imageObj.src.indexOf("blob") < 0 || imageObj.src.indexOf("localhost") < 0)
+        {
+            sendRequest(imageObj);
+            console.log("[WB] on update image-menu: " + imageObj.menu);
+        }
+    }
 }
 
 function test_upload_image(){
@@ -147,7 +161,7 @@ function test_upload_image(){
     {
         var binary = getBase64Image(image, "hidden-canvas");
 
-        sendRequest(binary, 0);
+        //sendRequest(binary, 0);
     }
 
 }
@@ -165,8 +179,6 @@ function getBase64Image(img, id) {
     var ctx = canvas.getContext("2d");
     ctx.drawImage(img, 0, 0);
 
-    console.log(ctx.canvas === canvas);
-
     // Get the data-URL formatted image
     // Firefox supports PNG and JPEG. You could check img.src to
     // guess the original format, but be aware the using "image/jpg"
@@ -174,24 +186,23 @@ function getBase64Image(img, id) {
 
     var s = img.src.split('.').pop();
 
-//			alert(s);
-
     if(s.indexOf("png")>-1){
         var dataURL = canvas.toDataURL("image/png");
         imageType = "png";
         return dataURL;
     }
 
-    if(s.indexOf("jpg")>-1){
-        var dataURL = canvas.toDataURL("image/jpeg")
+    if(s.indexOf("jpg")>-1 || s.indexOf("jpeg")>-1){
+        var dataURL = canvas.toDataURL("image/jpeg");
         imageType = "jpeg";
         return dataURL;
     }
+    console.log("[WB] image-type: " + "WoW!");
 
-	if(s.indexOf("jpeg")>-1){
-			 var dataURL = canvas.toDataURL("image/jpeg");
-			 return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-		}
+	//if(s.indexOf("jpeg")>-1){
+	//		 var dataURL = canvas.toDataURL("image/jpeg");
+	//		 return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+	//	}
     return null;
 }
 
@@ -208,14 +219,14 @@ function createXHR()
     return null;
 }
 
-function sendRequest(data, img_id)
+function sendRequest(imageObj)
 {
     var xhr = createXHR();
 
     if (xhr)
     {
         var url = "http://localhost/webbuilder/views/content_views/uploader.php";
-        var payload = "image=" + data + "&type=" + imageType + "&userId=" + _user_id + "&templateId=" + _template_id + "&image_id=" + img_id + "&menu_id=" + curMenu;
+        var payload = "image=" + imageObj.data + "&type=" + imageObj.type + "&userId=" + _user_id + "&templateId=" + _template_id + "&image_src=" + imageObj.src + "&image_id=" + imageObj.index + "&menu_id=" + imageObj.menu;
         xhr.open("POST",url,true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded ');
         xhr.setRequestHeader("Content-length", payload.length);
@@ -239,6 +250,11 @@ function handleResponse(xhr)
         //var responseImage = document.getElementById("responseImage");
         //responseImage.src = (imageType == "png" ? "data:image/png;base64," : "data:image/jpeg;base64,") + xhr.responseText;
         //responseImage.style.display = "";
-        console.log("[WB]Saved!" + xhr.responseText);
+        console.log("[WB]Saved! " + xhr.responseText);
+
+        var imageObj = JSON.parse(xhr.responseText);
+
+        console.log("[WB] RESP " + imageObj.image_id);
+        _callbackFn(imageObj);
     }
 }

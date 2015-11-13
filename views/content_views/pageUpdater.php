@@ -27,7 +27,7 @@ try {
             $aResult['error'] = 'There is no menulist to save';
         else 
             $aResult['error'] = 'Content List Error';
-    } else if(!isset($_POST['images'])) {
+    } else if(!isset($_POST['image'])) {
         //$aResult['error'] = 'User selected images not found';
     } else if(!isset($_POST['categoryname'])) {
         $aResult['error'] = 'Categoryname  not found';
@@ -45,7 +45,7 @@ try {
         $menuContentList = $_POST['menucontentlist'];
         $user_template_id = $_POST['templateid'];
         $userMenuIDList = $_POST['menuidlist'];
-        $userImages = $_POST['images'];
+        $userImage = json_decode($_POST['image']);
         
         $user_id;
         
@@ -79,24 +79,15 @@ try {
                 $user_template_id = 'invalid_template';
             }
             // Saving resources to archive
-            $media_man = new MediaManager();
-            foreach($userImages as $menu => $srcList)
-            {
-                foreach($srcList as $image)
-                {
-                    $objImage = json_decode($image);
-                    $objMedia = new Media();
-                    $objMedia->setStatus(true);
-                    $objMedia->setUserID($user_id);
-                    $objMedia->setTemplateID($user_template_id);
-                    $objMedia->seType("image");
-                    $media_id = $objMedia->getUserID() . '_' . $objMedia->getTemplateID() . '_' . $menu;
-                    $objMedia->setResName($media_id .  '_' . md5($image));
-                    $media_man->SavePageContent($objMedia);
-
-                }
-
-            }
+//            $media_man = new MediaManager();
+//            $objMedia = new Media();
+//            $objMedia->setStatus(true);
+//            $objMedia->setUserID($user_id);
+//            $objMedia->setTemplateID($user_template_id);
+//            $objMedia->seType("image");
+//            $media_id = $objMedia->getUserID() . '_' . $objMedia->getTemplateID() . '_' . $userImage->menu;
+//            $objMedia->setResName($media_id .  '_' . md5($userImage->index) . '.' . $userImage->type);
+//            $media_man->SavePageContent($objMedia);
 
 
             // Saving template information

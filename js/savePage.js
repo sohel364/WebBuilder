@@ -125,25 +125,68 @@ function savePage(user_id, template_id) {
             var url = getPageSaverUrl();
             savedName = prompt("Enter webpage name : ", "Enter page name");
 
-            console.log("[WB]" + user_id + " " + template_id + " SAVING...");
-            saveCurrentPageImages(user_id, template_id, isEdit);
-            console.log("[WB]" + user_id + " " + template_id + " SAVED!");
+            loadImages(user_id, template_id, function(imageObj){
+
+                console.log("[WB] image-type: " + imageObj.type );
+
+            });
+
+            var menu_items = Object.keys(allImages);
+            //menu_items.sort(); // sort the array of keys
+            menu_items.forEach(function(menu_item) {
+                var image_items = Object.keys(allImages[menu_item]);
+                //items.sort();
+                image_items.forEach(function(image){
+
+                    console.log("[WB] image: " + allImages[menu_item][image]);
+
+                    var imageObj = JSON.parse(allImages[menu_item][image]);
+                    console.log("[WB]" + user_id + " " + template_id + " SAVING...");
+
+                    saveCurrentPageImages(isEdit, imageObj.data);
+
+                    console.log("[WB]" + user_id + " " + template_id + " SAVED!");
+                });
+            });
 
             insertPage(url, menuList, allImages, savedName);
+
+            alert('Saved Successfully!!!');
 
         } else {
             var url = getPageUpdaterUrl();
             if(typeof template_saved_name !== 'undefined' && template_saved_name.length > 0) {
                 savedName = prompt("Enter webpage name : ", template_saved_name);
             } else {
-                savedName = prompt("Enter webpage name : ", "Enter page name");
+                savedName = prompt("Update webpage name : ", "Enter page name");
             }
 
-            console.log("[WB]" + user_id + " " + template_id + " SAVING...");
-            saveCurrentPageImages(user_id, template_id, isEdit);
-            console.log("[WB]" + user_id + " " + template_id + " SAVED!");
+            loadImages(user_id, template_id, function(imageObj){
+
+                console.log("[WB] [REPLIED] image-src: " + imageObj.src );
+
+            });
+
+            var menu_items = Object.keys(allImages);
+            //menu_items.sort(); // sort the array of keys
+            menu_items.forEach(function(menu_item) {
+                var image_items = Object.keys(allImages[menu_item]);
+                //items.sort();
+                image_items.forEach(function(image){
+
+                    var imageObj = JSON.parse(allImages[menu_item][image]);
+
+                    console.log("[WB] info: " + user_id + "#" + template_id + "#" + imageObj.id + " SAVING...");
+
+                    saveCurrentPageImages(isEdit, imageObj);
+
+                    console.log("[WB] info: " + user_id + "#" + template_id + "#" + imageObj.id + " SAVED!!!");
+                });
+            });
 
             updatePage(url, menuList, allImages, savedName);
+
+            alert('Updated Successfully!!!');
         }
     }
     
@@ -151,29 +194,31 @@ function savePage(user_id, template_id) {
     x++;
 }
 
+function insertPage(url, menuList, imageObj, savedName) {
 
+    //var image = '{ "src": "' + imageObj.src + '", "index": ' + imageObj.image_id + ', "type": "' + imageObj.image_type + '", "menu": "' + imageObj.menu + '" }';
+    //
+    //console.log("[WB] Image info: " + image);
 
-function insertPage(url, menuList, images, savedName) {
     $.ajax({
             type: "POST",
             url: url,
             dataType: 'json',
             data: {
                 menulists: menuList,
-                images: images,
+                image: image,
                 menucontentlist: menuContens, 
-                templateid: template_id, 
-                savedname: savedName, 
+                templateid: imageObj.template_id, //template_id,
+                savedname: savedName,
                 categoryname:currentCategory, 
-                templatename:currentTemplate,
-                images: images
+                templatename:currentTemplate
             },
             success: function (obj, textstatus) {
                 hideSavingIcon();
                 if (!('error' in obj)) {
                     //yourVariable = obj.result;
                     if(obj.saveUserTemplate === '1' && 'savedTemplateId' in obj) {
-                        alert('Saved Successfully!!!');
+                        //alert('Saved Successfully!!!');
                         var savedTemplateID = obj.savedTemplateId;
                         var redirectURL = getBaseUrl()+'/views/content_views/template_editor.php?category='+currentCategory+'&template='+currentTemplate+'&templateid='+savedTemplateID;
                         window.location.href = redirectURL;
@@ -195,18 +240,23 @@ function insertPage(url, menuList, images, savedName) {
         });
 }
 
-function updatePage(url, menuList, imagesList, savedName) {
+function updatePage(url, menuList, imageObj, savedName) {
+
+    //var image = '{ "src": "' + imageObj.src + '", "index": ' + imageObj.image_id + ', "type": "' + imageObj.image_type + '", "menu": "' + imageObj.menu + '" }';
+
+    //console.log("[WB] Image info: " + image);
+
     $.ajax({
             type: "POST",
             url: url,
             dataType: 'json',
-            data: {menulists: menuList, images: imagesList, menucontentlist: menuContens, templateid: template_id, savedname: savedName, categoryname:currentCategory, templatename:currentTemplate, menuidlist:user_menu_id_array},
+            data: {menulists: menuList, image: image, menucontentlist: menuContens, templateid: imageObj.template_id, savedname: savedName, categoryname:currentCategory, templatename:currentTemplate, menuidlist:user_menu_id_array},
             success: function (obj, textstatus) {
                 console.log("[WB]" + textstatus + "%%%####");
                 hideSavingIcon();
                 if (!('error' in obj)) {
                     if(obj.saveUserTemplate === '1') {
-                        alert('Updated Successfully!!!');
+                        //alert('Updated Successfully!!!');
                         ///views/content_views/template_editor.php?category=uncategorized&template=part1&templateid=uncategorized_part1_1_2015_08_13_04_56_32_pm
                         var redirectURL = getBaseUrl()+'/views/content_views/template_editor.php?category='+currentCategory+'&template='+currentTemplate+'&templateid='+template_id;
                         window.location.href = redirectURL;

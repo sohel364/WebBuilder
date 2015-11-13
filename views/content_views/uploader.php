@@ -5,6 +5,8 @@
 session_start();
 error_reporting(E_ALL); ini_set('display_errors', '1');
 
+require_once '../../manager/content_manager/media_manager.php';
+
 if(!isset($_REQUEST['image']))
 {
 	echo 'invalid upload';
@@ -12,6 +14,10 @@ if(!isset($_REQUEST['image']))
 elseif(!isset($_REQUEST['type']))
 {
 	echo 'invalid upload type';
+}
+elseif(!isset($_REQUEST['image_src']))
+{
+	echo 'invalid upload source of image';
 }
 elseif(!isset($_REQUEST['image_id']))
 {
@@ -37,6 +43,7 @@ else
 	$user_id = $_REQUEST['userId'];
 	$template_id = $_REQUEST['templateId'];
 	$img_id = $_REQUEST['image_id'];
+	$img_src = $_REQUEST['image_src'];
 	$menu_id = $_REQUEST['menu_id'];
 
 	$data = $_REQUEST['image'];
@@ -52,7 +59,20 @@ else
 
 	$dataImg = base64_decode($binary);
 	//echo $binary;
-	echo $img_id;
+
+
+	// Saving resources to archive
+	$media_man = new MediaManager();
+	$objMedia = new Media();
+	$objMedia->setStatus(true);
+	$objMedia->setUserID($user_id);
+	$objMedia->setTemplateID($template_id);
+	$objMedia->seType("image");
+	$objMedia->setResName($strImageFileName);
+	$media_man->SavePageContent($objMedia);
+
+//	echo json_encode('{ "image_id" : "' . $img_id . '", "image_type" : "' . $_REQUEST['type'] . '" }');
+	echo '{ "image_id" : "' . $img_id . '", "image_type" : "' . $_REQUEST['type'] . '", "src": "' . $img_src . '", "menu": "' . $menu_id . '", "user_id": "' . $user_id .  '", "template_id": "' . $template_id . '" }';
 
 //	Note: alternative file saving code especially for image processing
 //	$im = imagecreatefromstring($dataImg);
