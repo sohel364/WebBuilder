@@ -34,10 +34,10 @@ ul.header-social-icon li a i{
      background:#d34836;
 }
 /*----Top Search Box-------*/
-.input-group > .form-control {
+/* .input-group > .form-control {
 	background-color: transparent;
     border: 1px solid  #f24228;
-}
+} */
 .input-group > .input-group-addon {
     background-color:  #f24228;
     border: 1px solid  #f24228;

@@ -57,7 +57,7 @@ ul.header-social-icon li a i{
 	transition: all 0.3s ease-in-out 0s;
 }
 /*----Top Search Box-------*/
-.search-box-top{
+/* .search-box-top{
   margin:24px 0 !important;
   padding-left:30px;
 }
@@ -78,8 +78,8 @@ ul.header-social-icon li a i{
     line-height: 1;
     padding: 6px 12px;
     text-align: center;
-}
-.navbar-brand {
+} */
+/* .navbar-brand {
     padding:8px 15px 0 !important;
 }
 .navbar-brand img {
@@ -124,7 +124,7 @@ ul.header-social-icon li a i{
 	border-radius: 0px;
 	padding:30px 20px;
 	transition: all 0.3s ease-in-out 0s
-}
+} */
 /*-------Dropdown Menus & Submenus Css------*/
 .dropdown-menu {
 	padding: 0 !important;
@@ -168,14 +168,14 @@ ul.header-social-icon li a i{
     -moz-border-radius:0px;
     border-radius:0px;
 }
-.navbar-nav .open .dropdown-menu > li > a, .navbar-nav .open .dropdown-menu .dropdown-header {
+/* .navbar-nav .open .dropdown-menu > li > a, .navbar-nav .open .dropdown-menu .dropdown-header {
     padding: 12px 15px;
 	margin: 0 8px;
 }
 .navbar-right .dropdown-menu {
     left: 0;
     right: 0;
-}
+} */
 /*-----------Main Carousel--------------*/
 .carousel-caption{
     top:20% !important;
