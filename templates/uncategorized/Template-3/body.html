@@ -23,14 +23,14 @@
 			    <li><a href="contact.html">Contact</a></li>
 			</ul> -->
 		 <!-----Search Box----------->	
-			<div class="col-sm-3 col-md-3 pull-right">
+<!-- 			<div class="col-sm-3 col-md-3 pull-right">
 			  <form class="search-box-top" role="search">
 			    <div class="input-group" name="textinput">
 				  <input type="text" class="form-control " placeholder="Search Here" aria-describedby="basic-addon2">
 				    <a href="#" class="input-group-addon" id="basic-addon2"><i class="fa fa-search"></i></a>
 				 </div>
 			   </form>
-			</div>
+			</div> -->
 		 <!-----/Search Box----------->		
 		</div>
 	</div>
@@ -62,15 +62,15 @@
 <section class="main-carousel">
 	 <div id="main-slider" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner" role="listbox">
-			<div class="item active">
-			   <img src="../../templates/uncategorized/Template-3/resource/images/slide/slide1.jpg" class="img-responsive">
+			<div class="item active" name="group">
+			   <img name="group_image" src="../../templates/uncategorized/Template-3/resource/images/slide/slide1.jpg" class="img-responsive">
 			    <div class="carousel-caption">
-					<h1 data-animation="animated zoomInLeft" class="">Donec convallis consectetur</h1>
-					  <p data-animation="animated flipInX" class="">Sed at lobortis urna, sed porta metus. Donec consequat et</p>
-					 <a class="view-all-btn" href="#" role="button" data-animation="animated zoomInUp">Read more</a> 
+					<h1 name="group_header" data-animation="animated zoomInLeft" class="">Donec convallis consectetur</h1>
+					  <p name="group_textarea" data-animation="animated flipInX" class="">Sed at lobortis urna, sed porta metus. Donec consequat et</p>
+					 <button name="button" class="view-all-btn" href="#" role="button" data-animation="animated zoomInUp">Read more</button> 
 			    </div>
 			 </div>
-			 <div class="item">
+			 <!-- <div class="item">
 			   <img src="../../templates/uncategorized/Template-3/resource/images/slide/slide2.jpg" class="img-responsive">
 			    <div class="carousel-caption">
 					<h1 data-animation="animated zoomInLeft" class="">Donec convallis consectetur</h1>
@@ -85,40 +85,40 @@
 					  <p data-animation="animated flipInX" class="">Sed at lobortis urna, sed porta metus. Donec consequat et</p>
 					 <a class="view-all-btn" href="#" role="button" data-animation="animated zoomInUp">Read more</a> 
 			     </div>
-			 </div>
+			 </div> -->
 		</div> 
 		
 		<!-- Pagination --> 
-		<ul class="carou-direction-nav">
+		<!-- <ul class="carou-direction-nav">
 			<li><a class="carou-prev" href="#main-slider" data-slide="prev"></a></li>
 			<li><a class="carou-next" href="#main-slider" data-slide="next"></a></li>
-		</ul> 
+		</ul>  -->
 		<!-- /Pagination -->
 	</div>
 </section> 
 <!-------/Main slider---------------------->
 <!------Book_now Section------------------->
-<div class="book_now_section">
+<div class="book_now_section" name="group">
   <div class="container">
 	<div class="row">
 	  <div class="col-sm-offset-1 find-course-form">
-	    <input type="email" class="col-md-2 coll-form-control" id="receipt" placeholder="Arrive">
-		  <input type="email" class="col-md-2 coll-form-control" id="receipt" placeholder="Depart">
-		   <select class="col-md-2 coll-form-control" name="" id="adults" >
+	    <input name="group_textinput" type="email" class="col-md-2 coll-form-control" id="receipt" placeholder="Arrive">
+		  <input name="group_textinput" type="email" class="col-md-2 coll-form-control" id="receipt" placeholder="Depart">
+		   <select name="group_textinput" class="col-md-2 coll-form-control" name="" id="adults" >
 				<option value="" selected="">adults</option>
 				<option value="">1</option>
 				<option value="">2</option>
 				<option value="">3</option>
 				<option value="">4</option>
 			</select>
-			<select class="col-md-2 coll-form-control" name="" id="room" >
+			<select name="group_textinput" class="col-md-2 coll-form-control" name="" id="room" >
 				<option value="" selected="">Room</option>
 				 <option value="">Single</option>
 				 <option value="">Delux Double</option>
 				 <option value="">Super Delux</option>
 				 <option value="">Delux Single</option>
 			</select>
-			<div class="main-btn-area"><a href="#" class="main-btn">Book Now</a></div>	
+			<div class="main-btn-area"><button name="group_button" href="#" class="main-btn">Book Now</button></div>	
 		</div>
 	  </div>
   </div>
