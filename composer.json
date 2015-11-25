@@ -1,0 +1,12 @@
+{
+  "name": "red-ant/webbuilder",
+  "description": "description_text",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Tajuddin Khandaker",
+      "email": "tajuddin.khandaker.cse.ju@gmail.com"
+    }
+  ]
+}

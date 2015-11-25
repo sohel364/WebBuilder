@@ -13,7 +13,7 @@ if(!isset($_REQUEST['image']))
 }
 elseif(!isset($_REQUEST['type']))
 {
-	echo 'invalid upload type';
+    echo 'invalid upload type';
 }
 elseif(!isset($_REQUEST['image_src']))
 {
@@ -44,7 +44,8 @@ else
 	$template_id = $_REQUEST['templateId'];
 	$img_id = $_REQUEST['image_id'];
 	$img_src = $_REQUEST['image_src'];
-	$menu_id = $_REQUEST['menu_id'];
+    $menu_id = $_REQUEST['menu_id'];
+    $type = $_REQUEST['type'];
 
 	$data = $_REQUEST['image'];
 	$patterns = '/^data:image\/(png|jpg|jpeg);base64,/';
@@ -53,9 +54,23 @@ else
 	$binary = str_replace(' ', '+', $binary);
 
 	$strImagePath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . "webbuilder" . DIRECTORY_SEPARATOR . "archive" . DIRECTORY_SEPARATOR;
-	$strImageFileName = $user_id . '_' . $template_id . '_' . $menu_id . '_' . md5($img_id) . '.' . $_REQUEST['type'];
+	$strImageFileName = $user_id . '_' . $template_id . '_' . $menu_id . '_' . $img_id . '_' . md5($img_id) . '.' . $type;
 	$strFile = $strImagePath . $strImageFileName;
-	$success = file_put_contents($strFile, base64_decode($binary));
+
+	$hostArchiveDir = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_ADDR'] . ":" . $_SERVER['SERVER_PORT'] . DIRECTORY_SEPARATOR
+					. "webbuilder" . DIRECTORY_SEPARATOR . "archive" . DIRECTORY_SEPARATOR;
+
+    if($img_src != "") {
+		$success = file_put_contents($strFile, base64_decode($binary));
+		echo '{ "image_id" : "' . $img_id
+			. '", "image_type" : "' . $_REQUEST['type']
+			. '", "src": "' . $img_src
+			. '", "menu": "' . $menu_id
+			. '", "user_id": "' . $user_id
+			. '", "template_id": "' . $template_id
+			. '", "src_arch": "' . $hostArchiveDir . $strImageFileName
+			. '" }';
+	}
 
 	$dataImg = base64_decode($binary);
 	//echo $binary;
@@ -69,10 +84,11 @@ else
 	$objMedia->setTemplateID($template_id);
 	$objMedia->seType("image");
 	$objMedia->setResName($strImageFileName);
+
 	$media_man->SavePageContent($objMedia);
 
 //	echo json_encode('{ "image_id" : "' . $img_id . '", "image_type" : "' . $_REQUEST['type'] . '" }');
-	echo '{ "image_id" : "' . $img_id . '", "image_type" : "' . $_REQUEST['type'] . '", "src": "' . $img_src . '", "menu": "' . $menu_id . '", "user_id": "' . $user_id .  '", "template_id": "' . $template_id . '" }';
+//	echo '{ "image_id" : "' . $img_id . '", "image_type" : "' . $_REQUEST['type'] . '", "src": "' . $img_src . '", "menu": "' . $menu_id . '", "user_id": "' . $user_id .  '", "template_id": "' . $template_id . '" }';
 
 //	Note: alternative file saving code especially for image processing
 //	$im = imagecreatefromstring($dataImg);

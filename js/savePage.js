@@ -97,12 +97,95 @@ function getMenuList() {
     return menuList;
 }
 
+function traverseImages() {
+    var containers = [];
+    $(document).ready(function () {
+
+        console.log('[WB-EXP][container-id: logging]');
+
+        var allElements = $("body").find("*[id^='container_']").each(function (index, element) {
+            var parts = element.id.split('_');
+            //if(parts.length == 2){
+            //    console.log('[WB-EXP][container-parts [parent]: ' + parts + ']');
+            //    console.log('[WB-EXP][container-parts [parent][style]: ' + $('#' + element.id).attr("style") + ']'); //$("#stylediv").attr('style')
+            //}
+            if (parts.length == 3) {
+                var tagName = parts[2].split('-')[0];
+                if (tagName != 'img') {
+                    console.log('[WB-EXP][container-parts [child]: ' + parts + '][' + $('#' + element.id)[0].nodeName + ']');
+                    //console.log('[WB-EXP][container-parts [child][style:background(url)]: ' + $('#' + element.id).attr("style") + ']'); //$("#stylediv").attr('style')
+                    if ($('#' + element.id).css("background-image") == "none" || $('#' + element.id).css("background-image") == "undefined") {
+                        console.log('[WB-EXP][container-parts [child][index]: ' + index + ']');
+                        console.log('[WB-EXP][container-parts [child][style:background(url)]: ' + $('#' + element.id).css("background-image") + ']');//img.attr("src").split('.').pop()
+                    }
+                    else {
+                        console.log('[WB-EXP][container-parts [child][index]: ' + index + ']');
+                        console.log('[WB-EXP][container-parts [child][style:background(url)]: ' + $('#' + element.id).css("background-image") + ']');
+                        console.log('[WB-EXP][container-parts [child][image:type]: ' + $('#' + element.id).css("background-image").split('.').pop() + ']');
+                        console.log('[WB-EXP][container-parts [child][image:size]: ' + $('#' + element.id).css("width") + 'x' + $('#' + element.id).css("height") + ']');
+                        console.log('[WB-EXP][container-parts [child][image:url]: ' + $("#" + element.id).css("background-image").replace("url", "").replace("(", "").replace(")", "").replace("\"", "").replace("\"", "").trim() + ']');
+
+                        var binary = getBase64Image($('#' + element.id), "hidden-canvas");
+                        var url = $('#' + element.id).css("background-image").replace("url", "").replace("(","").replace(")","").replace("\"","").replace("\"","").trim();
+                        // TODO: Image Type is set after above line is executed [getBase64Image(images[i], "hidden-canvas");]
+                        var parent_id = parts[0] + '_' + parts[1];
+                        var containerObj = '{ "src": "' + url
+                            + '", "index": ' + index
+                            + ', "type": "' + url.split('.').pop()
+                            + '", "id": "' + element.id
+                            + '", "data": "' + binary
+                            + '", "menu": "' + curMenu
+                            + '", "tag": "' + tagName
+                            + '" }';
+                        containers.push(containerObj);
+                        console.log('[WB-EXP][container-json]: ' + containerObj);
+                    }
+                }
+                else {
+                    console.log('[WB-EXP][container-parts [child]: ' + parts + '][' + $('#' + element.id)[0].nodeName + ']');
+                    if ($('#' + element.id).attr("src") == "undefined" || $('#' + element.id).attr("src") == "none") {
+                        console.log('[WB-EXP][container-parts [child][index]: ' + index + ']');
+                        console.log('[WB-EXP][container-parts [child][style:src]: ' + $('#' + element.id).attr("src") + ']'); //$("#stylediv").attr('src')
+                    }
+                    else {
+
+                        var binary = getBase64ImageForImageElement($('#' + element.id), "hidden-canvas");
+                        var url = $('#' + element.id).attr("src");
+
+                        console.log('[WB-EXP][container-parts [child][index]: ' + index + ']');
+                        console.log('[WB-EXP][container-parts [child][style:src]: ' + $('#' + element.id).attr("src") + ']'); //$("#stylediv").attr('src')
+                        console.log('[WB-EXP][container-parts [child][image:type]: ' + $('#' + element.id).attr("src").split('.').pop() + ']'); //$("#stylediv").attr('src')
+
+                        // TODO: Image Type is set after above line is executed [getBase64Image(images[i], "hidden-canvas");]
+                        var parent_id = parts[0] + '_' + parts[1];
+                        var containerObj = '{ "src": "' + url
+                            + '", "index": ' + index
+                            + ', "type": "' + url.split('.').pop()
+                            + '", "id": "' + element.id
+                            + '", "data": "' + binary
+                            + '", "menu": "' + curMenu
+                            + '", "tag": "' + tagName
+                            + '" }';
+                        containers.push(containerObj);
+                        console.log('[WB-EXP][container-json]: ' + containerObj);
+                    }
+                }
+            }
+        });
+        console.log('[WB-EXP][container-count: ' + allElements.length + ']');
+    });
+    allImages[curMenu] = containers;
+}
+
 /*
  * Calls ajax to save the page contents(menu, submenu, contents etc)
  * @returns {undefined}
  */
 function savePage(user_id, template_id) {
     //var user_id = 'id', template_id = '87349q64';
+
+    traverseImages();
+    //return;
 
     if(isUserLoggedIn === null || isUserLoggedIn === "0") {
         alert("Please sign in to save the template");
@@ -127,7 +210,7 @@ function savePage(user_id, template_id) {
 
             loadImages(user_id, template_id, function(imageObj){
 
-                console.log("[WB] image-type: " + imageObj.type );
+                console.log("[WB-EXP] image-type: " + imageObj.image_type );
 
             });
 
@@ -141,17 +224,20 @@ function savePage(user_id, template_id) {
                     console.log("[WB] image: " + allImages[menu_item][image]);
 
                     var imageObj = JSON.parse(allImages[menu_item][image]);
-                    console.log("[WB]" + user_id + " " + template_id + " SAVING...");
 
-                    saveCurrentPageImages(isEdit, imageObj.data);
+                    if(!isEmpty(imageObj.src)){
+                        console.log('[WB-EXP] image-src: \"' + imageObj.src + '\"');
+                        console.log("[WB-EXP]" + user_id + " " + template_id + " SAVING...");
+                    }
 
-                    console.log("[WB]" + user_id + " " + template_id + " SAVED!");
+                    saveCurrentPageImages(isEdit, imageObj);
+
+                    if(!isEmpty(imageObj.src))
+                        console.log("[WB-EXP]" + user_id + " " + template_id + " SAVED!");
                 });
             });
 
             insertPage(url, menuList, allImages, savedName);
-
-            alert('Saved Successfully!!!');
 
         } else {
             var url = getPageUpdaterUrl();
@@ -163,7 +249,7 @@ function savePage(user_id, template_id) {
 
             loadImages(user_id, template_id, function(imageObj){
 
-                console.log("[WB] [REPLIED] image-src: " + imageObj.src );
+                console.log("[WB] [REPLIED] image-src: " + imageObj.src_arch );
 
             });
 
@@ -173,6 +259,8 @@ function savePage(user_id, template_id) {
                 var image_items = Object.keys(allImages[menu_item]);
                 //items.sort();
                 image_items.forEach(function(image){
+
+                    console.log("[WB] json: " + allImages[menu_item][image]);
 
                     var imageObj = JSON.parse(allImages[menu_item][image]);
 
@@ -184,9 +272,7 @@ function savePage(user_id, template_id) {
                 });
             });
 
-            updatePage(url, menuList, allImages, savedName);
-
-            alert('Updated Successfully!!!');
+            updatePage(url, menuList, template_id, savedName);
         }
     }
     
@@ -194,7 +280,7 @@ function savePage(user_id, template_id) {
     x++;
 }
 
-function insertPage(url, menuList, imageObj, savedName) {
+function insertPage(url, menuList, template_id, savedName) {
 
     //var image = '{ "src": "' + imageObj.src + '", "index": ' + imageObj.image_id + ', "type": "' + imageObj.image_type + '", "menu": "' + imageObj.menu + '" }';
     //
@@ -206,9 +292,8 @@ function insertPage(url, menuList, imageObj, savedName) {
             dataType: 'json',
             data: {
                 menulists: menuList,
-                image: image,
                 menucontentlist: menuContens, 
-                templateid: imageObj.template_id, //template_id,
+                templateid: template_id, //template_id,
                 savedname: savedName,
                 categoryname:currentCategory, 
                 templatename:currentTemplate
@@ -218,7 +303,7 @@ function insertPage(url, menuList, imageObj, savedName) {
                 if (!('error' in obj)) {
                     //yourVariable = obj.result;
                     if(obj.saveUserTemplate === '1' && 'savedTemplateId' in obj) {
-                        //alert('Saved Successfully!!!');
+                        alert('Saved Successfully!!!');
                         var savedTemplateID = obj.savedTemplateId;
                         var redirectURL = getBaseUrl()+'/views/content_views/template_editor.php?category='+currentCategory+'&template='+currentTemplate+'&templateid='+savedTemplateID;
                         window.location.href = redirectURL;
@@ -240,7 +325,7 @@ function insertPage(url, menuList, imageObj, savedName) {
         });
 }
 
-function updatePage(url, menuList, imageObj, savedName) {
+function updatePage(url, menuList, template_id, savedName) {
 
     //var image = '{ "src": "' + imageObj.src + '", "index": ' + imageObj.image_id + ', "type": "' + imageObj.image_type + '", "menu": "' + imageObj.menu + '" }';
 
@@ -250,13 +335,13 @@ function updatePage(url, menuList, imageObj, savedName) {
             type: "POST",
             url: url,
             dataType: 'json',
-            data: {menulists: menuList, image: image, menucontentlist: menuContens, templateid: imageObj.template_id, savedname: savedName, categoryname:currentCategory, templatename:currentTemplate, menuidlist:user_menu_id_array},
+            data: {menulists: menuList, menucontentlist: menuContens, templateid: template_id, savedname: savedName, categoryname:currentCategory, templatename:currentTemplate, menuidlist:user_menu_id_array},
             success: function (obj, textstatus) {
                 console.log("[WB]" + textstatus + "%%%####");
                 hideSavingIcon();
                 if (!('error' in obj)) {
                     if(obj.saveUserTemplate === '1') {
-                        //alert('Updated Successfully!!!');
+                        alert('Updated Successfully!!!');
                         ///views/content_views/template_editor.php?category=uncategorized&template=part1&templateid=uncategorized_part1_1_2015_08_13_04_56_32_pm
                         var redirectURL = getBaseUrl()+'/views/content_views/template_editor.php?category='+currentCategory+'&template='+currentTemplate+'&templateid='+template_id;
                         window.location.href = redirectURL;

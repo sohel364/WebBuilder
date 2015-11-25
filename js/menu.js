@@ -8,7 +8,7 @@
 
 var menuContens = {}; //Global Menu Content Array(Key-value pair)
 var curMenu; //Current Menu
-var defaultMenuHtml; // Default body html of the current template
+var defaultMenuHtml; // Default body html of the current template-*+
 var allImages = {};
 var imageObjects = {};
 var imageCounter = -1;
@@ -115,42 +115,112 @@ function uploadImage(images, i, srcList) {
     //console.log("[WB]Saving ...###" + images[i].src + "###");
 }
 
+function isEmpty(value) {
+    return value == "none" || value == "undefined" || value == "";
+}
+
 function loadImages(user_id, template_id, callbackFunc)
 {
     _user_id = user_id;
     _template_id  = template_id;
     _callbackFn = callbackFunc;
 
-    var images = document.getElementsByTagName('img');
+    //var images = document.getElementsByTagName('img');
 
-    var srcList = {};
-
-    for(var i = 0; i < images.length; i++) {
-
-        var binary = getBase64Image(images[i], "hidden-canvas");
-
-        //console.log("[WB] image-type: " + imageType);
-
-        // TODO: Image Type is set after above line is executed [getBase64Image(images[i], "hidden-canvas");]
-        srcList[i] = '{ "src": "' + images[i].src + '", "index": ' + i + ', "type": "' + imageType + '", "id": "' + images[i].id + '", "data": "' + binary + '", "menu": "' + curMenu + '" }';
-        //var image = JSON.parse(srcList[i]);
-        //console.log("[WB] ALL images of " + curMenu + " image-info is: " + image.type + "#" + image.index);
-    }
-    allImages[curMenu] = srcList;
+    //var containers = [];
+    //
+    //$(document).ready(function() {
+    //
+    //    console.log('[WB-EXP][container-id: logging]');
+    //
+    //    var allElements = $("body").find("*[id^='container_']").each(function(index, element){
+    //
+    //        var parts = element.id.split('_');
+    //
+    //        if(parts.length == 3){
+    //            var tagName = parts[2].split('-')[0];
+    //
+    //            if($('#' + element.id)[0].nodeName != "IMG")
+    //            {
+    //                console.log('[WB][container-parts [child]: ' + parts + ']');
+    //
+    //                var url =  $('#' + element.id).css("background-image");
+    //
+    //                if(!isEmpty(url))
+    //                {
+    //                    var binary = getBase64Image($('#' + element.id), "hidden-canvas");
+    //                    console.log('[WB][container-parts [child][style:background(url)]: ' + $('#' + element.id).css("background-image") + ']');
+    //                    url = $('#' + element.id).css("background-image").replace("url", "").replace("(","").replace(")","").replace("\"","").replace("\"","").trim();
+    //
+    //                    // TODO: Image Type is set after above line is executed [getBase64Image(images[i], "hidden-canvas");]
+    //                    var parent_id = parts[0] + '_' + parts[1];
+    //                    var containerObj = '{ "src": "' + url
+    //                        + '", "index": ' + index
+    //                        + ', "type": "' + imageType
+    //                        + '", "id": "' + element.id
+    //                        + '", "data": "' + binary
+    //                        + '", "menu": "' + curMenu
+    //                        + '", "tag": "' + tagName
+    //                        + '" }';
+    //                    containers.push(containerObj);
+    //                    console.log('[WB-EXP][container-json]: ' + containerObj);
+    //                }
+    //            }
+    //            else
+    //            {
+    //                console.log('[WB-EXP][container-parts [child]: ' + parts + ']');
+    //
+    //                var url = $('#' + element.id).attr("src");
+    //
+    //                if(!isEmpty(url))
+    //                {
+    //                    var binary = getBase64ImageForImageElement($('#' + element.id), "hidden-canvas");
+    //                    console.log('[WB-EXP][container-parts [child][style:src]: ' + $('#' + element.id).attr("src") + ']');
+    //
+    //                    // TODO: Image Type is set after above line is executed [getBase64Image(images[i], "hidden-canvas");]
+    //                    var parent_id = parts[0] + '_' + parts[1];
+    //                    var containerObj = '{ "src": "' + url
+    //                                    + '", "index": ' + index
+    //                                    + ', "type": "' + imageType
+    //                                    + '", "id": "' + element.id
+    //                                    + '", "data": "' + binary
+    //                                    + '", "menu": "' + curMenu
+    //                                    + '", "tag": "' + tagName
+    //                                    + '" }';
+    //                    containers.push(containerObj);
+    //                    console.log('[WB-EXP][container-json]: ' + containerObj);
+    //                    if(element.id == "container_banner-1_img-1")
+    //                    alert('[WB-EXP][container-count]: ' +  containerObj);
+    //                }
+    //            }
+    //        }
+    //    });
+    //    console.log('[WB-EXP][container-count: ' + allElements.length + ']');
+    //});
+    //console.log('[WB-EXP][container-count: ' + containers.length + ']');
+    //allImages[curMenu] = containers;
 }
 
 function saveCurrentPageImages(isEdit, imageObj) {
 
     if(!isEdit) {
+        if(!isEmpty(imageObj.src))
+            console.log("[WB] on insert image-src: \"" + imageObj.src + "\"");
         sendRequest(imageObj);
-        console.log("[WB] on insert image-menu: " + imageObj.menu);
     }
     else
     {
-        if(imageObj.src.indexOf("blob") < 0 || imageObj.src.indexOf("localhost") < 0)
+        if(imageObj.src != "")
+        {
+            console.log("[WB] on update image-src: " + imageObj.src);
+            //alert("[WB] on update image-id: " + imageObj.id);
+            console.log("[WB] on update image-blob: " + imageObj.src.indexOf("blob"));
+            console.log("[WB] on update image-localhost: " + imageObj.src.indexOf("localhost"));
+        }
+        //if(imageObj.src.indexOf("blob") > -1)
         {
             sendRequest(imageObj);
-            console.log("[WB] on update image-menu: " + imageObj.menu);
+            console.log("[WB] on update image-menu: " + imageObj.src);
         }
     }
 }
@@ -166,25 +236,46 @@ function test_upload_image(){
 
 }
 
-
-function getBase64Image(img, id) {
+function getBase64ImageForImageElement(img, id) {
 
     // Create an empty canvas element
     var canvas = document.getElementById(id);
 
-    canvas.width = img.width;
-    canvas.height = img.height;
+    console.log('[WB][size]:' + canvas.width + 'x' + canvas.height);
+
+    console.log('[WB-EXP][size]:' + canvas.width + 'x' + canvas.height);
+    console.log('[WB-EXP][size]:' + img.attr("width") + 'x' + img.attr("height"));
+
+    var imageData = document.getElementById(img.attr("id"));
+    console.log('[WB-EXP][object]:' + imageData.id);
+    console.log('[WB-EXP][id]:' +  img.attr("id"));
+    console.log('[WB-EXP][src]:' +  imageData.src);
+    console.log('[WB-EXP][width]:' +  imageData.width);
+    console.log('[WB-EXP][height]:' +  imageData.height);
+
+    canvas.width = imageData.width;
+    canvas.height = imageData.height;
+
+    //imageData = new Image();
+    //imageData.src = img.attr("src");
 
     // Copy the image contents to the canvas
     var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
+
+    //imageData.onload(function(){
+    //
+    //    ctx.drawImage(imageData, 0, 0);
+    //});
+
+    ctx.drawImage(imageData, 0, 0);
 
     // Get the data-URL formatted image
     // Firefox supports PNG and JPEG. You could check img.src to
     // guess the original format, but be aware the using "image/jpg"
     // will re-encode the image.
 
-    var s = img.src.split('.').pop();
+    var s = img.attr("src").split('.').pop();
+    console.log('[WB][type]:' + s);
 
     if(s.indexOf("png")>-1){
         var dataURL = canvas.toDataURL("image/png");
@@ -197,12 +288,55 @@ function getBase64Image(img, id) {
         imageType = "jpeg";
         return dataURL;
     }
-    console.log("[WB] image-type: " + "WoW!");
+    return null;
+}
 
-	//if(s.indexOf("jpeg")>-1){
-	//		 var dataURL = canvas.toDataURL("image/jpeg");
-	//		 return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-	//	}
+
+function getBase64Image(img, id) {
+
+    // Create an empty canvas element
+    var canvas = document.getElementById(id);
+
+    canvas.width = img.css("width").replace("px", "").trim();
+    canvas.height = img.css("height").replace("px", "").trim();
+
+    console.log('[WB][size]:' + canvas.width + 'x' + canvas.height);
+    console.log('[WB][size]:' + img.css("width") + 'x' + img.css("height"));
+
+    // Copy the image contents to the canvas
+    var ctx = canvas.getContext("2d");
+
+    var imageData = document.createElement('img');
+    imageData.src = img.css("background-image").replace("url", "").replace("(","").replace(")","").replace("\"","").replace("\"","").trim();
+    imageData.onload = function(){
+
+        canvas.width = imageData.width;
+        canvas.height = imageData.height;
+        ctx.drawImage(imageData, 0, 0);
+        console.log('[WB][src]:' + imageData.src);
+        console.log('[WB][size]:' + imageData.width + 'x' + imageData.height);
+    };
+
+    // Get the data-URL formatted image
+    // Firefox supports PNG and JPEG. You could check img.src to
+    // guess the original format, but be aware the using "image/jpg"
+    // will re-encode the image.
+
+    var s = imageData.src.split('.').pop();
+
+    console.log('[WB][type]:' + s);
+
+    if(s.indexOf("png")>-1){
+        var dataURL = canvas.toDataURL("image/png", 1.0);
+        imageType = "png";
+        return dataURL;
+    }
+
+    if(s.indexOf("jpg")>-1 || s.indexOf("jpeg")>-1){
+        var dataURL = canvas.toDataURL("image/jpeg", 1.0);
+        imageType = "jpeg";
+        return dataURL;
+    }
     return null;
 }
 
@@ -226,7 +360,13 @@ function sendRequest(imageObj)
     if (xhr)
     {
         var url = "http://localhost/webbuilder/views/content_views/uploader.php";
-        var payload = "image=" + imageObj.data + "&type=" + imageObj.type + "&userId=" + _user_id + "&templateId=" + _template_id + "&image_src=" + imageObj.src + "&image_id=" + imageObj.index + "&menu_id=" + imageObj.menu;
+        var payload = "image=" + imageObj.data
+                    + "&type=" + imageObj.type
+                    + "&userId=" + _user_id
+                    + "&templateId=" + _template_id
+                    + "&image_src=" + imageObj.src
+                    + "&image_id=" + imageObj.id
+                    + "&menu_id=" + imageObj.menu;
         xhr.open("POST",url,true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded ');
         xhr.setRequestHeader("Content-length", payload.length);
@@ -255,6 +395,17 @@ function handleResponse(xhr)
         var imageObj = JSON.parse(xhr.responseText);
 
         console.log("[WB] RESP " + imageObj.image_id);
+        // Change image source
+        if($('#' + imageObj.image_id)[0].nodeName == "IMG")
+        {
+            $('#' + imageObj.image_id).attr("src", imageObj.src_arch);
+            console.log("[WB] RESP SRC:" +  $('#' + imageObj.image_id).attr("src"));
+        }
+        else
+        {
+            $('#' + imageObj.image_id).css("background-image", "url(" + imageObj.src_arch  + ")");
+            console.log("[WB] RESP URL:" + $('#' + imageObj.image_id).css("background-image"));
+        }
         _callbackFn(imageObj);
     }
 }
