@@ -388,7 +388,10 @@ $_SESSION['isInEditor'] = $isInEditor;
 	</div>
 	<!-- Option Menu End -->
 
-
+	<div id="control_editor">
+		<?php include 'control_editor.php';?>
+	</div>
+	
 	<div id="control_option_dialog" class="dialog">
 		<button id="dialog_btn_edit" class="btn dialog_btn "
 			style="width: 100%">
@@ -558,6 +561,10 @@ $_SESSION['isInEditor'] = $isInEditor;
 		
 		<button id = "btn_group_edit_add_input_text" class="text_editor_component" style="display: none;">
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Text Input
+		</button>
+		
+		<button id = "btn_group_edit_background" class="text_editor_component">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Edit Background
 		</button>
 		
 		<button id = "btn_group_edit_panel_close" class="text_editor_component">

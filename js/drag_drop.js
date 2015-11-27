@@ -1546,6 +1546,10 @@ function initializeAllDialogButton() {
 		new_label.appendTo(editable_group);
 	});
 	
+	$("#btn_group_edit_background").click(function(){
+		openBGEditor(editable_control);
+	});
+	
 	$("#btn_group_edit_add_input_text").click(function(){
 		var new_text_input = $('<input name="textinput" type="text"' +
 				' name="textinput" placeholder="Write Here"' +
@@ -1581,6 +1585,8 @@ $(function() {
 	makeBodyDroppable();
 	makeImageSliderThumbnailSortable();
 	initializeAllDialogButton();
+	
+	
 
 	// $(document).mouseup(function(e){
 	// var clicked_item = e.target;
