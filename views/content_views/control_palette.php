@@ -46,6 +46,9 @@
 		        <li>
 		            <a href="#text">Text</a>
 		        </li>
+		        <li>
+		            <a href="#form">Form</a>
+		        </li>
 		    </ul>
 		    <div id="btn_template_palette">
 		        <!-- <button name='button' class='selectorField draggableField btn-primary btn-lg'>Click Me</button> -->
@@ -72,6 +75,10 @@
 		        <br />
 		        <h3 name='header' class='selectorField draggableField'>Title, Edit me</h3>
 		        
+		    </div>
+		    
+		    <div id="form">
+		    	<h1 name='group' class='selectorField draggableField'>Feedback Form</h1>
 		    </div>
 		</div>
 	</div>

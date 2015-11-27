@@ -10,7 +10,7 @@
 	
 <!-- Background Editor -->
 
-<div id="dialog_bg_editor">
+<div id="dialog_bg_editor" class="dialog">
 	<div class="bg_eidtor">
 		<div id="bg_editor_sample_images_section" class="bg_sample_image_palette">
 			<ul id = "bg_editor_sample_images_list" class="bg_sample_image_grid">

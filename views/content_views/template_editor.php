@@ -790,26 +790,27 @@ $_SESSION['isInEditor'] = $isInEditor;
 		style="display: none; position: absolute; width: 200px"></div>
 
 	<div id="group_template" name="group"
-		style="display: none; position: absolute; width: 400px; height: auto; border: 1px solid lightgrey; border-radius: 5px; padding: 10px">
-		<h3 name="group_textarea" style="">User Feedback</h3>
-		<hr name="group_separator"></hr>
-		<label name="group_textarea">Name : </label> 
-		<input id="feedback_user_name" name="group_textinput" type="text" placeholder="Your Name"
-			style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
-
-			<label name="group_textarea">Email : </label> 
-			<input id="feedback_user_email" name="group_textinput" type="text" placeholder="Your Email"
-			style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
-
-				<label name="group_textarea">Comment : </label> 
-				<textarea id="feedback_user_comment"
-					name="group_textinput" value="Fill in your Comment"
-					style="resize: none; width: 100%; height: 150px; border: .5px solid lightgrey; border-radius: 5px;">
-			</textarea>
-				<hr name="group_separator"></hr>
-
-				<button name="group_button" class="btn btn-success btn-lg" style="float: right;">Submit</button>
+		style="display: none; position: absolute; width: 400px; height: auto; border: 1px solid lightgrey; border-radius: 5px; padding: 10px; background: lightgray;">
+		<div id="group_template_div-1">
+			<h3 name="group_textarea" style="">User Feedback</h3>
+			<hr name="group_separator"></hr>
+			<label name="group_textarea">Name : </label> 
+			<input id="feedback_user_name" name="group_textinput" type="text" placeholder="Your Name"
+				style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
 	
+				<label name="group_textarea">Email : </label> 
+				<input id="feedback_user_email" name="group_textinput" type="text" placeholder="Your Email"
+				style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
+	
+					<label name="group_textarea">Comment : </label> 
+					<textarea id="feedback_user_comment"
+						name="group_textinput" value="Fill in your Comment"
+						style="resize: none; width: 100%; height: 150px; border: .5px solid lightgrey; border-radius: 5px;">
+				</textarea>
+					<hr name="group_separator"></hr>
+	
+					<button name="group_button" class="btn btn-success btn-lg" style="float: right;">Submit</button>
+	</div>
 	</div>
 
 </body>
