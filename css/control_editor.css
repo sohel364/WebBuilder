@@ -1,5 +1,5 @@
 .bg_eidtor {
-	height: 100%;
+	height: 90%;
 	width: 100%;
 }
 
@@ -21,7 +21,7 @@
 	height: 100%;
 }
 
-.bg_editor_gradient {
+.bg_editor_box {
 	border: 1px solid gray;
 	border-radius: 15px;
 }
@@ -69,4 +69,6 @@
 	float: right;
 }
 
-
+.bg_editor_button {
+	float: right;
+}

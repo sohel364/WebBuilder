@@ -35,7 +35,6 @@ function initializeControlPalette(){
 		collaspControlPalette()
 	});
 	
-	initializeBackgroundEditor();
 	initiateControls("btn_template");
 //	var control = $("#btn_template_1").clone();
 ////	control.css('left', '100px');
@@ -44,105 +43,9 @@ function initializeControlPalette(){
 //	control.appendTo($("#btn_template_palette"));
 ////	$("#btn_template_palette").append(control);
 	
-	
-}
-
-function initializeBackgroundEditor(){
-	$("#color_picker_background").spectrum(
-			{
-				color : "#6cc8f9",
-				flat : false,
-				showInput : false,
-				containerClassName : 'color_picker_container',
-				replacerClassName : 'color_picker_icon',
-				showInitial : true,
-				showPalette : true,
-				showSelectionPalette : true,
-				maxPaletteSize : 5,
-				preferredFormat : "hex",
-				localStorageKey : "spectrum.demo",
-				move : function(color) {
-
-				},
-				show : function() {
-
-				},
-				beforeShow : function() {
-				},
-				hide : function() {
-				},
-				change : function(color) {
-					$("#body").css("background", color);
-				},
-				palette : [
-						[ "rgb(0, 0, 0)", "rgb(67, 67, 67)",
-								"rgb(102, 102, 102)", "rgb(204, 204, 204)",
-								"rgb(217, 217, 217)", "rgb(255, 255, 255)" ],
-						[ "rgb(152, 0, 0)", "rgb(255, 0, 0)",
-								"rgb(255, 153, 0)", "rgb(255, 255, 0)",
-								"rgb(0, 255, 0)", "rgb(0, 255, 255)",
-								"rgb(74, 134, 232)", "rgb(0, 0, 255)",
-								"rgb(153, 0, 255)", "rgb(255, 0, 255)" ],
-						[ "rgb(230, 184, 175)", "rgb(244, 204, 204)",
-								"rgb(252, 229, 205)", "rgb(255, 242, 204)",
-								"rgb(217, 234, 211)", "rgb(208, 224, 227)",
-								"rgb(201, 218, 248)", "rgb(207, 226, 243)",
-								"rgb(217, 210, 233)", "rgb(234, 209, 220)",
-								"rgb(221, 126, 107)", "rgb(234, 153, 153)",
-								"rgb(249, 203, 156)", "rgb(255, 229, 153)",
-								"rgb(182, 215, 168)", "rgb(162, 196, 201)",
-								"rgb(164, 194, 244)", "rgb(159, 197, 232)",
-								"rgb(180, 167, 214)", "rgb(213, 166, 189)",
-								"rgb(204, 65, 37)", "rgb(224, 102, 102)",
-								"rgb(246, 178, 107)", "rgb(255, 217, 102)",
-								"rgb(147, 196, 125)", "rgb(118, 165, 175)",
-								"rgb(109, 158, 235)", "rgb(111, 168, 220)",
-								"rgb(142, 124, 195)", "rgb(194, 123, 160)",
-								"rgb(166, 28, 0)", "rgb(204, 0, 0)",
-								"rgb(230, 145, 56)", "rgb(241, 194, 50)",
-								"rgb(106, 168, 79)", "rgb(69, 129, 142)",
-								"rgb(60, 120, 216)", "rgb(61, 133, 198)",
-								"rgb(103, 78, 167)", "rgb(166, 77, 121)",
-								"rgb(91, 15, 0)", "rgb(102, 0, 0)",
-								"rgb(120, 63, 4)", "rgb(127, 96, 0)",
-								"rgb(39, 78, 19)", "rgb(12, 52, 61)",
-								"rgb(28, 69, 135)", "rgb(7, 55, 99)",
-								"rgb(32, 18, 77)", "rgb(76, 17, 48)" ] ]
-			});
-	
-	$(".sp-replacer").css("width", "250px");
-	
-	$('#file_picker_bg').change(function(event) {
-		var tmp_file_path = URL.createObjectURL(event.target.files[0]);
-		//var file_name = document.getElementById('file_picker_bg').value;
-		$("#body").css("background-image", "url(" + tmp_file_path + ")");
-		
-
+	$("#btn_open_bg_editor").click(function(){
+		openBGEditor($("#container_background-1"));
 	});
-
-	$("#btn_set_bg_image").click(function(){
-		$("#file_picker_bg").trigger("click");
-	});
-	
-	$("#btn_set_bg_gradient").click(function(){
-		$("#body").css("background", "radial-gradient(white, black)");
-	});
-	
-	$("#btn_fix_bg_image").click(function(){
-		if( is_bg_fixed)
-		{
-			is_bg_fixed = false;
-			$("#body").css("background-attachment", "scroll");
-			$("#btn_fix_bg_image").text("Set Fixed Background Image");
-			
-		}else{
-			is_bg_fixed = true;
-			$("#body").css("background-attachment", "fixed");
-			$("#btn_fix_bg_image").text("Set Scrollable Background Image");
-		}
-		
-	});
-	
 	
 	
 }

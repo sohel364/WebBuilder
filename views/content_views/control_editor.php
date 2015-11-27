@@ -17,17 +17,38 @@
 			</ul>
 		</div>
 		<div id="bg_editor_section" class="section_bg_editor">
-			<div>
+			<div class="bg_editor_box">
 				<button id="btn_select_bg_image" class="btn btn-default btn-block">Select Background Image from PC</button>
 				<input id="file_picker_bg_editor" type="file" name="files[]" single
 							style="display: none">
 				</input>
 				<br />
 				
+				<label>Background Image Position :  </label>
+				<select id="dropdown_bg_image_position" class="text_editor_component">
+					<option value="left">left</option>
+					<option value="right">right</option>
+					<option value="center">center</option>
+				</select>
+				
+				<label>Background Image Repeat :  </label>
+				<select id="dropdown_bg_image_repeat" class="text_editor_component">
+					<option value="repeat">repeat</option>
+					<option value="repeat-x">repeat-x</option>
+					<option value="repeat-y">repeat-y</option>
+					<option value="no-repeat">no-repeat</option>
+				</select>
+				
+				<label>Background Image Attachment :  </label>
+				<select id="dropdown_bg_image_attachment" class="text_editor_component">
+					<option value="scroll">scroll</option>
+					<option value="fixed">fixed</option>
+				</select>
+				
 			</div>
 			
 			
-			<div class="bg_editor_gradient">
+			<div class="bg_editor_box">
 				<br />
 				<div>
 					<label>Background Color : </label>
@@ -55,7 +76,10 @@
 				</ul>
 			</div>
 		</div>
+		<button id="btn_bg_editor_save" class="btn btn-default bg_editor_button">Cancel</button>
+		<button id="btn_bg_editor_cancel"class="btn btn-default bg_editor_button">Save</button>
 	</div>
+	
 </div>
 	
 	

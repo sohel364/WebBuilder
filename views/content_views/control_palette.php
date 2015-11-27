@@ -82,17 +82,7 @@
 			<button id="btn_cp_holder_info" class="cp_holder_btn ">?</button>
 		</div>
 		<div class="backgroud_edit">
-			<div>
-				<label>Background Color : </label>
-				<input type='text' id="color_picker_background" class="background_color_picker" />
-			</div>
-			<button id="btn_set_bg_gradient" class="btn btn-default btn-block">Set background Gradient</button>
-			<button id="btn_set_bg_image" class="btn btn-default btn-block">Set background Image</button>
-			<button id="btn_fix_bg_image" class="btn btn-default btn-block">Set Fixed background Image</button>
-			<input id="file_picker_bg" type="file" name="files[]" single
-						style="display: none">
-				
-			
+			<button id="btn_open_bg_editor" class="btn btn-default btn-block">Open Background Editor</button>
 		</div>
 		<div class="background_theme">
 			<br />

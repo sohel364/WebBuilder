@@ -74,6 +74,26 @@ function initializeBGEditor(){
 		setRadialGradientOut(editable_bg_control);
 	});
 	
+	$("#dropdown_bg_image_position").on("change", function() {
+		editable_bg_control.css("background-position", this.value);
+	});
+	
+	$("#dropdown_bg_image_repeat").on("change", function() {
+		editable_bg_control.css("background-repeat", this.value);
+	});
+	
+	$("#dropdown_bg_image_attachment").on("change", function() {
+		editable_bg_control.css("background-attachment", this.value);
+	});
+	
+	$("#btn_bg_editor_save").click(function(){
+		$("#dialog_bg_editor").dialog("close");
+	});
+	
+	$("#btn_bg_editor_cancel").click(function(){
+		$("#dialog_bg_editor").dialog("close");
+	});
+	
 }
 
 function updateGradientPalletes(){
