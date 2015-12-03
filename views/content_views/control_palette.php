@@ -49,6 +49,9 @@
 		        <li>
 		            <a href="#form">Form</a>
 		        </li>
+		        <li>
+		            <a href="#space">Space</a>
+		        </li>
 		    </ul>
 		    <div id="btn_template_palette">
 		        <!-- <button name='button' class='selectorField draggableField btn-primary btn-lg'>Click Me</button> -->
@@ -79,6 +82,9 @@
 		    
 		    <div id="form">
 		    	<h1 name='group' class='selectorField draggableField'>Feedback Form</h1>
+		    </div>
+		    <div id="form">
+		    	<h1 name='space' class='selectorField draggableField'>New Space</h1>
 		    </div>
 		</div>
 	</div>
