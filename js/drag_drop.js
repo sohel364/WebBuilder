@@ -263,7 +263,13 @@ function makeBodyDroppable() {
 						draggable = $("#image_slider_template");
 						is_image_slider = true;
 					} else if (droppable_name == "group") {
-						draggable = $("#form_template_feedback");
+						if (ui.helper.data("form_type") == "feedback"){
+							draggable = $("#form_template_feedback");
+						}else if (ui.helper.data("form_type") == "contact"){
+							draggable = $("#form_template_contact");
+						}else if (ui.helper.data("form_type") == "leavemsg"){
+							draggable = $("#form_template_leavemsg");
+						}
 						is_group_builder = true;
 					}
 					

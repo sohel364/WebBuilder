@@ -81,9 +81,11 @@
 		    </div>
 		    
 		    <div id="form">
-		    	<h1 name='group' class='selectorField draggableField'>Feedback Form</h1>
+		    	<h1 name='group' data-form_type="feedback" class='selectorField draggableField'>Feedback Form</h1>
+		    	<h1 name='group' data-form_type="contact" class='selectorField draggableField'>contact Form</h1>
+		    	<h1 name='group' data-form_type="leavemsg" class='selectorField draggableField'>Leave Msg Form</h1>
 		    </div>
-		    <div id="form">
+		    <div id="space">
 		    	<h1 name='space' class='selectorField draggableField'>New Space</h1>
 		    </div>
 		</div>
