@@ -8,6 +8,8 @@ var cp_position_list;
 var is_bg_fixed = false;
 
 
+
+
 $(function(){	
 	initializeControlPalette();
 	controlPaletteHoverAction();
@@ -61,7 +63,10 @@ function initializeDefalutBackgroundThere(){
 	        $(data).find("a").attr("href", function (i, val) {
 	            if( val.match(/\.jpg|\.png|\.gif/) ) {
 	                $('<li><img src="' + folder + val + '" class="bg_editor_thumbnail" alt="'
-	    					+ "test" + '"></li>').appendTo('#bg_editor_default_images_list');
+	    					+ "test" + '"></li>').appendTo('#bg_editor_default_images_list').click(function(){
+	    						console.log($(this).find("img").attr("src"));
+	    						setBackgroundImage($("#container_background-1_div-1") , $(this).find("img").attr("src"));
+	    					});
 	            } 
 	        });
 	    }

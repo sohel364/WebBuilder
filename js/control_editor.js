@@ -48,7 +48,8 @@ function initializeBGEditor(){
 	
 	$('#file_picker_bg_editor').change(function(event) {
 		var tmp_file_path = URL.createObjectURL(event.target.files[0]);
-		editable_bg_control.css("background-image", "url(" + tmp_file_path + ")");
+		setBackgroundImage(editable_bg_control, tmp_file_path);
+		
 	});
 	
 	$("#btn_select_bg_image").click(function(){
@@ -94,6 +95,11 @@ function initializeBGEditor(){
 		$("#dialog_bg_editor").dialog("close");
 	});
 	
+}
+
+function setBackgroundImage(control, image_url){
+	console.log(control.attr("id") + " : " + image_url );
+	control.css("background-image", "url(" + image_url + ")");
 }
 
 function updateGradientPalletes(){
@@ -270,7 +276,9 @@ function openBGEditor(control){
 	        $(data).find("a").attr("href", function (i, val) {
 	            if( val.match(/\.jpg|\.png|\.gif/) ) {
 	                $('<li><img src="' + folder + val + '" class="bg_editor_thumbnail" alt="'
-	    					+ "test" + '"></li>').appendTo('#bg_editor_sample_images_list');
+	    					+ "test" + '"></li>').appendTo('#bg_editor_sample_images_list').click(function(){
+	    						setBackgroundImage(editable_bg_control , $(this).find("img").attr("src"));
+	    					});
 	            } 
 	        });
 	    }

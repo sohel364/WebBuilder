@@ -53,6 +53,10 @@
 	padding: 10px;
 }
 
+.bg_editor_thumbnail:HOVER{
+	box-shadow: 0px 0px 20px #00a3d9;
+}
+
 .bg_sample_image_grid {
 }
 
