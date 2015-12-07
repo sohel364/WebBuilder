@@ -112,7 +112,8 @@ $_SESSION['isInEditor'] = $isInEditor;
 	position: absolute;
 	top: 65px;
 	left: 243px;
-	background: url("../../images/img-noise-361x370.png");
+	background-color: white;
+	/* background: url("../../images/img-noise-361x370.png"); */
 	border-radius: 7px;
 	border: 1px solid silver;
 	padding: 5px;

@@ -271,6 +271,9 @@ function makeBodyDroppable() {
 							draggable = $("#form_template_leavemsg");
 						}
 						is_group_builder = true;
+					} else if (droppable_name == "space") {
+						$('<div style="height:200px"></div>').appendTo($("#body"));
+						return;
 					}
 					
 					if (draggable.data("is_dropped") == null

@@ -135,7 +135,6 @@
 
 .backgroud_edit{
 	width: 100%;
-	height: 30%;
 	border-bottom: groove;
 }
 
@@ -143,8 +142,14 @@
 
 .background_theme{
 	width: 100%;
-	height: 370px;
-	overflow: scroll;
+	height: 480px;
+	overflow-y: scroll;
+	
+	
+}
+
+#btn_open_bg_editor{
+	height: 50px;
 }
 
 

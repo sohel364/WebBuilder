@@ -48,6 +48,24 @@ function initializeControlPalette(){
 	});
 	
 	
+	initializeDefalutBackgroundThere();
+	
+}
+
+function initializeDefalutBackgroundThere(){
+	var folder = "../../images/background/";
+	
+	$.ajax({
+	    url : folder,
+	    success: function (data) {
+	        $(data).find("a").attr("href", function (i, val) {
+	            if( val.match(/\.jpg|\.png|\.gif/) ) {
+	                $('<li><img src="' + folder + val + '" class="bg_editor_thumbnail" alt="'
+	    					+ "test" + '"></li>').appendTo('#bg_editor_default_images_list');
+	            } 
+	        });
+	    }
+	});
 }
 
 function collaspControlPalette(){

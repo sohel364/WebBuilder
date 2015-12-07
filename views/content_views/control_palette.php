@@ -101,7 +101,7 @@
 		</div>
 		<div class="background_theme">
 			<br />
-			<label>Still under construction</label>
+			<ul id="bg_editor_default_images_list"></ul>
 		
 		</div>
 	</div>
@@ -110,7 +110,23 @@
 			<button id="btn_cp_holder_close" class="cp_holder_close_btn cp_holder_btn">X</button>
 			<button id="btn_cp_holder_info" class="cp_holder_btn">?</button>
 		</div>
-		<p>Menu Editor</p>
+		<div style="float: left;" class="tree">
+			<ul>
+
+				<li><span><i class="icon-calendar"></i> Pages</span>
+					<ul>
+						<li><span class="badge badge-success"><i class="icon-minus-sign"></i>
+								Already Added</span>
+							<ul id="ul_tree_menu_list" class="pages">
+
+							</ul></li>
+					</ul></li>
+
+			</ul>
+		</div>
+		
+		
+		
 	</div>
 	<div id="cp_holder_media" class="cp_holder">
 		<div class="cp_holder_title_bg_color" style="width: 100%; height: 45px; border-radius: 0 10px 0 0; ">
