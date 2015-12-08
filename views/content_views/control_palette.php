@@ -8,7 +8,7 @@
 
 <body>
 
-	<div class="cp_box" style="<?php echo $user_id == NULL? "display: none;" : "display: block;"?>">
+	<div class="cp_box">
 		<button id="cp_background"
 				class="cp cp_background cp_btn btn" data-top="true"><span class="glyphicon glyphicon-modal-window cp_icon" aria-hidden="true"></span><font style="font-size: 18px"> Background</font> </button>
 				
@@ -46,6 +46,12 @@
 		        <li>
 		            <a href="#text">Text</a>
 		        </li>
+		        <li>
+		            <a href="#form">Form</a>
+		        </li>
+		        <li>
+		            <a href="#space">Space</a>
+		        </li>
 		    </ul>
 		    <div id="btn_template_palette">
 		        <!-- <button name='button' class='selectorField draggableField btn-primary btn-lg'>Click Me</button> -->
@@ -73,6 +79,15 @@
 		        <h3 name='header' class='selectorField draggableField'>Title, Edit me</h3>
 		        
 		    </div>
+		    
+		    <div id="form">
+		    	<h1 name='group' data-form_type="feedback" class='selectorField draggableField'>Feedback Form</h1>
+		    	<h1 name='group' data-form_type="contact" class='selectorField draggableField'>contact Form</h1>
+		    	<h1 name='group' data-form_type="leavemsg" class='selectorField draggableField'>Leave Msg Form</h1>
+		    </div>
+		    <div id="space">
+		    	<h1 name='space' class='selectorField draggableField'>New Space</h1>
+		    </div>
 		</div>
 	</div>
 	
@@ -82,21 +97,11 @@
 			<button id="btn_cp_holder_info" class="cp_holder_btn ">?</button>
 		</div>
 		<div class="backgroud_edit">
-			<div>
-				<label>Background Color : </label>
-				<input type='text' id="color_picker_background" class="background_color_picker" />
-			</div>
-			<button id="btn_set_bg_gradient" class="btn btn-default btn-block">Set background Gradient</button>
-			<button id="btn_set_bg_image" class="btn btn-default btn-block">Set background Image</button>
-			<button id="btn_fix_bg_image" class="btn btn-default btn-block">Set Fixed background Image</button>
-			<input id="file_picker_bg" type="file" name="files[]" single
-						style="display: none">
-				
-			
+			<button id="btn_open_bg_editor" class="btn btn-default btn-block">Open Background Editor</button>
 		</div>
 		<div class="background_theme">
 			<br />
-			<label>Still under construction</label>
+			<ul id="bg_editor_default_images_list"></ul>
 		
 		</div>
 	</div>
@@ -105,7 +110,23 @@
 			<button id="btn_cp_holder_close" class="cp_holder_close_btn cp_holder_btn">X</button>
 			<button id="btn_cp_holder_info" class="cp_holder_btn">?</button>
 		</div>
-		<p>Menu Editor</p>
+		<div style="float: left;" class="tree">
+			<ul>
+
+				<li><span><i class="icon-calendar"></i> Pages</span>
+					<ul>
+						<li><span class="badge badge-success"><i class="icon-minus-sign"></i>
+								Already Added</span>
+							<ul id="ul_tree_menu_list" class="pages">
+
+							</ul></li>
+					</ul></li>
+
+			</ul>
+		</div>
+		
+		
+		
 	</div>
 	<div id="cp_holder_media" class="cp_holder">
 		<div class="cp_holder_title_bg_color" style="width: 100%; height: 45px; border-radius: 0 10px 0 0; ">
@@ -115,6 +136,10 @@
 		<p>Add Media</p>
 	</div>
 	
-	<button id="btn_collasp_cp" class="collasp_cp btn btn-info" style="<?php echo $user_id == NULL? "display: none;" : "display: block;"?>">Collasp</button>
+	<button id="btn_collasp_cp" class="collasp_cp btn btn-info">Collasp</button>
+	
+
+	
+	
 		
 </body>

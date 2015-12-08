@@ -181,6 +181,7 @@ $(function(){
         }
 //            console.log($(this).find("a").html());
         $("#input_page_name").val($(this).find("a").html());
+        $("#page_option").css("left", "40%").css("top", "40%").css("box-shadow", "0px 0px 20px #00a3d9");
         $("#page_option").toggle();
 
     });

@@ -135,7 +135,6 @@
 
 .backgroud_edit{
 	width: 100%;
-	height: 30%;
 	border-bottom: groove;
 }
 
@@ -143,9 +142,18 @@
 
 .background_theme{
 	width: 100%;
-	height: 370px;
-	overflow: scroll;
+	height: 480px;
+	overflow-y: scroll;
+	
+	
 }
+
+#btn_open_bg_editor{
+	height: 50px;
+}
+
+
+
 
 <!-- dsfsdfsdfsdfddddddddddddddddddddddddddddddddddddddddddddddddddddddd-->
 
@@ -166,7 +174,7 @@
 .ui-tabs.ui-tabs-vertical .ui-tabs-nav li {
     /* clear: left; */
     width: 100%;
-   	height: 127px;
+   	height: 90px;
     /* margin: 0.2em 0; */
     /* border: 1px solid gray;
     border-width: 1px 0 1px 1px; */

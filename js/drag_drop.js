@@ -21,7 +21,7 @@ var isSaved = false;
 var isResizeOn = false;
 var allawable_control_array = [ "button", "textarea", "radiobutton",
 		"dropdown", "image", "imageslider", "header", "group",
-		"separator", "textinput" ]
+		"separator", "textinput", "form" ]
 
 var allawable_group_control_array = [ "group_button", "group_textarea", "group_radiobutton",
                         		"group_dropdown", "group_image", "group_imageslider", "group_header",
@@ -263,8 +263,17 @@ function makeBodyDroppable() {
 						draggable = $("#image_slider_template");
 						is_image_slider = true;
 					} else if (droppable_name == "group") {
-						draggable = $("#group_template");
+						if (ui.helper.data("form_type") == "feedback"){
+							draggable = $("#form_template_feedback");
+						}else if (ui.helper.data("form_type") == "contact"){
+							draggable = $("#form_template_contact");
+						}else if (ui.helper.data("form_type") == "leavemsg"){
+							draggable = $("#form_template_leavemsg");
+						}
 						is_group_builder = true;
+					} else if (droppable_name == "space") {
+						$('<div style="height:200px"></div>').appendTo($("#body"));
+						return;
 					}
 					
 					if (draggable.data("is_dropped") == null
@@ -277,8 +286,13 @@ function makeBodyDroppable() {
 						draggable.removeClass("selectorField");
 						draggable.addClass("droppedFields");
 
-						draggable[0].id = droppable_name + "_dropped_"
-								+ (counter++);
+						if (draggable.data("id") == null){
+							draggable[0].id = droppable_name + "_dropped_"
+							+ (counter++);
+						}else{
+							draggable[0].id = draggable.data("id");
+						}
+						
 						
 						draggable.data("is_dropped","true");
 
@@ -879,6 +893,12 @@ function makeControlResizable() {
 function showGroupEditPanel() {
 	editable_group = editable_control;
 	
+	if (editable_control.data("is_form") != null){
+		$("#btn_group_edit_add_label").css("display", "none");
+	}else{
+		$("#btn_group_edit_add_label").css("display", "block");
+	}
+	
 	$("#group_edit_dialog").dialog({
 		dialogClass : "no-close",
 		resizable : false,
@@ -1129,7 +1149,10 @@ function droppedItemClickAction() {
 		title = "SEPARATOR ...";
 	} else if (clicked_dropped_item_name.indexOf("textinput") >= 0) {
 		title = "TEXT INPUT ..."; 
+	} else if (clicked_dropped_item_name.indexOf("form") >= 0) {
+		title = "FORM ..."; 
 	}
+	
 	
 	if ($("#"+clicked_dropped_item_id).attr("name").indexOf("group_") >= 0) {
 		is_group_edit_mode = true;
@@ -1546,6 +1569,10 @@ function initializeAllDialogButton() {
 		new_label.appendTo(editable_group);
 	});
 	
+	$("#btn_group_edit_background").click(function(){
+		openBGEditor(editable_control);
+	});
+	
 	$("#btn_group_edit_add_input_text").click(function(){
 		var new_text_input = $('<input name="textinput" type="text"' +
 				' name="textinput" placeholder="Write Here"' +
@@ -1581,6 +1608,8 @@ $(function() {
 	makeBodyDroppable();
 	makeImageSliderThumbnailSortable();
 	initializeAllDialogButton();
+	
+	
 
 	// $(document).mouseup(function(e){
 	// var clicked_item = e.target;

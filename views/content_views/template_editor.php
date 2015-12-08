@@ -112,7 +112,8 @@ $_SESSION['isInEditor'] = $isInEditor;
 	position: absolute;
 	top: 65px;
 	left: 243px;
-	background: url("../../images/img-noise-361x370.png");
+	background-color: white;
+	/* background: url("../../images/img-noise-361x370.png"); */
 	border-radius: 7px;
 	border: 1px solid silver;
 	padding: 5px;
@@ -185,6 +186,14 @@ $_SESSION['isInEditor'] = $isInEditor;
 
 .editor_topper_view {
 	width: 80%;
+}
+
+.form_label{
+	font-size: 17px;
+}
+
+.form_input {
+	height: 35px;
 }
 
 
@@ -388,7 +397,10 @@ $_SESSION['isInEditor'] = $isInEditor;
 	</div>
 	<!-- Option Menu End -->
 
-
+	<div id="control_editor">
+		<?php include 'control_editor.php';?>
+	</div>
+	
 	<div id="control_option_dialog" class="dialog">
 		<button id="dialog_btn_edit" class="btn dialog_btn "
 			style="width: 100%">
@@ -560,7 +572,21 @@ $_SESSION['isInEditor'] = $isInEditor;
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Text Input
 		</button>
 		
+		<button id = "btn_group_edit_background" class="text_editor_component">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Edit Background
+		</button>
+		
 		<button id = "btn_group_edit_panel_close" class="text_editor_component">
+			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+		</button>
+	</div>
+	
+	<div id="form_edit_dialog" class="dialog">
+		<button id = "btn_form_edit_background" class="text_editor_component">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Edit Background
+		</button>
+		
+		<button id = "btn_form_edit_panel_close" class="text_editor_component">
 			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 		</button>
 	</div>
@@ -782,27 +808,83 @@ $_SESSION['isInEditor'] = $isInEditor;
 	<div id="radiobutton_template" name="radiobutton"
 		style="display: none; position: absolute; width: 200px"></div>
 
-	<div id="group_template" name="group"
-		style="display: none; position: absolute; width: 400px; height: auto; border: 1px solid lightgrey; border-radius: 5px; padding: 10px">
-		<h3 name="group_textarea" style="">User Feedback</h3>
-		<hr name="group_separator"></hr>
-		<label name="group_textarea">Name : </label> 
-		<input id="feedback_user_name" name="group_textinput" type="text" placeholder="Your Name"
-			style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
-
-			<label name="group_textarea">Email : </label> 
-			<input id="feedback_user_email" name="group_textinput" type="text" placeholder="Your Email"
-			style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
-
-				<label name="group_textarea">Comment : </label> 
-				<textarea id="feedback_user_comment"
-					name="group_textinput" value="Fill in your Comment"
-					style="resize: none; width: 100%; height: 150px; border: .5px solid lightgrey; border-radius: 5px;">
-			</textarea>
-				<hr name="group_separator"></hr>
-
-				<button name="group_button" class="btn btn-success btn-lg" style="float: right;">Submit</button>
+	<div id="form_template_feedback" name="group" data-id="container_feedbackform-1" data-is_form="yes"
+		style="display: none; position: absolute; width: 400px; height: auto; border: 1px solid lightgrey; border-radius: 5px; padding: 10px; background: lightgray;">
+		<div id="container_feedbackform-1_div-1">
+			<h3 name="group_textarea" style="">User Feedback</h3>
+			<hr name="group_separator"></hr>
+			<label name="group_textarea" class="form_label">Name : </label> 
+			<input id="feedback_user_name" name="group_textinput" type="text" placeholder="Your Name" class="form_input"
+				style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
 	
+				<label name="group_textarea" class="form_label">Email : </label> 
+				<input id="feedback_user_email" name="group_textinput" type="text" placeholder="Your Email" class="form_input"
+				style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
+	
+					<label name="group_textarea" class="form_label">Comment : </label> 
+					<textarea id="feedback_user_comment"
+						name="group_textinput" value="Fill in your Comment"
+						style="resize: none; width: 100%; height: 150px; border: .5px solid lightgrey; border-radius: 5px;">
+				</textarea>
+					<hr name="group_separator"></hr>
+	
+					<button name="group_button" class="btn btn-success btn-lg" style="float: right;">Submit</button>
+		</div>
+	</div>
+	
+	<div id="form_template_contact" name="group" data-id="container_contactform-1" data-is_form="yes"
+		style="display: none; position: absolute; width: 600px; height: auto; border: 1px solid lightgrey; border-radius: 5px; padding: 10px; background: lightgreen;">
+		<div id="container_contactform-1_div-1">
+			<h3 name="group_textarea" style="">Contact Form</h3>
+			<hr name="group_separator"></hr>
+			<label name="group_textarea" class="form_label">First Name : </label> 
+			<input id="contact_user_name" name="group_textinput" type="text" placeholder="Your First Name" class="form_input"
+				style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
+			<label name="group_textarea" class="form_label">Last Name : </label> 
+			<input id="contact_user_name" name="group_textinput" type="text" placeholder="Your Last Name" class="form_input"
+				style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
+	
+				<label name="group_textarea" class="form_label">Email : </label> 
+				<input id="contact_user_email" name="group_textinput" type="text" placeholder="Your Email" class="form_input"
+				style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
+	
+			<label name="group_textarea" class="form_label">Subject : </label> 
+			<input id="contact_user_name" name="group_textinput" type="text" placeholder="Subject" class="form_input"
+				style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
+				
+					<label name="group_textarea" class="form_label">Comment : </label> 
+					<textarea id="contact_user_comment"
+						name="group_textinput" value="Fill in your Comment"
+						style="resize: none; width: 100%; height: 150px; border: .5px solid lightgrey; border-radius: 5px;">
+				</textarea>
+					<hr name="group_separator"></hr>
+	
+					<button name="group_button" class="btn btn-success btn-lg" style="float: right;">Submit</button>
+		</div>
+	</div>
+	
+	<div id="form_template_leavemsg" name="group" data-id="container_leavemsgform-1" data-is_form="yes"
+		style="display: none; position: absolute; width: 300px; height: auto; border: 1px solid lightgrey; border-radius: 5px; padding: 10px; background: lightblue;">
+		<div id="container_leavemsgform-1_div-1">
+			<h3 name="group_textarea" style="">Leave Message</h3>
+			<hr name="group_separator"></hr>
+			<label name="group_textarea" class="form_label">Name : </label> 
+			<input id="leavemsg_user_name" name="group_textinput" type="text" placeholder="Your Name" class="form_input"
+				style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
+	
+				<label name="group_textarea" class="form_label">Email : </label> 
+				<input id="leavemsg_user_email" name="group_textinput" type="text" placeholder="Your Email" class="form_input"
+				style="width: 100%; border: .5px solid lightgrey; border-radius: 5px;">
+	
+					<label name="group_textarea" class="form_label">Message : </label> 
+					<textarea id="leavemsg_user_comment"
+						name="group_textinput" value="Fill in your Comment"
+						style="resize: none; width: 100%; height: 150px; border: .5px solid lightgrey; border-radius: 5px;">
+				</textarea>
+					<hr name="group_separator"></hr>
+	
+					<button name="group_button" class="btn btn-success btn-lg" style="float: right;">Submit</button>
+		</div>
 	</div>
 
 </body>
