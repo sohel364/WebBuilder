@@ -81,7 +81,11 @@ function resetMenuContent() {
 function onMenuClick(menu) {
 	closeAllEditDialogPanel();
     saveCurrentMenuText();
-    saveCurrentPageImages();
+
+    //saveCurrentPageImages();
+    traverseImages();
+    saveImages(user_id, template_id);
+
     var menuText = $(menu).text();
     curMenu = menuText;
     if(menuContens[menuText] === null || typeof menuContens[menuText] === 'undefined') {
@@ -124,81 +128,6 @@ function loadImages(user_id, template_id, callbackFunc)
     _user_id = user_id;
     _template_id  = template_id;
     _callbackFn = callbackFunc;
-
-    //var images = document.getElementsByTagName('img');
-
-    //var containers = [];
-    //
-    //$(document).ready(function() {
-    //
-    //    console.log('[WB-EXP][container-id: logging]');
-    //
-    //    var allElements = $("body").find("*[id^='container_']").each(function(index, element){
-    //
-    //        var parts = element.id.split('_');
-    //
-    //        if(parts.length == 3){
-    //            var tagName = parts[2].split('-')[0];
-    //
-    //            if($('#' + element.id)[0].nodeName != "IMG")
-    //            {
-    //                console.log('[WB][container-parts [child]: ' + parts + ']');
-    //
-    //                var url =  $('#' + element.id).css("background-image");
-    //
-    //                if(!isEmpty(url))
-    //                {
-    //                    var binary = getBase64Image($('#' + element.id), "hidden-canvas");
-    //                    console.log('[WB][container-parts [child][style:background(url)]: ' + $('#' + element.id).css("background-image") + ']');
-    //                    url = $('#' + element.id).css("background-image").replace("url", "").replace("(","").replace(")","").replace("\"","").replace("\"","").trim();
-    //
-    //                    // TODO: Image Type is set after above line is executed [getBase64Image(images[i], "hidden-canvas");]
-    //                    var parent_id = parts[0] + '_' + parts[1];
-    //                    var containerObj = '{ "src": "' + url
-    //                        + '", "index": ' + index
-    //                        + ', "type": "' + imageType
-    //                        + '", "id": "' + element.id
-    //                        + '", "data": "' + binary
-    //                        + '", "menu": "' + curMenu
-    //                        + '", "tag": "' + tagName
-    //                        + '" }';
-    //                    containers.push(containerObj);
-    //                    console.log('[WB-EXP][container-json]: ' + containerObj);
-    //                }
-    //            }
-    //            else
-    //            {
-    //                console.log('[WB-EXP][container-parts [child]: ' + parts + ']');
-    //
-    //                var url = $('#' + element.id).attr("src");
-    //
-    //                if(!isEmpty(url))
-    //                {
-    //                    var binary = getBase64ImageForImageElement($('#' + element.id), "hidden-canvas");
-    //                    console.log('[WB-EXP][container-parts [child][style:src]: ' + $('#' + element.id).attr("src") + ']');
-    //
-    //                    // TODO: Image Type is set after above line is executed [getBase64Image(images[i], "hidden-canvas");]
-    //                    var parent_id = parts[0] + '_' + parts[1];
-    //                    var containerObj = '{ "src": "' + url
-    //                                    + '", "index": ' + index
-    //                                    + ', "type": "' + imageType
-    //                                    + '", "id": "' + element.id
-    //                                    + '", "data": "' + binary
-    //                                    + '", "menu": "' + curMenu
-    //                                    + '", "tag": "' + tagName
-    //                                    + '" }';
-    //                    containers.push(containerObj);
-    //                    console.log('[WB-EXP][container-json]: ' + containerObj);
-    //                    if(element.id == "container_banner-1_img-1")
-    //                    alert('[WB-EXP][container-count]: ' +  containerObj);
-    //                }
-    //            }
-    //        }
-    //    });
-    //    console.log('[WB-EXP][container-count: ' + allElements.length + ']');
-    //});
-    //console.log('[WB-EXP][container-count: ' + containers.length + ']');
-    //allImages[curMenu] = containers;
 }
 
 function saveCurrentPageImages(isEdit, imageObj) {
@@ -225,6 +154,36 @@ function saveCurrentPageImages(isEdit, imageObj) {
     }
 }
 
+function saveImages(user_id, template_id) {
+
+    console.log("[WB-D] saveImages: " + user_id + "$##$" + template_id);
+
+    loadImages(user_id, template_id, function(imageObj){
+
+        console.log("[WB-D] [REPLIED] image-src: " + imageObj.src_arch );
+
+    });
+
+    var menu_items = Object.keys(allImages);
+    //menu_items.sort(); // sort the array of keys
+    menu_items.forEach(function(menu_item) {
+        var image_items = Object.keys(allImages[menu_item]);
+        //items.sort();
+        image_items.forEach(function(image){
+
+            console.log('[WB-D] json: ' + allImages[menu_item][image]);
+
+            var imageObj = JSON.parse(allImages[menu_item][image]);
+
+            console.log("[WB-D] info: " + user_id + "#" + template_id + "#" + imageObj.id + " SAVING...");
+
+            saveCurrentPageImages(isEdit, imageObj);
+
+            console.log("[WB-D] info: " + user_id + "#" + template_id + "#" + imageObj.id + " SAVED!!!");
+        });
+    });
+}
+
 function test_upload_image(){
     var image = document.getElementsByTagName("img");
     if(image.src.indexOf("localhost") > -1 )
@@ -242,31 +201,20 @@ function getBase64ImageForImageElement(img, id) {
     var canvas = document.getElementById(id);
 
     console.log('[WB][size]:' + canvas.width + 'x' + canvas.height);
-
-    console.log('[WB-EXP][size]:' + canvas.width + 'x' + canvas.height);
-    console.log('[WB-EXP][size]:' + img.attr("width") + 'x' + img.attr("height"));
+    console.log('[WB][size]:' + img.attr("width") + 'x' + img.attr("height"));
 
     var imageData = document.getElementById(img.attr("id"));
-    console.log('[WB-EXP][object]:' + imageData.id);
-    console.log('[WB-EXP][id]:' +  img.attr("id"));
-    console.log('[WB-EXP][src]:' +  imageData.src);
-    console.log('[WB-EXP][width]:' +  imageData.width);
-    console.log('[WB-EXP][height]:' +  imageData.height);
+    console.log('[WB][object]:' + imageData.id);
+    console.log('[WB][id]:' +  img.attr("id"));
+    console.log('[WB][src]:' +  imageData.src);
+    console.log('[WB][width]:' +  imageData.width);
+    console.log('[WB][height]:' +  imageData.height);
 
     canvas.width = imageData.width;
     canvas.height = imageData.height;
 
-    //imageData = new Image();
-    //imageData.src = img.attr("src");
-
     // Copy the image contents to the canvas
     var ctx = canvas.getContext("2d");
-
-    //imageData.onload(function(){
-    //
-    //    ctx.drawImage(imageData, 0, 0);
-    //});
-
     ctx.drawImage(imageData, 0, 0);
 
     // Get the data-URL formatted image
@@ -291,31 +239,28 @@ function getBase64ImageForImageElement(img, id) {
     return null;
 }
 
-
-function getBase64Image(img, id) {
-
+function getBase64Image(img, id)
+{
     // Create an empty canvas element
     var canvas = document.getElementById(id);
 
-    canvas.width = img.css("width").replace("px", "").trim();
-    canvas.height = img.css("height").replace("px", "").trim();
-
-    console.log('[WB][size]:' + canvas.width + 'x' + canvas.height);
-    console.log('[WB][size]:' + img.css("width") + 'x' + img.css("height"));
-
-    // Copy the image contents to the canvas
-    var ctx = canvas.getContext("2d");
-
-    var imageData = document.createElement('img');
-    imageData.src = img.css("background-image").replace("url", "").replace("(","").replace(")","").replace("\"","").replace("\"","").trim();
+    var imageData = new Image();
     imageData.onload = function(){
 
-        canvas.width = imageData.width;
-        canvas.height = imageData.height;
-        ctx.drawImage(imageData, 0, 0);
-        console.log('[WB][src]:' + imageData.src);
-        console.log('[WB][size]:' + imageData.width + 'x' + imageData.height);
+        canvas.width = img.css("width").replace("px", "").trim();
+        canvas.height = img.css("height").replace("px", "").trim();
+
+        console.log('[WB-D][size]:' + canvas.width + 'x' + canvas.height);
+        console.log('[WB-D][size]:' + img.css("width") + 'x' + img.css("height"));
+
+        // Copy the image contents to the canvas
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(this, 0, 0);
+
+        console.log('[WB-D][src]:' + imageData.src);
+        console.log('[WB-D][size]:' + imageData.width + 'x' + imageData.height);
     };
+    imageData.src = img.css("background-image").replace("url", "").replace("(","").replace(")","").replace("\"","").replace("\"","").trim();
 
     // Get the data-URL formatted image
     // Firefox supports PNG and JPEG. You could check img.src to
@@ -324,7 +269,7 @@ function getBase64Image(img, id) {
 
     var s = imageData.src.split('.').pop();
 
-    console.log('[WB][type]:' + s);
+    console.log('[WB-D][type]:' + s);
 
     if(s.indexOf("png")>-1){
         var dataURL = canvas.toDataURL("image/png", 1.0);

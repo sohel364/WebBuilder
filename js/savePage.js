@@ -101,7 +101,7 @@ function traverseImages() {
     var containers = [];
     $(document).ready(function () {
 
-        console.log('[WB-EXP][container-id: logging]');
+        console.log('[WB-D][container-id: logging]');
 
         var allElements = $("body").find("*[id^='container_']").each(function (index, element) {
             var parts = element.id.split('_');
@@ -109,70 +109,78 @@ function traverseImages() {
             //    console.log('[WB-EXP][container-parts [parent]: ' + parts + ']');
             //    console.log('[WB-EXP][container-parts [parent][style]: ' + $('#' + element.id).attr("style") + ']'); //$("#stylediv").attr('style')
             //}
-            if (parts.length == 3) {
-                var tagName = parts[2].split('-')[0];
-                if (tagName != 'img') {
-                    console.log('[WB-EXP][container-parts [child]: ' + parts + '][' + $('#' + element.id)[0].nodeName + ']');
-                    //console.log('[WB-EXP][container-parts [child][style:background(url)]: ' + $('#' + element.id).attr("style") + ']'); //$("#stylediv").attr('style')
+            if (parts.length > 2) {
+
+                var tagName = parts[parts.length - 1].split('-')[0];
+
+                if ( $('#' + element.id)[0].nodeName != 'IMG')
+                {
+                    console.log('[WB][container-parts [child]: ' + parts + '][' + $('#' + element.id)[0].nodeName + ']');
+                    //console.log('[WB][container-parts [child][style:background(url)]: ' + $('#' + element.id).attr("style") + ']'); //$("#stylediv").attr('style')
                     if ($('#' + element.id).css("background-image") == "none" || $('#' + element.id).css("background-image") == "undefined") {
-                        console.log('[WB-EXP][container-parts [child][index]: ' + index + ']');
-                        console.log('[WB-EXP][container-parts [child][style:background(url)]: ' + $('#' + element.id).css("background-image") + ']');//img.attr("src").split('.').pop()
+                        console.log('[WB][container-parts [child][index]: ' + index + ']');
+                        console.log('[WB][container-parts [child][style:background(url)]: ' + $('#' + element.id).css("background-image") + ']');//img.attr("src").split('.').pop()
                     }
                     else {
-                        console.log('[WB-EXP][container-parts [child][index]: ' + index + ']');
-                        console.log('[WB-EXP][container-parts [child][style:background(url)]: ' + $('#' + element.id).css("background-image") + ']');
-                        console.log('[WB-EXP][container-parts [child][image:type]: ' + $('#' + element.id).css("background-image").split('.').pop() + ']');
-                        console.log('[WB-EXP][container-parts [child][image:size]: ' + $('#' + element.id).css("width") + 'x' + $('#' + element.id).css("height") + ']');
-                        console.log('[WB-EXP][container-parts [child][image:url]: ' + $("#" + element.id).css("background-image").replace("url", "").replace("(", "").replace(")", "").replace("\"", "").replace("\"", "").trim() + ']');
+                        console.log('[WB][container-parts [child][index]: ' + index + ']');
+                        console.log('[WB][container-parts [child][style:background(url)]: ' + $('#' + element.id).css("background-image") + ']');
+                        console.log('[WB][container-parts [child][image:type]: ' + $('#' + element.id).css("background-image").split('.').pop() + ']');
+                        console.log('[WB][container-parts [child][image:size]: ' + $('#' + element.id).css("width") + 'x' + $('#' + element.id).css("height") + ']');
+                        console.log('[WB][container-parts [child][image:url]: ' + $("#" + element.id).css("background-image").replace("url", "").replace("(", "").replace(")", "").replace("\"", "").replace("\"", "").trim() + ']');
 
                         var binary = getBase64Image($('#' + element.id), "hidden-canvas");
                         var url = $('#' + element.id).css("background-image").replace("url", "").replace("(","").replace(")","").replace("\"","").replace("\"","").trim();
+                        var imgType = (url.split('.').pop() == "jpg") ? "jpeg" : url.split('.').pop();
+                        console.log('[WB-D][image-type]: ' + imgType);
                         // TODO: Image Type is set after above line is executed [getBase64Image(images[i], "hidden-canvas");]
                         var parent_id = parts[0] + '_' + parts[1];
                         var containerObj = '{ "src": "' + url
                             + '", "index": ' + index
-                            + ', "type": "' + url.split('.').pop()
+                            + ', "type": "' + imageType //url.split('.').pop() == "jpg" ? "jpeg" : url.split('.').pop()
                             + '", "id": "' + element.id
                             + '", "data": "' + binary
                             + '", "menu": "' + curMenu
-                            + '", "tag": "' + tagName
+                            + '", "tag": "' + $('#' + element.id)[0].nodeName
                             + '" }';
                         containers.push(containerObj);
-                        console.log('[WB-EXP][container-json]: ' + containerObj);
+                        console.log('[WB][container-json]: ' + containerObj);
                     }
                 }
-                else {
-                    console.log('[WB-EXP][container-parts [child]: ' + parts + '][' + $('#' + element.id)[0].nodeName + ']');
+                else
+                {
+                    console.log('[WB][container-parts [child]: ' + parts + '][' + $('#' + element.id)[0].nodeName + ']');
                     if ($('#' + element.id).attr("src") == "undefined" || $('#' + element.id).attr("src") == "none") {
-                        console.log('[WB-EXP][container-parts [child][index]: ' + index + ']');
-                        console.log('[WB-EXP][container-parts [child][style:src]: ' + $('#' + element.id).attr("src") + ']'); //$("#stylediv").attr('src')
+                        console.log('[WB][container-parts [child][index]: ' + index + ']');
+                        console.log('[WB][container-parts [child][style:src]: ' + $('#' + element.id).attr("src") + ']'); //$("#stylediv").attr('src')
                     }
                     else {
 
                         var binary = getBase64ImageForImageElement($('#' + element.id), "hidden-canvas");
                         var url = $('#' + element.id).attr("src");
+                        var imgType = (url.split('.').pop() == "jpg") ? "jpeg" : url.split('.').pop();
+                        console.log('[WB-D][image-type]: ' + imgType);
 
-                        console.log('[WB-EXP][container-parts [child][index]: ' + index + ']');
-                        console.log('[WB-EXP][container-parts [child][style:src]: ' + $('#' + element.id).attr("src") + ']'); //$("#stylediv").attr('src')
-                        console.log('[WB-EXP][container-parts [child][image:type]: ' + $('#' + element.id).attr("src").split('.').pop() + ']'); //$("#stylediv").attr('src')
+                        console.log('[WB][container-parts [child][index]: ' + index + ']');
+                        console.log('[WB][container-parts [child][style:src]: ' + $('#' + element.id).attr("src") + ']'); //$("#stylediv").attr('src')
+                        console.log('[WB][container-parts [child][image:type]: ' + $('#' + element.id).attr("src").split('.').pop() + ']'); //$("#stylediv").attr('src')
 
                         // TODO: Image Type is set after above line is executed [getBase64Image(images[i], "hidden-canvas");]
                         var parent_id = parts[0] + '_' + parts[1];
                         var containerObj = '{ "src": "' + url
                             + '", "index": ' + index
-                            + ', "type": "' + url.split('.').pop()
+                            + ', "type": "' + imageType //(url.split('.').pop() == "jpg") ? "jpeg" : url.split('.').pop()
                             + '", "id": "' + element.id
                             + '", "data": "' + binary
                             + '", "menu": "' + curMenu
-                            + '", "tag": "' + tagName
+                            + '", "tag": "' + $('#' + element.id)[0].nodeName
                             + '" }';
                         containers.push(containerObj);
-                        console.log('[WB-EXP][container-json]: ' + containerObj);
+                        console.log('[WB][container-json]: ' + containerObj);
                     }
                 }
             }
         });
-        console.log('[WB-EXP][container-count: ' + allElements.length + ']');
+        console.log('[WB-D][container-count: ' + allElements.length + ']');
     });
     allImages[curMenu] = containers;
 }
@@ -183,9 +191,11 @@ function traverseImages() {
  */
 function savePage(user_id, template_id) {
     //var user_id = 'id', template_id = '87349q64';
-
-    traverseImages();
     //return;
+
+    console.log("[WB-D] savePage: " + user_id + "$##$" + template_id);
+    traverseImages();
+    console.log("[WB-D] savePage: " + user_id + "$##$" + template_id);
 
     if(isUserLoggedIn === null || isUserLoggedIn === "0") {
         alert("Please sign in to save the template");
@@ -193,6 +203,7 @@ function savePage(user_id, template_id) {
         window.location.href = redirectURL;
         return;
     }
+
     makeTemplateComponetsNotEditable();
     saveCurrentMenuText();
 
@@ -208,36 +219,35 @@ function savePage(user_id, template_id) {
             var url = getPageSaverUrl();
             savedName = prompt("Enter webpage name : ", "Enter page name");
 
-            loadImages(user_id, template_id, function(imageObj){
+            //loadImages(user_id, template_id, function(imageObj){
+            //
+            //    console.log("[WB-EXP] image-type: " + imageObj.image_type );
+            //
+            //});
+            //
+            //var menu_items = Object.keys(allImages);
+            ////menu_items.sort(); // sort the array of keys
+            //menu_items.forEach(function(menu_item) {
+            //    var image_items = Object.keys(allImages[menu_item]);
+            //    //items.sort();
+            //    image_items.forEach(function(image){
+            //
+            //        console.log("[WB] image: " + allImages[menu_item][image]);
+            //
+            //        var imageObj = JSON.parse(allImages[menu_item][image]);
+            //
+            //        if(!isEmpty(imageObj.src)){
+            //            console.log('[WB] image-src: \"' + imageObj.src + '\"');
+            //            console.log("[WB]" + user_id + " " + template_id + " SAVING...");
+            //        }
+            //
+            //        saveCurrentPageImages(isEdit, imageObj);
+            //
+            //        console.log("[WB]" + user_id + " " + template_id + " SAVED!");
+            //    });
+            //});
 
-                console.log("[WB-EXP] image-type: " + imageObj.image_type );
-
-            });
-
-            var menu_items = Object.keys(allImages);
-            //menu_items.sort(); // sort the array of keys
-            menu_items.forEach(function(menu_item) {
-                var image_items = Object.keys(allImages[menu_item]);
-                //items.sort();
-                image_items.forEach(function(image){
-
-                    console.log("[WB] image: " + allImages[menu_item][image]);
-
-                    var imageObj = JSON.parse(allImages[menu_item][image]);
-
-                    if(!isEmpty(imageObj.src)){
-                        console.log('[WB-EXP] image-src: \"' + imageObj.src + '\"');
-                        console.log("[WB-EXP]" + user_id + " " + template_id + " SAVING...");
-                    }
-
-                    saveCurrentPageImages(isEdit, imageObj);
-
-                    if(!isEmpty(imageObj.src))
-                        console.log("[WB-EXP]" + user_id + " " + template_id + " SAVED!");
-                });
-            });
-
-            insertPage(url, menuList, allImages, savedName);
+            insertPage(url, menuList, template_id, user_id, savedName);
 
         } else {
             var url = getPageUpdaterUrl();
@@ -247,30 +257,32 @@ function savePage(user_id, template_id) {
                 savedName = prompt("Update webpage name : ", "Enter page name");
             }
 
-            loadImages(user_id, template_id, function(imageObj){
+            saveImages(user_id, template_id);
 
-                console.log("[WB] [REPLIED] image-src: " + imageObj.src_arch );
-
-            });
-
-            var menu_items = Object.keys(allImages);
-            //menu_items.sort(); // sort the array of keys
-            menu_items.forEach(function(menu_item) {
-                var image_items = Object.keys(allImages[menu_item]);
-                //items.sort();
-                image_items.forEach(function(image){
-
-                    console.log("[WB] json: " + allImages[menu_item][image]);
-
-                    var imageObj = JSON.parse(allImages[menu_item][image]);
-
-                    console.log("[WB] info: " + user_id + "#" + template_id + "#" + imageObj.id + " SAVING...");
-
-                    saveCurrentPageImages(isEdit, imageObj);
-
-                    console.log("[WB] info: " + user_id + "#" + template_id + "#" + imageObj.id + " SAVED!!!");
-                });
-            });
+            //loadImages(user_id, template_id, function(imageObj){
+            //
+            //    console.log("[WB] [REPLIED] image-src: " + imageObj.src_arch );
+            //
+            //});
+            //
+            //var menu_items = Object.keys(allImages);
+            ////menu_items.sort(); // sort the array of keys
+            //menu_items.forEach(function(menu_item) {
+            //    var image_items = Object.keys(allImages[menu_item]);
+            //    //items.sort();
+            //    image_items.forEach(function(image){
+            //
+            //        console.log("[WB] json: " + allImages[menu_item][image]);
+            //
+            //        var imageObj = JSON.parse(allImages[menu_item][image]);
+            //
+            //        console.log("[WB] info: " + user_id + "#" + template_id + "#" + imageObj.id + " SAVING...");
+            //
+            //        saveCurrentPageImages(isEdit, imageObj);
+            //
+            //        console.log("[WB] info: " + user_id + "#" + template_id + "#" + imageObj.id + " SAVED!!!");
+            //    });
+            //});
 
             updatePage(url, menuList, template_id, savedName);
         }
@@ -280,11 +292,7 @@ function savePage(user_id, template_id) {
     x++;
 }
 
-function insertPage(url, menuList, template_id, savedName) {
-
-    //var image = '{ "src": "' + imageObj.src + '", "index": ' + imageObj.image_id + ', "type": "' + imageObj.image_type + '", "menu": "' + imageObj.menu + '" }';
-    //
-    //console.log("[WB] Image info: " + image);
+function insertPage(url, menuList, template_id, user_id, savedName) {
 
     $.ajax({
             type: "POST",
@@ -306,6 +314,9 @@ function insertPage(url, menuList, template_id, savedName) {
                         alert('Saved Successfully!!!');
                         var savedTemplateID = obj.savedTemplateId;
                         var redirectURL = getBaseUrl()+'/views/content_views/template_editor.php?category='+currentCategory+'&template='+currentTemplate+'&templateid='+savedTemplateID;
+
+                        saveImages(user_id, savedTemplateID);
+
                         window.location.href = redirectURL;
                     } else {
                         alert('Error occured during saving!!!');
@@ -326,11 +337,6 @@ function insertPage(url, menuList, template_id, savedName) {
 }
 
 function updatePage(url, menuList, template_id, savedName) {
-
-    //var image = '{ "src": "' + imageObj.src + '", "index": ' + imageObj.image_id + ', "type": "' + imageObj.image_type + '", "menu": "' + imageObj.menu + '" }';
-
-    //console.log("[WB] Image info: " + image);
-
     $.ajax({
             type: "POST",
             url: url,
