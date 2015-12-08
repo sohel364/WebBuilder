@@ -103,7 +103,8 @@ function traverseImages() {
 
         console.log('[WB-D][container-id: logging]');
 
-        var allElements = $("body").find("*[id^='container_']").each(function (index, element) {
+        var allElements = $("body").find("*[id^='container_']").each(function (index, element)
+        {
             var parts = element.id.split('_');
             //if(parts.length == 2){
             //    console.log('[WB-EXP][container-parts [parent]: ' + parts + ']');

@@ -20,6 +20,46 @@ $(document).ready(function() {
     onLoadMenus();
 });
 
+function handleReceivedImageData(xhr) {
+    if (xhr.readyState == 4  && xhr.status == 200)
+    {
+        var imageObj = JSON.parse(xhr.responseText);
+
+        // Change image source
+        if($('#' + imageObj.image_id)[0].nodeName == "IMG")
+        {
+            $('#' + imageObj.image_id).attr("src", imageObj.src);
+            console.log("[WB-D] RESP SRC:" +  $('#' + imageObj.image_id).attr("src"));
+        }
+        else
+        {
+            $('#' + imageObj.image_id).css("background-image", "url(" + imageObj.src  + ")");
+            console.log("[WB-D] RESP URL:" + $('#' + imageObj.image_id).css("background-image"));
+        }
+    }
+}
+
+function loadMediasOfPages() {
+    $("body").find("*[id^='container_']").each(function (index, element) {
+
+        var xhr = createXHR();
+        if (xhr)
+        {
+            var url = "http://localhost/webbuilder/views/content_views/media_loader.php";
+            var payload = "image_id=" + imageObj.id;
+            xhr.open("POST",url,true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded ');
+            xhr.setRequestHeader("Content-length", payload.length);
+            xhr.setRequestHeader("Connection", "close");
+            xhr.onreadystatechange = function()
+            {
+                handleReceivedImageData(xhr);
+            };
+            xhr.send(payload);
+        }
+    });
+}
+
 /*
  * Sets the initial menu contents to menu array and initialize the global variables
  */
@@ -30,6 +70,9 @@ function onLoadMenus() {
     var curLi = $lis[0];
     $ahref = $(curLi).find('a');
     curMenu = $ahref.text();
+
+    //loadMediasOfPages();
+
     if (typeof isEdit !== 'undefined' && isEdit) {
         getSavedMenuContents();
         makeTemplateComponetsEditable();
@@ -84,7 +127,7 @@ function onMenuClick(menu) {
 
     //saveCurrentPageImages();
     traverseImages();
-    saveImages(user_id, template_id);
+    //saveImages(user_id, template_id);
 
     var menuText = $(menu).text();
     curMenu = menuText;
@@ -95,7 +138,7 @@ function onMenuClick(menu) {
     }
     console.log("menu is clicked");
     if(typeof isView !== 'undefined' && isView){
-        //makeTemplateComponetsNotEditable();
+        makeTemplateComponetsNotEditable();
     } else {
         makeTemplateComponetsEditable();
         onTemplateMenuLoad();
