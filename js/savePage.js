@@ -293,7 +293,31 @@ function savePage(user_id, template_id) {
     x++;
 }
 
+function testBodyHTML() {
+    console.log('[WB-DRAG] loggin');
+    var data_rows = Object.keys(menuContens);
+    data_rows.forEach(function (data_row) {
+        //console.log('[WB-DRAG]' + menuContens[data_row]);
+
+        //var parser = new DOMParser();
+        //var doc = parser.parseFromString(menuContens[data_row], "text/html");
+        var html = $.parseHTML(menuContens[data_row]), nodeNames = [];
+        $.each(html, function (i, el) {
+            //nodeNames[ i ] = "<li>" + el.nodeName + "</li>";
+            if ($("*[id*='dropped']") != null)
+                console.log("[WB-DRAG]" + el.id);
+        });
+        //console.log("[WB-DRAG]" + nodeNames.join( "" ));
+        //doc.find("img").each(function (index, element) {
+        //   console.log('[WB-DRAG]' + element.id);
+        //});
+
+    });
+}
+
 function insertPage(url, menuList, template_id, user_id, savedName) {
+
+    //testBodyHTML();
 
     $.ajax({
             type: "POST",
@@ -338,6 +362,9 @@ function insertPage(url, menuList, template_id, user_id, savedName) {
 }
 
 function updatePage(url, menuList, template_id, savedName) {
+
+    //testBodyHTML();
+
     $.ajax({
             type: "POST",
             url: url,

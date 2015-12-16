@@ -23,7 +23,28 @@ $(document).ready(function() {
 function handleReceivedImageData(xhr) {
     if (xhr.readyState == 4  && xhr.status == 200)
     {
-        var imageObj = JSON.parse(xhr.responseText);
+        var dataset = JSON.parse(xhr.responseText);
+
+        alert(xhr.responseXML);
+
+        var data_rows = Object.keys(dataset);
+        data_rows.forEach(function(data_row) {
+
+            var user_id = dataset[data_row]['user_id'];
+            var template_id = dataset[data_row]['template_id'];
+
+            var user_template_id = user_id + '_' + template_id;
+            var image_tree = dataset[data_row]['res_name'].replace( user_template_id ,'');
+            var image_name_parsed_array = image_tree.split('_');
+            var menu = image_name_parsed_array[0];
+            var image_id = image_name_parsed_array.replace(menu + '_', '').replace(image_name_parsed_array[image_name_parsed_array.length - 1], '');
+            console.log('[WB-D] [image-id]: ' + image_id);
+
+            var row_columns = Object.keys(dataset[data_row]);
+            row_columns.forEach(function(column){
+                console.log('[WB-D] [' + data_row + '][' + column + ']: ' + dataset[data_row][column]);
+            });
+        });
 
         // Change image source
         if($('#' + imageObj.image_id)[0].nodeName == "IMG")
@@ -40,13 +61,13 @@ function handleReceivedImageData(xhr) {
 }
 
 function loadMediasOfPages() {
-    $("body").find("*[id^='container_']").each(function (index, element) {
+    $("#body").find("*[id^='container_']").each(function (index, element) {
 
         var xhr = createXHR();
         if (xhr)
         {
-            var url = "http://localhost/webbuilder/views/content_views/media_loader.php";
-            var payload = "image_id=" + imageObj.id;
+            var url = "http://localhost/webbuilder/views/content_views/media_info_loader.php";
+            var payload = "template_id=" + template_id;
             xhr.open("POST",url,true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded ');
             xhr.setRequestHeader("Content-length", payload.length);
@@ -115,7 +136,11 @@ function setBodyHtmlString(bodyHtml) {
  */
 function resetMenuContent() {
     setBodyHtmlString(defaultMenuHtml);
+    //menuContens[curMenu] = defaultMenuHtml;
 }
+
+//var menuClickHistory = [];
+//var menuClickHistoryIndex = 0;
 
 /*
  * Function executes while clicking any menu
@@ -131,12 +156,17 @@ function onMenuClick(menu) {
 
     var menuText = $(menu).text();
     curMenu = menuText;
+    //menuClickHistory[menuClickHistoryIndex] = menuText;
     if(menuContens[menuText] === null || typeof menuContens[menuText] === 'undefined') {
+        //alert("RESETTING MENU CONTENT!!! ALERT!!" + menuContens[menuText]);
         resetMenuContent();
     } else {
-        setBodyHtmlString(menuContens[menuText]);       
+        //var previousMenuClicked = menuClickHistory[menuClickHistoryIndex - 1];
+        //alert("SAVING PREVIOUS MENU CONTENT!!! -> " + menuText + "###" + menuContens[menuText]);
+        setBodyHtmlString(menuContens[menuText]);
     }
-    console.log("menu is clicked");
+    //console.log("menu is clicked history count: " + menuClickHistoryIndex);
+    //menuClickHistoryIndex++;
     if(typeof isView !== 'undefined' && isView){
         makeTemplateComponetsNotEditable();
     } else {
@@ -147,7 +177,7 @@ function onMenuClick(menu) {
 
 
 function getSavedMenuContents() {
-    //menuContens = user_menu_content_array;
+    menuContens = user_menu_content_array;
     setBodyHtmlString(menuContens[curMenu]);
 }
 var _user_id, _template_id;
