@@ -150,9 +150,7 @@ function onMenuClick(menu) {
 	closeAllEditDialogPanel();
     saveCurrentMenuText();
 
-    //saveCurrentPageImages();
     traverseImages();
-    //saveImages(user_id, template_id);
 
     var menuText = $(menu).text();
     curMenu = menuText;
@@ -206,20 +204,21 @@ function loadImages(user_id, template_id, callbackFunc)
 function saveCurrentPageImages(isEdit, imageObj) {
 
     if(!isEdit) {
-        if(!isEmpty(imageObj.src))
-            console.log("[WB] on insert image-src: \"" + imageObj.src + "\"");
+        //if(!isEmpty(imageObj.src))
+        //    console.log("[WB] on insert image-src: \"" + imageObj.src + "\"");
         sendRequest(imageObj);
     }
     else
     {
-        if(imageObj.src != "")
-        {
-            console.log("[WB] on update image-src: " + imageObj.src);
-            //alert("[WB] on update image-id: " + imageObj.id);
-            console.log("[WB] on update image-blob: " + imageObj.src.indexOf("blob"));
-            console.log("[WB] on update image-localhost: " + imageObj.src.indexOf("localhost"));
-        }
-        //if(imageObj.src.indexOf("blob") > -1)
+        //if(imageObj.src != "")
+        //{
+        //    console.log("[WB] on update image-src: " + imageObj.src);
+        //    //alert("[WB] on update image-id: " + imageObj.id);
+        //    console.log("[WB] on update image-blob: " + imageObj.src.indexOf("blob"));
+        //    console.log("[WB] on update image-localhost: " + imageObj.src.indexOf("localhost"));
+        //}
+
+        if(imageObj.src.indexOf("blob") > -1)
         {
             sendRequest(imageObj);
             console.log("[WB] on update image-menu: " + imageObj.src);

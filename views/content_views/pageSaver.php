@@ -19,10 +19,6 @@ try {
     require_once '../../objects/ObjMenu.php';
     require_once '../../objects/ObjSubMenu.php';
 
-
-
-    
-
     if (!isset($_POST['menulists']) || !isset($_POST['menucontentlist'])) {
         if(!isset($_POST['menulists']))
             $aResult['error'] = 'There is no menulist to save';

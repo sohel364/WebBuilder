@@ -13,7 +13,6 @@ header('Content-Type: application/json');
 $aResult = array();
 try {
 
-
     require_once '../../manager/content_manager/content_manager.php';
     require_once '../../manager/content_manager/media_manager.php';
     require_once '../../objects/ObjTemplate.php';
@@ -27,8 +26,6 @@ try {
             $aResult['error'] = 'There is no menulist to save';
         else 
             $aResult['error'] = 'Content List Error';
-    } else if(!isset($_POST['image'])) {
-        //$aResult['error'] = 'User selected images not found';
     } else if(!isset($_POST['categoryname'])) {
         $aResult['error'] = 'Categoryname  not found';
     } else if(!isset($_POST['templatename'])) {
@@ -38,6 +35,7 @@ try {
     } else if(!isset($_POST['menuidlist'])) {
         $aResult['error'] = 'Menu list error found';
     } else {
+
         $menuList = $_POST['menulists'];
         $aResult['menuCount'] = count($menuList);
         $aResult['string'] = '';
@@ -101,7 +99,6 @@ try {
             $templateInfo->setTemplateName($_POST['templatename']);
             $templateInfo->setCategoryName($_POST['categoryname']);
             $returnVal = $contentManager->updateUserTemplate($templateInfo);
-            
 
             if ($returnVal == '1') {
                 // Saving menu, submenu and contents 
