@@ -9,7 +9,7 @@
 var menuContens = {}; //Global Menu Content Array(Key-value pair)
 var curMenu; //Current Menu
 var defaultMenuHtml; // Default body html of the current template-*+
-var allImages = {};
+var allImages = [];
 var imageObjects = {};
 var imageCounter = -1;
 var imageArrayLength = 0;
@@ -21,64 +21,65 @@ $(document).ready(function() {
 });
 
 function handleReceivedImageData(xhr) {
+    //alert( "replied:: " + xhr.readyState + "/"+ xhr.status);
     if (xhr.readyState == 4  && xhr.status == 200)
     {
         var dataset = JSON.parse(xhr.responseText);
-
-        alert(xhr.responseXML);
+        //alert("replied->:" + dataset);
 
         var data_rows = Object.keys(dataset);
         data_rows.forEach(function(data_row) {
 
-            var user_id = dataset[data_row]['user_id'];
-            var template_id = dataset[data_row]['template_id'];
+            var media = dataset[data_row];
 
-            var user_template_id = user_id + '_' + template_id;
-            var image_tree = dataset[data_row]['res_name'].replace( user_template_id ,'');
+            //alert(media.id);
+
+            var user_template_id = media.user_id + '_' + media.template_id + '_';
+            var image_tree = media.res_name.replace( user_template_id ,'');
             var image_name_parsed_array = image_tree.split('_');
             var menu = image_name_parsed_array[0];
-            var image_id = image_name_parsed_array.replace(menu + '_', '').replace(image_name_parsed_array[image_name_parsed_array.length - 1], '');
-            console.log('[WB-D] [image-id]: ' + image_id);
+            var id_hashed = image_name_parsed_array[image_name_parsed_array.length - 1];
+            var image_id = image_tree.replace(menu + '_', '').replace('_' + id_hashed, '');
+            //alert('[WB-D] [image-id]: ' + image_id);
 
-            var row_columns = Object.keys(dataset[data_row]);
-            row_columns.forEach(function(column){
-                console.log('[WB-D] [' + data_row + '][' + column + ']: ' + dataset[data_row][column]);
-            });
+            var src = getBaseUrl() + "/archive/" + media.res_name;
+
+            //alert($('#' + image_id)[0].nodeName);
+            var parts = image_id.split('_');
+            var tagName = parts[parts.length - 1].split('-')[0];
+            //alert(tagName);
+            // Change image source
+            if(tagName == "img")
+            {
+                $('#' + image_id).attr("src", src);
+                //alert("[WB-D] RESP SRC:" +  $('#' + image_id).attr("src"));
+            }
+            else
+            {
+                $('#' + image_id).css("background-image", "url(" + src  + ")");
+                //alert("[WB-D] RESP URL:" + $('#' + image_id).css("background-image"));
+            }
         });
-
-        // Change image source
-        if($('#' + imageObj.image_id)[0].nodeName == "IMG")
-        {
-            $('#' + imageObj.image_id).attr("src", imageObj.src);
-            console.log("[WB-D] RESP SRC:" +  $('#' + imageObj.image_id).attr("src"));
-        }
-        else
-        {
-            $('#' + imageObj.image_id).css("background-image", "url(" + imageObj.src  + ")");
-            console.log("[WB-D] RESP URL:" + $('#' + imageObj.image_id).css("background-image"));
-        }
     }
 }
 
 function loadMediasOfPages() {
-    $("#body").find("*[id^='container_']").each(function (index, element) {
-
-        var xhr = createXHR();
-        if (xhr)
+    var xhr = createXHR();
+    if (xhr)
+    {
+        var url = getBaseUrl() + "/views/content_views/media_info_loader.php";
+        //alert(template_id);
+        var payload = "template_id=" + template_id;
+        xhr.open("POST",url,true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded ');
+        xhr.setRequestHeader("Content-length", payload.length);
+        xhr.setRequestHeader("Connection", "close");
+        xhr.onreadystatechange = function()
         {
-            var url = "http://localhost/webbuilder/views/content_views/media_info_loader.php";
-            var payload = "template_id=" + template_id;
-            xhr.open("POST",url,true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded ');
-            xhr.setRequestHeader("Content-length", payload.length);
-            xhr.setRequestHeader("Connection", "close");
-            xhr.onreadystatechange = function()
-            {
-                handleReceivedImageData(xhr);
-            };
-            xhr.send(payload);
-        }
-    });
+            handleReceivedImageData(xhr);
+        };
+        xhr.send(payload);
+    }
 }
 
 /*
@@ -92,7 +93,7 @@ function onLoadMenus() {
     $ahref = $(curLi).find('a');
     curMenu = $ahref.text();
 
-    //loadMediasOfPages();
+    loadMediasOfPages();
 
     if (typeof isEdit !== 'undefined' && isEdit) {
         getSavedMenuContents();
@@ -204,26 +205,37 @@ function loadImages(user_id, template_id, callbackFunc)
 function saveCurrentPageImages(isEdit, imageObj) {
 
     if(!isEdit) {
-        //if(!isEmpty(imageObj.src))
-        //    console.log("[WB] on insert image-src: \"" + imageObj.src + "\"");
         sendRequest(imageObj);
+        if(imageObj.src.indexOf("blob") != -1)
+        {
+            alert("[WB] on insert image-menu: " + imageObj.src);
+        }
     }
     else
     {
-        //if(imageObj.src != "")
-        //{
-        //    console.log("[WB] on update image-src: " + imageObj.src);
-        //    //alert("[WB] on update image-id: " + imageObj.id);
-        //    console.log("[WB] on update image-blob: " + imageObj.src.indexOf("blob"));
-        //    console.log("[WB] on update image-localhost: " + imageObj.src.indexOf("localhost"));
-        //}
+        //if(!isEmpty(imageObj.src))
+        //    alert("[WB] on update image-src: \"" + imageObj.src + "\"");
 
-        if(imageObj.src.indexOf("blob") > -1)
+        if(imageObj.src.indexOf("localhost") == -1)
         {
             sendRequest(imageObj);
-            console.log("[WB] on update image-menu: " + imageObj.src);
+            //console.log("[WB] on update image-menu: " + imageObj.src);
+            alert("[WB] on update image-menu: " + imageObj.src);
         }
     }
+}
+
+function isImageExists(id, menu_item)
+{
+    if(allImages[menu_item] == null) return false;
+    var image_items = Object.keys(allImages[menu_item]);
+    image_items.forEach(function(image){
+
+        var imageObj = JSON.parse(allImages[menu_item][image]);
+        if(id == imageObj.id) return true;
+
+    });
+    return false;
 }
 
 function saveImages(user_id, template_id) {
@@ -243,17 +255,19 @@ function saveImages(user_id, template_id) {
         //items.sort();
         image_items.forEach(function(image){
 
-            console.log('[WB-D] json: ' + allImages[menu_item][image]);
+            //console.log('[WB-D] json: ' + allImages[menu_item][image]);
 
             var imageObj = JSON.parse(allImages[menu_item][image]);
 
-            console.log("[WB-D] info: " + user_id + "#" + template_id + "#" + imageObj.id + " SAVING...");
+            //console.log("[WB-D] info: " + user_id + "#" + template_id + "#" + imageObj.id + " SAVING...");
 
             saveCurrentPageImages(isEdit, imageObj);
 
-            console.log("[WB-D] info: " + user_id + "#" + template_id + "#" + imageObj.id + " SAVED!!!");
+            //console.log("[WB-D] info: " + user_id + "#" + template_id + "#" + imageObj.id + " SAVED!!!");
         });
+        //alert("images count: " + image_items.length);
     });
+    //alert("menu count: " + menu_items.length);
 }
 
 function test_upload_image(){
@@ -272,15 +286,15 @@ function getBase64ImageForImageElement(img, id) {
     // Create an empty canvas element
     var canvas = document.getElementById(id);
 
-    console.log('[WB][size]:' + canvas.width + 'x' + canvas.height);
-    console.log('[WB][size]:' + img.attr("width") + 'x' + img.attr("height"));
+    //console.log('[WB][size]:' + canvas.width + 'x' + canvas.height);
+    //console.log('[WB][size]:' + img.attr("width") + 'x' + img.attr("height"));
 
     var imageData = document.getElementById(img.attr("id"));
-    console.log('[WB][object]:' + imageData.id);
-    console.log('[WB][id]:' +  img.attr("id"));
-    console.log('[WB][src]:' +  imageData.src);
-    console.log('[WB][width]:' +  imageData.width);
-    console.log('[WB][height]:' +  imageData.height);
+    //console.log('[WB][object]:' + imageData.id);
+    //console.log('[WB][id]:' +  img.attr("id"));
+    //console.log('[WB][src]:' +  imageData.src);
+    //console.log('[WB][width]:' +  imageData.width);
+    //console.log('[WB][height]:' +  imageData.height);
 
     canvas.width = imageData.width;
     canvas.height = imageData.height;
@@ -295,7 +309,7 @@ function getBase64ImageForImageElement(img, id) {
     // will re-encode the image.
 
     var s = img.attr("src").split('.').pop();
-    console.log('[WB][type]:' + s);
+    //console.log('[WB][type]:' + s);
 
     if(s.indexOf("png")>-1){
         var dataURL = canvas.toDataURL("image/png");
@@ -322,15 +336,15 @@ function getBase64Image(img, id)
         canvas.width = img.css("width").replace("px", "").trim();
         canvas.height = img.css("height").replace("px", "").trim();
 
-        console.log('[WB-D][size]:' + canvas.width + 'x' + canvas.height);
-        console.log('[WB-D][size]:' + img.css("width") + 'x' + img.css("height"));
+        //console.log('[WB-D][size]:' + canvas.width + 'x' + canvas.height);
+        //console.log('[WB-D][size]:' + img.css("width") + 'x' + img.css("height"));
 
         // Copy the image contents to the canvas
         var ctx = canvas.getContext("2d");
         ctx.drawImage(this, 0, 0);
 
-        console.log('[WB-D][src]:' + imageData.src);
-        console.log('[WB-D][size]:' + imageData.width + 'x' + imageData.height);
+        //console.log('[WB-D][src]:' + imageData.src);
+        //console.log('[WB-D][size]:' + imageData.width + 'x' + imageData.height);
     };
     imageData.src = img.css("background-image").replace("url", "").replace("(","").replace(")","").replace("\"","").replace("\"","").trim();
 
@@ -407,21 +421,23 @@ function handleResponse(xhr)
         //var responseImage = document.getElementById("responseImage");
         //responseImage.src = (imageType == "png" ? "data:image/png;base64," : "data:image/jpeg;base64,") + xhr.responseText;
         //responseImage.style.display = "";
-        console.log("[WB]Saved! " + xhr.responseText);
+        //alert("[WB]Saved! " + xhr.responseText);
 
         var imageObj = JSON.parse(xhr.responseText);
 
-        console.log("[WB] RESP " + imageObj.image_id);
+        //console.log("[WB] RESP " + imageObj.image_id);
         // Change image source
         if($('#' + imageObj.image_id)[0].nodeName == "IMG")
         {
             $('#' + imageObj.image_id).attr("src", imageObj.src_arch);
-            console.log("[WB] RESP SRC:" +  $('#' + imageObj.image_id).attr("src"));
+            //console.log("[WB] RESP SRC:" +  $('#' + imageObj.image_id).attr("src"));
+            alert("[WB] RESP SRC:" +  $('#' + imageObj.image_id).attr("src"));
         }
         else
         {
             $('#' + imageObj.image_id).css("background-image", "url(" + imageObj.src_arch  + ")");
-            console.log("[WB] RESP URL:" + $('#' + imageObj.image_id).css("background-image"));
+            //console.log("[WB] RESP URL:" + $('#' + imageObj.image_id).css("background-image"));
+            alert("[WB] RESP URL:" + $('#' + imageObj.image_id).css("background-image"));
         }
         _callbackFn(imageObj);
     }

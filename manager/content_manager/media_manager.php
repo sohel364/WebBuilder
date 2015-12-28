@@ -18,7 +18,7 @@ class MediaManager {
     public function GetMediaByID($key){
         $sqlContent = 'SELECT `id`,`res_name`,`type`,`status`,`user_id`,`template_id` FROM `media_arch` WHERE template_id = \''.$key.'\'';
         $dbHelper = new databaseHelper();
-        $dbHelper->ExecuteInsertReturnID($sqlContent);
+        return $dbHelper->ExecuteDataSet($sqlContent);
     }
     
     /*

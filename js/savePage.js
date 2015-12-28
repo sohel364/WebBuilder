@@ -111,11 +111,11 @@ function traverseImages() {
             //    console.log('[WB-EXP][container-parts [parent][style]: ' + $('#' + element.id).attr("style") + ']'); //$("#stylediv").attr('style')
             //}
             var isChildContainer = parts.length > 2;
-            if (isChildContainer) {
+            if (parts.length == 3) {
 
                 var tagName = parts[parts.length - 1].split('-')[0];
 
-                if ( $('#' + element.id)[0].nodeName != 'IMG')
+                if ( tagName != 'img') // $('#' + element.id)[0].nodeName
                 {
                     //console.log('[WB][container-parts [child]: ' + parts + '][' + $('#' + element.id)[0].nodeName + ']');
                     //console.log('[WB][container-parts [child][style:background(url)]: ' + $('#' + element.id).attr("style") + ']'); //$("#stylediv").attr('style')
@@ -133,7 +133,7 @@ function traverseImages() {
                         var binary = getBase64Image($('#' + element.id), "hidden-canvas");
                         var url = $('#' + element.id).css("background-image").replace("url", "").replace("(","").replace(")","").replace("\"","").replace("\"","").trim();
                         var imgType = (url.split('.').pop() == "jpg") ? "jpeg" : url.split('.').pop();
-                        console.log('[WB-D][image-type]: ' + imgType);
+                        //console.log('[WB-D][image-type]: ' + imgType);
                         // TODO: Image Type is set after above line is executed [getBase64Image(images[i], "hidden-canvas");]
                         var parent_id = parts[0] + '_' + parts[1];
                         var containerObj = '{ "src": "' + url
@@ -144,13 +144,17 @@ function traverseImages() {
                             + '", "menu": "' + curMenu
                             + '", "tag": "' + $('#' + element.id)[0].nodeName
                             + '" }';
-                        containers.push(containerObj);
-                        console.log('[WB][container-json]: ' + containerObj);
+
+                        if(!isImageExists(element.id, curMenu))
+                        {
+                            containers.push(containerObj);
+                        }
+                        //console.log('[WB][container-json]: ' + containerObj);
                     }
                 }
                 else
                 {
-                    console.log('[WB][container-parts [child]: ' + parts + '][' + $('#' + element.id)[0].nodeName + ']');
+                    //console.log('[WB][container-parts [child]: ' + parts + '][' + $('#' + element.id)[0].nodeName + ']');
                     if ($('#' + element.id).attr("src") == "undefined" || $('#' + element.id).attr("src") == "none") {
                         //console.log('[WB][container-parts [child][index]: ' + index + ']');
                         //console.log('[WB][container-parts [child][style:src]: ' + $('#' + element.id).attr("src") + ']'); //$("#stylediv").attr('src')
@@ -160,7 +164,7 @@ function traverseImages() {
                         var binary = getBase64ImageForImageElement($('#' + element.id), "hidden-canvas");
                         var url = $('#' + element.id).attr("src");
                         var imgType = (url.split('.').pop() == "jpg") ? "jpeg" : url.split('.').pop();
-                        console.log('[WB-D][image-type]: ' + imgType);
+                        //console.log('[WB-D][image-type]: ' + imgType);
 
                         //console.log('[WB][container-parts [child][index]: ' + index + ']');
                         //console.log('[WB][container-parts [child][style:src]: ' + $('#' + element.id).attr("src") + ']'); //$("#stylediv").attr('src')
@@ -176,8 +180,12 @@ function traverseImages() {
                             + '", "menu": "' + curMenu
                             + '", "tag": "' + $('#' + element.id)[0].nodeName
                             + '" }';
-                        containers.push(containerObj);
-                        console.log('[WB][container-json]: ' + containerObj);
+
+                        if(!isImageExists(element.id, curMenu))
+                        {
+                            containers.push(containerObj);
+                        }
+                        //console.log('[WB][container-json]: ' + containerObj);
                     }
                 }
             }
@@ -195,9 +203,6 @@ function savePage(user_id, template_id) {
     //var user_id = 'id', template_id = '87349q64';
     //return;
 
-    console.log("[WB-D] savePage: " + user_id + "$##$" + template_id);
-    traverseImages();
-    console.log("[WB-D] savePage: " + user_id + "$##$" + template_id);
 
     if(isUserLoggedIn === null || isUserLoggedIn === "0") {
         alert("Please sign in to save the template");
@@ -205,6 +210,9 @@ function savePage(user_id, template_id) {
         window.location.href = redirectURL;
         return;
     }
+    console.log("[WB-D] savePage: " + user_id + "$##$" + template_id);
+    traverseImages();
+    console.log("[WB-D] savePage: " + user_id + "$##$" + template_id);
 
     makeTemplateComponetsNotEditable();
     saveCurrentMenuText();
@@ -232,6 +240,8 @@ function savePage(user_id, template_id) {
             }
 
             saveImages(user_id, template_id);
+
+            allImages = [];
 
             updatePage(url, menuList, template_id, savedName);
         }

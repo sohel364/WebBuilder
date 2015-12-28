@@ -4,7 +4,7 @@ class databaseHelper
 {
          public  $host = 'localhost';
          public  $user = 'root';
-         public  $pass = '';
+         public  $pass = 'root1097';
          public  $db = 'webbuilder';
 		// Yest commit from mohasin
 		//Test commit from sohel
