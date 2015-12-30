@@ -111,7 +111,7 @@ function traverseImages() {
             //    console.log('[WB-EXP][container-parts [parent][style]: ' + $('#' + element.id).attr("style") + ']'); //$("#stylediv").attr('style')
             //}
             var isChildContainer = parts.length > 2;
-            if (parts.length == 3) {
+            if (parts.length > 2) {
 
                 var tagName = parts[parts.length - 1].split('-')[0];
 

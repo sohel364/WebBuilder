@@ -34,31 +34,35 @@ function handleReceivedImageData(xhr) {
 
             //alert(media.id);
 
-            var user_template_id = media.user_id + '_' + media.template_id + '_';
-            var image_tree = media.res_name.replace( user_template_id ,'');
-            var image_name_parsed_array = image_tree.split('_');
-            var menu = image_name_parsed_array[0];
-            var id_hashed = image_name_parsed_array[image_name_parsed_array.length - 1];
-            var image_id = image_tree.replace(menu + '_', '').replace('_' + id_hashed, '');
-            //alert('[WB-D] [image-id]: ' + image_id);
-
-            var src = getBaseUrl() + "/archive/" + media.res_name;
-
-            //alert($('#' + image_id)[0].nodeName);
-            var parts = image_id.split('_');
-            var tagName = parts[parts.length - 1].split('-')[0];
-            //alert(tagName);
-            // Change image source
-            if(tagName == "img")
+            if(media.user_id == user_id)
             {
-                $('#' + image_id).attr("src", src);
-                //alert("[WB-D] RESP SRC:" +  $('#' + image_id).attr("src"));
-            }
-            else
-            {
-                $('#' + image_id).css("background-image", "url(" + src  + ")");
-                //alert("[WB-D] RESP URL:" + $('#' + image_id).css("background-image"));
-            }
+                var user_template_id = media.user_id + '_' + media.template_id + '_';
+                var image_tree = media.res_name.replace( user_template_id ,'');
+                var image_name_parsed_array = image_tree.split('_');
+                var menu = image_name_parsed_array[0];
+                var id_hashed = image_name_parsed_array[image_name_parsed_array.length - 1];
+                var image_id = image_tree.replace(menu + '_', '').replace('_' + id_hashed, '');
+                //alert('[WB-D] [image-id]: ' + image_id);
+
+                var src = getBaseUrl() + "/archive/" + media.res_name;
+
+                //alert($('#' + image_id)[0].nodeName);
+                var parts = image_id.split('_');
+                var tagName = parts[parts.length - 1].split('-')[0];
+                //alert(tagName);
+                // Change image source
+                if(tagName == "img")
+                {
+                    $('#' + image_id).attr("src", src);
+                    //alert("[WB-D] RESP SRC:" +  $('#' + image_id).attr("src"));
+                }
+                else
+                {
+                    $('#' + image_id).css("background-image", "url(" + src  + ")");
+                    //alert("[WB-D] RESP URL:" + $('#' + image_id).css("background-image"));
+                }
+            }// end-if for user checking
+
         });
     }
 }
@@ -220,7 +224,7 @@ function saveCurrentPageImages(isEdit, imageObj) {
         {
             sendRequest(imageObj);
             //console.log("[WB] on update image-menu: " + imageObj.src);
-            alert("[WB] on update image-menu: " + imageObj.src);
+            // alert("[WB] on update image-menu: " + imageObj.src);
         }
     }
 }
