@@ -778,11 +778,9 @@ $_SESSION['isInEditor'] = $isInEditor;
 			Title. Edit me<br />
 		</h1>
 
-
-	<img id="image_template" name="image"
-		src="../../images/image_template.png" alt="Image Template"
-		class="image_template_non_editable"
-		class="image_template_non_editable" style="display: none; position: absolute;" />
+	<div  id="image_template" name="image" class="image_template_non_editable" style="display: none; position: absolute;" data-id="container_imageT">
+		<img src="../../images/image_template.png" alt="Image Template" />
+	</div>
 
 	<div id="image_slider_template" name="imageslider"
 		class="slider_template_non_editable" data-pause="3000" data-speed="1000" style="display: none; position: absolute;">

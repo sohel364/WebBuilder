@@ -287,10 +287,14 @@ function makeBodyDroppable() {
 						draggable.addClass("droppedFields");
 
 						if (draggable.data("id") == null){
-							draggable[0].id = droppable_name + "_dropped_"
-							+ (counter++);
+							draggable[0].id = droppable_name + "_dropped_" + (counter++);
 						}else{
+							if (draggable.attr("name") == "image"){
+								draggable[0].id = draggable.data("id") + "-" + (counter++);
+								draggable.find("img").attr("id", draggable[0].id + "_img-" + (counter++));
+							}else{
 							draggable[0].id = draggable.data("id");
+							}
 						}
 						
 						
