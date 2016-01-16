@@ -8,6 +8,7 @@
 
 var counter = 1001;
 var clicked_dropped_item_id = null;
+var clicked_dropped_item_name = null;
 var child_item = null;
 var editable_control = null;
 var editable_image = null;
@@ -26,6 +27,7 @@ var allawable_control_array = [ "button", "textarea", "radiobutton",
 var allawable_group_control_array = [ "group_button", "group_textarea", "group_radiobutton",
                         		"group_dropdown", "group_image", "group_imageslider", "group_header",
                         		"group_separator", "group_textinput" ]
+var deleted_image_list = [];
 
 var currentMousePos = {
 	x : -1,
@@ -194,18 +196,71 @@ function makeImageSliderThumbnailSortable() {
 
 }
 
+function isSameIDExistsInImageSliderList(image_id, image_slider_list){
+	var is_found = false;
+	
+	$.each(image_slider_list, function(index, value) {
+		if(value.ID == image_id) is_found = true;
+	});
+	return is_found;
+}
+
+function getImageIdFromSliderList(image_src, image_slider_list){
+	var image_id = null;
+	$.each(image_slider_list, function(index, value) {
+		if(value.SRC == image_src) image_id = value.ID;
+	});
+	
+	return image_id;
+}
+
+function getAvaiableImageIDList(imageSliderImageList, tmp_img_list){
+	var available_id_list = [];
+	$.each(tmp_img_list, function(index, value){
+		if (imageSliderImageList.indexOf(value.SRC) < 0){
+			available_id_list.push(value.ID);
+		}
+	});
+	
+	return available_id_list;
+}
+
+
 function createImageSlider(imageSliderImageList) {
 	var target_slider = editable_control.find('ul');
 	var file_name = "test_image";
-	
-	console.log("ul ID : " + target_slider.attr("id"));
 
+	var tmp_img_list = [];
+	target_slider.find("li").each(function(index, value){
+		var tmp_id = $(this).find("img").attr("id");
+		var tmp_src = $(this).find("img").attr("src");
+		
+		if(!isSameIDExistsInImageSliderList(tmp_id, tmp_img_list)){
+			var tmpObj = {};
+			tmpObj["ID"] = tmp_id;
+			tmpObj["SRC"] = tmp_src;
+			tmp_img_list.push(tmpObj);
+		}	
+	});
+	//console.log("[TMP_IMAGE_LIST]: " + tmp_img_list);
+	var available_id_list = getAvaiableImageIDList(imageSliderImageList, tmp_img_list);
+	//console.log("[AVAILABLE_IMAGE_LIST]: " + tmp_img_list);
+	
 	target_slider.empty();
 
 	$.each(imageSliderImageList, function(index, value) {
-		$(
-				'<li ><img src="' + value + '"  alt="' + file_name
-						+ '"></li>').appendTo(target_slider)
+		var tmp_id = getImageIdFromSliderList(value, tmp_img_list);
+		if(tmp_id == null){
+			tmp_id = available_id_list.pop();
+			if (tmp_id == undefined)
+				{
+					tmp_id = editable_control.attr("id") + "_img-" + (counter++);
+				}
+		}
+		
+		$(	
+			'<li ><img src="' + value + '"  alt="' + file_name
+					+ '"' + ' id=' + tmp_id + '></li>').appendTo(target_slider)
 	});
 	
 	target_slider.data("total_item", imageSliderImageList.length);
@@ -292,7 +347,14 @@ function makeBodyDroppable() {
 							if (draggable.attr("name") == "image"){
 								draggable[0].id = draggable.data("id") + "-" + (counter++);
 								draggable.find("img").attr("id", draggable[0].id + "_img-" + (counter++));
-							}else{
+							}else if (draggable.attr("name") == "imageslider"){
+								draggable[0].id = draggable.data("id") + "-" + (counter++);
+								draggable.find("ul").find('li').find("img").each(
+										function(index, value) {
+											$(this).attr("id", draggable[0].id + "_img-" + (counter++))
+										});
+							}
+							else{
 							draggable[0].id = draggable.data("id");
 							}
 						}
@@ -1124,7 +1186,7 @@ function makeTextAreaEditable() {
 function droppedItemClickAction() {
 
 	clicked_dropped_item_id = $(this).attr("id");
-	var clicked_dropped_item_name = $(this).attr("name");
+	clicked_dropped_item_name = $(this).attr("name");
 	var title = "";
 
 	if (clicked_dropped_item_name.indexOf("button") >= 0) {
@@ -1278,9 +1340,9 @@ function initializeAllDialogButton() {
 	 */
 
 	$("#dialog_btn_delete").click(function() {
+		stopSlider($("#" + clicked_dropped_item_id));		
+		$("#" + clicked_dropped_item_id).remove();	
 		$("#control_option_dialog").dialog("close");
-		stopSlider($("#" + clicked_dropped_item_id));
-		$("#" + clicked_dropped_item_id).remove();
 		
 	});
 
