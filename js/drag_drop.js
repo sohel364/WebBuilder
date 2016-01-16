@@ -16,6 +16,7 @@ var SLIDER_ANIMATION_SPEED = 1000;
 var SLIDER_PAUSE = 3000;
 var is_group_edit_mode = false;
 var editable_group = null;
+var deleted_image_list = [];
 
 var pos;
 var isSaved = false;
@@ -1334,14 +1335,45 @@ function createDropdownTemplate(new_dropdown_options) {
 	});
 }
 
+function getAllDeletedImages(){
+	return deleted_image_list;
+}
+
 function initializeAllDialogButton() {
 	/*
 	 * Button Initialization for Option Dialog Panel
 	 */
 
-	$("#dialog_btn_delete").click(function() {
-		stopSlider($("#" + clicked_dropped_item_id));		
-		$("#" + clicked_dropped_item_id).remove();	
+	$("#dialog_btn_delete").click(function() {		
+		if(clicked_dropped_item_name == "image" || clicked_dropped_item_name == "group_image"){
+			console.log("[DELETE_IMAGE]: " + clicked_dropped_item_id);
+			editable_control = $("#" + clicked_dropped_item_id);
+			var deleted_img = findImage();			
+			var tmp_obj = {};
+			tmp_obj["ID"] = deleted_img.attr("id");
+			tmp_obj["SRC"] = deleted_img.attr("src");;
+			tmp_obj["MENU"] = curMenu;
+			deleted_image_list.push(tmp_obj);
+			
+		}else if (clicked_dropped_item_name == "imageslider" || clicked_dropped_item_name == "group_imageslider"){
+			console.log("[DELETE_IMAGESLIDER]: " + clicked_dropped_item_id);
+			stopSlider($("#" + clicked_dropped_item_id));
+			var target_slider = $("#" + clicked_dropped_item_id).find('ul');
+			var count_image = target_slider.data("total_item");
+			target_slider.find("li").each(function(index, value){
+				if(index < count_image){
+					var deleted_img = $(this).find("img");			
+					var tmp_obj = {};
+					tmp_obj["ID"] = deleted_img.attr("id");
+					tmp_obj["SRC"] = deleted_img.attr("src");;
+					tmp_obj["MENU"] = curMenu;
+					deleted_image_list.push(tmp_obj);
+				}
+			});
+		}
+		console.log(deleted_image_list);
+		
+		$("#" + clicked_dropped_item_id).remove();
 		$("#control_option_dialog").dialog("close");
 		
 	});
