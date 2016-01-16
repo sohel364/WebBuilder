@@ -782,9 +782,9 @@ $_SESSION['isInEditor'] = $isInEditor;
 		<img src="../../images/image_template.png" alt="Image Template" />
 	</div>
 
-	<div id="image_slider_template" name="imageslider"
+	<div id="image_slider_template" name="imageslider" data-id="container_imageS"
 		class="slider_template_non_editable" data-pause="3000" data-speed="1000" style="display: none; position: absolute;">
-		<ul id="image_slider_1" data-pause_time="3000" data-animation_speed="1000" data-visible_items="1" data-total_item="3">
+		<ul data-pause_time="3000" data-animation_speed="1000" data-visible_items="1" data-total_item="3">
 			<li><img src="../../images/slider1.jpg" class="slide" alt="Image1"></li>
 			<li><img src="../../images/slider2.jpg" class="slide" alt="Image2"></li>
 			<li><img src="../../images/slider3.jpg" class="slide" alt="Image3"></li>
